@@ -1,0 +1,27 @@
+﻿<Window x:Class="GenerateMachine.服务器验证密钥"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="服务器验证密钥" Height="350" Width="500">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Image Source="/XMLContrast;component/Resources/logo.jpg" Margin="2"   Grid.Row="0"></Image>
+        <Grid Grid.Row="1" Margin="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="密钥:" VerticalAlignment="Center" Margin="5" FontSize="16"></TextBlock>
+            <TextBox Text="" x:Name="txt_key" Grid.Column="1"  VerticalAlignment="Center" Margin="5" FontSize="16"></TextBox>
+        </Grid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right"  Margin="2">
+            <Button x:Name="btn_Test"  Content="试用" Width="100" Height="26" Margin="5" FontSize="16" ></Button>
+            <Button x:Name="btn_Registration"  Content="注册" Width="100" Height="26" Margin="5" FontSize="16" ></Button>
+            <Button Content="退出" Width="100" x:Name="btn_Out" Height="26" Margin="5" FontSize="16" ></Button>
+        </StackPanel>
+    </Grid>
+</Window>
