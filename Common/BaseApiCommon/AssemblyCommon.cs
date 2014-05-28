@@ -19,7 +19,7 @@ namespace BaseApiCommon
         /// <param name="dllName">DLL名称</param>
         /// <returns></returns>
         public static bool FindAssembly(string path, string iface, string dllName)
-        {
+        { 
             try
             {
                 bool b = false;
