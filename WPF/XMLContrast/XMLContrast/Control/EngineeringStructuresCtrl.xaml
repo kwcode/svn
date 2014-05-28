@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="XMLContrast.Control.EngineeringStructuresCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:hlControl="clr-namespace:WPF.CustomControl;assembly=WPF.CustomControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="680">
+    <Grid  >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="招标工程结构"  FontSize="16" Grid.Column="0" Margin="2">
+            <GroupBox.Content  >
+                <hlControl:ListviewDataCtrl x:Name="lv_dataT"  Background="AliceBlue"></hlControl:ListviewDataCtrl>
+            </GroupBox.Content>
+        </GroupBox>
+        <GridSplitter Width="2" Grid.Column="1" Background="Blue" Margin="0,20,0,20"  HorizontalAlignment="Stretch" ></GridSplitter>
+        <GroupBox Header="投标工程结构"  FontSize="16" Grid.Column="2" Margin="2">
+            <GroupBox.Content >
+                <hlControl:ListviewDataCtrl x:Name="lv_dataB"  Background="AliceBlue"></hlControl:ListviewDataCtrl>
+            </GroupBox.Content>
+        </GroupBox>
+    </Grid>
+</UserControl>

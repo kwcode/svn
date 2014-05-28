@@ -1,0 +1,65 @@
+﻿<hlControl:HLUserControlExt x:Class="XMLContrast.Control.SafetyRateCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+        xmlns:hlControl="clr-namespace:WPF.CustomControl;assembly=WPF.CustomControl"
+             d:DesignHeight="300" d:DesignWidth="1000">
+    <UserControl.Resources>
+
+        <Style x:Key="listviewItemKey" TargetType="{x:Type ListViewItem}">
+            <Setter Property="HorizontalContentAlignment" Value="left" />
+            <Setter Property="Height" Value="22"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="White"></Setter>
+                    <Setter Property="Background" Value="#08246B"></Setter>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="TextBlock.Foreground" Value="{Binding Foreground}"></Setter>
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <!--SelectedItem 选中-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="LightBlue"   />
+                <!--SelectedItem 失去焦点-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Blue"  />
+            </Style.Resources>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <ListView x:Name="lv_DataView" Background="AliceBlue"  ItemContainerStyle="{StaticResource listviewItemKey}"    >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="工程结构"   Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ItemIcon,IsAsync=False}" Height="16"></Image>
+                                    <TextBlock Text="{Binding TStructure}" VerticalAlignment="Center" TextAlignment="Center" Margin="2"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="招标费率" DisplayMemberBinding="{Binding TRate}" Width="80"></GridViewColumn>
+                    <GridViewColumn Header="工程结构"   Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding ItemIcon,IsAsync=False}" Height="16"></Image>
+                                    <TextBlock Text="{Binding BStructure}" VerticalAlignment="Center" TextAlignment="Center" Margin="2"></TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="投标费率" DisplayMemberBinding="{Binding BRate}" Width="80"></GridViewColumn>
+
+                    <GridViewColumn Header="检查结果" DisplayMemberBinding="{Binding CheckResult}" Width="80"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</hlControl:HLUserControlExt>

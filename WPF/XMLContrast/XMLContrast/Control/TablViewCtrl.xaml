@@ -1,0 +1,36 @@
+﻿<hlControl:HLUserControlExt x:Class="XMLContrast.TablViewCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+                xmlns:hlControl="clr-namespace:WPF.CustomControl;assembly=WPF.CustomControl"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style TargetType="TabItem">
+            <Setter Property="Height" Value="30"></Setter>
+            <Style.Triggers>
+                <Trigger Property="Selector.IsSelected" Value="True">
+                    <Setter Property="BorderThickness" Value="2"></Setter>
+                    <Setter Property="BorderBrush" Value="Red"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <TabControl >
+            <TabItem Header="清单内容页" x:Name="tabItem" ></TabItem>
+            <!--<TabItem Header="规费费率检查"   ></TabItem>
+            <TabItem Header="安全文明施工费费率检查"    ></TabItem>
+            <TabItem Header="税金费率检查"></TabItem>
+            <TabItem Header="清单符合性检查"></TabItem>
+            <TabItem Header="主材符合性检查"></TabItem>
+            <TabItem Header="措施符合性检查"></TabItem>
+            <TabItem Header="负报价检查"></TabItem>
+            <TabItem Header="暂列金额符合性检查"></TabItem>
+            <TabItem Header="材料暂估价符合性检查"></TabItem>
+            <TabItem Header="专业工程暂估价"></TabItem>
+            <TabItem Header="总承包服务费检查"></TabItem>-->
+        </TabControl>
+    </Grid>
+</hlControl:HLUserControlExt>

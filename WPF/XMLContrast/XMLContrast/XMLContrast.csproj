@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{10692F23-E3B9-4205-9F44-D3C2D513961D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XMLContrast</RootNamespace>
+    <AssemblyName>XMLContrast</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\gc.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Build.Conversion.v3.5" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CheckRegistWin.xaml.cs">
+      <DependentUpon>CheckRegistWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\定额措施子目.xaml.cs">
+      <DependentUpon>定额措施子目.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\EngineeringCtrl.xaml.cs">
+      <DependentUpon>EngineeringCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\EngineeringStructuresCtrl.xaml.cs">
+      <DependentUpon>EngineeringStructuresCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FeesRatesCtrl.xaml.cs">
+      <DependentUpon>FeesRatesCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ListSubdirectoriesCtrl.xaml.cs">
+      <DependentUpon>ListSubdirectoriesCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\MainMaterialCtrl.xaml.cs">
+      <DependentUpon>MainMaterialCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\RateMeasuresCtrl.xaml.cs">
+      <DependentUpon>RateMeasuresCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FixedMeasuresCtrl.xaml.cs">
+      <DependentUpon>FixedMeasuresCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ProvisionalSumsSubheadCtrl.xaml.cs">
+      <DependentUpon>ProvisionalSumsSubheadCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\MaterialValuationCtrl.xaml.cs">
+      <DependentUpon>MaterialValuationCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ProfessionalEngineeringValuationCtrl.xaml.cs">
+      <DependentUpon>ProfessionalEngineeringValuationCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TurnkeyServiceCtrl.xaml.cs">
+      <DependentUpon>TurnkeyServiceCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\SafetyRateCtrl.xaml.cs">
+      <DependentUpon>SafetyRateCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\GuiHuiRatesCtrl.xaml.cs">
+      <DependentUpon>GuiHuiRatesCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TaxesRateCtrl.xaml.cs">
+      <DependentUpon>TaxesRateCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FeesPriceCtrl.xaml.cs">
+      <DependentUpon>FeesPriceCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\FixedMeasures2Ctrl.xaml.cs">
+      <DependentUpon>FixedMeasures2Ctrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\专业工程暂估价.xaml.cs">
+      <DependentUpon>专业工程暂估价.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\安全文明施工费.xaml.cs">
+      <DependentUpon>安全文明施工费.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\总承包服务费子目.xaml.cs">
+      <DependentUpon>总承包服务费子目.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\措施一对比.xaml.cs">
+      <DependentUpon>措施一对比.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\暂列金对比.xaml.cs">
+      <DependentUpon>暂列金对比.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\材料暂估价对比.xaml.cs">
+      <DependentUpon>材料暂估价对比.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\清单子目.xaml.cs">
+      <DependentUpon>清单子目.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\税金.xaml.cs">
+      <DependentUpon>税金.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\规费子目.xaml.cs">
+      <DependentUpon>规费子目.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Global.cs" />
+    <Compile Include="KeyGenerator.cs" />
+    <Compile Include="Model\BaseEntity.cs" />
+    <Compile Include="ListAssistantWin.xaml.cs">
+      <DependentUpon>ListAssistantWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Control\TablViewCtrl.xaml.cs">
+      <DependentUpon>TablViewCtrl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\EngineeringStructures.cs" />
+    <Compile Include="Model\FeesRates.cs" />
+    <Compile Include="Model\Material.cs" />
+    <Compile Include="Model\MaterialValuation.cs" />
+    <Compile Include="Model\ProfessionalValuation.cs" />
+    <Compile Include="Model\ProvisionalSums.cs" />
+    <Compile Include="Model\SafetyRate.cs" />
+    <Compile Include="Model\TurnkeyService.cs" />
+    <Compile Include="Model\UnitPrice.cs" />
+    <Compile Include="Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\XMLAttributes.cs" />
+    <Compile Include="Model\XMLNodeItem.cs" />
+    <Compile Include="Window2.xaml.cs">
+      <DependentUpon>Window2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XMLOperat.cs" />
+    <Page Include="CheckRegistWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\定额措施子目.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\EngineeringCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\EngineeringStructuresCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\FeesRatesCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\ListSubdirectoriesCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\MainMaterialCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Control\RateMeasuresCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\FixedMeasuresCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ProvisionalSumsSubheadCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\MaterialValuationCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\ProfessionalEngineeringValuationCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\TurnkeyServiceCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\SafetyRateCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\GuiHuiRatesCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\TaxesRateCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\FeesPriceCtrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\FixedMeasures2Ctrl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\专业工程暂估价.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\安全文明施工费.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\总承包服务费子目.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\措施一对比.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\暂列金对比.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\材料暂估价对比.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\清单子目.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\税金.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Control\规费子目.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ListAssistantWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Control\TablViewCtrl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\gc.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\WPF.CustomControl\WPF.CustomControl.csproj">
+      <Project>{DD226629-8F8C-446F-B7E8-32B938D36372}</Project>
+      <Name>WPF.CustomControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\newlogo.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

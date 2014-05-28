@@ -1,0 +1,109 @@
+﻿<hlControl:HLWindowExt x:Class="XMLContrast.ListAssistantWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+           xmlns:hlControl="clr-namespace:WPF.CustomControl;assembly=WPF.CustomControl"
+           WindowState="Maximized"   WindowStartupLocation="CenterOwner" 
+                xmlns:local="clr-namespace:XMLContrast"
+        Title="清单助手" Height="600" Width="800">
+    <hlControl:HLWindowExt.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="TextBlock.Foreground" Value="Red"></Setter>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="TextBlock.Foreground" Value="Black"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontSize" Value="16"></Setter>
+        </Style>
+        <Style TargetType="TreeViewItem">
+            <Setter Property="FontSize" Value="14"></Setter>
+            <Setter Property="Margin" Value="2"></Setter>
+
+        </Style>
+    </hlControl:HLWindowExt.Resources>
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <ToolBar Foreground="#FF7373D1">
+                <ToolBar.Background>
+                    <LinearGradientBrush>
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStop Offset="0" Color="AliceBlue"></GradientStop>
+                            <GradientStop Offset="0.4" Color="LightBlue"></GradientStop>
+                            <GradientStop Offset="0.6" Color="White"></GradientStop>
+                            <GradientStop Offset="1" Color="White"></GradientStop>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </ToolBar.Background>
+                <Button Content="导入招清单" FontSize="16" x:Name="btn_ImportTender" Grid.Column="0" Height="26" Margin="5"></Button>
+                <Button Content="导入投清单" FontSize="16" x:Name="btn_ImportBid" Grid.Column="1" Height="26" Margin="5"></Button>
+                <Button Content="检查分析" FontSize="16" x:Name="btn_Analysis"  Grid.Column="2" Height="26" Margin="5"></Button>
+            </ToolBar>
+            <Image  Margin="2" Source="/XMLContrast;component/Resources/newlogo.jpg"   HorizontalAlignment="Right" Width="370"></Image>
+        </Grid>
+        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0,0,0,1">
+            <StackPanel HorizontalAlignment="Center">
+                <TextBlock   Text="工程招投标信息分析对比清单助手平台" FontSize="33" FontFamily="KaiTi"    Foreground="Black" TextAlignment="Center"></TextBlock>
+            </StackPanel>
+
+        </Border>
+        <Grid  Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0"  >
+                <ListView x:Name="lv_DataMenu"  Background="AliceBlue">
+                    <ListViewItem Tag="0" Content="工程结构对比"></ListViewItem>
+                    <ListViewItem Tag="1" Content="分部分项清单对比"></ListViewItem>
+                    <ListViewItem Tag="2" Content="主要材料对比"></ListViewItem>
+                    <ListViewItem Tag="3" Content="措施一对比"></ListViewItem>
+                    <ListViewItem Tag="4" Content="措施二对比"></ListViewItem>
+                    <ListViewItem Tag="5" Content="暂列金额对比"></ListViewItem>
+                    <ListViewItem Tag="6" Content="材料暂估价对比"></ListViewItem>
+                    <ListViewItem Tag="7" Content="专业工程暂估价对比"></ListViewItem>
+                    <ListViewItem Tag="8" Content="总承包服务费对比"></ListViewItem>
+                    <ListViewItem Tag="9" Content="安全文明施工费费率对比"></ListViewItem>
+                    <ListViewItem Tag="10" Content="规费费率对比"></ListViewItem>
+                    <ListViewItem Tag="11" Content="税金费率对比"></ListViewItem>
+                    <!--<ListViewItem Tag="12" Content="清单单价分析"></ListViewItem>
+                    <ListViewItem Tag="13" Content="措施二单价分析"></ListViewItem>-->
+                </ListView>
+            </Grid>
+            <GridSplitter Width="2" Background="AliceBlue" HorizontalAlignment="Stretch" Grid.Column="1"></GridSplitter>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Border Grid.Row="0" BorderThickness="1" BorderBrush="Black">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="tb_Tender" Text="XML地址"  Margin="2" FontSize="16"></TextBlock>
+                        <TextBlock x:Name="tb_Bid"  Margin="2" FontSize="16"></TextBlock>
+                    </StackPanel>
+                </Border>
+                <Grid Grid.Row="1">
+                    <local:TablViewCtrl x:Name="ctrl_tabview"></local:TablViewCtrl>
+                </Grid>
+            </Grid>
+
+        </Grid>
+        <StackPanel Grid.Row="3" Orientation="Vertical">
+            <TextBox Text="重庆福软科技有限公司  版权所有" FontSize="18" Background="AliceBlue" HorizontalAlignment="Center" BorderThickness="0" IsReadOnly="True"></TextBox>
+            <TextBox Text="网址:www.fusoft.com.cn 服务热线：023-62961045   18523645838 在线咨询QQ：764514770" FontSize="14" HorizontalAlignment="Center"  Background="AliceBlue"  BorderThickness="0" IsReadOnly="True"></TextBox>
+        </StackPanel>
+    </Grid>
+</hlControl:HLWindowExt>
