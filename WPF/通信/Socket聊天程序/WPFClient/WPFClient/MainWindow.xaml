@@ -1,0 +1,51 @@
+﻿<Window x:Class="WPFClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox    Name="txt_msg" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"    Grid.Row="0" />
+            <GridSplitter Grid.Row="1" Height="4" HorizontalAlignment="Stretch"></GridSplitter>
+            <TextBox  MinHeight="50" Grid.Row="2"    Name="txt_sendmsg" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"   />
+            <Button Content="发送" Height="23" Margin="5"  Grid.Row="3"  Name="btn_Send" HorizontalAlignment="Right"   Width="75" Click="btn_Send_Click" />
+            <Button Content="退出" Height="23"   Margin="0,0,90,0"  Grid.Row="3"  Name="btn_Out" HorizontalAlignment="Right"   Width="75" Click="btn_Out_Click" />
+        </Grid>
+        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" Width="4"></GridSplitter>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <GroupBox Header="登录信息" Width="200"  Height="150" Grid.Row="0">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="端口号:" Width="50"  HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+                        <TextBox  Width="100" x:Name="txt_port" Text="0619"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="昵称:"  Width="50" HorizontalAlignment="Right"  VerticalAlignment="Center"></TextBlock>
+                        <TextBox  Width="100" x:Name="txt_name" Text="纯粹是糖"></TextBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <Button Content="连接服务器" Height="23" Margin="5"  Grid.Row="1"  Name="btn_ConnectService"   Width="75" Click="btn_ConnectService_Click" />
+                        <Button Content="退出服务器" Height="23" Margin="5"   Grid.Row="1"  Name="btn_OutService"   Width="75"   />
+                    </StackPanel>
+                </StackPanel>
+            </GroupBox>
+            <TextBox  Grid.Row="1"   Margin="2" Name="txt_servicemsg" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True"    />
+        </Grid>
+
+    </Grid>
+</Window>
