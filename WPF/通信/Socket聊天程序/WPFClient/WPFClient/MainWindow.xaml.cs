@@ -28,12 +28,15 @@ namespace WPFClient
         public MainWindow()
         {
             InitializeComponent();
+            txt_servicemsg.Text = "";
             //定义一个IPV4，TCP模式的Socket
             ClientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             MsgBuffer = new Byte[65535];
             MsgSend = new Byte[65535];
             //允许子线程刷新数据
-            txt_servicemsg.Text = Environment.MachineName;
+            txt_servicemsg.Text += "计算机名称：" + Environment.MachineName + "\n";
+            txt_servicemsg.Text += "用户：" + Environment.UserName + "\n";
+            txt_servicemsg.Text += "域名：" + Environment.UserDomainName + "\n";
         }
         private IPEndPoint ServerInfo;
         private Socket ClientSocket;
@@ -48,30 +51,28 @@ namespace WPFClient
             string port = txt_port.Text.Trim();
             //服务端IP和端口信息设定,这里的IP可以是127.0.0.1，可以是本机局域网IP，也可以是本机网络IP
             IPAddress ip = GetLocalIP();
-            //IPAddress.Parse("127.0.0.1")
             ServerInfo = new IPEndPoint(ip, Convert.ToInt32(port));
             try
             {
                 //客户端连接服务端指定IP端口，Sockket
                 ClientSocket.Connect(ServerInfo);
                 //将用户登录信息发送至服务器，由此可以让其他客户端获知
-                ClientSocket.Send(Encoding.Unicode.GetBytes("用户： " + txt_name.Text + " 进入系统！\n"));
+                ClientSocket.Send(Encoding.Unicode.GetBytes("系统消息： 【" + txt_name.Text + "】进入系统！\n"));
                 //开始从连接的Socket异步读取数据。接收来自服务器，其他客户端转发来的信息
                 //AsyncCallback引用在异步操作完成时调用的回调方法
                 ClientSocket.BeginReceive(MsgBuffer, 0, MsgBuffer.Length, SocketFlags.None, new AsyncCallback(ReceiveCallBack), null);
-                txt_servicemsg.Text += "登录服务器成功！\n";
+                txt_servicemsg.Text += "成功登录服务器！\n";
             }
             catch
             {
                 MessageBox.Show("登录服务器失败，请确认服务器是否正常工作！");
             }
         }
-
+        //结束挂起的异步读取，返回接收到的字节数。 AR，它存储此异步操作的状态信息以及所有用户定义数据
         private void ReceiveCallBack(IAsyncResult AR)
         {
             try
             {
-                //结束挂起的异步读取，返回接收到的字节数。 AR，它存储此异步操作的状态信息以及所有用户定义数据
                 int REnd = ClientSocket.EndReceive(AR);
                 lock (_LockObj)
                 {
@@ -82,7 +83,6 @@ namespace WPFClient
                     }, null);
                 }
                 ClientSocket.BeginReceive(MsgBuffer, 0, MsgBuffer.Length, 0, new AsyncCallback(ReceiveCallBack), null);
-
             }
             catch
             {
@@ -96,6 +96,7 @@ namespace WPFClient
         {
             //发消息
             MsgSend = Encoding.Unicode.GetBytes(txt_sendmsg.Text + "：\n" + txt_msg.Text + "\n**************************************************************************");
+            Byte[] sendmsg = new byte[65535];
             if (ClientSocket.Connected)
             {
                 //将数据发送到连接的 System.Net.Sockets.Socket。

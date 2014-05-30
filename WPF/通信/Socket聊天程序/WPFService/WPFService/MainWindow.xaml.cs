@@ -44,7 +44,9 @@ namespace WPFService
         private Thread ServerThread;//服务端运行的线程
         private Socket[] ClientSocket;//为客户端建立的SOCKET连接
         private int ClientNumb;//存放客户端数量
-        private byte[] MsgBuffer;//存放消息数据
+        private byte[] MsgBuffer;//存放消息数据 
+        private static object _LockObj = new object();
+
         private void btn_StartService_Click(object sender, RoutedEventArgs e)
         {
             //启动服务
@@ -66,7 +68,9 @@ namespace WPFService
             btn_StartService.IsEnabled = false;
             btn_StopService.IsEnabled = true;
         }
-        private static object _LockObj = new object();
+        /// <summary>
+        /// 将接受客户端连接的方法委托给线程
+        /// </summary>
         private void RecieveAccept()
         {
             while (true)
@@ -82,7 +86,7 @@ namespace WPFService
                     SysContext.Send(o =>
                     {
                         string str = ClientSocket[ClientNumb].RemoteEndPoint.ToString();
-                        txt_msg.Text += str + "\n";
+                        txt_msg.Text += str + "[" + DateTime.Now + "]\n";
                     }, null);
                 }
                 ClientNumb++;
@@ -103,9 +107,15 @@ namespace WPFService
                     {
                         //回发数据到客户端
                         ClientSocket[i].Send(MsgBuffer, 0, REnd, SocketFlags.None);
+                        SysContext.Send(o =>
+                        {
+                            string str = Encoding.Unicode.GetString(MsgBuffer, 0, REnd);
+                            txt_newsmsg.Text = str + "\n";
+                        }, null);
                     }
                     //同时接收客户端回发的数据，用于回发
                     RSocket.BeginReceive(MsgBuffer, 0, MsgBuffer.Length, 0, new AsyncCallback(RecieveCallBack), RSocket);
+                    //txt_newsmsg.Text = Encoding.Unicode.GetString(MsgBuffer, 0, MsgBuffer.Length);
                 }
             }
             catch { }
