@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root name="HL">
+  <services name="hlservice">
+    <!--映射关系 接口类 实现接口dll-->
+    <mapping id="UserInfo" Interface="UserServiceInterface.IUserService,UserServiceInterface" component="ServiceComponent.UserService,ServiceComponent"></mapping>
+  </services>
+</root>
