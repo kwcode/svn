@@ -24,8 +24,8 @@ namespace HL.ServiceModel
                 byte[] buff = new byte[len];
                 context.Request.InputStream.Read(buff, 0, (int)len);
                 InvokeParam obj = (InvokeParam)BaseApiCommon.SerializationCommon.Deserilize(buff);
+                if (obj == null) return;
                 string bapath = System.AppDomain.CurrentDomain.BaseDirectory;
-                // BaseApiCommon.AssemblyCommon.Load(bapath + "Bin");
                 string dll = bapath + @"Bin\ServiceComponent.DLL";
                 object objs = BaseApiCommon.AssemblyCommon.InvokeMember(dll, obj.Interface, obj.MethodName, obj.Parameters);
                 buff = BaseApiCommon.SerializationCommon.Serilize(objs);
