@@ -71,6 +71,29 @@ namespace BaseApiCommon
             return null;
         }
 
+
+        public static object InvokeMember(string dllPath, string intfname, string methodname, params object[] param)
+        {
+            object objs = null;
+            byte[] buffer = System.IO.File.ReadAllBytes(dllPath);
+            Assembly assm = Assembly.Load(buffer);
+            Type[] types = assm.GetTypes();
+            foreach (Type t in types)
+            {
+                string fullname = t.FullName;
+                if (t.IsClass && !t.IsAbstract)
+                {
+                    Type type = t.GetInterface(intfname);
+                    if (type != null)
+                    {
+                        MethodInfo mi = type.GetMethod(methodname);
+                        object obj = Activator.CreateInstance(t);
+                         objs = mi.Invoke(obj, param);
+                    }
+                }
+            }
+            return objs;
+        }
     }
 
 
