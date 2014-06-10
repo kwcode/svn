@@ -50,7 +50,8 @@ namespace BaseApiCommon
         /// <returns></returns>
         private static TInterface CreateInterfaceImplementation<TInterface>()
         {
-            Type typeFromHandle = typeof(TInterface); if (!ServiceProxy._Instances.ContainsKey(typeFromHandle.FullName))
+            Type typeFromHandle = typeof(TInterface);
+            if (!ServiceProxy._Instances.ContainsKey(typeFromHandle.FullName))
             {
                 lock (ServiceProxy._SycInstances)
                 {
@@ -245,18 +246,18 @@ namespace BaseApiCommon
         /// <returns></returns>
         public static object Invoke(string intfname, string methodname, params object[] param)
         {
+            object result = "";
             byte[] buffer = BaseApiCommon.SerializationCommon.Serilize(new InvokeParam
             {
                 Interface = intfname,
                 MethodName = methodname,
                 Parameters = param
             });
-            object result = "";
             using (WebClient webClient = new WebClient())
             {
                 byte[] buff = BaseApiCommon.WebClientCommon.GetFromServer(_URL, buffer);
                 result = BaseApiCommon.SerializationCommon.Deserilize(buff);
-                return result;
+                //  return result;
             }
             return result;
         }
