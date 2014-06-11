@@ -50,6 +50,18 @@
       <Project>{F00850CC-B3DE-4125-B5D4-9B1C0C3760DE}</Project>
       <Name>BaseApiCommon</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Common\SysCore\SysCore.csproj">
+      <Project>{C718ED45-4EBF-47F2-9A40-C6D6A5505735}</Project>
+      <Name>SysCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\UserServiceInterface\UserServiceInterface.csproj">
+      <Project>{7FE51B7A-0381-4056-AF46-63B313729105}</Project>
+      <Name>UserServiceInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HLXMLHelper\HLXMLHelper.csproj">
+      <Project>{48E70DC3-E0A2-4973-8E6C-0093A2C3C011}</Project>
+      <Name>HLXMLHelper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
