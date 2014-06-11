@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLSysServer", "..\HLSysServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceComponent", "..\ServiceComponent\ServiceComponent.csproj", "{A545183C-E89C-4C2D-868B-60EA913B67AF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HLXMLHelper", "..\HLXMLHelper\HLXMLHelper.csproj", "{48E70DC3-E0A2-4973-8E6C-0093A2C3C011}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{A545183C-E89C-4C2D-868B-60EA913B67AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A545183C-E89C-4C2D-868B-60EA913B67AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A545183C-E89C-4C2D-868B-60EA913B67AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48E70DC3-E0A2-4973-8E6C-0093A2C3C011}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48E70DC3-E0A2-4973-8E6C-0093A2C3C011}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48E70DC3-E0A2-4973-8E6C-0093A2C3C011}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48E70DC3-E0A2-4973-8E6C-0093A2C3C011}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
