@@ -55,7 +55,7 @@ namespace WPFService
                 ServerSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 //提供一个 IP 地址，指示服务器应侦听所有网络接口上的客户端活动
                 IPAddress ip = IPAddress.Any;
-                ServerInfo = new IPEndPoint(ip, 0619);
+                ServerInfo = new IPEndPoint(ip, 1019);
                 ServerSocket.Bind(ServerInfo);//将SOCKET接口和IP端口绑定
                 ServerSocket.Listen(10);//开始监听，并且挂起数为10
                 ClientSocket = new Socket[65535];//为客户端提供连接个数
@@ -100,6 +100,11 @@ namespace WPFService
             {
                 Socket RSocket = (Socket)AR.AsyncState;
                 int REnd = RSocket.EndReceive(AR);
+                SysContext.Send(o =>
+                {
+                    string str = Encoding.UTF8.GetString(MsgBuffer, 0, REnd);
+                    txt_newsmsg.Text += str + "\n";
+                }, null);
                 //对每一个侦听的客户端端口信息进行接收和回发
                 for (int i = 0; i < ClientNumb; i++)
                 {
@@ -107,11 +112,6 @@ namespace WPFService
                     {
                         //回发数据到客户端
                         ClientSocket[i].Send(MsgBuffer, 0, REnd, SocketFlags.None);
-                        SysContext.Send(o =>
-                        {
-                            string str = Encoding.Unicode.GetString(MsgBuffer, 0, REnd);
-                            txt_newsmsg.Text = str + "\n";
-                        }, null);
                     }
                     //同时接收客户端回发的数据，用于回发
                     RSocket.BeginReceive(MsgBuffer, 0, MsgBuffer.Length, 0, new AsyncCallback(RecieveCallBack), RSocket);
