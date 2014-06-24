@@ -1,0 +1,87 @@
+﻿body
+{
+    width: 950px;
+    margin: 0 auto; /*自动居中*/
+    text-align: center;
+}
+.replaceHeadHtml
+{
+    height: 100px;
+}
+.logo
+{
+    width: 30%;
+    float: left;
+}
+.login_img
+{
+    background-image: url('../images/logo.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 162px;
+    height: 60px;
+    margin-top: 10px;
+}
+.head_city
+{
+    margin-top: -30px;
+    margin-left: 162px;
+    float: left;
+}
+.div_search
+{
+    width: 45%;
+    float: left;
+    text-align: center;
+    height: 100px;
+}
+.head_search
+{
+    padding-top: 30px;
+}
+.head_search_span
+{
+    border-width: thin;
+    border-color: #FF9933;
+    z-index: 1;
+    position: relative;
+    padding-bottom: 4px;
+    padding-top: 0px;
+    border-top-style: solid;
+    border-right-style: inherit;
+    border-bottom-style: solid;
+    border-left-style: solid;
+}
+.searchselect
+{
+    border: 0px;
+    padding-bottom: 2px;
+}
+.searchinp
+{
+    border: 0px;
+    padding-bottom: 3px;
+}
+.searchbn
+{
+    border: 0px;
+    background-image: url('../images/searchbtn.png');
+    background-repeat: no-repeat;
+    width: 40px;
+    height: 20px;
+    padding-bottom: 6px;
+}
+.span_s_btn
+{
+}
+.login_user
+{
+    width: 25%;
+    float: right;
+}
+.main
+{
+    height: 500px;
+    background-image: url('../images/main.jpg');
+    background-repeat: repeat-x;
+}
