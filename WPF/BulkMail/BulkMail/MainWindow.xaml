@@ -1,0 +1,48 @@
+﻿<addCtrl:HLWindowExt x:Class="BulkMail.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" WindowStartupLocation="CenterScreen"
+         xmlns:addCtrl="clr-namespace:WPF.CustomControl;assembly=WPF.CustomControl"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="60"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="收件人" Grid.Column="0" VerticalAlignment="Center" TextAlignment="Center" Margin="5"/>
+            <TextBox x:Name="txt_ToAddress" Grid.Column="1" Margin="5" MaxHeight="50" Text="353328333@qq.com"  TextWrapping="WrapWithOverflow" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+            <Button x:Name="btn_Select" Grid.Column="2" Content="选择" Margin="5"></Button>
+        </Grid>
+        <Grid Grid.Row="1" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="主题" Grid.Column="0"  TextAlignment="Center"  Margin="5"/>
+            <TextBox  x:Name="txt_Subject" Text="默认内容" Grid.Column="1" Margin="5"/>
+        </Grid>
+        <Grid Grid.Row="2" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="正文"  TextAlignment="Center" VerticalAlignment="Top"  Grid.Column="0" Margin="5"/>
+            <TextBox   x:Name="txt_Body" Grid.Column="1" Text="默认内容"  Margin="5" TextWrapping="WrapWithOverflow" AcceptsReturn="True" VerticalScrollBarVisibility="Auto"/>
+        </Grid>
+
+
+        <Grid Grid.Row="3" Margin="5">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
+                <Button   Content="Send Mail" x:Name="btn_Sendmail" Margin="5" Width="80" ></Button>
+                <Button Content="Close" x:Name="btn_Close" Margin="5"  Width="80"></Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</addCtrl:HLWindowExt>
