@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="WPF.CustomControl.HLProgressBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              >
+    <Grid>
+        <Grid Opacity="0.5" Background="LightGray"></Grid>
+        <Canvas x:Name="layContainer" HorizontalAlignment="Center" VerticalAlignment="Center">
+        </Canvas>
+        <TextBlock x:Name="tb_Text" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Blue"></TextBlock>
+    </Grid>
+</UserControl>

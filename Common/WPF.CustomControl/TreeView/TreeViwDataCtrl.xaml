@@ -1,0 +1,36 @@
+﻿<UserControl  x:Class="WPF.CustomControl.TreeViwDataCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"   xmlns:local="clr-namespace:WPF.CustomControl"
+             d:DesignHeight="300" d:DesignWidth="300">
+
+    <UserControl.Resources>
+        <Style x:Key="itemsStyle" TargetType="TreeViewItem">
+            <EventSetter Event="PreviewMouseDoubleClick" Handler="HandleDoubleClick" />
+            
+            <Setter Property="IsExpanded" Value="{Binding Path= IsExpanded,Mode=TwoWay}"/>
+            <Setter Property="IsSelected" Value="{Binding Path= IsSelected,Mode=TwoWay}"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="true">
+                    <Setter Property="Foreground"   Value="white"/>
+                    <Setter Property="Background" Value="#08246B"></Setter>
+                </Trigger>
+                <Trigger Property="IsSelected" Value="False">
+                    <Setter Property="TextBlock.Foreground" Value="{Binding Foreground}"></Setter>
+                </Trigger>
+            </Style.Triggers>
+            <Style.Resources>
+                <!--SelectedItem 选中-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#08246B"  />
+                <!--SelectedItem 没有选中-->
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="#08246B"  />
+            </Style.Resources>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <local:CTreeView x:Name="tree_DataView"  ItemContainerStyle="{StaticResource itemsStyle}"  >
+        </local:CTreeView >
+    </Grid>
+</UserControl>

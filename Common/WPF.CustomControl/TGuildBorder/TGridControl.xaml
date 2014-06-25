@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="WPF.CustomControl.TGridControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="500">
+    <UserControl.Resources>
+        <LinearGradientBrush EndPoint="0,1" x:Key="mouseOverBG" >
+            <GradientStop Color="#CCCCCC" Offset="0" />
+            <GradientStop Color="#CCCC99" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1" x:Key="Status1">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1" x:Key="Status2">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush EndPoint="0,0" StartPoint="0,1" x:Key="Status3">
+            <GradientStop Color="#FFFFCC" Offset="0" />
+            <GradientStop Color="#FFFFCC" Offset="1" />
+        </LinearGradientBrush>
+
+
+        <Style x:Key="styleBorder"  TargetType="Border"  >
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="BorderBrush" Value="#FF737070"></Setter>
+            <Setter Property="CornerRadius" Value="5"></Setter>
+            <Setter Property="Margin" Value="2"></Setter>
+            <Setter Property="Background" Value="{StaticResource Status1}"></Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="{StaticResource mouseOverBG}"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!--标题行样式-->
+        <Style x:Key="styleBorderRowTitle" BasedOn="{StaticResource  styleBorder }" TargetType="Border"  >
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Margin" Value="5"></Setter>
+            <Setter Property="Background" Value="{StaticResource Status2}"></Setter>
+            <Setter Property="TextBlock.FontSize" Value="18"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+        <!--标题列样式-->
+        <Style x:Key="styleBorderColTitle"  BasedOn="{StaticResource  styleBorderRowTitle }"  TargetType="Border"  >
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+        <!--正文样式-->
+        <Style x:Key="styleBorderContent" BasedOn="{StaticResource  styleBorder }"  TargetType="Border"  >
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Background" Value="{StaticResource Status3}"></Setter>
+            <Setter Property="TextBlock.FontSize" Value="14"></Setter>
+        </Style>
+
+        <!--今天正文样式-->
+        <Style x:Key="styleBorderToday" BasedOn="{StaticResource  styleBorder }"  TargetType="Border"  >
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="Background" Value="#3FAF83"></Setter>
+            <Setter Property="TextBlock.FontSize" Value="14"></Setter>
+        </Style>
+        <!--昨天正文样式-->
+        <Style x:Key="styleBorderYesterday" BasedOn="{StaticResource  styleBorderToday }"  TargetType="Border"  >
+            <Setter Property="Background" Value="#ADFCEC"></Setter>
+        </Style>
+        <!--明天正文样式-->
+        <Style x:Key="styleBorderTomorrow" BasedOn="{StaticResource  styleBorderToday }"  TargetType="Border"  >
+            <Setter Property="Background" Value="#7C7F6F"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Border x:Name="borderControl"  >
+        <Grid>
+            <TextBlock TextWrapping="Wrap" x:Name="tb_Content"  ></TextBlock>
+        </Grid>
+    </Border>
+</UserControl>

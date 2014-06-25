@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="WPF.CustomControl.TGridBuilder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         >
+    <UserControl.Resources>
+        <Style x:Key="LineBorder" TargetType="Border">
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderThickness" Value="0,0,1,1"></Setter>
+            <Setter Property="BorderBrush" Value="Gray"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <ScrollViewer x:Name="sv_viewer">
+        <!--<Grid x:Name="gd_Content">
+        </Grid>-->
+    </ScrollViewer>
+</UserControl>
