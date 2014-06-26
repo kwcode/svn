@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>开始使用layer</title>
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/layer/layer.min.js"></script>
+    <script>
+        $(function () {
+            $("#test5").click(function () {
+
+                //layer.alert('一个很普通的信息框');
+
+                var ii = layer.load('加载中');
+                //此处用setTimeout演示ajax的回调
+                setTimeout(function () {
+                    layer.close(ii);
+                }, 1000);
+
+            });
+        })
+    </script>
+</head>
+<body>
+    你必须先引入jQuery1.8或以上版本 
+         <input type="button" id="test5" value="test" />
+
+
+    当你对此建立了一定的初始，你应该去详看API手册了。
+
+</body>
+</html>
