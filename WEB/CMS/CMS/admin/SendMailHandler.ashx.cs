@@ -24,7 +24,7 @@ namespace CMS.admin
                 }
                 if (action == "GetData")
                 {
-                    string jsonst = "{\"data\": [{\"name\": \"tkw\"}, { \"name\": \"qy\"}  ]}";
+                    string jsonst = "{[{\"name\": \"tkw\"}, { \"name\": \"qy\"}  ]}";
                     context.Response.Write(jsonst);
                 }
             }
