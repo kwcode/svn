@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
+using System.Web.UI.HtmlControls;
 
 namespace CMS.admin
 {
@@ -109,8 +110,52 @@ namespace CMS.admin
         [WebMethod]
         public static bool DeleteData(List<string> uids)
         {
+
             new DataTable().D(uids);
             return true;
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            DelCheckBoxItem();
+        }
+
+        private void DelCheckBoxItem()
+        {
+            CheckBox cbox;
+            HtmlInputHidden HtmlInputID;
+
+
+            for (int i = 0; i <= rpt_showListHoliday.Items.Count - 1; i++)
+            {
+                if (rpt_showListHoliday.Items[i].ItemType == ListItemType.Item)
+                {
+                    cbox = (CheckBox)rpt_showListHoliday.Items[i].FindControl("Ckb_Sel");
+                    HtmlInputID = (HtmlInputHidden)rpt_showListHoliday.Items[i].FindControl("txtID");
+
+                    if (cbox.Checked == true)
+                    {
+                        string strID = HtmlInputID.Value.ToString();
+                        int nid = int.Parse(strID);
+
+                        //string sql_Del = "delete PublicProject  where ID = '" + nid + "'";
+                        //newdb.CommonExecuteNonQuery(sql_Del);
+
+                    }
+                }
+                else if (rpt_showListHoliday.Items[i].ItemType == ListItemType.AlternatingItem)
+                {
+                    cbox = (CheckBox)rpt_showListHoliday.Items[i].FindControl("Ckb_Sel1");
+                    HtmlInputID = (HtmlInputHidden)rpt_showListHoliday.Items[i].FindControl("txtID1");
+
+
+                    if (cbox.Checked == true)
+                    {
+                        string strID = HtmlInputID.Value.ToString();
+                        int nid = int.Parse(strID);
+                    }
+
+                }
+            }
         }
     }
 }

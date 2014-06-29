@@ -105,6 +105,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
+        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="删除选中项" />
         <input type="button" value="测试" id="btn_test" />
         <input type="button" value="删除" id="remove_dataitem" style="width: 100px; margin: 10px;
             height: 26px;" />
