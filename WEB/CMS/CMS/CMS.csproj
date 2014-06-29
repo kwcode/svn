@@ -72,9 +72,10 @@
     <Content Include="admin\css\Pager.css" />
     <Content Include="admin\DataTable.aspx" />
     <Content Include="admin\SendMail.aspx" />
+    <Content Include="images\newheadsearch.png" />
+    <Content Include="images\newsearchbtn.png" />
     <Content Include="images\smallphoto\o_16.png" />
     <Content Include="images\smallphoto\o.png" />
-    <Content Include="images\headsearch.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\main.jpg" />
     <Content Include="images\searchbtn.png" />
@@ -82,9 +83,8 @@
     <Content Include="images\smallphoto\ie_16.png" />
     <Content Include="images\smallphoto\pin_suger_16.png" />
     <Content Include="index.html" />
-    <Content Include="js\jquery-2.1.1-vsdoc.js" />
-    <Content Include="js\jquery-2.1.1.js" />
-    <Content Include="js\jquery-2.1.1.min.js" />
+    <Content Include="js\jquery-1.8.3.js" />
+    <Content Include="js\jquery-1.8.3.min.js" />
     <Content Include="js\layer\extend\layer.ext.js" />
     <Content Include="js\layer\layer.min.js" />
     <Content Include="js\layer\skin\default\icon_ext.png" />
@@ -134,6 +134,7 @@
     <Compile Include="admin\SendMailHandler.ashx.cs">
       <DependentUpon>SendMailHandler.ashx</DependentUpon>
     </Compile>
+    <Compile Include="entity\UserCommon.cs" />
     <Compile Include="entity\UserInfo.cs" />
     <Compile Include="Pagination.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,9 +149,10 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="admin\SendMailHandler.ashx" />
-    <None Include="js\jquery-2.1.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="test\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
