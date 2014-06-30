@@ -51,6 +51,10 @@ namespace CMS.entity
             Init();
             return _ulist;
         }
+        public static int GetUserCount()
+        {
+            return GetAllUser().Count();
+        }
         public static List<UserInfo> GetUser(int startIndex, int endIndex)
         {
             if (_ulist == null || _ulist.Count == 0)
@@ -58,7 +62,7 @@ namespace CMS.entity
             if (startIndex < 0) startIndex = 1;
             if (endIndex < 0) startIndex = 1;
             List<UserInfo> ulist = new List<UserInfo>();
-            for (int i = startIndex - 1; i < endIndex; i++)
+            for (int i = startIndex; i < endIndex; i++)
             {
                 if (i < _ulist.Count)
                     ulist.Add(_ulist[i]);

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="GridTable_JSON.aspx.cs" Inherits="CMS.admin.GridTable_JSON" %>
