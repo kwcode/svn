@@ -39,27 +39,7 @@
                 </tr>
             </thead>
             <tbody id="TableBody">
-                <%--<tr class="j-item" id="tr_ID_1">
-                    <td id="td_UserID_1">
-                        1
-                    </td>
-                    <td id="td_Name_1">
-                    </td>
-                    <td id="td_NickName_1">
-                    </td>
-                    <td id="td_Password_1">
-                    </td>
-                    <td id="td_Email_1">
-                    </td>
-                    <td id="td_LoginName_1">
-                    </td>
-                    <td id="td_SmallPhoto_1">
-                        <img alt="null" src="" />
-                    </td>
-                    <td id="td_Checked_1" style="cursor: pointer;" class="check-item">
-                        <input type="checkbox" name="Checked" />
-                    </td>
-                </tr>--%>
+               
             </tbody>
         </table>
         <div>
@@ -67,7 +47,7 @@
             <input type="button" id="prve" value="prve" onclick="ClickPrve()" />
             <label>
                 page:</label>
-            <input type="text" style="width:15px;" id="page" onchange="ChangePage()" />
+            <input type="text" style="width: 15px;" id="page" onchange="ChangePage()" />
             for<label id="NumberPage">1</label>
             <input type="button" id="next" value="next" onclick="ClickNext()" />
             <input type="button" id="last" value="last" onclick="ClickLast()" />
@@ -78,9 +58,9 @@
             </select>
         </div>
         <script type="text/javascript">
-            var page ;//当前页数
-            var count ;//页条数
-            var type ; //操作类型 1 首页；2 上一页；3 下一页；4 末页
+            var page; //当前页数
+            var count; //页条数
+            var type; //操作类型 1 首页；2 上一页；3 下一页；4 末页
             jQuery(document).ready(function () {
                 page = 1;
                 count = $("#count").val();

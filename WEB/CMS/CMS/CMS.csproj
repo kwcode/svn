@@ -71,7 +71,15 @@
     <Content Include="admin\css\datatable.css" />
     <Content Include="admin\css\Pager.css" />
     <Content Include="admin\DataTable.aspx" />
+    <Content Include="admin\GridTable.aspx" />
+    <Content Include="admin\GridTable_JSON.aspx" />
     <Content Include="admin\SendMail.aspx" />
+    <Content Include="admin\WebDataOperat.aspx" />
+    <Content Include="images\cms_bg.png" />
+    <Content Include="images\m_bg.png" />
+    <Content Include="images\m_bg_hover.png" />
+    <Content Include="images\m_la_bg.png" />
+    <Content Include="images\m_la_more.png" />
     <Content Include="images\newheadsearch.png" />
     <Content Include="images\newsearchbtn.png" />
     <Content Include="images\smallphoto\o_16.png" />
@@ -110,6 +118,9 @@
     <Content Include="WebFormDesign.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="action\index.ashx.cs">
+      <DependentUpon>index.ashx</DependentUpon>
+    </Compile>
     <Compile Include="admin\action\DataTableHandler.aspx.cs">
       <DependentUpon>DataTableHandler.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -124,6 +135,20 @@
     <Compile Include="admin\DataTable.aspx.designer.cs">
       <DependentUpon>DataTable.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\GridTable.aspx.cs">
+      <DependentUpon>GridTable.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\GridTable.aspx.designer.cs">
+      <DependentUpon>GridTable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\GridTable_JSON.aspx.cs">
+      <DependentUpon>GridTable_JSON.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\GridTable_JSON.aspx.designer.cs">
+      <DependentUpon>GridTable_JSON.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\SendMail.aspx.cs">
       <DependentUpon>SendMail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -133,6 +158,13 @@
     </Compile>
     <Compile Include="admin\SendMailHandler.ashx.cs">
       <DependentUpon>SendMailHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\WebDataOperat.aspx.cs">
+      <DependentUpon>WebDataOperat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\WebDataOperat.aspx.designer.cs">
+      <DependentUpon>WebDataOperat.aspx</DependentUpon>
     </Compile>
     <Compile Include="entity\UserCommon.cs" />
     <Compile Include="entity\UserInfo.cs" />
@@ -152,6 +184,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="action\index.ashx" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

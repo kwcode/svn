@@ -5,48 +5,37 @@
     <link href="style/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div id="top">
-    </div>
-    <div class="replaceHeadHtml">
-        <div class="logo">
-            <div class="login_img">
-                <a href="/"></a>
-            </div>
-            <div class="head_city">
-                <span>全国 </span><a href="javascript:void(0);" class="changeCity">切换城市</a>
-            </div>
+    <div class="page">
+        <!--头-->
+        <div class="top">
         </div>
-        <div class="div_search">
-            <div class="head_search">
-                <span class="head_search_span">
-                    <select class="searchselect">
-                        <option>所有栏目</option>
-                        <option>bb</option>
-                    </select>
-                    <input class="searchinp" type="text" placeholder="活动/攻略/游记/摄影/用户/团队" name="q" id="isearchValue" />
-                </span>
-                <input class="searchbn" type="submit" value="" id="ibtnSearch" />
-            </div>
+        <!--logo-->
+        <div class="b_head">
+            <a href="#" class="b_logo_a">
+                <div class="b_logo">
+                </div>
+            </a>
         </div>
-        <div class="login_user">
-            <div runat="server" id="login_no" visible="false" class="head_login threeLoginC">
-                <a href="javascript:void(0);" class="requireLogin" rel="nofollow">登录</a> |
-            </div>
-            <div runat="server" id="login_yes" class="head_login">
-                <ul class="newtop clearfix">
-                    <li class="h"><a href="">驼铃币： </a></li>
-                </ul>
-                <li class="itemc h">
-                    <ul class="itemsubs">
-                        <li class="s16"><a href="/user/LoginOut.aspx">退出</a></li>
+        <div class="b_menu" id="b_menu">
+            <ul>
+                <li><a href="#">首页</a></li>
+                <li><a href="#">活动</a></li>
+                <li><a href="#">带我走</a></li>
+                <li><a href="#">领队</a></li>
+                <li><a href="#">团队</a></li>
+                <li class="b_menunav_right" id="b_menunav_right">
+                    <ul class="b_submenu_ul">
+                        <li><a href="#">精彩路线</a></li>
                     </ul>
                 </li>
-            </div>
+            </ul>
+        </div>
+        <!--主要内容-->
+        <div class="b_main">
+        </div>
+        <!--页脚-->
+        <div class="b_foot">
         </div>
     </div>
-    <div class="main">
-        111
-    </div>
-    <a href="#top" target="_self">返回顶部</a>
 </body>
 </html>

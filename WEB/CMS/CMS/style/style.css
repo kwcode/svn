@@ -1,87 +1,102 @@
 ﻿body
 {
-    width: 950px;
-    margin: 0 auto; /*自动居中*/
+    background-color: #FFC1C1;
+    width: 980px;
+    margin: 0 auto;
     text-align: center;
+    font-size: 12px;
 }
-.replaceHeadHtml
+ul li
 {
-    height: 100px;
-}
-.logo
-{
-    width: 30%;
+    list-style-type: none;
     float: left;
 }
-.login_img
+a
+{
+    color: White;
+    text-decoration: none;
+}
+.page
+{
+    border: thin solid #FFCCFF;
+    width: 980px;
+}
+.top
+{
+}
+.b_head
+{
+}
+.b_logo
 {
     background-image: url('../images/logo.png');
     background-repeat: no-repeat;
-    background-position: center;
-    width: 162px;
-    height: 60px;
-    margin-top: 10px;
+    height: 57px;
+    width: 181px;
 }
-.head_city
+.b_menu
 {
-    margin-top: -30px;
-    margin-left: 162px;
-    float: left;
+    height: 40px;
+    background-image: url('/images/m_bg.png');
 }
-.div_search
+.b_main
 {
-    width: 45%;
+}
+.b_foot
+{
+}
+/*
+#mainnav { height: 40px; background: #2c832f; }
+#mainnav div { width: 980px; height: 40px; margin: 0 auto; }
+#mainnav li { line-height: 40px; font-size: 16px; float: left; margin: 0 1px 0 0; width: 90px; text-align: center; }
+#mainnav li img { position: absolute; margin: -3px 0 0 13px; }
+#mainnav li a { color: #fff; height: 40px; display: block; height: 40px; padding: 0 20px; }
+#mainnav li a:hover, #mainnav .current { background-color: #236926; color: #fff; text-decoration: none; }
+*/
+
+.b_menu
+{
+    height: 40px;
+    background: #2c832f;
+}
+.b_menu li
+{
+    line-height: 40px;
+    font-size: 16px;
     float: left;
+    margin: 0 1px 0 0;
+    width: 90px;
     text-align: center;
-    height: 100px;
 }
-.head_search
+.b_menu li a
 {
-    padding-top: 30px;
+    color: #fff;
+    display: block;
+    height: 40px;
+    padding: 0 20px;
 }
-.head_search_span
+.b_menu li a:hover
 {
-    border-width: thin;
-    border-color: #FF9933;
-    z-index: 1;
-    position: relative;
-    padding-bottom: 4px;
-    padding-top: 0px;
-    border-top-style: solid;
-    border-right-style: inherit;
-    border-bottom-style: solid;
-    border-left-style: solid;
+    background-color: #236926;
+    color: #fff;
+    text-decoration: none;
 }
-.searchselect
+.b_menunav_right
 {
-    border: 0px;
-    padding-bottom: 2px;
+   
 }
-.searchinp
-{
-    border: 0px;
-    padding-bottom: 3px;
-}
-.searchbn
-{
-    border: 0px;
-    background-image: url('../images/searchbtn.png');
-    background-repeat: no-repeat;
-    width: 40px;
-    height: 20px;
-    padding-bottom: 6px;
-}
-.span_s_btn
+.b_menunav_right ul
 {
 }
-.login_user
+.b_menu_li_right li
 {
-    width: 25%;
-    float: right;
+    
 }
-.main
+.b_submenu_ul a
 {
-    height: 500px;
-    background-image: url('../images/main.jpg');
-    background-repeat: repeat-x;
+    color: #fff;
+    display: block;
+    height: 40px;
+    padding: 0 20px;
 }
+
