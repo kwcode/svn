@@ -1,0 +1,763 @@
+﻿<script type="text/x-jsrender" id="tplPopLogin">
+    <div class="loginPop">
+        <div class="t-title">
+            <div class="buttons"><a class="close-btn" href="javascript:void(0);" onmousedown="event.stopPropagation &amp;&amp; event.stopPropagation(); event.cancelBubble = true; return false;" onclick="return false;"></a></div>
+            <span class="forbidSelect" onselectstart="return false;">登录驼铃帐号</span>
+        </div>
+        <div class="body">
+            <div class="content">
+                <div class="login">
+                    <form id="formPopLogin" action="/user/login.aspx?targeturl={{>url}}" method="post">
+                        <div class="xubox_tips" style="border: 1px solid #ddd; color: red; margin-top: 5px; visibility: hidden;">
+                            <div class="xubox_tipsMsg">请输入正确的用户名和密码</div>
+                            <i class="layerTipsG layerTipsT" style="border-top-color: #ddd;"></i>
+                        </div>
+                        <p class="username">
+                            <label>手机/邮箱/用户名</label>
+                            <input type="text" id="login_ipt_email" name="txtUserAccount" autofocus="autofocus" autocomplete="off" />
+                            <span class="forbidSelect" onselectstart="return false;">手机/邮箱/用户名</span>
+                        </p>
+                        <p class="password">
+                            <label>密码</label>
+                            <input type="password" id="login_ipt_pwd" name="txtPassWord" autocomplete="off" />
+                            <span class="forbidSelect" onselectstart="return false;">密码</span>
+                        </p>
+                        <p class="remember">
+                            <input id="checklogin" type="checkbox" checked="checked" />
+                            <label for="checklogin" class="">下次自动登录</label>
+                        </p>
+                        <p class="commit">
+                            <input type="submit" value="登录" data-loging="0" />
+                            <a class="reglink" href="/user/RegUser.aspx?url={{>regurl}}" target="_blank">立即注册</a>
+                            <a class="fgtpwd" href="/user/FindPwd.aspx" target="_blank">忘记密码？</a>
+                        </p>
+                    </form>
+                </div>
+                <div class="threeLoginC">
+                    <div class="b-title">您可以使用以下方式登录</div>
+                    <div class="list">
+                        <a class="qq lb" href="/user/LoginThree.aspx?site=qq" target="_blank">QQ帐号</a>
+                        <a class="sina lb" href="/user/LoginThree.aspx?site=sina" target="_blank">新浪微博</a>
+                        <a class="renren lb" href="/user/LoginThree.aspx?site=renren" target="_blank">人人网</a>
+                        <a class="douban lb" href="/user/LoginThree.aspx?site=douban" target="_blank">豆瓣网</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="loginCover">
+            <p style="font-size: 15px; margin: 0; margin-top: 20px; padding: 20px 20px;">
+                您通过第三方应用登录成功后，请点击“登录成功”确认登录成功，或者点击“重新登录”选择其他登录方式。
+            </p>
+            <p style="text-align: center; margin: 0; padding: 0; margin-top: 20px;">
+                <a href="javascript:void(0);" class="inpbbut1 confirm" style="line-height: 25px; font-weight: bold; font-size: 16px;">登录成功</a>
+                <a href="javascript:void(0);" class="inpbbut1 return" style="line-height: 25px; font-weight: bold; font-size: 16px; margin-left: 60px;">重新登录</a>
+            </p>
+        </div>-->
+    </div>
+</script>
+<script type="text/x-jsrender" id="tpl_comment_pickup_list">
+    <dl id="cmt{{>commentId}}">
+        <div style="float: left; width: 40px;">
+            <a href="/user/{{>userId}}" target="_blank">
+                <img class="uphoto" src="{{>Photo}}" onerror="this.onerror=null;this.src='/images/defuser.jpg'" /></a>
+        </div>
+        <div style="float: left; width: 460px;">
+            <a href="/user/{{>userId}}" target="_blank">{{>NickName}}</a>：{{:content}}
+			<em class="gray">[{{>createTS}}]</em>
+            <div id="relist{{>commentId}}">
+                {{for reply tmpl='tpl_pickup_reply'/}}
+            </div>
+        </div>
+        <!-- <span style="float:right;margin-top:3px;"><a href="#" oncilck="repl('{{>commentId}}', '{{>userId}}')">回复</a></span> -->
+        <div style="clear: both;"></div>
+    </dl>
+
+</script>
+<script type="text/x-jsrender" id="tpl_pickup_reply">
+    <div style="border: 1px dashed #CCC;">某茜茜：大家好！ <em class="gray">[{{>createTS}}]</em></div>
+</script>
+<script type="text/x-jsrender" id="tpl_comment_panel">
+    <div class="bbs mg30 clearfix">
+        <h1><strong>我要留言</strong></h1>
+        <div class="bbs_photo" data-uid="{{>loginId}}">
+            {{if loginId > 0}}
+            <a href="/user/{{>loginId}}">
+                <img src="{{>loginPhoto}}" onerror="this.onerror=null;this.src='/images/defuser.jpg'"></a>
+            <p style="margin: 0; padding: 0;"><a href="/user/{{>loginId}}">{{>loginNickname}}</a></p>
+            {{else}}
+            <a href="#" class="requireLogin">
+                <img src="/images/defuser.jpg"></a>
+            {{/if}}
+        </div>
+        <div class="bbs_con">
+            <textarea name="txtComment" id="txtComment" cols="45" style="width: 98%; height: 50px"></textarea>
+            <div style="float: right">
+                {{if !(loginId > 0)}}
+                    (您还没有登录，请先<a href="#" class="requireLogin">登录</a>，才能留言)
+                {{else}}
+                <a href="javascript:void(0);" class="comm_comment_face" id="textareaface" data-selector="#txtComment" title="插入表情"><i class="face"></i></a>
+                {{/if}}
+                <input type="button" value="留言" class="inpbbut1 requireLogin" id="btnAddComment" />
+            </div>
+        </div>
+    </div>
+    <div class="commList" id="comment" name="comment">
+    </div>
+    <div class="page"></div>
+</script>
+<script type="text/x-jsrender" id="tpl_comment_list">
+    <div class="bbs clearfix" id="comment{{>commentId}}">
+        <h1><i><a href="#" data-id="{{>commentId}}" class="toReply requireLogin" style="display: none">回复</a></i>
+            <a href="/user/{{>userId}}">{{>NickName}}</a>{{>createTS}}</h1>
+        <div class="bbs_photo showUserCard" data-uid="{{>userId}}">
+            <a href="/user/{{>userId}}">
+                <img src="{{>Photo}}" onerror="this.onerror=null;this.src='/images/defuser.jpg'"></a>
+        </div>
+        <div class="bbs_con" data-id="{{>commentId}}">
+            <span>{{:content}}</span>
+            <div id="replyContain{{>commentId}}" style="display: none;" class="clearfix">
+                <textarea class="input_reply" id="txtComment{{>commentId}}" cols="45" style="width: 98%; height: 50px"></textarea>
+                <!--<input class="input_reply" type="text" maxlength="140" />-->
+                <div style="float: right">
+                    <a href="javascript:void(0);" class="comm_comment_face" id="textareaface{{>commentId}}" data-selector="#txtComment{{>commentId}}" title="插入表情"><i class="face"></i></a>
+                    <a href="javascript:void(0);" data-id="{{>commentId}}" data-user="{{>userId}}" class="replyAdd">回复</a>
+                    <a href="javascript:void(0);" class="replyCancel">取消</a>
+                </div>
+            </div>
+            <div id="replyList{{>commentId}}">
+                {{for reply tmpl='tpl_reply'/}}
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-jsrender" id="tpl_reply">
+    <div class="reply"><strong><a href="/user/{{>userId}}">{{>NickName}}</a> ：</strong>{{:content}}</div>
+</script>
+
+<script type="text/x-jsrender" id="tpl_pickup_pop">
+    <div class="searchact clearfix" style="min-height: 220px; min-width: 300px">
+        <h3>发布求捡 <span style="font-size: 11px; color: #999;">（空闲日期和天数可不填）</span></h3>
+        <ul>
+            <li class="wp2">我也想去：</li>
+            <li style="min-width: 200px;">{{if dests.length}}
+            	{{for dests}}
+                <a href="#">{{>#data}}</a>
+                {{/for}}
+                <input type="hidden" id="tbWantTo" value="{{>destStr}}" />
+                {{else}}
+                <input type="text" id="tbWantTo" value="{{>destStr}}" />
+                {{/if}}
+            </li>
+            <li class="wp2">空闲日期：</li>
+            <li style="min-width: 200px;">
+                <input type="text" name="tbFreeDate" id="tbFreeDate" style="width: 100px" class="Wdate" onfocus="WdatePicker({minDate:'%y-%M-{%d+1}'})" readonly="readonly">
+            </li>
+            <li class="wp2">空闲天数：</li>
+            <li style="min-width: 200px;">
+                <input name="tbFreeDays" id="tbFreeDays" type="text" style="width: 50px">
+                天</li>
+            <li class="wp2">留言：</li>
+            <li style="min-width: 200px;">
+                <input name="taRemark" id="taRemark" type="text" style="width: 98px">
+            </li>
+            <li class="wp2"></li>
+            <li>
+                <input name="" type="button" id="btnPickAdd" value="发布求捡" class="inpbbut1"></li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/x-jsrender" id="tpl_faceImage">
+    <div class="faceImage">
+        <input type="hidden" id="facelist" value="" data-currobj="" />
+        <ul>
+            <li data-text="[会员一周年]">
+                <img src="/images/faceimg/vipanniversary_thumb.gif" alt="会员一周年" title="会员一周年" />
+            </li>
+            <li data-text="[得意地笑]">
+                <img src="/images/faceimg/lxhdeyidixiao_thumb.gif" alt="得意地笑" title="得意地笑" />
+            </li>
+            <li data-text="[笑哈哈]">
+                <img src="/images/faceimg/lxhwahaha_thumb.gif" alt="笑哈哈" title="笑哈哈" /></li>
+            <li data-text="[转发]">
+                <img src="/images/faceimg/lxhzhuanfa_thumb.gif" alt="转发" title="转发" /></li>
+            <li data-text="[偷乐]">
+                <img src="/images/faceimg/lxhtouxiao_thumb.gif" alt="偷乐" title="偷乐" /></li>
+            <li data-text="[bm可爱]">
+                <img src="/images/faceimg/bmkeai_thumb.gif" alt="bm可爱" title="bm可爱" /></li>
+            <li data-text="[lt切克闹]">
+                <img src="/images/faceimg/ltqiekenao_thumb.gif" alt="lt切克闹" title="lt切克闹" />
+            </li>
+            <li data-text="[xkl转圈]">
+                <img src="/images/faceimg/xklzhuanquan_thumb.gif" alt="xkl转圈" title="xkl转圈" />
+            </li>
+            <li data-text="[ali哇]">
+                <img src="/images/faceimg/aliwanew_thumb.gif" alt="ali哇" title="ali哇" /></li>
+            <li data-text="[ppb鼓掌]">
+                <img src="/images/faceimg/ppbguzhang_thumb.gif" alt="ppb鼓掌" title="ppb鼓掌" />
+            </li>
+            <li data-text="[din推撞]">
+                <img src="/images/faceimg/dintuizhuang_thumb.gif" alt="din推撞" title="din推撞" />
+            </li>
+            <li data-text="[xb压力]">
+                <img src="/images/faceimg/xbyali_thumb.gif" alt="xb压力" title="xb压力" /></li>
+            <!--</ul>
+    <div style="clear: both;"></div>
+    <ul>-->
+            <li data-text="[草泥马]">
+                <img src="/images/faceimg/shenshou_thumb.gif" alt="草泥马" title="草泥马" /></li>
+            <li data-text="[神马]">
+                <img src="/images/faceimg/horse2_thumb.gif" alt="神马" title="神马" /></li>
+            <li data-text="[浮云]">
+                <img src="/images/faceimg/fuyun_thumb.gif" alt="浮云" title="浮云" /></li>
+            <li data-text="[给力]">
+                <img src="/images/faceimg/geili_thumb.gif" alt="给力" title="给力" /></li>
+            <li data-text="[围观]">
+                <img src="/images/faceimg/wg_thumb.gif" alt="围观" title="围观" /></li>
+            <li data-text="[威武]">
+                <img src="/images/faceimg/vw_thumb.gif" alt="威武" title="威武" /></li>
+            <li data-text="[熊猫]">
+                <img src="/images/faceimg/panda_thumb.gif" alt="熊猫" title="熊猫" /></li>
+            <li data-text="[兔子]">
+                <img src="/images/faceimg/rabbit_thumb.gif" alt="兔子" title="兔子" /></li>
+            <li data-text="[奥特曼]">
+                <img src="/images/faceimg/otm_thumb.gif" alt="奥特曼" title="奥特曼" /></li>
+            <li data-text="[囧]">
+                <img src="/images/faceimg/j_thumb.gif" alt="囧" title="囧" /></li>
+            <li data-text="[互粉]">
+                <img src="/images/faceimg/hufen_thumb.gif" alt="互粉" title="互粉" /></li>
+            <li data-text="[礼物]">
+                <img src="/images/faceimg/liwu_thumb.gif" alt="礼物" title="礼物" /></li>
+            <li data-text="[呵呵]">
+                <img src="/images/faceimg/smilea_thumb.gif" alt="呵呵" title="呵呵" /></li>
+            <li data-text="[嘻嘻]">
+                <img src="/images/faceimg/tootha_thumb.gif" alt="嘻嘻" title="嘻嘻" /></li>
+            <li data-text="[哈哈]">
+                <img src="/images/faceimg/laugh.gif" alt="哈哈" title="哈哈" /></li>
+            <li data-text="[可爱]">
+                <img src="/images/faceimg/tza_thumb.gif" alt="可爱" title="可爱" /></li>
+            <li data-text="[可怜]">
+                <img src="/images/faceimg/kl_thumb.gif" alt="可怜" title="可怜" /></li>
+            <li data-text="[挖鼻屎]">
+                <img src="/images/faceimg/kbsa_thumb.gif" alt="挖鼻屎" title="挖鼻屎" /></li>
+            <li data-text="[吃惊]">
+                <img src="/images/faceimg/cj_thumb.gif" alt="吃惊" title="吃惊" /></li>
+            <li data-text="[害羞]">
+                <img src="/images/faceimg/shamea_thumb.gif" alt="害羞" title="害羞" /></li>
+            <li data-text="[挤眼]">
+                <img src="/images/faceimg/zy_thumb.gif" alt="挤眼" title="挤眼" /></li>
+            <li data-text="[闭嘴]">
+                <img src="/images/faceimg/bz_thumb.gif" alt="闭嘴" title="闭嘴" /></li>
+            <li data-text="[鄙视]">
+                <img src="/images/faceimg/bs2_thumb.gif" alt="鄙视" title="鄙视" /></li>
+            <li data-text="[爱你]">
+                <img src="/images/faceimg/lovea_thumb.gif" alt="爱你" title="爱你" /></li>
+            <li data-text="[泪]">
+                <img src="/images/faceimg/sada_thumb.gif" alt="泪" title="泪" /></li>
+            <li data-text="[偷笑]">
+                <img src="/images/faceimg/heia_thumb.gif" alt="偷笑" title="偷笑" /></li>
+            <li data-text="[亲亲]">
+                <img src="/images/faceimg/qq_thumb.gif" alt="亲亲" title="亲亲" /></li>
+            <li data-text="[生病]">
+                <img src="/images/faceimg/sb_thumb.gif" alt="生病" title="生病" /></li>
+            <li data-text="[太开心]">
+                <img src="/images/faceimg/mb_thumb.gif" alt="太开心" title="太开心" /></li>
+            <li data-text="[懒得理你]">
+                <img src="/images/faceimg/ldln_thumb.gif" alt="懒得理你" title="懒得理你" /></li>
+            <li data-text="[右哼哼]">
+                <img src="/images/faceimg/yhh_thumb.gif" alt="右哼哼" title="右哼哼" /></li>
+            <li data-text="[左哼哼]">
+                <img src="/images/faceimg/zhh_thumb.gif" alt="左哼哼" title="左哼哼" /></li>
+            <li data-text="[嘘]">
+                <img src="/images/faceimg/x_thumb.gif" alt="嘘" title="嘘" /></li>
+            <li data-text="[衰]">
+                <img src="/images/faceimg/cry.gif" alt="衰" title="衰" /></li>
+            <li data-text="[委屈]">
+                <img src="/images/faceimg/wq_thumb.gif" alt="委屈" title="委屈" /></li>
+            <li data-text="[吐]">
+                <img src="/images/faceimg/t_thumb.gif" alt="吐" title="吐" /></li>
+            <li data-text="[打哈欠]">
+                <img src="/images/faceimg/k_thumb.gif" alt="打哈欠" title="打哈欠" /></li>
+            <li data-text="[抱抱]">
+                <img src="/images/faceimg/bba_thumb.gif" alt="抱抱" title="抱抱" /></li>
+            <li data-text="[怒]">
+                <img src="/images/faceimg/angrya_thumb.gif" alt="怒" title="怒" /></li>
+            <li data-text="[疑问]">
+                <img src="/images/faceimg/yw_thumb.gif" alt="疑问" title="疑问" /></li>
+            <li data-text="[馋嘴]">
+                <img src="/images/faceimg/cza_thumb.gif" alt="馋嘴" title="馋嘴" /></li>
+            <li data-text="[拜拜]">
+                <img src="/images/faceimg/88_thumb.gif" alt="拜拜" title="拜拜" /></li>
+            <li data-text="[思考]">
+                <img src="/images/faceimg/sk_thumb.gif" alt="思考" title="思考" /></li>
+            <li data-text="[汗]">
+                <img src="/images/faceimg/sweata_thumb.gif" alt="汗" title="汗" /></li>
+            <li data-text="[困]">
+                <img src="/images/faceimg/sleepya_thumb.gif" alt="困" title="困" /></li>
+            <li data-text="[睡觉]">
+                <img src="/images/faceimg/sleepa_thumb.gif" alt="睡觉" title="睡觉" /></li>
+            <li data-text="[钱]">
+                <img src="/images/faceimg/money_thumb.gif" alt="钱" title="钱" /></li>
+            <li data-text="[失望]">
+                <img src="/images/faceimg/sw_thumb.gif" alt="失望" title="失望" /></li>
+            <li data-text="[酷]">
+                <img src="/images/faceimg/cool_thumb.gif" alt="酷" title="酷" /></li>
+            <li data-text="[花心]">
+                <img src="/images/faceimg/hsa_thumb.gif" alt="花心" title="花心" /></li>
+            <li data-text="[哼]">
+                <img src="/images/faceimg/hatea_thumb.gif" alt="哼" title="哼" /></li>
+            <li data-text="[鼓掌]">
+                <img src="/images/faceimg/gza_thumb.gif" alt="鼓掌" title="鼓掌" /></li>
+            <li data-text="[晕]">
+                <img src="/images/faceimg/dizzya_thumb.gif" alt="晕" title="晕" /></li>
+            <li data-text="[悲伤]">
+                <img src="/images/faceimg/bs_thumb.gif" alt="悲伤" title="悲伤" /></li>
+            <li data-text="[抓狂]">
+                <img src="/images/faceimg/crazya_thumb.gif" alt="抓狂" title="抓狂" /></li>
+            <li data-text="[黑线]">
+                <img src="/images/faceimg/h_thumb.gif" alt="黑线" title="黑线" /></li>
+            <li data-text="[阴险]">
+                <img src="/images/faceimg/yx_thumb.gif" alt="阴险" title="阴险" /></li>
+            <li data-text="[怒骂]">
+                <img src="/images/faceimg/nm_thumb.gif" alt="怒骂" title="怒骂" /></li>
+            <li data-text="[心]">
+                <img src="/images/faceimg/hearta_thumb.gif" alt="心" title="心" /></li>
+            <li data-text="[伤心]">
+                <img src="/images/faceimg/unheart.gif" alt="伤心" title="伤心" /></li>
+            <li data-text="[猪头]">
+                <img src="/images/faceimg/pig.gif" alt="猪头" title="猪头" /></li>
+            <li data-text="[ok]">
+                <img src="/images/faceimg/ok_thumb.gif" alt="ok" title="ok" /></li>
+            <li data-text="[耶]">
+                <img src="/images/faceimg/ye_thumb.gif" alt="耶" title="耶" /></li>
+            <li data-text="[good]">
+                <img src="/images/faceimg/good_thumb.gif" alt="good" title="good" /></li>
+            <li data-text="[不要]">
+                <img src="/images/faceimg/no_thumb.gif" alt="不要" title="不要" /></li>
+            <li data-text="[赞]">
+                <img src="/images/faceimg/z2_thumb.gif" alt="赞" title="赞" /></li>
+            <li data-text="[来]">
+                <img src="/images/faceimg/come_thumb.gif" alt="来" title="来" /></li>
+            <li data-text="[弱]">
+                <img src="/images/faceimg/sad_thumb.gif" alt="弱" title="弱" /></li>
+            <li data-text="[蜡烛]">
+                <img src="/images/faceimg/lazu_thumb.gif" alt="蜡烛" title="蜡烛" /></li>
+            <li data-text="[钟]">
+                <img src="/images/faceimg/clock_thumb.gif" alt="钟" title="钟" /></li>
+            <li data-text="[话筒]">
+                <img src="/images/faceimg/m_thumb.gif" alt="话筒" title="话筒" /></li>
+            <li data-text="[蛋糕]">
+                <img src="/images/faceimg/cake.gif" alt="蛋糕" title="蛋糕" /></li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/x-jsrender" id="tpl_letterDialog">
+    <div id="dialog_letterContainer" style="display: none;" class="clearfix">
+        <dl style="margin: 15px 0 0 15px;">
+            <dt style="float: left">发给:</dt>
+            <dd style="margin: 0; padding: 0; margin-left: 40px;">
+                <input type="text" style="width: 200px;" id="dialog_txt_username" autocomplete="off" data-show="true" />
+                <input type="hidden" id="dialog_hd_userid" />
+            </dd>
+        </dl>
+        <dl style="clear: both; margin: 20px 0 0 15px;">
+            <dt style="float: left">内容:</dt>
+            <dd style="margin: 0; padding: 0; margin-left: 40px;">
+                <textarea style="width: 360px; height: 80px; resize: none;" id="dialog_txt_letterContent"></textarea>
+            </dd>
+        </dl>
+        <div class="clearfix" style="margin-top: 8px; font-size: 16px; padding: 5px 15px 5px 55px;">
+            <div class="member_gb clearfix">
+                <a href="javascript:void(0);" id="dialog_btn_sendletter" class="inpbbut1 float_R">发送</a>
+                <a href="javascript:void(0);" id="dialog_btn_face" title="插入表情"><i class="face"></i></a>
+                <!--<a href="javascript:void(0);" title="插入图片"><i class="pic"></i></a>-->
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-jsrender" id="tpl_userCard">
+    <div class="u_open">
+        <div class="u_box clearfix">
+            <div class="u_left">
+                <img src="{{:Photo}}" alt="{{:NickName}}" title="{{:NickName}}" onerror="this.onerror=null;this.src='/images/defuser.jpg'" />
+                {{if AttState==0}}
+                <a href="javascript:void(0);" class="follow" data-followed="span" data-uid="{{:UserID}}">关注他</a>
+                {{else AttState==1}}
+                <span>已关注</span>
+                {{else AttState==2}}
+                <a href="javascript:void(0);" class="follow" data-followed="span" data-uid="{{:UserID}}">关注他</a>
+                {{else AttState==3}}
+                <span>已关注</span>
+                {{/if}}
+                <a href="javascript:void(0);" class="sendLetter" data-uid="{{:UserID}}">发私信</a>
+            </div>
+            <div class="u_right">
+                <div class="u_info">
+                    <a href="/user/{{:UserID}}" title="{{:NickName}}" target="_blank"><span class="u_name">{{:NickName}}</span></a>
+                    <span class="sex{{:Sex}}"></span>
+                    <span class="level">Lv.{{:LevelJifen}}</span>
+                    <p>位置：{{:City}}</p>
+                </div>
+                <div class="u_list clearfix">
+                    <em><i>{{:CountAttention}}</i>粉丝</em>
+                    <em><i>{{:CountFans}}</i>粉丝</em>
+                    <em><i>{{:CountDiary}}</i>游记</em>
+                    <em style="margin-right: 0; border-right: 0"><i>{{:CountActivities}}</i>活动</em>
+                </div>
+                <div class="u_signature">
+                    签名：{{:UserSign}}
+                </div>
+            </div>
+        </div>
+        <!--<div class="arrow_under"></div>-->
+    </div>
+</script>
+
+<script type="text/x-jsrender" id="tpl_alert">
+    <div class="qm_dialog " style="z-index: 1120; opacity: 1; left: 505px; top: 210px; margin-top: 0px;">
+        <div class="dialog_head">
+            <span>{{:title}}</span>
+            <a title="关闭" class="ico_close_d" href="javascript:;"></a>
+        </div>
+        <div style="visibility: visible;">
+            <div class="dialog_inner">
+                <div class="dialog_content">
+                    {{if icon}}
+                        <span class="dialog_icon icon_info_alert"></span>
+                    {{/if}}
+                    <div class="cnfx_content">
+                        {{:msg}}
+                    </div>
+                    <div class="dialog_operate">
+                        <div class=" txt_right cnfx_btn">
+                            <a class="btn_gray confirm wd2" href="javascript:;">好的</a>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-jsrender" id="tpl_confirm">
+    <div class="qm_dialog " style="z-index: 1120; opacity: 1; left: 505px; top: 210px; margin-top: 0px;">
+        <div class="dialog_head">
+            <span class="dialog_icon_s icon_info_confirm_s"></span>
+            <span>{{:title}}</span>
+            <a title="关闭" class="ico_close_d" href="javascript:;"></a>
+        </div>
+        <div style="visibility: visible;">
+            <div class="dialog_inner">
+                <div class="dialog_content">
+                    {{if icon}}
+                    <span class="dialog_icon icon_info_confirm"></span>
+                    {{/if}}
+                    <div class="cnfx_content">
+                        {{:msg}}
+                    </div>
+                    <div class="dialog_operate">
+                        <div class=" txt_right cnfx_btn">
+                            <a class="btn_gray confirm wd2" href="javascript:;">确定</a><a class="btn_gray cancelwd2">取消</a>
+                        </div>
+                        <div class="clr"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/x-jsrender" id="tpl_search_list">
+    {{if totalUser}}
+    <li style="height: 120px">
+        <h1>[找人] 帮你找到 {{>totalUser}} 个会员 <a href="/search.aspx?m=user&q={{>query}}">更多&gt;&gt;</a></h1>
+        {{for userList}}
+        <div class="photoName" data-uid="{{>UserID}}">
+            <em><span class="male{{>Sex}}"></span><span class="level">Lv.{{>LevelJifen}}</span></em>
+            <a target="_blank" href="/user/{{>UserID}}">
+                <img src="{{>Photo}}" onerror="this.onerror=null;this.src='/images/defuser.jpg'"></a>
+            <p><a target="_blank" href="/user/{{>UserID}}" title="{{>NickName}}">{{>NickName}}</a></p>
+        </div>
+        {{/for}}
+    </li>
+    {{/if}}
+    {{for dataList tmpl='tpl_search_item' /}}
+    {{if totalDest}}
+    <li style="height: auto">
+        <h1>[景点] 帮你找到 {{>totalDest}} 个景点 <a href="/search.aspx?m=dest&q={{>query}}">更多&gt;&gt;</a></h1>
+        {{for destList}}
+            <p><a target="_blank" href="/guides/jingdian/{{>ID}}.html">{{>Name}}</a></p>
+        <p>{{>(Describe||'').slice(0, 65)}}...</p>
+        {{/for}}
+    </li>
+    {{/if}}
+</script>
+
+<script type="text/x-jsrender" id="tpl_user_card">
+    <div class="u_open">
+        <div class="u_box clearfix">
+            <div class="u_left">
+                <img src="{{>Photo}}" onerror="this.onerror=null;this.src='/images/defuser.jpg'">
+                <a href="#" class='follow' data-uid='{{>UserID}}'>关注Ta</a>
+                <a href="#" class='sendLetter' data-uid='{{>UserID}}'>发私信</a>
+            </div>
+            <div class="u_right">
+                <div class="u_info">
+                    <span class="u_name"><a href="/user/{{>UserID}}" title="{{>NickName}}">{{>NickName}}</a></span>
+                    <span class="male1"></span>
+                    <span class="level">Lv.{{>LevelJifen}}</span>
+                    <p>位置：{{>CityName}}</p>
+                </div>
+                <div class="u_list clearfix">
+                    <em><i>{{>CountAttention}}</i>关注</em>
+                    <em><i>{{>CountFans}}</i>粉丝</em>
+                    <em><i>{{>CountActivities}}</i>活动</em>
+                    <em><i>{{>CountDiary}}</i>游记</em>
+                    <em><i>{{>CountTopics}}</i>摄影</em>
+                </div>
+                <div class="u_signature">
+                    {{>UserSign}}
+                </div>
+            </div>
+        </div>
+        <div class="arrow_under"></div>
+    </div>
+</script>
+<script type="text/x-jsrender" id="tpl_search_dest">
+    <li style="height: 100px;">
+        <h1>[景点]<a target="_blank" href="/guides/jingdian/{{>ID}}.html">{{>Name}}</a></h1>
+        <p style="max-height: 60px;">{{>Describe}}</p>
+    </li>
+</script>
+<script type="text/x-jsrender" id="tpl_search_item">
+    {{for #data tmpl='tpl_search_'+Module /}}
+</script>
+<script type="text/x-jsrender" id="tpl_search_activity">
+    <li>
+        <div class="searchContent">
+            <h1>[活动] <a target="_blank" href="{{>Url}}">{{>Title}}</a></h1>
+            <p>{{>Content}}</p>
+            <p class="gray">
+                目的地：{{for Destinations.dests }}<a target="_blank" href="/huodong/?dest={{>destination}}">{{>destination}}</a> {{/for}}
+            主题：{{for Themes.themes }}<a target="_blank" href="/huodong/?theme={{>theme}}">{{>theme}}</a> {{/for}}
+            </p>
+            <p class="gray">
+                发布者：
+                    <a target="_blank" href="/user/{{>ContentUserId}}">
+                        <img src="{{>ContentUserPhoto}}" class="userPhoto" onerror="this.onerror=null;this.src='/images/defuser.jpg'"></a>
+                <a target="_blank" href="/user/{{>ContentUserId}}">{{>ContentNickName}}</a>
+                [ {{>UpdateTs}} ]
+            </p>
+        </div>
+        <div class="searchImg">
+            <a href="#" class="more" data-m="activity">更多&gt;&gt;</a>
+            <a target="_blank" href="{{>Url}}">
+                <img src="{{>ContentImg}}" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" /></a>
+        </div>
+    </li>
+</script>
+<script type="text/x-jsrender" id="tpl_search_diary">
+    <li>
+        <div class="searchContent">
+            <h1>[游记] <a target="_blank" href="{{>Url}}">{{>Title}}</a></h1>
+            <p>{{>Content}}</p>
+            <p class="gray">
+                目的地：{{for Destinations.dests }}<a target="_blank" href="/huodong/?dest={{>destination}}">{{>destination}}</a> {{/for}}
+        主题：{{for Themes.themes }}<a target="_blank" href="/huodong/?theme={{>theme}}">{{>theme}}</a> {{/for}}
+            </p>
+            <p class="gray">
+                发布者：
+                    <a target="_blank" href="/user/{{>ContentUserId}}">
+                        <img src="{{>ContentUserPhoto}}" class="userPhoto" onerror="this.onerror=null;this.src='/images/defuser.jpg'"></a>
+                <a target="_blank" href="/user/{{>ContentUserId}}">{{>ContentNickName}}</a>
+                [ {{>UpdateTs}} ]
+            </p>
+        </div>
+        <div class="searchImg">
+            <a href="#" class="more" data-m="diary">更多&gt;&gt;</a>
+            <a target="_blank" href="{{>Url}}">
+                <img src="{{>ContentImg}}" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" /></a>
+        </div>
+    </li>
+</script>
+<script type="text/x-jsrender" id="tpl_search_gonglue">
+    <li>
+        <div class="searchContent">
+            <h1>[攻略] <a target="_blank" href="{{>Url}}">{{>Title}}</a></h1>
+            <p>{{>Content}}</p>
+            <p class="gray">
+                目的地：{{for Destinations.dests }}<a target="_blank" href="/huodong/?dest={{>destination}}">{{>destination}}</a> {{/for}}
+        主题：{{for Themes.themes }}<a target="_blank" href="/huodong/?theme={{>theme}}">{{>theme}}</a> {{/for}}
+            </p>
+        </div>
+        <div class="searchImg">
+            <a href="#" class="more" data-m="gonglue">更多&gt;&gt;</a>
+            <a target="_blank" href="{{>Url}}">
+                <img src="{{>ContentImg}}" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" /></a>
+        </div>
+    </li>
+</script>
+<script type="text/x-jsrender" id="tpl_search_PhotoTopic">
+    <li class="liTopic">
+        <h1>[摄影] <a target="_blank" href="{{>Url}}">{{>Title}}</a>
+        </h1>
+        <a href="#" class="more" data-m="PhotoTopic">更多&gt;&gt;</a>
+        <a target="_blank" href="{{>Url}}">{{for ContentImg.split(',').slice(0,5)}}
+            {{if #data}}
+            <img src="{{>#data}}" />
+            {{/if}}
+        {{/for}} 
+        </a>
+        <p class="gray" style="height: 20px;">
+            发布者：
+                    <a target="_blank" href="/user/{{>ContentUserId}}">
+                        <img src="{{>ContentUserPhoto}}" class="userPhoto" onerror="this.onerror=null;this.src='/images/defuser.jpg'"></a>
+            <a target="_blank" href="/user/{{>ContentUserId}}">{{>ContentNickName}}</a>
+            [ {{>UpdateTs}} ]  <span title="{{>Content}}">{{>Content}}</span>
+        </p>
+    </li>
+</script>
+<script type="text/x-jsrender" id="tpl_city">
+    <div class="J_ChinaCity" style="display: none;">
+        <div class="hot-city">
+            <ul class="tab-nav" role="tablist">
+                <li class="selected">热门城市</li>
+                <li>ABCDE</li>
+                <li>FGHIJ</li>
+                <li>KLMNOP</li>
+                <li>QRSTU</li>
+                <li>VWXYZ</li>
+                <li class="ico_close_d" style="float: right" title="关闭"></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pannel hot-pannel" role="tabpanel" style="display: block;">
+                    <dl>
+                        <dt></dt>
+                        <dd><span class="b"><a data-zip="" href="#">不限</a></span>
+                            <span><a data-zip="4401" href="#">广州</a></span><span><a data-zip="4403" href="#">深圳</a></span><span><a data-zip="3101" href="#">上海</a></span><span><a data-zip="1101" href="#">北京</a></span><span><a data-zip="3301" href="#">杭州</a></span><span><a data-zip="2301" href="#">哈尔滨</a></span><span><a data-zip="4201" href="#">武汉</a></span><span><a data-zip="3302" href="#">宁波</a></span><span><a data-zip="5101" href="#">成都</a></span><span><a data-zip="5307" href="#">丽江</a></span><span><a data-zip="3201" href="#">南京</a></span><span><a data-zip="3501" href="#">福州</a></span><span><a data-zip="6101" href="#">西安</a></span><span><a data-zip="4301" href="#">长沙</a></span>                                                </dd>
+                    </dl>
+                </div>
+                <div class="tab-pannel" role="tabpanel" style="display: none;">
+                    <dl>
+                        <dt>A</dt>
+                        <dd><span><a data-zip="1529" href="#">阿拉善</a></span><span><a data-zip="2103" href="#">鞍山</a></span><span><a data-zip="3408" href="#">安庆</a></span><span><a data-zip="4105" href="#">安阳</a></span><span><a data-zip="5132" href="#">阿坝</a></span><span><a data-zip="5204" href="#">安顺</a></span><span><a data-zip="5425" href="#">阿里</a></span><span><a data-zip="6109" href="#">安康</a></span><span><a data-zip="6529" href="#">阿克苏</a></span><span><a data-zip="6543" href="#">阿勒泰</a></span><span><a data-zip="8201" href="#">澳门半岛</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>B</dt>
+                        <dd><span><a data-zip="1101" href="#">北京</a></span><span><a data-zip="1306" href="#">保定</a></span><span><a data-zip="1502" href="#">包头</a></span><span><a data-zip="1508" href="#">巴彦淖尔</a></span><span><a data-zip="2105" href="#">本溪</a></span><span><a data-zip="2206" href="#">白山</a></span><span><a data-zip="2208" href="#">白城</a></span><span><a data-zip="3403" href="#">蚌埠</a></span><span><a data-zip="3416" href="#">亳州</a></span><span><a data-zip="3716" href="#">滨州</a></span><span><a data-zip="4505" href="#">北海</a></span><span><a data-zip="4510" href="#">百色</a></span><span><a data-zip="5119" href="#">巴中</a></span><span><a data-zip="5224" href="#">毕节</a></span><span><a data-zip="5305" href="#">保山</a></span><span><a data-zip="6103" href="#">宝鸡</a></span><span><a data-zip="6204" href="#">白银</a></span><span><a data-zip="6527" href="#">博尔塔拉</a></span><span><a data-zip="6528" href="#">巴音郭楞</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>C</dt>
+                        <dd><span><a data-zip="1308" href="#">承德</a></span><span><a data-zip="1309" href="#">沧州</a></span><span><a data-zip="1504" href="#">赤峰</a></span><span><a data-zip="2113" href="#">朝阳</a></span><span><a data-zip="3204" href="#">常州</a></span><span><a data-zip="3411" href="#">滁州</a></span><span><a data-zip="3417" href="#">池州</a></span><span><a data-zip="4307" href="#">常德</a></span><span><a data-zip="4310" href="#">郴州</a></span><span><a data-zip="4451" href="#">潮州</a></span><span><a data-zip="4514" href="#">崇左</a></span><span><a data-zip="5101" href="#">成都</a></span><span><a data-zip="5323" href="#">楚雄</a></span><span><a data-zip="5421" href="#">昌都</a></span><span><a data-zip="6523" href="#">昌吉</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>D</dt>
+                        <dd><span><a data-zip="1402" href="#">大同</a></span><span><a data-zip="2102" href="#">大连</a></span><span><a data-zip="2106" href="#">丹东</a></span><span><a data-zip="2306" href="#">大庆</a></span><span><a data-zip="2327" href="#">大兴安岭</a></span><span><a data-zip="3705" href="#">东营</a></span><span><a data-zip="3714" href="#">德州</a></span><span><a data-zip="4419" href="#">东莞</a></span><span><a data-zip="5106" href="#">德阳</a></span><span><a data-zip="5117" href="#">达州</a></span><span><a data-zip="5329" href="#">大理</a></span><span><a data-zip="5331" href="#">德宏</a></span><span><a data-zip="5334" href="#">迪庆</a></span><span><a data-zip="6211" href="#">定西</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>E</dt>
+                        <dd><span><a data-zip="1506" href="#">鄂尔多斯</a></span><span><a data-zip="4207" href="#">鄂州</a></span><span><a data-zip="4228" href="#">恩施</a></span>                                                </dd>
+                    </dl>
+                </div>
+                <div class="tab-pannel" role="tabpanel" style="display: none;">
+                    <dl>
+                        <dt>F</dt>
+                        <dd><span><a data-zip="2104" href="#">抚顺</a></span><span><a data-zip="2109" href="#">阜新</a></span><span><a data-zip="3412" href="#">阜阳</a></span><span><a data-zip="3501" href="#">福州</a></span><span><a data-zip="3610" href="#">抚州</a></span><span><a data-zip="4406" href="#">佛山</a></span><span><a data-zip="4506" href="#">防城港</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>G</dt>
+                        <dd><span><a data-zip="3607" href="#">赣州</a></span><span><a data-zip="4401" href="#">广州</a></span><span><a data-zip="4503" href="#">桂林</a></span><span><a data-zip="4508" href="#">贵港</a></span><span><a data-zip="5108" href="#">广元</a></span><span><a data-zip="5116" href="#">广安</a></span><span><a data-zip="5133" href="#">甘孜</a></span><span><a data-zip="5201" href="#">贵阳</a></span><span><a data-zip="6230" href="#">甘南</a></span><span><a data-zip="6326" href="#">果洛</a></span><span><a data-zip="6404" href="#">固原</a></span><span><a data-zip="7102" href="#">高雄</a></span><span><a data-zip="7123" href="#">高雄</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>H</dt>
+                        <dd><span><a data-zip="1304" href="#">邯郸</a></span><span><a data-zip="1311" href="#">衡水</a></span><span><a data-zip="1501" href="#">呼和浩特</a></span><span><a data-zip="1507" href="#">呼伦贝尔</a></span><span><a data-zip="2114" href="#">葫芦岛</a></span><span><a data-zip="2301" href="#">哈尔滨</a></span><span><a data-zip="2304" href="#">鹤岗</a></span><span><a data-zip="2311" href="#">黑河</a></span><span><a data-zip="3208" href="#">淮安</a></span><span><a data-zip="3301" href="#">杭州</a></span><span><a data-zip="3305" href="#">湖州</a></span><span><a data-zip="3401" href="#">合肥</a></span><span><a data-zip="3404" href="#">淮南</a></span><span><a data-zip="3406" href="#">淮北</a></span><span><a data-zip="3410" href="#">黄山</a></span><span><a data-zip="3717" href="#">菏泽</a></span><span><a data-zip="4106" href="#">鹤壁</a></span><span><a data-zip="4202" href="#">黄石</a></span><span><a data-zip="4211" href="#">黄冈</a></span><span><a data-zip="4304" href="#">衡阳</a></span><span><a data-zip="4312" href="#">怀化</a></span><span><a data-zip="4413" href="#">惠州</a></span><span><a data-zip="4416" href="#">河源</a></span><span><a data-zip="4511" href="#">贺州</a></span><span><a data-zip="4512" href="#">河池</a></span><span><a data-zip="4601" href="#">海口</a></span><span><a data-zip="5325" href="#">红河</a></span><span><a data-zip="6107" href="#">汉中</a></span><span><a data-zip="6321" href="#">海东</a></span><span><a data-zip="6322" href="#">海北</a></span><span><a data-zip="6323" href="#">黄南</a></span><span><a data-zip="6325" href="#">海南</a></span><span><a data-zip="6328" href="#">海西</a></span><span><a data-zip="6522" href="#">哈密</a></span><span><a data-zip="6532" href="#">和田</a></span><span><a data-zip="7126" href="#">花莲</a></span><span><a data-zip="9901" href="#">海外</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>J</dt>
+                        <dd><span><a data-zip="1405" href="#">晋城</a></span><span><a data-zip="1407" href="#">晋中</a></span><span><a data-zip="2107" href="#">锦州</a></span><span><a data-zip="2202" href="#">吉林</a></span><span><a data-zip="2303" href="#">鸡西</a></span><span><a data-zip="2308" href="#">佳木斯</a></span><span><a data-zip="3304" href="#">嘉兴</a></span><span><a data-zip="3307" href="#">金华</a></span><span><a data-zip="3602" href="#">景德镇</a></span><span><a data-zip="3604" href="#">九江</a></span><span><a data-zip="3608" href="#">吉安</a></span><span><a data-zip="3701" href="#">济南</a></span><span><a data-zip="3708" href="#">济宁</a></span><span><a data-zip="4108" href="#">焦作</a></span><span><a data-zip="4208" href="#">荆门</a></span><span><a data-zip="4210" href="#">荆州</a></span><span><a data-zip="4407" href="#">江门</a></span><span><a data-zip="4452" href="#">揭阳</a></span><span><a data-zip="6202" href="#">嘉峪关</a></span><span><a data-zip="6203" href="#">金昌</a></span><span><a data-zip="6209" href="#">酒泉</a></span><span><a data-zip="7105" href="#">金门</a></span><span><a data-zip="7107" href="#">基隆</a></span><span><a data-zip="7109" href="#">嘉义</a></span><span><a data-zip="7119" href="#">嘉义</a></span><span><a data-zip="8102" href="#">九龙</a></span>                                                </dd>
+                    </dl>
+                </div>
+                <div class="tab-pannel" role="tabpanel" aria-hidden="false" style="display: none;">
+                    <dl>
+                        <dt>K</dt>
+                        <dd><span><a data-zip="4102" href="#">开封</a></span><span><a data-zip="5301" href="#">昆明</a></span><span><a data-zip="6502" href="#" data-spm-anchor-id="944.6951913.0.0">克拉玛依</a></span><span><a data-zip="6530" href="#">克孜勒苏</a></span><span><a data-zip="6531" href="#">喀什</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>L</dt>
+                        <dd><span><a data-zip="1310" href="#">廊坊</a></span><span><a data-zip="1410" href="#">临汾</a></span><span><a data-zip="1411" href="#">吕梁</a></span><span><a data-zip="2110" href="#">辽阳</a></span><span><a data-zip="2204" href="#">辽源</a></span><span><a data-zip="3207" href="#">连云港</a></span><span><a data-zip="3311" href="#">丽水</a></span><span><a data-zip="3415" href="#">六安</a></span><span><a data-zip="3508" href="#">龙岩</a></span><span><a data-zip="3712" href="#">莱芜</a></span><span><a data-zip="3713" href="#">临沂</a></span><span><a data-zip="3715" href="#">聊城</a></span><span><a data-zip="4103" href="#">洛阳</a></span><span><a data-zip="4111" href="#">漯河</a></span><span><a data-zip="4313" href="#">娄底</a></span><span><a data-zip="4502" href="#">柳州</a></span><span><a data-zip="4513" href="#">来宾</a></span><span><a data-zip="5105" href="#">泸州</a></span><span><a data-zip="5111" href="#">乐山</a></span><span><a data-zip="5134" href="#">凉山</a></span><span><a data-zip="5202" href="#">六盘水</a></span><span><a data-zip="5307" href="#">丽江</a></span><span><a data-zip="5309" href="#">临沧</a></span><span><a data-zip="5401" href="#">拉萨</a></span><span><a data-zip="5426" href="#">林芝</a></span><span><a data-zip="6201" href="#">兰州</a></span><span><a data-zip="6212" href="#">陇南</a></span><span><a data-zip="6229" href="#">临夏</a></span><span><a data-zip="8202" href="#">离岛</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>M</dt>
+                        <dd><span><a data-zip="2310" href="#">牡丹江</a></span><span><a data-zip="3405" href="#">马鞍山</a></span><span><a data-zip="4409" href="#">茂名</a></span><span><a data-zip="4414" href="#">梅州</a></span><span><a data-zip="5107" href="#">绵阳</a></span><span><a data-zip="5114" href="#">眉山</a></span><span><a data-zip="7115" href="#">苗栗</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>N</dt>
+                        <dd><span><a data-zip="3201" href="#">南京</a></span><span><a data-zip="3206" href="#">南通</a></span><span><a data-zip="3302" href="#">宁波</a></span><span><a data-zip="3507" href="#">南平</a></span><span><a data-zip="3509" href="#">宁德</a></span><span><a data-zip="3601" href="#">南昌</a></span><span><a data-zip="4113" href="#">南阳</a></span><span><a data-zip="4501" href="#">南宁</a></span><span><a data-zip="5110" href="#">内江</a></span><span><a data-zip="5113" href="#">南充</a></span><span><a data-zip="5333" href="#">怒江</a></span><span><a data-zip="5424" href="#">那曲</a></span><span><a data-zip="7106" href="#">南投</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>P</dt>
+                        <dd><span><a data-zip="2111" href="#">盘锦</a></span><span><a data-zip="3503" href="#">莆田</a></span><span><a data-zip="3603" href="#">萍乡</a></span><span><a data-zip="4104" href="#">平顶山</a></span><span><a data-zip="4109" href="#">濮阳</a></span><span><a data-zip="5104" href="#">攀枝花</a></span><span><a data-zip="5308" href="#">普洱</a></span><span><a data-zip="6208" href="#">平凉</a></span><span><a data-zip="7124" href="#">屏东</a></span><span><a data-zip="7127" href="#">澎湖</a></span>                                                </dd>
+                    </dl>
+                </div>
+                <div class="tab-pannel" role="tabpanel" style="display: none;">
+                    <dl>
+                        <dt>Q</dt>
+                        <dd><span><a data-zip="1303" href="#">秦皇岛</a></span><span><a data-zip="2302" href="#">齐齐哈尔</a></span><span><a data-zip="2309" href="#">七台河</a></span><span><a data-zip="3308" href="#">衢州</a></span><span><a data-zip="3505" href="#">泉州</a></span><span><a data-zip="3702" href="#">青岛</a></span><span><a data-zip="4418" href="#">清远</a></span><span><a data-zip="4507" href="#">钦州</a></span><span><a data-zip="5223" href="#">黔西南</a></span><span><a data-zip="5226" href="#">黔东南</a></span><span><a data-zip="5227" href="#">黔南</a></span><span><a data-zip="5303" href="#">曲靖</a></span><span><a data-zip="6210" href="#">庆阳</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>R</dt>
+                        <dd><span><a data-zip="3711" href="#">日照</a></span><span><a data-zip="5423" href="#">日喀则</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>S</dt>
+                        <dd><span><a data-zip="1301" href="#">石家庄</a></span><span><a data-zip="1406" href="#">朔州</a></span><span><a data-zip="2101" href="#">沈阳</a></span><span><a data-zip="2203" href="#">四平</a></span><span><a data-zip="2207" href="#">松原</a></span><span><a data-zip="2305" href="#">双鸭山</a></span><span><a data-zip="2312" href="#">绥化</a></span><span><a data-zip="3101" href="#">上海</a></span><span><a data-zip="3205" href="#">苏州</a></span><span><a data-zip="3213" href="#">宿迁</a></span><span><a data-zip="3306" href="#">绍兴</a></span><span><a data-zip="3413" href="#">宿州</a></span><span><a data-zip="3502" href="#">厦门</a></span><span><a data-zip="3504" href="#">三明</a></span><span><a data-zip="3611" href="#">上饶</a></span><span><a data-zip="4112" href="#">三门峡</a></span><span><a data-zip="4114" href="#">商丘</a></span><span><a data-zip="4203" href="#">十堰</a></span><span><a data-zip="4213" href="#">随州</a></span><span><a data-zip="4305" href="#">邵阳</a></span><span><a data-zip="4402" href="#">韶关</a></span><span><a data-zip="4403" href="#">深圳</a></span><span><a data-zip="4405" href="#">汕头</a></span><span><a data-zip="4415" href="#">汕尾</a></span><span><a data-zip="4602" href="#">三亚</a></span><span><a data-zip="5109" href="#">遂宁</a></span><span><a data-zip="5422" href="#">山南</a></span><span><a data-zip="6110" href="#">商洛</a></span><span><a data-zip="6402" href="#">石嘴山</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>T</dt>
+                        <dd><span><a data-zip="1201" href="#">天津</a></span><span><a data-zip="1302" href="#">唐山</a></span><span><a data-zip="1401" href="#">太原</a></span><span><a data-zip="1505" href="#">通辽</a></span><span><a data-zip="2112" href="#">铁岭</a></span><span><a data-zip="2205" href="#">通化</a></span><span><a data-zip="3212" href="#">泰州</a></span><span><a data-zip="3310" href="#">台州</a></span><span><a data-zip="3407" href="#">铜陵</a></span><span><a data-zip="3709" href="#">泰安</a></span><span><a data-zip="5222" href="#">铜仁</a></span><span><a data-zip="6102" href="#">铜川</a></span><span><a data-zip="6205" href="#">天水</a></span><span><a data-zip="6521" href="#">吐鲁番</a></span><span><a data-zip="6542" href="#">塔城</a></span><span><a data-zip="7101" href="#">台北</a></span><span><a data-zip="7103" href="#">台南</a></span><span><a data-zip="7104" href="#">台中</a></span><span><a data-zip="7114" href="#">桃园</a></span><span><a data-zip="7125" href="#">台东</a></span>                                                </dd>
+                    </dl>
+                </div>
+                <div class="tab-pannel" role="tabpanel" style="display: none;">
+                    <dl>
+                        <dt>W</dt>
+                        <dd><span><a data-zip="1503" href="#">乌海</a></span><span><a data-zip="1509" href="#">乌兰察布</a></span><span><a data-zip="3202" href="#">无锡</a></span><span><a data-zip="3303" href="#">温州</a></span><span><a data-zip="3402" href="#">芜湖</a></span><span><a data-zip="3707" href="#">潍坊</a></span><span><a data-zip="3710" href="#">威海</a></span><span><a data-zip="4201" href="#">武汉</a></span><span><a data-zip="4504" href="#">梧州</a></span><span><a data-zip="5326" href="#">文山</a></span><span><a data-zip="6105" href="#">渭南</a></span><span><a data-zip="6206" href="#">武威</a></span><span><a data-zip="6403" href="#">吴忠</a></span><span><a data-zip="6501" href="#">乌鲁木齐</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>X</dt>
+                        <dd><span><a data-zip="1305" href="#">邢台</a></span><span><a data-zip="1409" href="#">忻州</a></span><span><a data-zip="1522" href="#">兴安</a></span><span><a data-zip="1525" href="#">锡林郭勒</a></span><span><a data-zip="3203" href="#">徐州</a></span><span><a data-zip="3418" href="#">宣城</a></span><span><a data-zip="3605" href="#">新余</a></span><span><a data-zip="4107" href="#">新乡</a></span><span><a data-zip="4110" href="#">许昌</a></span><span><a data-zip="4115" href="#">信阳</a></span><span><a data-zip="4206" href="#">襄樊</a></span><span><a data-zip="4209" href="#">孝感</a></span><span><a data-zip="4212" href="#">咸宁</a></span><span><a data-zip="4303" href="#">湘潭</a></span><span><a data-zip="4331" href="#">湘西</a></span><span><a data-zip="5328" href="#">西双版纳</a></span><span><a data-zip="6101" href="#">西安</a></span><span><a data-zip="6104" href="#">咸阳</a></span><span><a data-zip="6301" href="#">西宁</a></span><span><a data-zip="7108" href="#">新竹</a></span><span><a data-zip="7111" href="#">新北</a></span><span><a data-zip="7113" href="#">新竹</a></span><span><a data-zip="8101" href="#">香港岛</a></span><span><a data-zip="8103" href="#">新界</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>Y</dt>
+                        <dd><span><a data-zip="1403" href="#">阳泉</a></span><span><a data-zip="1408" href="#">运城</a></span><span><a data-zip="2108" href="#">营口</a></span><span><a data-zip="2224" href="#">延边</a></span><span><a data-zip="2307" href="#">伊春</a></span><span><a data-zip="3209" href="#">盐城</a></span><span><a data-zip="3210" href="#">扬州</a></span><span><a data-zip="3606" href="#">鹰潭</a></span><span><a data-zip="3609" href="#">宜春</a></span><span><a data-zip="3706" href="#">烟台</a></span><span><a data-zip="4205" href="#">宜昌</a></span><span><a data-zip="4306" href="#">岳阳</a></span><span><a data-zip="4309" href="#">益阳</a></span><span><a data-zip="4311" href="#">永州</a></span><span><a data-zip="4417" href="#">阳江</a></span><span><a data-zip="4453" href="#">云浮</a></span><span><a data-zip="4509" href="#">玉林</a></span><span><a data-zip="5115" href="#">宜宾</a></span><span><a data-zip="5118" href="#">雅安</a></span><span><a data-zip="5304" href="#">玉溪</a></span><span><a data-zip="6106" href="#">延安</a></span><span><a data-zip="6108" href="#">榆林</a></span><span><a data-zip="6327" href="#">玉树</a></span><span><a data-zip="6401" href="#">银川</a></span><span><a data-zip="6540" href="#">伊犁</a></span><span><a data-zip="7112" href="#">宜兰</a></span><span><a data-zip="7121" href="#">云林</a></span>                                                </dd>
+                    </dl>
+                    <dl>
+                        <dt>Z</dt>
+                        <dd><span><a data-zip="1307" href="#">张家口</a></span><span><a data-zip="1404" href="#">长治</a></span><span><a data-zip="2201" href="#">长春</a></span><span><a data-zip="3211" href="#">镇江</a></span><span><a data-zip="3309" href="#">舟山</a></span><span><a data-zip="3506" href="#">漳州</a></span><span><a data-zip="3703" href="#">淄博</a></span><span><a data-zip="3704" href="#">枣庄</a></span><span><a data-zip="4101" href="#">郑州</a></span><span><a data-zip="4116" href="#">周口</a></span><span><a data-zip="4117" href="#">驻马店</a></span><span><a data-zip="4301" href="#">长沙</a></span><span><a data-zip="4302" href="#">株洲</a></span><span><a data-zip="4308" href="#">张家界</a></span><span><a data-zip="4404" href="#">珠海</a></span><span><a data-zip="4408" href="#">湛江</a></span><span><a data-zip="4412" href="#">肇庆</a></span><span><a data-zip="4420" href="#">中山</a></span><span><a data-zip="5001" href="#">重庆</a></span><span><a data-zip="5103" href="#">自贡</a></span><span><a data-zip="5120" href="#">资阳</a></span><span><a data-zip="5203" href="#">遵义</a></span><span><a data-zip="5306" href="#">昭通</a></span><span><a data-zip="6207" href="#">张掖</a></span><span><a data-zip="6405" href="#">中卫</a></span><span><a data-zip="7117" href="#">彰化</a></span>                                                </dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-jsrender" id="tpl_MsgTipBox">
+    <div class="MsgTipBox">
+        <div>
+            <div class="closeBtn">X</div>
+            <ul style="list-style: square;">
+            </ul>
+        </div>
+    </div>
+</script>
+
+<script type="text/x-jsrender" id="tpl_MsgTip">
+    <li>{{:MsgHtml}}
+    </li>
+</script>
+
+<script type="text/x-jsrender" id="tpl_Contact">
+    <li class="item">
+        <input type="checkbox" id="t_contact_{{:ID}}" data-id="{{:ID}}" /><label for="t_contact_{{:ID}}">{{:Name}}</label>
+    </li>
+</script>

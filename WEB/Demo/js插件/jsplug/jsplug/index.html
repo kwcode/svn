@@ -1,0 +1,26 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title></title>
+    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="js/layer/layer.min.js" type="text/javascript"></script>
+    <script src="js/jquerytw.js" type="text/javascript"></script>
+    <link href="style/tw.css" rel="stylesheet" type="text/css" />
+    <script>
+        $(function () {
+            $("#test5").click(function () {
+                //  layer.alert("2");
+                $.tw.pralert();
+                $("#twfillbox").css("display", "block");
+            });
+        })
+    </script>
+</head>
+<body>
+    <div>
+        <input type="submit" id="test5" value="确 认1" />
+    </div>
+    <div class="twfillbox" id="twfillbox">
+    </div>
+</body>
+</html>
