@@ -1,50 +1,15 @@
-﻿body
-{
-    background-color: #FFC1C1;
-    width: 980px;
-    margin: 0 auto;
-    text-align: center;
-    font-size: 12px;
-}
-ul li
-{
-    list-style-type: none;
-    float: left;
-}
-a
-{
-    color: White;
-    text-decoration: none;
-}
-.page
-{
-    border: thin solid #FFCCFF;
-    width: 980px;
-}
-.top
-{
-}
-.b_head
-{
-}
-.b_logo
-{
-    background-image: url('../images/logo.png');
-    background-repeat: no-repeat;
-    height: 57px;
-    width: 181px;
-}
-.b_menu
-{
-    height: 40px;
-    background-image: url('/images/m_bg.png');
-}
-.b_main
-{
-}
-.b_foot
-{
-}
+﻿body { background-color: #FFC1C1; width: 1345px; margin: 0px auto 0px auto; font: 12px/1.6em Verdana,Helvetica,Arial,sans-serif; }
+ul { margin: 0 auto; /*上下是0像素,左右边距自动*/ }
+ul li { list-style-type: none; float: left; }
+a { text-decoration: none; }
+
+.page { }
+.top { }
+.b_head { height: 280px; }
+.b_logo { }
+.b_menu { }
+.b_main { }
+.b_foot { }
 /*
 #mainnav { height: 40px; background: #2c832f; }
 #mainnav div { width: 980px; height: 40px; margin: 0 auto; }
@@ -54,49 +19,18 @@ a
 #mainnav li a:hover, #mainnav .current { background-color: #236926; color: #fff; text-decoration: none; }
 */
 
-.b_menu
-{
-    height: 40px;
-    background: #2c832f;
-}
-.b_menu li
-{
-    line-height: 40px;
-    font-size: 16px;
-    float: left;
-    margin: 0 1px 0 0;
-    width: 90px;
-    text-align: center;
-}
-.b_menu li a
-{
-    color: #fff;
-    display: block;
-    height: 40px;
-    padding: 0 20px;
-}
-.b_menu li a:hover
-{
-    background-color: #236926;
-    color: #fff;
-    text-decoration: none;
-}
-.b_menunav_right
-{
-   
-}
-.b_menunav_right ul
-{
-}
-.b_menu_li_right li
-{
-    
-}
-.b_submenu_ul a
-{
-    color: #fff;
-    display: block;
-    height: 40px;
-    padding: 0 20px;
-}
+.b_menu { height: 40px; background: #00BAC9; }
+.b_menu li { font-size: 16px; margin: 0 1px 0 0; width: 90px; text-align: center; }
+.b_menu li a { line-height: 40px; color: #fff; display: block; /*这个比较关键，因为a本身就是联级元素，本身不具有宽高，用这个把它变成块级元素，这样前面设置的宽和高就能起作用了*/ height: 40px; }
+.b_menu li a:hover { line-height: 40px; background-color: #00C0CF; color: #fff; font-size: 12px; font-weight: bold; }
+
+.b-main-item { float: left; }
+.b-main-item-a {  height: 300px; }
+/*图片*/
+.b-main-item-pimg { background: yellow; width: 25%; }
+.b-main-item-pimg img { width: 300px; height: 250px; }
+/*重要新闻*/
+.b-main-item-zxw { background: #CCFFFF; width: 75%; }
+.b-main-item-zxw ul { float: left; }
+.b-main-item-zxw ul li { clear: both; }
 

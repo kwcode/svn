@@ -74,7 +74,9 @@
     <Content Include="admin\GridTable.aspx" />
     <Content Include="admin\GridTable_JSON.aspx" />
     <Content Include="admin\SendMail.aspx" />
+    <Content Include="admin\user\UserManager.aspx" />
     <Content Include="admin\WebDataOperat.aspx" />
+    <Content Include="images\flash\banner.swf" />
     <Content Include="images\cms_bg.png" />
     <Content Include="images\m_bg.png" />
     <Content Include="images\m_bg_hover.png" />
@@ -106,6 +108,7 @@
     <Content Include="js\layer\skin\layer.css" />
     <Content Include="js\layer\skin\layer.ext.css" />
     <Content Include="layer.html" />
+    <Content Include="nva.html" />
     <Content Include="style\sendmail.css" />
     <Content Include="style\style.css" />
     <Content Include="Web.config" />
@@ -158,6 +161,13 @@
     </Compile>
     <Compile Include="admin\SendMailHandler.ashx.cs">
       <DependentUpon>SendMailHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\user\UserManager.aspx.cs">
+      <DependentUpon>UserManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\user\UserManager.aspx.designer.cs">
+      <DependentUpon>UserManager.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\WebDataOperat.aspx.cs">
       <DependentUpon>WebDataOperat.aspx</DependentUpon>
