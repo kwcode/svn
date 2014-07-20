@@ -50,6 +50,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustDate\CustSlideDate.xaml.cs">
+      <DependentUpon>CustSlideDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustTextBox\CustRichTextBox.xaml.cs">
+      <DependentUpon>CustRichTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OpenFile\OpenFileDialogCtrl.xaml.cs">
       <DependentUpon>OpenFileDialogCtrl.xaml</DependentUpon>
     </Compile>
@@ -104,6 +110,14 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="CustDate\CustSlideDate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustTextBox\CustRichTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ListView\ListviewDataCtrl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -133,7 +147,13 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\RichBoxIco\icon_B.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\CustDate\left.ico" />
+    <Resource Include="Resources\CustDate\right.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy $(TargetPath) $(ProjectDir)..\..\Lib\</PostBuildEvent>
