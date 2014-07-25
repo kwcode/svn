@@ -60,6 +60,12 @@
     <Content Include="css.css" />
     <Content Include="index.html" />
     <Content Include="index2.html" />
+    <Content Include="jquery-1.8.3.js" />
+    <Content Include="jquery.min.js" />
+    <Content Include="Popupindex.html" />
+    <Content Include="tabindex.html" />
+    <Content Include="tableindex.html" />
+    <Content Include="ulListindex.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
