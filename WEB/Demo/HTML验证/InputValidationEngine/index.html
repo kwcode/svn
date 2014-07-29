@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link href="css/jquery.validationEngine.css" rel="stylesheet" />
+    <script src="js/jquery.validationEngine.js"></script>
+    <script src="js/jquery.validationEngine-zh_CN.js"></script>
+
+</head>
+<body>
+
+    <form id="formID">
+        <fieldset>
+            <legend>标题</legend>
+            <label>相关APIhttp://code.ciaoca.com/jquery/validation_engine/</label>
+            <br />
+            <input class="validate[required]" type="text" />
+            <!-- 方向:X偏移值,Y偏移值 data-prompt-position="bottomLeft:200,5"-->
+            <input class="validate[required]" type="text" data-prompt-position="bottomLeft:200,5" />
+            <input type="text" class="validate[required,custom[email]]" data-errormessage-custom-error="格式应为：xxxx@qq.com" data-prompt-position="bottomLeft:200,5" />
+            <input type="text" />
+            <input type="submit" value="submit验证" />
+            <input type="button" id="btn_Button" value="Button验证" />
+            <!--<asp:Button ID="btnsubmit" runat="server" CssClass="button gray medium" Text="提交保存" OnClientClick="return $('#form1').validationEngine('validate');"></asp:Button>-->
+        </fieldset>
+
+
+    </form>
+    <script>
+        $(function () {
+            jQuery("#formID").validationEngine();
+
+            $("#btn_Button").click(function () {
+                var aa = $('#formID').validationEngine('validate');//手动验证
+                if (aa) {
+                    alert(aa);
+                }
+            })
+        })
+	</script>
+</body>
+</html>
