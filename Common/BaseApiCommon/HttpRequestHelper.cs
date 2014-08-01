@@ -52,13 +52,68 @@ namespace BaseApiCommon
             {
                 httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
                 httpWebRequest.CookieContainer = cookieContainer;
-                httpWebRequest.Method = "GET"; 
+                httpWebRequest.Method = "GET";
                 httpWebRequest.ServicePoint.ConnectionLimit = int.MaxValue;
                 httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
                 Stream responseStream = httpWebResponse.GetResponseStream();
                 return responseStream;
             }
             catch (Exception)
+            {
+                return null;
+            }
+        }
+        #endregion
+
+        #region Post
+        public static string HttpPost(string url, Dictionary<string, string> parameters = null, CookieContainer cookieContainer = null, Encoding encoding = null)
+        {
+            if (cookieContainer == null)
+                cookieContainer = new CookieContainer();
+            Stream stream = PostStream(url, cookieContainer, parameters);
+            StreamReader streamReader = new StreamReader(stream, encoding ?? Encoding.UTF8);
+            return streamReader.ReadToEnd();
+        }
+         
+        public static Stream PostStream(string url, CookieContainer cookieContainer, Dictionary<string, string> parameters = null)
+        {
+            HttpWebRequest httpWebRequest = null;
+            HttpWebResponse httpWebResponse = null;
+            try
+            {
+                httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+                httpWebRequest.CookieContainer = cookieContainer;
+                httpWebRequest.Method = "POST";
+                httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+                // httpWebRequest.ServicePoint.ConnectionLimit = int.MaxValue;
+                if (!(parameters == null || parameters.Count == 0))
+                {
+                    StringBuilder buffer = new StringBuilder();
+                    int i = 0;
+                    foreach (string key in parameters.Keys)
+                    {
+                        if (i > 0)
+                        {
+                            buffer.AppendFormat("&{0}={1}", key, parameters[key]);
+                        }
+                        else
+                        {
+                            buffer.AppendFormat("{0}={1}", key, parameters[key]);
+                        }
+                        i++;
+                    }
+                    byte[] data = Encoding.Default.GetBytes(buffer.ToString());
+                    //using (Stream stream = request.GetRequestStream()) 
+                    using (Stream stream = httpWebRequest.GetRequestStream())
+                    {
+                        stream.Write(data, 0, data.Length);
+                    }
+                }
+                httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+                Stream responseStream = httpWebResponse.GetResponseStream();
+                return responseStream;
+            }
+            catch
             {
                 return null;
             }

@@ -60,6 +60,23 @@ namespace BaseApiCommon
             _xmlDocument.Load(fileName);
         }
         /// <summary>
+        /// 检查文件是否存在
+        /// 不存在则初始化
+        /// </summary>
+        /// <param name="xmlName"></param>
+        /// <returns></returns>
+        public static void CheckFileExist(string docName = null, string xmlPath = null)
+        {
+            if (!string.IsNullOrWhiteSpace(docName))
+                _DocName = docName;
+            if (!string.IsNullOrWhiteSpace(xmlPath))
+                _xmlPath = xmlPath;
+            string fileName = _xmlPath + _DocName;
+            bool isExist = File.Exists(fileName);
+            if (!isExist)
+                InitializationXmlDoc();
+        }
+        /// <summary>
         /// 初始化
         /// </summary>
         public static void InitializationXmlDoc()
@@ -86,7 +103,7 @@ namespace BaseApiCommon
         /// <param name="Content">节点内容</param>
         /// <param name="parentCode">上级节点 默认Root</param>
         /// <param name="atts">属性集合mn</param>
-        public static void InsetXml(string code, string content, List<XMLAttributes> atts, string parentCode = null)
+        public static void InsertXml(string code, string content, List<XMLAttributes> atts, string parentCode = null)
         {
             string fileName = _xmlPath + _DocName;
             if (string.IsNullOrWhiteSpace(parentCode))
@@ -147,7 +164,11 @@ namespace BaseApiCommon
             if (_xmlDocument == null)
                 Init();
             XmlNode xmlNode = FindXmlSingleNode(code, atts);//查找节点
-            xmlNode.InnerText = content;
+
+            if (xmlNode == null)
+                InsertXml(code, content, atts);
+            else
+                xmlNode.InnerText = content;
             _xmlDocument.Save(fileName);
             if (_IsRefreshDoc)
                 RefreshDoc();
@@ -388,7 +409,9 @@ namespace BaseApiCommon
         public static string FindNodeContent(string code, List<XMLAttributes> atts = null)
         {
             XmlNode node = FindXmlSingleNode(code, atts);
-            string content = node.InnerText;
+            string content = string.Empty;
+            if (node != null)
+                content = node.InnerText;
             return content;
         }
     }
