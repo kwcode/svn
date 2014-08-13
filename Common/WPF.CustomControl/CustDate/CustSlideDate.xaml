@@ -12,18 +12,17 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Button ToolTip="向左" Grid.Column="0" Width="24" Height="24">
-            <Button.Background>
+            <Image Source="/WPF.CustomControl;component/Resources/CustDate/left.ico"></Image>
+            <!--<Button.Background>
                 <ImageBrush ImageSource="/WPF.CustomControl;component/Resources/CustDate/left.ico" Stretch="Fill" TileMode="None" />
-            </Button.Background>
+            </Button.Background>-->
         </Button>
         <ScrollViewer Grid.Column="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
             <StackPanel Orientation="Horizontal" x:Name="stackPanelk">
             </StackPanel>
         </ScrollViewer>
         <Button ToolTip="向右边" Grid.Column="2"  Width="24" Height="24">
-            <Button.Background>
-                <ImageBrush ImageSource="/WPF.CustomControl;component/Resources/CustDate/right.ico" />
-            </Button.Background>
+            <Image Source="/WPF.CustomControl;component/Resources/CustDate/right.ico"></Image>
         </Button>
     </Grid>
 </UserControl>

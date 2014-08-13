@@ -26,7 +26,7 @@ namespace WPF
             InitializeComponent();
             //  this.KeyDown += new KeyEventHandler(CustRichTextBox_KeyDown);
             MenuItem item = GenerateCustMenuItem(EditingCommands.ToggleBold, "/WPF.CustomControl;component/Resources/RichBoxIco/icon_B.png", "复制");
-            CustMenu.Items.Add(item);
+            CustMenu.Items.Add(item);   
         }
 
         void CustRichTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -57,7 +57,7 @@ namespace WPF
         public string RBContent
         {
             get
-            {
+            { 
                 string rtf = string.Empty;
                 TextRange textRange = new TextRange(rich_Box.Document.ContentStart, rich_Box.Document.ContentEnd);
                 using (MemoryStream ms = new MemoryStream())
