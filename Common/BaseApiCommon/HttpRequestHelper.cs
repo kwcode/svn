@@ -99,7 +99,7 @@ namespace BaseApiCommon
             }
             return request.GetResponse() as HttpWebResponse;
         }
-       
+
         private static bool CheckValidationResult(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors errors)
         {
             return true; //总是接受  
@@ -113,8 +113,12 @@ namespace BaseApiCommon
             if (cookieContainer == null)
                 cookieContainer = new CookieContainer();
             Stream stream = PostStream(url, cookieContainer, parameters);
-            StreamReader streamReader = new StreamReader(stream, encoding ?? Encoding.UTF8);
-            return streamReader.ReadToEnd();
+            if (stream != null)
+            {
+                StreamReader streamReader = new StreamReader(stream, encoding ?? Encoding.UTF8);
+                return streamReader.ReadToEnd();
+            }
+            return "";
         }
 
         public static Stream PostStream(string url, CookieContainer cookieContainer, Dictionary<string, string> parameters = null)
