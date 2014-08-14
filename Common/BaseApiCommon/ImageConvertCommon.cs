@@ -134,5 +134,44 @@ namespace BaseApiCommon
             return Convert.FromBase64String(base64String);
         }
         #endregion
+
+        #region 下载图片
+        /// <summary>
+        /// 下载图片
+        /// </summary>
+        /// <param name="imgUrl"></param>
+        /// <param name="path"></param>
+        public static void UploadImg(string imgUrl, string path)
+        {
+            WebClient client = new WebClient();
+            client.DownloadProgressChanged += client_DownloadProgressChanged;
+            client.DownloadFileCompleted += client_DownloadFileCompleted;
+            client.DownloadFileAsync(new Uri(imgUrl), path);
+        }
+
+        static void client_DownloadFileCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            if (DownloadCompletedEvent != null)
+                DownloadCompletedEvent(sender, e);
+        }
+
+        static void client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            if (DownloadChangedEvent != null)
+                DownloadChangedEvent(sender, e);
+
+        }
+        #endregion
+        /// <summary>
+        /// 在异步下载操作成功转换部分或全部数据后发生。
+        /// </summary>
+        /// <returns></returns>
+        public static event DownloadProgressChangedEventHandler DownloadChangedEvent;
+        /// <summary>
+        /// 在异步文件下载操作完成时发生。
+        /// </summary>
+        /// <returns></returns>
+        public static event System.ComponentModel.AsyncCompletedEventHandler DownloadCompletedEvent;
     }
+
 }
