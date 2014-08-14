@@ -58,6 +58,7 @@
     <Compile Include="EMethodType.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="HttpRequestHelper.cs" />
+    <Compile Include="ImageConvertCommon.cs" />
     <Compile Include="InvokeParam.cs" />
     <Compile Include="Mail\EMail.cs" />
     <Compile Include="Mail\MailCommon.cs" />
