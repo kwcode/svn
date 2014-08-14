@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Media.Imaging;
 
@@ -15,7 +16,7 @@ namespace BaseApiCommon
     {
 
 
-        #region 获取图片
+        #region 获取本地图片
 
         /// <summary>
         /// 获取图片
@@ -51,6 +52,27 @@ namespace BaseApiCommon
             return base64;
         }
 
+        #endregion
+
+        #region 获取下载后的图片
+        public static byte[] GetUploadImage1(string imgUrl)
+        {
+            WebClient client = new WebClient();
+            byte[] buff = client.DownloadData(imgUrl);
+            return buff;
+        }
+
+        public static BitmapImage GetUploadImage2(string imgUrl)
+        {
+            byte[] buff = GetUploadImage1(imgUrl);
+            BitmapImage bmp = ConvertByteToBitmapImage(buff);
+            return bmp;
+        }
+        public static string GetUploadImage64(string imgUrl)
+        {
+            byte[] buff = GetUploadImage1(imgUrl);
+            return Convert.ToBase64String(buff);
+        }
         #endregion
 
         #region 转换
