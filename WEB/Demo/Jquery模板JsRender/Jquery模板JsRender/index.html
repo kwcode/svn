@@ -40,10 +40,15 @@
         <div id="t_tv2">
         </div>
         <script type="text/javascript">
-            var templates = $.templates("template.html"); //既可以是字符串也可以是脚本标记，B是字符串
-            var html = templates.render(data, "t_t2");
-            // var html = $("#t_t2").render(data);
-            $("#t_tv2").html(html); 
+//            var templates = $.templates("template.html").render(); //既可以是字符串也可以是脚本标记，B是字符串
+//            var html = templates.render(data, "t_t2");
+//            // var html = $("#t_t2").render(data);
+            //            $("#t_tv2").html(html);
+            $.trip.template('/communal/template.html').render('t_t2', data).done(function (html) {
+                $("#t_tv2").append(html);
+            });
+
+
         </script>
     </div>
     <!--3-->
