@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.CustomControl", "WPF.CustomControl\WPF.CustomControl.csproj", "{DD226629-8F8C-446F-B7E8-32B938D36372}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseApiCommon", "BaseApiCommon\BaseApiCommon.csproj", "{F00850CC-B3DE-4125-B5D4-9B1C0C3760DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SysCore", "SysCore\SysCore.csproj", "{C718ED45-4EBF-47F2-9A40-C6D6A5505735}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBCommon", "DBCommon\DBCommon.csproj", "{DD3F06E9-CAF3-4BD7-AC30-B0F133725978}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +27,10 @@ Global
 		{C718ED45-4EBF-47F2-9A40-C6D6A5505735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C718ED45-4EBF-47F2-9A40-C6D6A5505735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C718ED45-4EBF-47F2-9A40-C6D6A5505735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD3F06E9-CAF3-4BD7-AC30-B0F133725978}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD3F06E9-CAF3-4BD7-AC30-B0F133725978}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD3F06E9-CAF3-4BD7-AC30-B0F133725978}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD3F06E9-CAF3-4BD7-AC30-B0F133725978}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
