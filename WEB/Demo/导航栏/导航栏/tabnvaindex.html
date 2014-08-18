@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="css.css" rel="stylesheet" />
+    <script src="jquery-1.8.3.js"></script>
+    <style>
+        li { display: list-item; text-align: -webkit-match-parent; }
+        .tab-nav li { float: left; /* border: 1px solid #fff; */ border-bottom: #bec2c4; padding: 0 5px; margin-right: 3px; line-height: 20px; cursor: pointer; background-color: #fff; outline: 0; }
+        .tab-nav li.selected { border-color: #b3c2c4; border-bottom: 1px solid #fff; background: #fff; }
+
+        .ico_close_d { background: url(/love.png) no-repeat 0 -540px; width: 18px; height: 18px; border-radius: 2px; }
+
+        .j-sou { position: absolute; z-index: 99999; }
+        .j-sou-item { width: 440px; padding: 5px 0; background: #fff; overflow: hidden; zoom: 1; position: relative; border: 1px solid #bec2c4; border-right-color: #bec2c4; border-bottom-color: #bec2c4; }
+        .j-sou-item .tab-nav { overflow: hidden; zoom: 1; position: relative; z-index: 999999; padding: 3px 5px 0; height: 22px; }
+
+        .tab-nav li { float: left; border: 1px solid #fff; border-bottom: #bec2c4; padding: 0 5px; margin-right: 3px; line-height: 20px; cursor: pointer; background-color: #fff; outline: 0; }
+        .tab-nav li.selected { border-color: #b3c2c4; border-bottom: 1px solid #fff; background: #fff; }
+        .tab-content { border-top: 1px solid #bec2c4; margin-top: -1px; padding: 6px 0; line-height: 22px; zoom: 1; position: relative; }
+        .tab-content dt { float: left; padding-left: 3px; color: #f30; text-indent: 5px; font-family: "Lucida console",consolas,"courier new"; line-height: 22px; font-size: 14px; }
+        .tab-content dd { margin-left: 15px; overflow: hidden; zoom: 1; }
+        .tab-content dd span { float: left; padding-left: 4px; width: 66px; text-align: left; }
+        .tab-content dd span.b a { font-weight: bold; color: #093; }
+        .tab-content span a, .tab-content span a:visited { color: #404040; padding: 0 2px; }
+        .tab-pannel { display: none; }
+        .tab-content .hot-pannel { padding: 10px 0 30px; }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="button" class="tabnav" value="提交" />
+        <!--<a class="ico_close_d" style="float: right" title="关闭"></a>-->
+        <div class="j-sou" style="display: none">
+            <div class="j-sou-item">
+                <ul class="tab-nav">
+                    <li class="selected">热门主题</li>
+                    <li>一级分类</li>
+                    <li class="ico_close_d" style="float: right" title="关闭"></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pannel hot-pannel" role="tabpanel" style="display: block;">aaaaaaa</div>
+                    <div class="tab-pannel" role="tabpanel" style="display: none;">BBBBBB</div>
+                </div>
+            </div>
+        </div>
+
+        <div>aaaaaaaaaaaaaaaaaa</div>
+    </div>
+    <script>
+        $(".tabnav").click(function () {
+            $('.j-sou').show();
+        })
+        $(".tab-nav li").click(function () {
+            $jsou = $('.j-sou');
+            $li = $(this);
+
+            if ($li.attr('class') == 'ico_close_d') {
+                $jsou.hide();
+                return;
+            }
+            $(".j-sou").find('li.selected').removeClass('selected');
+            $li.addClass('selected');
+
+            var $lis = $jsou.find('li');
+            var index = $lis.index($li);
+            $jsou.find('.tab-pannel').hide();
+            $jsou.find('.tab-pannel:eq(' + index + ')').show();
+        })
+    </script>
+</body>
+</html>
