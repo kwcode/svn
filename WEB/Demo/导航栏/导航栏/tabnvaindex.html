@@ -7,13 +7,13 @@
     <script src="jquery-1.8.3.js"></script>
     <style>
         li { display: list-item; text-align: -webkit-match-parent; }
-        .tab-nav li { float: left; /* border: 1px solid #fff; */ border-bottom: #bec2c4; padding: 0 5px; margin-right: 3px; line-height: 20px; cursor: pointer; background-color: #fff; outline: 0; }
+        .tab-nav li { float: left; border-bottom: #bec2c4; padding: 0 5px; margin-right: 3px; line-height: 20px; cursor: pointer; background-color: #fff; outline: 0; }
         .tab-nav li.selected { border-color: #b3c2c4; border-bottom: 1px solid #fff; background: #fff; }
 
         .ico_close_d { background: url(/love.png) no-repeat 0 -540px; width: 18px; height: 18px; border-radius: 2px; }
 
         .j-sou { position: absolute; z-index: 99999; }
-        .j-sou-item { width: 440px; padding: 5px 0; background: #fff; overflow: hidden; zoom: 1; position: relative; border: 1px solid #bec2c4; border-right-color: #bec2c4; border-bottom-color: #bec2c4; }
+        .j-sou-item { min-width: 440px; /*width: 440px;*/ padding: 5px 0; background: #fff; overflow: hidden; zoom: 1; position: relative; border: 1px solid #bec2c4; border-right-color: #bec2c4; border-bottom-color: #bec2c4; }
         .j-sou-item .tab-nav { overflow: hidden; zoom: 1; position: relative; z-index: 999999; padding: 3px 5px 0; height: 22px; }
 
         .tab-nav li { float: left; border: 1px solid #fff; border-bottom: #bec2c4; padding: 0 5px; margin-right: 3px; line-height: 20px; cursor: pointer; background-color: #fff; outline: 0; }
@@ -31,7 +31,6 @@
 <body>
     <div>
         <input type="button" class="tabnav" value="提交" />
-        <!--<a class="ico_close_d" style="float: right" title="关闭"></a>-->
         <div class="j-sou" style="display: none">
             <div class="j-sou-item">
                 <ul class="tab-nav">
@@ -45,7 +44,6 @@
                 </div>
             </div>
         </div>
-
         <div>aaaaaaaaaaaaaaaaaa</div>
     </div>
     <script>
