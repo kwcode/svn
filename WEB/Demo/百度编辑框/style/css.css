@@ -1,0 +1,4 @@
+﻿body { }
+.a_btn_1 { background-color: #e99255; width: auto; height: auto; color: white; outline: medium; border-radius: 3px; padding: 5px; margin: 5px; cursor: pointer; }
+.a_btn_1:hover { text-decoration: none; background-color: #b75d5d; }
+.a_btn_1:active { border: thin solid #3366FF; text-decoration: none; background-color: #b75d5d; }
