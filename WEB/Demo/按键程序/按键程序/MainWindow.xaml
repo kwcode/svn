@@ -1,19 +1,35 @@
 ﻿<Window x:Class="按键程序.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
+        Title="梦幻喊话器" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBox x:Name="txt_title" Grid.Row="0" Text="梦幻西游2 ONLINE -(北京1区[2008] - tdfhsdhh[38271701])" Margin="5" ></TextBox>
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="*"></ColumnDefinition>
+                <ColumnDefinition  Width="auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="comb_title" Grid.Column="0"    Margin="5" ></ComboBox>
+            <Button Content="刷新" x:Name="btn_Ref" Grid.Column="1" Margin="5" Click="btn_Ref_Click"></Button>
+        </Grid>
+
         <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="5">
             <TextBox x:Name="txt_sum" Width="100" Text="100"  Margin="5" ></TextBox>
             <Button x:Name="btn_start" Height="30" Width="80" Margin="5" Grid.Row="0" Content="开始" Click="btn_start_Click"></Button>
             <Button x:Name="btn_stop" Height="30" Width="80" Margin="5" Grid.Row="0" Content="结束" Click="btn_stop_Click"></Button>
         </StackPanel>
-        <TextBox Grid.Row="2" Margin="5" Foreground="Red"  x:Name="txt_msg"   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
+        <Grid  Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBox Margin="5"    x:Name="txt_info" Grid.Row="0" IsReadOnly="True" Background="AliceBlue"></TextBox>
+            <TextBox Margin="5" Foreground="Red"  x:Name="txt_msg" Grid.Row="1"   VerticalScrollBarVisibility="Auto" AcceptsReturn="True" TextWrapping="Wrap"></TextBox>
+        </Grid>
+
     </Grid>
 </Window>
