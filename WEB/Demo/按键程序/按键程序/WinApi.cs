@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace 按键程序
+namespace AutomaticSound
 {
     public class WinApi
     {
@@ -48,20 +48,44 @@ namespace 按键程序
         public static extern bool IsIconic(IntPtr hWnd);
         [DllImport("user32.dll")]
         public static extern IntPtr GetTopWindow(IntPtr hWnd);
-        //此处用于取得计算器窗口的句柄
-        [System.Runtime.InteropServices.DllImport("user32.dll", EntryPoint = "FindWindow")]
-        public static extern int FindWindow(
-                   string lpClassName,
-                   string lpWindowName
-        );
+
+
         //此处用于向窗口发送消息
-        [DllImport("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        //[DllImport("user32.dll")]
+        //public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         /// <summary>
         /// 获取一个前台窗口的句柄
         /// </summary>
         /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
+
+        [DllImport("User32.dll", EntryPoint = "PostMessage")]
+        public static extern IntPtr PostMessage(IntPtr hwnd, int wMsg, int wParam, int lParam);
+
+        //[DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = false)]
+        //public static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
+        //[DllImport("user32.dll", EntryPoint = "SendMessageA")]
+        //public static extern int SendMessage(IntPtr hwnd, int wMsg, string wParam, string lParam);
+
+        //    [DllImport("user32.dll")]
+        //public static extern bool SendMessage(IntPtr hWnd, int Msg, int wParam, string lParam);
+
+
+        [DllImport("User32")]
+        public extern static IntPtr GetWindow(IntPtr hWnd, uint wCmd);
+        //此处用于取得计算器窗口的句柄
+        [DllImport("user32.dll")]
+        public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll", EntryPoint = "FindWindow")]
+        public static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
+
+        [DllImport("User32.dll", EntryPoint = "SendMessage")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImport("User32.dll", EntryPoint = "SendMessage")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, string lParam);
+
     }
 }

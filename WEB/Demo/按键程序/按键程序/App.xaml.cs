@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace 按键程序
+namespace AutomaticSound
 {
     /// <summary>
     /// App.xaml 的交互逻辑

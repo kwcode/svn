@@ -14,8 +14,10 @@ using System.Windows.Shapes;
 using System.Runtime.InteropServices;
 using System.Windows.Threading;
 using System.Diagnostics;
+using System.Windows.Forms;
+using System.Windows.Interop;
 
-namespace 按键程序
+namespace AutomaticSound
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
@@ -73,7 +75,9 @@ namespace 按键程序
                     WinApi.SetForegroundWindow(hWnd);
                     //    WinApi.SetWindowPos(iptr);
                     msg("正在将" + CurrentTask.Title + "前置！");
-                    timer.Interval = TimeSpan.FromSeconds(3);   //设置刷新的间隔时间
+                    int ts = 3;
+                    int.TryParse(txt_ts.Text, out ts);
+                    timer.Interval = TimeSpan.FromSeconds(ts);   //设置刷新的间隔时间
                     timer.Tick += new EventHandler(timer_Tick);
                     timer.Start();
                     showInfo(CurrentTask.hWnd, CurrentTask.Title);
@@ -87,6 +91,17 @@ namespace 按键程序
         }
         int count = 1;
         int maxsum = 10;
+        //ShowWindow参数
+        private const int SW_SHOWNORMAL = 1;
+        private const int SW_RESTORE = 9;
+        private const int SW_SHOWNOACTIVATE = 4;
+        //SendMessage参数
+        private const int WM_KEYDOWN = 0X100;
+        private const int WM_KEYUP = 0X101;
+        private const int WM_SYSCHAR = 0X106;
+        private const int WM_SYSKEYUP = 0X105;
+        private const int WM_SYSKEYDOWN = 0X104;
+        private const int WM_CHAR = 0X102;
         void timer_Tick(object sender, EventArgs e)
         {
             //判断窗体是否在最前面
@@ -94,8 +109,13 @@ namespace 按键程序
             msg("最前面的句柄为: " + b);
             if (b == CurrentTask.hWnd)
             {
-                System.Windows.Forms.SendKeys.SendWait("{UP}");
-                System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+                //System.Windows.Forms.SendKeys.SendWait("{UP}");
+                //System.Windows.Forms.SendKeys.SendWait("{ENTER}");
+
+
+                int i = Convert.ToInt32(txt_DA.Text, 16);
+                msg(i.ToString());
+
                 count++;
                 msg(" " + count.ToString() + "次");
                 if (count > maxsum)
@@ -137,8 +157,7 @@ namespace 按键程序
         [DllImport("IpHlpApi.dll")]
         extern static public uint GetIfTable(byte[] pIfTable, ref uint pdwSize, bool bOrder);
 
-        [DllImport("User32")]
-        private extern static int GetWindow(int hWnd, int wCmd);
+
 
         [DllImport("User32")]
         private extern static int GetWindowLongA(int hWnd, int wIndx);
@@ -155,6 +174,33 @@ namespace 按键程序
         {
             msg("正在刷新");
             Init();
+        }
+
+        private void btn_test_Click(object sender, RoutedEventArgs e)
+        {
+            CurrentTask = comb_title.SelectedItem as Task;
+            IntPtr hWnd = WinApi.FindWindow("Notepad", "梦幻.txt - 记事本");
+
+            ////   IntPtr childHwnd = WinApi.FindWindowEx(hWnd, IntPtr.Zero, "Edit", null);   //获得按钮的句柄
+            //const int WM_SETTEXT = 0x0C;
+            //string s100 = "aa";
+            //IntPtr hWnd2 = WinApi.FindWindow("Eidt", null);
+
+            //IntPtr childHwnd = WinApi.FindWindowEx(hWnd, IntPtr.Zero, "Edit", CurrentTask.Title);   //获得按钮的句柄  
+
+
+            //const int EM_SETSEL = 0x00B1;
+            //const int EM_REPLACESEL = 0x00C2;
+            //int handle = new WindowInteropHelper(this).Handle.ToInt32();
+            //IntPtr hWnd = WinApi.FindWindow("WindowsForms10.Window.8.app.0.b7ab7b_r11_ad1", "Form1");
+            //IntPtr childHwnd = WinApi.FindWindowEx(hWnd, IntPtr.Zero, "WindowsForms10.EDIT.app.0.b7ab7b_r11_ad1", null);   //获得按钮的句柄
+            //   WinApi.SendMessage((IntPtr)i, 0x00C2, 0, "内容");
+            int i = Convert.ToInt32(txt_DA.Text, 16);
+            msg(i.ToString());
+            const int WM_KEYDOWN = 0x0100;
+            const int WM_KEYUP = 0x0101; 
+            WinApi.SendMessage((IntPtr)i, WM_KEYDOWN, 32, 0);
+            WinApi.SendMessage((IntPtr)i, WM_KEYUP, 32, 0);
         }
     }
 }

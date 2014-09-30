@@ -8,8 +8,8 @@
     <ProjectGuid>{1B1BD5E3-9F51-4FEC-8405-737230BF366C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>按键程序</RootNamespace>
-    <AssemblyName>按键程序</AssemblyName>
+    <RootNamespace>AutomaticSound</RootNamespace>
+    <AssemblyName>AutomaticSound</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="API.cs" />
     <Compile Include="Task.cs" />
     <Compile Include="WinApi.cs" />
     <Page Include="MainWindow.xaml">
