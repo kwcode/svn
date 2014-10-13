@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="index" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -38,10 +37,30 @@
 
             $('#ferret').imgAreaSelect({ aspectRatio: '1:1', onSelectChange: preview });
 
-            //$("#btn_selimg").click(function () {
-
-            //    $("#ferret").attr("src", "");
-            //});
+            $("input[type='file']").change(function () {
+                var fileName = $(this).val();
+                var seat = fileName.lastIndexOf(".");
+                var extension = fileName.substring(seat).toLowerCase();
+                var allowed = [".jpg", ".gif", ".png", ".bmp", ".jpeg"];
+                for (var i = 0; i < allowed.length; i++) {
+                    if (!(allowed[i] != extension)) {
+                        //$(img).attr("src", fileName);
+                        /*ajax上传图片*/
+                        $.ajax("ActionUploadImage.aspx", { data: {
+                            action: "uploadImage",
+                            filename: fileName 
+                        }, type: "POST"
+                        }).success(function (result) {
+                            alert(result);
+                        });
+                        /*END*/
+                        return true;
+                    }
+                }
+                $(this).val(null);
+                alert("不支持" + extension + "格式");
+                return false;
+            });
         });
         function onCheckType(fileOjb, img) {
             var fileName = $(fileOjb).val();
@@ -59,14 +78,16 @@
             alert("不支持" + extension + "格式");
             return false;
         }
+        
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <input type="file" value="选择图片" id="btn_selimg" onchange="onCheckType(this,'#ferret')" />
-        <div>
-            <img id="ferret" src="/images/psb.jpg" style="float: left; width: 500px; height: 500px; margin-right: 10px;" />
-        </div>
+    <input type="file" value="选择图片" name="file" id="btn_selimg" />
+    <div>
+        <img id="ferret" src="/images/psb.jpg" style="float: left; width: 500px; height: 500px;
+            margin-right: 10px;" />
+    </div>
     </form>
 </body>
 </html>
