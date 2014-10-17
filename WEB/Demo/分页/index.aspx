@@ -66,7 +66,7 @@
     <form id="form1" runat="server">
         <div class="divMainComment">
         </div>
-        <div class="page" id="divPage" data-total="10" data-size="10"></div>
+        <div class="page" id="divPage" data-total="10000" data-size="100"></div>
         <%--   <div>
             <div class="page m-page">
                 <a class="pageprv z-dis" data-p="1" href="#page=1">上一页</a>
@@ -143,7 +143,7 @@
                     data: {
                         action: "list",
                         pageNow: pageNow,
-                        pageSize: 10
+                        pageSize: 100
                     }, dataType: 'json', type: 'GET'
                 }).success(function (result) {
                     loadDataContent(result.dataList);
