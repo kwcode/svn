@@ -5,9 +5,10 @@
 <head>
     <title>上传，裁剪</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-    <script src="js/jquery-1.8.3.js"></script>
     <link href="css/jquery.Jcrop.css" rel="stylesheet" />
-    <script src="js/jquery.Jcrop.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/picupload/plupload.full.min.js"></script>
+    <script src="js/picupload/jquery.Jcrop.min.js"></script>
     <script type="text/javascript">
         jQuery(function ($) {
             var jcrop_api,

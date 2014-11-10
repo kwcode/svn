@@ -1,13 +1,12 @@
-﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="UploadDemo.aspx.vb" Inherits="UploadDemo" %>
-<!DOCTYPE html>
+﻿<%@ Page Language="VB" AutoEventWireup="false" CodeFile="Default.aspx.vb" Inherits="communal_Default" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title> 
-  
- 
-    <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="js/picupload/plupload.full.min.js"></script>
+    <title></title>
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="../js/jquery-1.8.3.js"></script>
+    <script src="../js/picupload/plupload.full.min.js"></script>
     <style>
         body { font-size: 12px; }
         body, p, div { padding: 0; margin: 0; }

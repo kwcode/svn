@@ -5,12 +5,12 @@
 <head>
     <title>上传，裁剪</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-    <script src="js/jquery-1.8.3.js"></script>
     <link href="css/jquery.Jcrop.css" rel="stylesheet" />
-    <script src="js/plupload.full.min.js"></script>
-    <script src="js/jquery.Jcrop.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/picupload/plupload.full.min.js"></script>
+    <script src="js/picupload/jquery.Jcrop.min.js"></script>
     <script type="text/javascript">
-        //上传
+        //上传 
         jQuery(function ($) {
             var img64;
             var uploader = new plupload.Uploader({ //实例化一个plupload上传对象
@@ -24,7 +24,7 @@
                     ]
                 }
                 //   , resize: { width: 320, height: 240, quality: 80 }
-                , prevent_duplicates: true //不允许选取重复文件
+                //, prevent_duplicates: true //不允许选取重复文件
 
             });
             uploader.init(); //初始化
@@ -33,6 +33,7 @@
             uploader.bind('FilesAdded', function (uploader, files) {
                 for (var i = 0, len = files.length; i < len; i++) {
                     var file_name = files[i].name; //文件名   
+                    $(".jc-box").html("");
                     var html = '<div class="jc-main-box"> <div class="tg" id="file-list"> </div></div>';
                     $(".jc-box").html(html);
                     !function (i) {
@@ -40,6 +41,7 @@
                             img64 = imgsrc;
                             $('.tg').append('<img id="target" src="' + imgsrc + '" />');
                             $(".jc-box").append('<div id="preview-pane"> <div class="preview-container"> <img src="' + imgsrc + '" class="jcrop-preview" alt="  " /> </div>  </div> ');
+                            $(".jc-box").append('<div id="preview-pane_small"> <div class="preview-container_small"> <img src="' + imgsrc + '" class="jcrop-preview_small" alt="  " /> </div>  </div> ');
                             bindJcrop();//绑定剪切
                         })
                     }(i);
@@ -72,20 +74,35 @@
             var jcrop_api,
                    boundx,
                    boundy,
-                   $preview = $('#preview-pane'),
-                   $pcnt = $('#preview-pane .preview-container'),
-                   $pimg = $('#preview-pane .preview-container img'),
-                   xsize = $pcnt.width(),
-                   ysize = $pcnt.height();
+                   $preview,
+                   $pcnt,
+                   $pimg,
+                   xsize,
+                   ysize,
+                   jcropc;
+            var sm_$preview, sm_$pcnt, sm_$pcnt, sm_ysize, sm_xsize;
             function bindJcrop() {
+
+                $preview = $('#preview-pane'),
+                 $pcnt = $('#preview-pane .preview-container'),
+                $pimg = $('#preview-pane .preview-container img'),
+                  ysize = $pcnt.height(),
+                xsize = $pcnt.width();
+                sm_$preview = $('#preview-pane_small'),
+               sm_$pcnt = $('#preview-pane_small .preview-container_small'),
+               sm_$pimg = $('#preview-pane_small .preview-container_small img'),
+                    sm_ysize = sm_$pcnt.height(),
+                sm_xsize = sm_$pcnt.width();
                 $('#target').Jcrop({
                     onChange: updatePreview,
                     onSelect: updatePreview,
-                    aspectRatio: xsize / ysize
+                    aspectRatio: xsize / ysize,
                 }, function () {
                     var bounds = this.getBounds();
                     boundx = bounds[0];
                     boundy = bounds[1];
+                    console.log(boundx);
+                    console.log(boundy);
                     jcrop_api = this;
                     jcrop_api.animateTo([0, 0, 240, 240]);
                     //$preview.appendTo(jcrop_api.ui.holder);
@@ -94,6 +111,7 @@
                 });
 
                 function updatePreview(c) {
+                    jcropc = c;
                     if (parseInt(c.w) > 0) {
                         var rx = xsize / c.w;
                         var ry = ysize / c.h;
@@ -104,6 +122,14 @@
                             marginLeft: '-' + Math.round(rx * c.x) + 'px',
                             marginTop: '-' + Math.round(ry * c.y) + 'px'
                         });
+                        var sm_rx = sm_xsize / c.w;
+                        var sm_ry = sm_ysize / c.h;
+                        sm_$pimg.css({
+                            width: Math.round(sm_rx * boundx) + 'px',
+                            height: Math.round(sm_ry * boundy) + 'px',
+                            marginLeft: '-' + Math.round(sm_rx * c.x) + 'px',
+                            marginTop: '-' + Math.round(sm_ry * c.y) + 'px'
+                        });
                     }
                 };
 
@@ -112,8 +138,9 @@
             $("#imgsave").on("click", function () {
                 console.log(img64);
                 console.log(jcrop_api.tellScaled())//获取选框的值（实际尺寸）。
-                var x = 0, y = 0, w = 0, h = 0, path = img64;
-                var params = "action=saveimg&x=" + x + "&y=" + y + "&w=" + w + "&h=" + h + "&path=" + img64;
+
+                var x = jcropc.x, y = jcropc.y, w = jcropc.w, h = jcropc.h, path = JSON.toString(img64);
+                var params = "action=saveimg&x=" + x + "&y=" + y + "&w=" + w + "&h=" + h + "&path=" + encodeURIComponent(img64);
                 //$.ajax("ActionUploadImage.aspx", {
                 //    data: params,
                 //}).success(function (result) {
@@ -155,13 +182,20 @@
         .jc-box #preview-pane { display: block; position: absolute; z-index: 2000; top: 110px; left: 430px; padding: 6px; border: 1px rgba(0,0,0,.4) solid; background-color: white; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); }
         #preview-pane .preview-container { width: 120px; height: 120px; overflow: hidden; }
         .jcrop-holder { width: 400px; }
+
+        .btn_file { background-color: #F93; border-radius: 5px; padding: 5px; border: 0px; }
+        .button { }
+        .jc-box { background-color: #F4F0EA; width: 500px; height: 500px; }
+
+        .jc-box #preview-pane_small { display: block; position: absolute; z-index: 2000; top: 250px; left: 480px; padding: 6px; border: 1px rgba(0,0,0,.4) solid; background-color: white; -webkit-border-radius: 6px; -moz-border-radius: 6px; border-radius: 6px; -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2); }
+        #preview-pane_small .preview-container_small { width: 16px; height: 16px; overflow: hidden; }
     </style>
 
 </head>
 <body>
     <div class="wraper">
         <div class="btn-wraper">
-            <input type="button" value="选择文件..." id="browse" />
+            <input type="button" class="btn_file button" value="选择文件..." id="browse" />
         </div>
     </div>
     <div class="jc-box">
