@@ -130,7 +130,9 @@ namespace BaseApiCommon
                 httpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
                 httpWebRequest.CookieContainer = cookieContainer;
                 httpWebRequest.Method = "POST";
-                httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+                 httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+
+              //  httpWebRequest.ContentType = "text/html; charset=utf-8";
                 if (!(parameters == null || parameters.Count == 0))
                 {
                     StringBuilder buffer = new StringBuilder();
@@ -147,7 +149,7 @@ namespace BaseApiCommon
                         }
                         i++;
                     }
-                    byte[] data = Encoding.Default.GetBytes(buffer.ToString());
+                    byte[] data = Encoding.UTF8.GetBytes(buffer.ToString());
                     using (Stream stream = httpWebRequest.GetRequestStream())
                     {
                         stream.Write(data, 0, data.Length);

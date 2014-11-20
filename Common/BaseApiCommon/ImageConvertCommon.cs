@@ -24,6 +24,7 @@ namespace BaseApiCommon
         /// <param name="path">文件的路径</param> 
         public static byte[] GetImage1(string path)
         {
+            if (string.IsNullOrWhiteSpace(path)) return;
             FileStream fs = new FileStream(path, FileMode.Open);//可以是其他重载方法   
             byte[] buff = new byte[fs.Length];
             fs.Read(buff, 0, buff.Length);
@@ -57,9 +58,17 @@ namespace BaseApiCommon
         #region 获取下载后的图片
         public static byte[] GetUploadImage1(string imgUrl)
         {
-            WebClient client = new WebClient();
-            byte[] buff = client.DownloadData(imgUrl);
-            return buff;
+            try
+            {
+                WebClient client = new WebClient();
+                byte[] buff = client.DownloadData(imgUrl);
+                return buff;
+            }
+            catch (Exception ex)
+            {
+                new Exception(ex.Message);
+            }
+
         }
 
         public static BitmapImage GetUploadImage2(string imgUrl)
