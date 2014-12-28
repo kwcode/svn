@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+            $("#btn_upload").click(function () {
+                if (!(window.File || window.FileReader || window.FileList || window.Blob)) {
+                    alert('你妈喊你换Chrome浏览器啦');
+                }
+                var files = $('input[name="file"]').prop('files');
+
+                $.ajax("/action/actionIndex.aspx", { data: {
+                    action: "file",
+                    fff: files
+                }
+                }).success(function (result) {
+                    alert("ok");
+                }).fail(function () {
+
+                    alert("请求失败");
+                });
+                //                if (files.length == 0) {
+                //                    alert('请选择文件');
+                //                    return;
+                //                } else {
+                //                    var reader = new FileReader(); //新建一个FileReader
+                //                    reader.readAsText(files[0], "UTF-8"); //读取文件 
+                //                    reader.onload = function (evt) { //读取完文件之后会回来这里
+                //                        var fileString = evt.target.result;
+                //                        form.vm.value = fileString; //设置隐藏input的内容
+                //                    }
+                //                }
+
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="file" accept="txt/*" name="file" id="ufile" />
+    <input type="button" id="btn_upload" value="JS上传" />
+</body>
+</html>
