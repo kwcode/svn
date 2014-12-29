@@ -41,7 +41,12 @@ jQuery.extend({
 		jQuery(form).appendTo('body');		
 		return form;
     },
-
+  handleError: function (s, xhr, status, e) {
+        // If a local callback was specified, fire it	
+        if (s.error) { s.error.call(s.context || s, xhr, status, e); }
+        // Fire the global callback	
+        if (s.global) { (s.context ? jQuery(s.context) : jQuery.event).trigger("ajaxError", [xhr, s, e]); }
+    },
     ajaxFileUpload: function(s) {
         // TODO introduce global settings, allowing the client to modify them for all requests, not only timeout		
         s = jQuery.extend({}, jQuery.ajaxSettings, s);
