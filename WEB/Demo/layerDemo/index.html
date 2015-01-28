@@ -1,0 +1,160 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="js/jquery-1.8.3.js"></script>
+    <script src="js/layer.js"></script>
+    <link href="style/layer.css" rel="stylesheet" />
+    <!-- <link href="style/indexcss.css" rel="stylesheet" />-->
+    <script>
+        $(function () {
+            var times = 2000;//2秒
+            var htmldemo = '<div class="d-hide"> <a>测试</a><input type="button" class="d-hide-ok" id="btn_ok" value="确认" /> <input type="button" class="d-hide-cancel" id="btn_cancel" value="取消" /> </div>';
+            var layerIndex = 0;
+            //关闭加载层 
+            function closelayer(ly) {
+                setTimeout("layer.close(" + ly + ")", times);
+            }
+            //加载层
+            $("#btn_demo1").click(function () {
+                var _layer = $.layer({ type: 3 });
+                closelayer(_layer);
+            });
+            //加载层2
+            $("#btn_demo2").click(function () {
+                //加载层方式： loading: { type: 1 }  
+                var _layer = $.layer({ type: 3, loading: { type: 1 } });
+                closelayer(_layer);
+            });
+
+            //页面层1
+            $("#btn_demo3").click(function () {
+                //加载层方式： loading: { type: 1 }  
+                layerIndex = $.layer({
+                    type: 1,
+                    shade: [0.3, '#000', true],
+                    border: [4, 0.1, '#000', true],//默认边框
+                    title: '提示',
+                    area: ['493px', '265px'],
+                    position: 'center',
+                    shift: 'left',//从左动画弹出
+                    page: {
+                        html: htmldemo
+                    },
+                    success: function () { }
+                           , close: function () {
+                           }
+                });
+                //  closelayer(_layer);
+            });
+            //页面层2
+            $("#btn_demo4").click(function () {
+                layerIndex = $.layer({
+                    type: 1,
+                    title: false,
+                    area: ['400px', '400px'],//高度 宽度
+                    shift: 'left',////从左动画弹出 
+                    page: { dom: '.d-hide' }
+                });
+            });
+            //tips层1
+            $("#btn_demo5").click(function () {
+
+                layer.tips('提示，tips层1', this, {
+                    style: ['background-color:#E7BF20; color:#fff;cursor: pointer;', '#E7BF20'],//框样式，箭头颜色
+                    maxWidth: 185,
+                    time: 20,
+                    closeBtn: [0, true]//是否有关闭按钮
+                });
+
+            });
+            //layer.tips('默认没有关闭按钮', this , {guide: 1, time: 2});
+            //iframe层
+            $("#btn_demo6").click(function () {
+                $.layer({
+                    type: 2,
+                    shadeClose: true,
+                    title: "iframe层",
+                    closeBtn: [0, true],
+                    shade: [0.3, '#000', true],
+                    border: [4, 0.1, '#000', true],//默认边框
+                    //shade: [0.8, '#000'],
+                    //  border: [0],
+                    offset: ['20px', ''],
+                    position: 'center',
+                    area: ['1000px', ($(window).height() - 50) + 'px'],
+                    iframe: { src: '/index.html' }
+                });
+            });
+            // 确定/取消
+            $("#btn_demo7").click(function () {
+                layeralert("你好,提示一下！").done(function () {
+                    alert("关闭提示后");
+                });
+            });
+
+            function layeralert(msg) {
+                var def = $.Deferred();
+                layerIndex = $.layer({
+                    type: 1,
+                    shade: [0.3, '#000', true],
+                    border: [4, 0.1, '#000', true],//默认边框
+                    title: '提示',
+                    area: ['250px', '120px'],
+                    position: 'center',
+                    // shift: 'left',//从左动画弹出
+                    page: {
+                        dom: ".d-hide-alert"
+                    },
+                    success: function ($layer) {
+                        $("#txt_msg").text(msg);
+                        $layer.on("click", "#btn_ok", function () {
+                            layer.close(layerIndex);
+                            def.resolve();
+                        });
+                        $layer.on("click", "#btn_cancel", function () {
+                            layer.close(layerIndex);
+                            def.resolve();
+                        });
+                    }
+                });
+                return def.promise();
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        <input type="button" id="btn_demo1" value="加载层" />
+        <input type="button" id="btn_demo2" value="加载层2" />
+
+        <input type="button" id="btn_demo3" value="页面层1" />
+        <input type="button" id="btn_demo4" value="页面层2" />
+
+        <input type="button" id="btn_demo5" value="tips层1" />
+
+        <input type="button" id="btn_demo6" value="iframe层" />
+
+        <input type="button" id="btn_demo7" value="确定/取消" />
+
+
+    </div>
+
+    <div class="d-hide" style="display: none;">
+        <a>测试</a>
+        <input type="button" class="d-hide-ok" value="确认" />
+        <input type="button" class="d-hide-cancel" value="取消" />
+    </div>
+
+    <div class="d-hide-alert" style="display: none;">
+        <div id="txt_msg"></div>
+        <div>
+            <input type="button" class="d-hide-ok" id="btn_ok" value="确认" />
+            <input type="button" class="d-hide-cancel" id="btn_cancel" value="取消" />
+        </div>
+    </div>
+
+</body>
+</html>
