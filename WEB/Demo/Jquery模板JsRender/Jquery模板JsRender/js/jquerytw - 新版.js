@@ -5,10 +5,11 @@
 
     /* $.trip.template 模板渲染 依赖jQuery, jsrender */
     (function ($) {
-        //加载模板 
+        //加载模板
+
         var templates = {};
         function loadTemplateFile(tplFile) {
-            var that = templates[tplFile] || {};
+            var that = templates[tplFile] = {};
             var callbacks = $.Callbacks();
             var loaded = false;
             var cacheTemplates = {};

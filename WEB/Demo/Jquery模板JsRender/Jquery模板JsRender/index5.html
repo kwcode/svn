@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="js/jquery-1.8.3.js" type="text/javascript"></script>
+    <script src="js/jsrender.js"></script>
+    <script src="js/jquerytw.js"></script>
+    <script>
+        $(function () {
+            var data1 = [
+                   { name: "周晓", year: "1998" },
+                   { name: "纯粹是唐", year: "1999" },
+                   { name: "仙仙", year: "1976" }
+            ];
+
+
+            $("#btn_temp").click(function () {
+                var temp = $.tw.template('/communal/template.html');
+                temp.render('t_t2', data1).done(function (html) {
+                    $("#t_view1").append(html);
+                });
+            });
+
+            $("#btn_temp2").click(function () {
+                var temp = $.tw.template('/communal/temp2.html');
+                temp.render('t_t2', data1).done(function (html) {
+                    $("#t_view1").append(html);
+                });
+            });
+        });
+
+
+    </script>
+</head>
+<body>
+    <input type="button" value="加载模板" id="btn_temp" />
+    <input type="button" value="加载模板" id="btn_temp2" />
+    <div id="t_view1">
+    </div>
+</body>
+</html>
