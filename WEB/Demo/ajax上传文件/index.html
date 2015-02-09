@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+    <style>
+        .inpbbut1 { border: 0; background-color: #f93; border-radius: 3px; cursor: pointer; padding: 4px 16px; color: #fff; display: inline-block; text-decoration: none; font-size: 14px; }
+        .inpbbut1:hover { background-color: #FF6600; color: #fff; }
+    </style>
+    <script>
+
+        $(function () {
+            $(document).on("change", "#ufile", function () {
+                //var _layer = $.layer({ type: 3 });
+                /*Start*/
+                $.ajaxFileUpload({
+                    url: 'actionuploadimage.aspx?action=ajaxuploadfile', //用于文件上传的服务器端请求地址 
+                    secureuri: false,//是否需要安全协议，一般设置为false
+                    fileElementId: 'ufile', //文件上传域的ID
+                    dataType: 'json', //返回值类型 一般设置为json 
+                    type: "POST",//当要提交自定义参数时，这个参数要设置成post
+                    success: function (result) {
+                        /*提交成功*/
+                        if (result.res == 1) {
+                            $("#img-adres").attr("src", result.desc);
+                            $("#img-adres").data().type = 64;
+                        }
+                        else {
+                            alert(result.desc);
+                        }
+                        //layer.close(_layer);
+                        /*提交成功END*/
+                    },//提交成功后自动执行的处理函数，参数data就是服务器返回的数据。
+                    error: function () { alert("提交失败！"); layer.close(_layer); }//  提交失败自动执行的处理函数。
+                });
+
+                /*END*/
+
+            });
+        })
+
+    </script>
+</head>
+<body>
+    <div class="g-right">
+        <div style="float: left; width: 330px;">
+            <img id="img-adres" data-type="1" src="/images/nophoto1.jpg" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="驼铃网" title="驼铃网" />
+        </div>
+        <div style="float: left; width: 330px;">
+            <span class="inpbbut1" style="margin-left: 50px; width: 180px;">选择图片</span>
+            <input type="file" class="u-button" name="ecfile" id="ufile" style="z-index: 1; position: absolute; filter: alpha(opacity=0); opacity: 0; width: 200px; font: 19px monospace; cursor: pointer; margin-left: -200px;" />
+        </div>
+    </div>
+</body>
+</html>
