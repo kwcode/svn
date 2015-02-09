@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="uc_header.ascx.cs" Inherits="master_uc_uc_header" %>
 <div class="d-header clearfix">
     <div style="float: left;">
-        <img src="../../images/logo.png" style="width: 140px;" />
+        <img src="images/logo.png" style="width: 140px;" />
     </div>
     <div class="menu " style="float: right;">
         <ul class="h-nva  ">
