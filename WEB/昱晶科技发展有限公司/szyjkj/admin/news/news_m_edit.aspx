@@ -19,6 +19,10 @@
 
             var id = '<%=ID%>';
             var ue = UM.getEditor('editor'); //实例化编辑器  
+            init();
+
+
+
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
                 var title = $(".txt_title").val();
@@ -27,14 +31,15 @@
                 var details = encodeURIComponent(ue.getContent());
 
                 /**/
-                $.ajax("/admin/news/actionnews.aspx", { data: {
-                    action: "savenew",
-                    id: id,
-                    title: title,
-                    showindex: showindex,
-                    summary: summary,
-                    details: details
-                }
+                $.ajax("/admin/news/actionnews.aspx", {
+                    data: {
+                        action: "savenew",
+                        id: id,
+                        title: title,
+                        showindex: showindex,
+                        summary: summary,
+                        details: details
+                    }, type: "POST"
                 }).success(function (result) {
                     if (result.res == 1) {
                         alert(result.desc);
@@ -42,40 +47,48 @@
                     }
                     else { alert(result.desc); }
                     layer.close(_layer);
-                });
+                }).fail(function () { alert("请求失败！"); layer.close(_layer); });
                 /**/
                 //alert(details.toString());
             });
+            //初始化
+            function init() {
+                if (typeof (jsonnews) != 'undefined' && jsonnews.length > 0) {
+                    $(".txt_title").val(jsonnews[0].Title);
+                    $(".txt_showindex").val(jsonnews[0].ShowIndex);
+                    $(".txt_summary").val(jsonnews[0].Summary);
+                    ue.setContent(jsonnews[0].Details);
+                }
+            }
         });
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div style="float: left">
-        <div class="e-item">
-            <span class="sp150">标题：</span>
-            <input type="text" maxlength="200" class="txt_title" runat="server" id="txt_title" />
-        </div>
-        <div class="e-item">
-            <span class="sp150">排序：</span>
-            <input type="text" maxlength="5" class="txt_showindex" runat="server" id="txt_showindex" />
-        </div>
-        <div class="e-item">
-            <span class="sp150">简介：</span>
-            <textarea id="txt_summary" maxlength="1000" runat="server" class="txt_summary" cols="20"
-                rows="5"></textarea>
-        </div>
-        <div class="e-item">
-            <span class="sp150">详细内容：</span>
-            <div style="float: left;">
-                <script id="editor" type="text/plain" style="width: 700px; margin-top: 5px; max-height: 300px;
-                    min-height: 150px;"></script>
+        <div style="float: left">
+            <div class="e-item">
+                <span class="sp150">标题：</span>
+                <input type="text" maxlength="200" class="txt_title" runat="server" id="txt_title" />
+            </div>
+            <div class="e-item">
+                <span class="sp150">排序：</span>
+                <input type="text" maxlength="5" class="txt_showindex" runat="server" id="txt_showindex" />
+            </div>
+            <div class="e-item">
+                <span class="sp150">简介：</span>
+                <textarea id="txt_summary" maxlength="1000" runat="server" class="txt_summary" cols="20"
+                    rows="5"></textarea>
+            </div>
+            <div class="e-item">
+                <span class="sp150">详细内容：</span>
+                <div style="float: left;">
+                    <script id="editor" type="text/plain" style="width: 700px; margin-top: 5px; max-height: 300px; min-height: 150px;"></script>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="btn-content" style="margin-left: 200px; margin-top: 10px;">
-        <input type="button" id="btn_ok" class="inpbbut1" value="确认" />
-    </div>
+        <div class="btn-content" style="margin-left: 200px; margin-top: 10px;">
+            <input type="button" id="btn_ok" class="inpbbut1" value="确认" />
+        </div>
     </form>
 </body>
 </html>

@@ -43,10 +43,13 @@ public partial class admin_news_actionnews : AjaxBase
         }
         else//修改
         {
-
+            int rows = WSCommon.UpdateNews(id, showindex, title, summary, details);
+            if (rows == 0)
+            {
+                desc = "修改失败！";
+            }
+            else { res = 1; desc = "修改成功！"; }
         }
-
-
 
     }
 }
