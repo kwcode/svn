@@ -2,6 +2,8 @@
 
 <%@ Register Src="~/master/uc/uc_header.ascx" TagName="header" TagPrefix="uc1" %>
 <%@ Register Src="~/master/uc/uc_footer.ascx" TagName="footer" TagPrefix="uc1" %>
+<%@ Register Src="~/master/uc/uc_banner.ascx" TagPrefix="uc1" TagName="uc_banner" %>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
@@ -15,6 +17,7 @@
     <div class="d-page">
         <div class="d-container-box">
             <uc1:header runat="server" />
+            <uc1:uc_banner runat="server" ID="uc_banner" />
             <asp:ContentPlaceHolder ID="mbody" runat="server">
             </asp:ContentPlaceHolder>
         </div>
