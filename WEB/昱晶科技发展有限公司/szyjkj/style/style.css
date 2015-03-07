@@ -6,4 +6,4 @@
 .d-top { }
 .d-footer { background: rgb(201, 201, 201); border-radius: 5px; padding: 5px; text-align: center; }
 .menu .h-nva { }
-
+.d-nvtitle { font-size: 16px; border-bottom: 1px solid rgb(0, 0, 0); }
