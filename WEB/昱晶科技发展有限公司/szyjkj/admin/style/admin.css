@@ -6,3 +6,6 @@ textarea { width: 500px; border: 1px solid rgb(240, 146, 38); padding: 5px; }
 .edui-body-container:hover { box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
 
 .btn-content { float: left; width: 100%; }
+
+.d-admin-content { background: #d97373; width: 100%; }
+.e-item { margin: 5px; float: left; width: 100%; }
