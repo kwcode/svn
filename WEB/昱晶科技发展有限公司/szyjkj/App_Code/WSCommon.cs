@@ -29,6 +29,7 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_home_getproducts", new object[] { pagesize });
         return dt;
     }
+
     #endregion
 
     #region 新闻相关==============================================
@@ -91,6 +92,7 @@ public class WSCommon
         return dt;
     }
     #endregion
+
     #region 联系我们==============================================
     public static int SaveRelation(string details)
     {
@@ -110,5 +112,36 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_getrelation", new object[] { });
         return dt;
     }
+    #endregion
+
+    #region 轮播图片==============================================
+    /// <summary>
+    /// 获取轮播图片
+    /// </summary>
+    /// <param name="pagesize"></param>
+    /// <returns></returns>
+    public static DataTable GetBanner(int pagesize)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_getbannner", new object[] { pagesize });
+        return dt;
+    }
+    public static int AddBanner(string title, string imgaddress, int showindex)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_addbannner", new object[] { title, imgaddress, showindex });
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+    public static int UpdateBanner(int id, string title, string imgaddress, int showindex)
+    {
+        return DataConnect.Data.ExecuteSP("p_comm_updatebannner", new object[] { id, title, imgaddress, showindex });
+
+    }
+
     #endregion
 }
