@@ -144,4 +144,53 @@ public class WSCommon
     }
 
     #endregion
+
+    #region 产品图片==============================================
+    /// <summary>
+    /// 获取产品图片
+    /// </summary>
+    /// <param name="pagesize"></param>
+    /// <returns></returns>
+    public static DataTable GetProduct(int pagesize)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocduct", new object[] { pagesize });
+        return dt;
+    }
+    public static int SaveProduct(int id, string title, string summary, int showindex, int userid)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_saveprocduct", new object[] { id, title, summary, showindex, userid });
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    /// <summary>
+    /// 获取产品图片
+    /// </summary>
+    /// <param name="pagesize"></param>
+    /// <returns></returns>
+    public static DataTable GetProductImgs(int pid, int pagesize)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocductimgs", new object[] { pid, pagesize });
+        return dt;
+    }
+    public static int SaveProductImg(int id, int pid, string imgurl, int userid, string title)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_saveprocductimg", new object[] { id, pid, imgurl, userid, title });
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    #endregion
 }

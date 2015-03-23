@@ -321,22 +321,25 @@ public class SingleFileUpload
     /// </summary>
     public enum fileNameIndex
     {
-        Authentication = 0,  //身份认证
-        OperatingLicense = 1,  //运营许可证
-        DrivingLicense = 2,  //驾驶证
-        TravelLicense = 3, //行驶证
-        GuideCertification = 4,  //导游认证
-        Cooperation = 5,   //代理合作
-        UploadWorks = 6, //上传作品
-        UploadImg = 7, //上传图片
-        Picture = 8, //用户头像
-        Advertising = 9, //广告横幅的枚举
-        Blogroll = 10, //友情链接的枚举
-        OutlinkImg = 11, //外链图片的自动保存
-        ThemesImg = 12, //主题图片
-        LeaderPhoto = 13, //主题图片
-        ActivityPicture = 14,
-        TempPicture = 99,//临时图片 
+        Banner = 0,
+        Product = 1,
+
+        //Authentication = 0,  //身份认证
+        //OperatingLicense = 1,  //运营许可证
+        //DrivingLicense = 2,  //驾驶证
+        //TravelLicense = 3, //行驶证
+        //GuideCertification = 4,  //导游认证
+        //Cooperation = 5,   //代理合作
+        //UploadWorks = 6, //上传作品
+        //UploadImg = 7, //上传图片
+        //Picture = 8, //用户头像
+        //Advertising = 9, //广告横幅的枚举
+        //Blogroll = 10, //友情链接的枚举
+        //OutlinkImg = 11, //外链图片的自动保存
+        //ThemesImg = 12, //主题图片
+        //LeaderPhoto = 13, //主题图片
+        //ActivityPicture = 14,
+        //TempPicture = 99,//临时图片 
     }
 }
 
