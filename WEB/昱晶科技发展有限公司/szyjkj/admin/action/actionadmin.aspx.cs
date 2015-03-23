@@ -24,10 +24,85 @@ public partial class admin_action_actionadmin : AjaxBase
             case "saverebanner":
                 saverebanner();
                 break;
+            case "savereproduct":
+                savereproduct();
+                break;
+            case "savereproductimg":
+                savereproductimg();
+                break;
+
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void savereproductimg()
+    {
+        string imgaddress = Server.UrlDecode(Request["img"] ?? "");
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        int imgtype = 0;
+        int.TryParse(Request["imgtype"] ?? "0", out imgtype);
+        string title = Request["title"] ?? "";
+        int showindex = 0;
+        int.TryParse(Request["showindex"] ?? "0", out showindex);
+        int pid = 0;
+        int.TryParse(Request["pid"] ?? "0", out pid);
+        string imgpath = "/images/nophoto1.jpg";
+        if (imgtype == 64)
+        {
+            string[] paths = imgaddress.Split(',');
+            System.Drawing.Image img = Base64ToImage(paths[1]);
+
+            string imgspath = SingleFileUpload.GetServiceUrl(SingleFileUpload.fileNameIndex.Banner);
+            string fileName = stringCoding.RndNum(8);
+            #region 获取后缀名
+            string extension = ".jpg";
+            if (paths[0].Contains("jpeg"))
+                extension = ".jpg";
+            else if ((paths[0].Contains("png")))
+                extension = ".png";
+            else if ((paths[0].Contains("gif")))
+                extension = ".gif";
+            #endregion
+            img.Save(Server.MapPath(imgspath + fileName + extension));
+            imgpath = imgspath + fileName + extension;
+
+        }
+        else
+        {
+            imgpath = imgaddress;
+        } 
+        res = WSCommon.SaveProductImg(id, pid, imgpath, 0, title);
+        if (res > 0)
+        {
+            desc = "操作成功！";
+        }
+        else
+        {
+            desc = "操作失败！";
+        }
+    }
+
+    private void savereproduct()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        string title = Request["title"] ?? "";
+        int showindex = 0;
+        int.TryParse(Request["showindex"] ?? "0", out showindex);
+        string summary = Request["summary"] ?? "";
+
+        res = WSCommon.SaveProduct(id, title, summary, showindex, 0);
+        if (res > 0)
+        {
+            desc = "操作成功！";
+        }
+        else
+        {
+            desc = "操作失败！";
+        }
     }
 
     private void saverebanner()
@@ -43,11 +118,10 @@ public partial class admin_action_actionadmin : AjaxBase
         string imgpath = "/images/nophoto1.jpg";
         if (imgtype == 64)
         {
-            imgaddress = Server.UrlDecode(imgaddress);
             string[] paths = imgaddress.Split(',');
             System.Drawing.Image img = Base64ToImage(paths[1]);
 
-            string imgspath = SingleFileUpload.GetServiceUrl(SingleFileUpload.fileNameIndex.Blogroll);
+            string imgspath = SingleFileUpload.GetServiceUrl(SingleFileUpload.fileNameIndex.Banner);
             string fileName = stringCoding.RndNum(8);
             #region 获取后缀名
             string extension = ".jpg";

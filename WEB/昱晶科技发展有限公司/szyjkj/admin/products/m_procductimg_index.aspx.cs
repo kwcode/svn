@@ -6,11 +6,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_m_banner : System.Web.UI.Page
+public partial class admin_products_m_procductimg_index : System.Web.UI.Page
 {
-    public DataTable DtBanner { get; set; }
+    public DataTable DtProcdut { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
-        DtBanner = WSCommon.GetBanner(20);
+        DtProcdut = WSCommon.GetProductImgs(0, 20);
     }
 }
