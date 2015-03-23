@@ -2,7 +2,7 @@
 <div class="banner">
     <script src="../../js/jquery-banner.js" type="text/javascript"></script>
     <style>
-        .banner-no  { margin: 0; padding: 0; text-align: center; }
+        .banner-no { margin: 0; padding: 0; text-align: center; }
         ul li { list-style: none; }
         .banner { width: 100%; position: relative; }
         .banner-list { position: relative; width: 100%; height: 300px; overflow: hidden; }
@@ -32,7 +32,48 @@
                     <a class="bannertitle-info">111111111</a>
                 </div>
             </li>
+            <%
+                if (DtBanner != null && DtBanner.Rows.Count > 0)
+                {
+                    foreach (System.Data.DataRow item in DtBanner.Rows)
+                    {
+                        int index = 1;
+                        if (index == 1)
+                        {
+            %>
+            <li class="on">
+                <img src="<%=item["ImgAddress"] %>" title="<%=index %>" alt="<%=item["Title"] %>" />
+                <div class="bannertitle">
+                    <div class="banner-bg">
+                    </div>
+                    <a class="bannertitle-info"><%=item["Title"] %></a>
+                </div>
+            </li>
+            <%
+                        }
+                        else
+                        {
+            %>
             <li>
+                <img src="<%=item["ImgAddress"] %>" title="<%=index %>" alt="<%=item["Title"] %>" />
+                <div class="bannertitle">
+                    <div class="banner-bg">
+                    </div>
+                    <a class="bannertitle-info"><%=item["Title"] %></a>
+                </div>
+            </li>
+            <%
+                        }
+                        index++;
+                    }
+                }
+                else
+                {
+
+                }
+            %>
+
+            <%-- <li>
                 <img src="images/jianjie.png" title="1" alt="1" />
                 <div class="bannertitle">
                     <div class="banner-bg">
@@ -55,7 +96,7 @@
                     </div>
                     <a class="bannertitle-info">44444444444</a>
                 </div>
-            </li>
+            </li>--%>
         </ul>
     </div>
 </div>
