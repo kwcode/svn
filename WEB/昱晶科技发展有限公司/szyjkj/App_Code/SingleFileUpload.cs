@@ -353,7 +353,9 @@ public class stringCoding
 				','
 			});
         string VNum = "";
-        Random rand = new Random(VcodeNum);
+        int seed = int.Parse(DateTime.Now.Ticks.ToString().Substring(10));
+        seed++;
+        Random rand = new Random(seed);
         for (int i = 0; i < VcodeNum; i++)
         {
             VNum += VcArray[rand.Next(VcArray.Length - 1)];
