@@ -29,6 +29,7 @@
                     },
                     success: function ($layer) {
                         $layer.on("click", ".btn_ok", function () {
+                            var _layer = $.layer({ type: 3 });
                             var title = $(".txt_title").val();
                             var showindex = $(".txt_showindex").val();
                             var summary = $(".txt_summary").val();
@@ -39,16 +40,79 @@
                                     showindex: showindex,
                                     summary: summary
                                 }
-                            }, function (result) {
+                            }).done(function (result) {
                                 alert(result.desc);
-                            })
-                            location.reload();
-                            layer.close(layerIndex);
+                                location.reload();
+                                layer.closeAll();
+                            });
+
                         });
                         $layer.on("click", ".btn_cancel", function () {
                             layer.close(layerIndex);
                         });
                     }
+                });
+            });
+            $(".btn_edit").click(function () {
+                var $that = $(this);
+                layerIndex = $.layer({
+                    type: 1,
+                    shade: [0.3, '#000', true],
+                    border: [4, 0.1, '#000', true],//默认边框
+                    title: '新增',
+                    area: ['593px', '265px'],
+                    position: 'center',
+                    shift: 'left',//从左动画弹出
+                    page: {
+                        dom: '.d-hide-edit'
+                    },
+                    success: function ($layer) {
+                        var id = $that.data().id;
+                        $layer.find(".txt_title").val($that.data().title);
+                        $layer.find(".txt_showindex").val($that.data().showindex);
+                        $layer.find(".txt_summary").val($that.data().summary);
+
+                        $layer.on("click", ".btn_ok", function () {
+                            var _layer = $.layer({ type: 3 });
+                            var title = $(".txt_title").val();
+                            var showindex = $(".txt_showindex").val();
+                            var summary = $(".txt_summary").val();
+                            $.ajax("/admin/action/actionadmin.aspx", {
+                                data: {
+                                    action: "savereproduct",
+                                    id: id,
+                                    title: title,
+                                    showindex: showindex,
+                                    summary: summary
+                                }
+                            }).done(function (result) {
+                                alert(result.desc);
+                                location.reload();
+                                layer.closeAll();
+                            });
+
+                        });
+                        $layer.on("click", ".btn_cancel", function () {
+                            layer.close(layerIndex);
+                        });
+                    }
+                });
+            });
+            $(".btn_del").click(function () {
+                if (!confirm("是否删除？！")) {
+                    return;
+                }
+                var _layer = $.layer({ type: 3 });
+                var id = $(this).data().id;
+                $.ajax("/admin/action/actionadmin.aspx", {
+                    data: {
+                        action: "delproduct",
+                        id: id
+                    }
+                }).done(function (result) {
+                    location.reload();
+                    alert(result.desc);
+                    layer.close(_layer);
                 });
             });
 
@@ -97,7 +161,9 @@
                                 foreach (System.Data.DataRow item in DtProcdut.Rows)
                                 {
                         %><tr class="j-item">
-                            <td><a class="inpbbut1 btn_edit">编辑</a></td>
+                            <td><a class="inpbbut1 btn_edit" data-title="<%=item["Title"] %>" data-showindex="<%=item["ShowIndex"] %>" data-summary="<%=item["Summary"] %>" data-id="<%=item["ID"]%>">编辑</a>
+                                <a class="inpbbut1 btn_del" data-id="<%=item["ID"]%>">删除</a>
+                            </td>
                             <td><%=item["Title"] %></td>
                             <td><%=item["ShowIndex"] %></td>
                             <td>

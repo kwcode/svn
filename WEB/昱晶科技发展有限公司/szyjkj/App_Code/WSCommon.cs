@@ -179,9 +179,9 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocductimgs", new object[] { pid, pagesize });
         return dt;
     }
-    public static int SaveProductImg(int id, int pid, string imgurl, int userid, string title)
+    public static int SaveProductImg(int id, int pid, string imgurl, int userid, string title,int showindex)
     {
-        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_saveprocductimg", new object[] { id, pid, imgurl, userid, title });
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_saveprocductimg", new object[] { id, pid, imgurl, userid, title, showindex });
         if (dt == null || dt.Rows.Count == 0)
         {
             return 0;
@@ -193,4 +193,36 @@ public class WSCommon
     }
 
     #endregion
+
+    public static DataTable GetProductImgsByid(int id)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_GetProductImgsByid", new object[] { id });
+        return dt;
+    }
+
+    public static int DelProcductImg(int id)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_poc_delprocimg", id);
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    public static int DelProduct(int id)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_DelProcduct", id);
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        } 
+    }
 }

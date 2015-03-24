@@ -16,14 +16,10 @@
     <script>
         $(function () {
             $.tw.loadimg();
+            var id = '<%=ID%>';
+            init();
 
-            if (typeof (jsonproduct) != 'undefined' && jsonproduct.length > 0) {
-                var html = "";
-                for (var i = 0; i < jsonproduct.length; i++) {
-                    html += '<option value="' + jsonproduct[i].ID + '">' + jsonproduct[i].Title + '</option>';
-                }
-                $(".sel_protype").html(html);
-            }
+
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
                 var img = $.tw.getimgaddress();
@@ -36,6 +32,7 @@
                     type: "POST",
                     data: {
                         action: "savereproductimg",
+                        id: id,
                         img: img,
                         imgtype: imgtype,
                         title: title,
@@ -56,6 +53,25 @@
                 });
             });
         });
+        var init = function () {
+
+
+            if (typeof (jsonproduct) != 'undefined' && jsonproduct.length > 0) {
+                var html = "";
+                for (var i = 0; i < jsonproduct.length; i++) {
+                    html += '<option value="' + jsonproduct[i].ID + '">' + jsonproduct[i].Title + '</option>';
+                }
+                $(".sel_protype").html(html);
+            }
+
+
+            if (typeof (jsonprocimg) != 'undefined' && jsonprocimg.length > 0) {
+                $(".txt_title").val(jsonprocimg[0].Title);
+                $(".sel_protype").val(jsonprocimg[0].PID);
+                $(".txt_showindex").val(jsonprocimg[0].ShowIndex);
+                $.tw.loadimg(jsonprocimg[0].ImgUrl);
+            }
+        }
 
     </script>
 </head>
@@ -64,7 +80,7 @@
         <div style="float: left" class="d-admin-content">
             <div class="e-item">
                 <span class="sp150">标题：</span>
-                <input type="text" maxlength="200" class="txt_title" runat="server" id="txt_title" />
+                <input type="text" maxlength="200" class="txt_title" id="txt_title" />
             </div>
             <div class="e-item">
                 <span class="sp150">所属于分类：</span>
@@ -73,7 +89,7 @@
             </div>
             <div class="e-item">
                 <span class="sp150">排序：</span>
-                <input type="text" maxlength="5" class="txt_showindex" runat="server" id="txt_showindex" />
+                <input type="text" maxlength="5" class="txt_showindex" id="txt_showindex" />
             </div>
             <div class="e-item">
                 <span class="sp150">图片：</span>

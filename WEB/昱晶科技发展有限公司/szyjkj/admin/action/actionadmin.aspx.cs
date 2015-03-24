@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class admin_action_actionadmin : AjaxBase
 {
     int res = 0;
-    object desc = "操作失败！";
+    object desc = "异常错误代码 -1";
     protected override object loadAjaxData()
     {
         string action = Request["action"] ?? "";
@@ -31,10 +31,39 @@ public partial class admin_action_actionadmin : AjaxBase
                 savereproductimg();
                 break;
 
+            case "delproductimg":
+                delproductimg();
+                break;
+            case "delproduct":
+                delproduct();
+                break;
+
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void delproduct()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        res = WSCommon.DelProduct(id);
+        if (res > 0)
+            desc = "删除成功！";
+        else
+            desc = "删除失败！";
+    }
+
+    private void delproductimg()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        res = WSCommon.DelProcductImg(id);
+        if (res > 0)
+            desc = "删除成功！";
+        else
+            desc = "删除失败！";
     }
 
     private void savereproductimg()
@@ -73,8 +102,8 @@ public partial class admin_action_actionadmin : AjaxBase
         else
         {
             imgpath = imgaddress;
-        } 
-        res = WSCommon.SaveProductImg(id, pid, imgpath, 0, title);
+        }
+        res = WSCommon.SaveProductImg(id, pid, imgpath, 0, title, showindex);
         if (res > 0)
         {
             desc = "操作成功！";

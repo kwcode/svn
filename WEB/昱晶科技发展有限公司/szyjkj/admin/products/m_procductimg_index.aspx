@@ -13,7 +13,25 @@
     <script src="/js/jquery-1.8.3.js"></script>
     <script src="/js/layer.js"></script>
     <script>
- 
+        $(function () {
+            $(".btn_del").click(function () {
+                if (!confirm("是否删除？！")) {
+                    return;
+                }
+                var _layer = $.layer({ type: 3 });
+                var id = $(this).data().id;
+                $.ajax("/admin/action/actionadmin.aspx", {
+                    data: {
+                        action: "delproductimg",
+                        id: id
+                    }
+                }).done(function (result) {
+                    location.reload();
+                    alert(result.desc);
+                    layer.close(_layer);
+                });
+            });
+        });
     </script>
 </head>
 <body>
@@ -33,7 +51,7 @@
                             <th>名称</th>
                             <th>所属ID</th>
                             <th>所属名称</th>
-
+                            <th>排序</th>
                             <th>图片</th>
                         </tr>
                     </thead>
@@ -44,12 +62,14 @@
                                 foreach (System.Data.DataRow item in DtProcdut.Rows)
                                 {
                         %><tr class="j-item">
-                            <td><a class="inpbbut1 btn_edit">编辑</a></td>
+                            <td><a class="inpbbut1 btn_edit" href="m_productimg_edit.aspx?id=<%=item["ID"] %>">编辑</a>
+                                <a class="inpbbut1 btn_del" data-id="<%=item["ID"]%>">删除</a>
+                            </td>
                             <td><%=item["ID"] %></td>
                             <td><%=item["Title"] %></td>
                             <td><%=item["PID"] %></td>
                             <td><%=item["PTitle"] %></td>
-
+                            <td><%=item["ShowIndex"] %></td>
                             <td>
                                 <img id="img-adres" data-type="1" style="width: 50px; height: 50px;" src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="昱晶科技发展有限公司" title="昱晶科技发展有限公司" />
                             </td>
