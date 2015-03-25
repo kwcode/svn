@@ -4,7 +4,7 @@
     <style>
         .banner-no { margin: 0; padding: 0; text-align: center; }
         ul li { list-style: none; }
-        .banner { width: 100%; position: relative; }
+        .banner { width: 100%; position: relative; width: 1200px; margin: 0 auto;}
         .banner-list { position: relative; width: 100%; height: 300px; overflow: hidden; }
         .banner-no { position: absolute; }
 
@@ -13,7 +13,7 @@
         .banner-list ul li.on { display: block; }
 
         .bannertitle { }
-        .banner-bg { height: 42px; line-height: 42px; border-radius: 3px; background-color: #000; opacity: 0.3; width: 100%; position: absolute; bottom: 10px; }
+        .banner-bg { height: 42px; line-height: 42px; border-radius: 3px; background-color: #000; opacity: 0.3; width: 100%; position: absolute; bottom: 1px; }
         .bannertitle-info { height: 42px; line-height: 42px; left: 10px; bottom: 10px; position: absolute; z-index: 1001; color: #fff; }
 
         .banner-bg { }
