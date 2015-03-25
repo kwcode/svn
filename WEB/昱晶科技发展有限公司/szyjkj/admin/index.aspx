@@ -29,7 +29,7 @@
                 <li><a onclick="page_jump('/admin/aboutme.aspx')">关于我们</a></li>
                 <li><a onclick="page_jump('/admin/products/m_procductimg_index.aspx')">主营业务</a></li>
                 <li><a onclick="page_jump('/admin/news/news_manager_index.aspx')">新闻</a></li>
-                <li><a>产品图片</a></li>
+                <%--<li><a>产品图片</a></li>--%>
                 <li><a onclick="page_jump('/admin/relation.aspx')">联系我们</a></li>
             </ul>
         </div>
@@ -44,7 +44,7 @@
         </div>--%>
             <div class="d-right">
                 <iframe id="if_con" src="Right.aspx" width="100%" style="min-height: 600px;" frameborder="0"
-                    height="100%"></iframe>
+                    height="1000px;"></iframe>
             </div>
         </div>
     </form>

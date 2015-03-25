@@ -37,11 +37,25 @@ public partial class admin_action_actionadmin : AjaxBase
             case "delproduct":
                 delproduct();
                 break;
+            case "delnews":
+                delnews();
+                break;
 
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void delnews()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        res = WSCommon.DelNews(id);
+        if (res > 0)
+            desc = "删除成功！";
+        else
+            desc = "删除失败！";
     }
 
     private void delproduct()

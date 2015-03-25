@@ -70,6 +70,23 @@ public class WSCommon
 
         return dt;
     }
+    /// <summary>
+    /// 删除一个新闻 字段删除
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int DelNews(int id)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_DelNews", id);
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
     #endregion
 
     #region 公司简介==============================================
@@ -179,7 +196,7 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocductimgs", new object[] { pid, pagesize });
         return dt;
     }
-    public static int SaveProductImg(int id, int pid, string imgurl, int userid, string title,int showindex)
+    public static int SaveProductImg(int id, int pid, string imgurl, int userid, string title, int showindex)
     {
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_saveprocductimg", new object[] { id, pid, imgurl, userid, title, showindex });
         if (dt == null || dt.Rows.Count == 0)
@@ -223,6 +240,8 @@ public class WSCommon
         else
         {
             return 1;
-        } 
+        }
     }
+
+
 }
