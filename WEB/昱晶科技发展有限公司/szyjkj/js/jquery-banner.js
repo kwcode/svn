@@ -1,5 +1,5 @@
 ﻿(function (window, $, undefined) {
-    var _times = 3000;
+    var _times = 5000;
     var t, size, n = 0;
     $(function () {
         size = $(".banner-list ul li").size();
