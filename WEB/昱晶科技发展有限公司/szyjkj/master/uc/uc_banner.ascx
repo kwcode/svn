@@ -24,14 +24,14 @@
     </style>
     <div class="banner-list">
         <ul>
-            <li class="on">
+            <%--<li class="on">
                 <img src="images/banae.jpg" title="1" alt="1" />
                 <div class="bannertitle">
                     <div class="banner-bg">
                     </div>
                     <a class="bannertitle-info">111111111</a>
                 </div>
-            </li>
+            </li>--%>
             <%
                 if (DtBanner != null && DtBanner.Rows.Count > 0)
                 {
