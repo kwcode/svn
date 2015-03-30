@@ -40,6 +40,7 @@
                     }
                     else { alert(result.desc); }
                     layer.close(_layer);
+                   
                 });
                 /**/
             });

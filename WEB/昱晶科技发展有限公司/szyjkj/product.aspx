@@ -39,7 +39,7 @@
                       foreach (System.Data.DataRow item in DtproductImgs.Rows)
                       { 
                 %>
-                <li><a>
+                <li><a href="/productdesc.aspx?id=<%=item["ID"]%>"> 
                     <img id="img-adres" data-type="1" style="width: 190px; height: 190px;" src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="昱晶科技发展有限公司" title="昱晶科技发展有限公司" />
 
                     <div style="text-align: center;"><%=item["Title"] %></div>

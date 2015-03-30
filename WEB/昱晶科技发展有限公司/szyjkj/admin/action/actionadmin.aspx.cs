@@ -212,8 +212,7 @@ public partial class admin_action_actionadmin : AjaxBase
         return image;
     }
     private void saverelation()
-    {
-
+    { 
         string details = Server.UrlDecode(Request["details"] ?? "");
 
         int rows = WSCommon.SaveRelation(details);
