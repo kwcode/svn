@@ -209,7 +209,7 @@ public class WSCommon
         }
     }
 
-    #endregion
+
 
     public static DataTable GetProductImgsByid(int id)
     {
@@ -243,5 +243,75 @@ public class WSCommon
         }
     }
 
+    #endregion
 
+    #region 用户相关==============================================
+
+    public static int TryLogin(string name, string pwd, bool ischeck)
+    {
+        Hashtable ht = new Hashtable();
+        string password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(pwd, "md5").ToLower();
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_userlogin", out ht, new object[] { name, password });
+        int login = 0;
+        if (ht.Count > 0)
+        {
+            login = Convert.ToInt32(ht["@LoginType"]);
+        }
+        if (login == 1)//登录成功
+        {
+            if (ischeck)
+            {
+                int userId = Login(dt);
+                CookieHelper.SaveUinfoCookie(userId);
+            }
+            else
+            {
+                Login(dt);
+            }
+        }
+        return login;
+    }
+    private static int Login(DataTable dt)
+    {
+        //registerSession(dt);   //登录成功时写入日志
+        string date = DateTime.Now.ToString();
+        string ip = GetUserIP();
+        // userCon.UserLoginRecord(SessionAccess.UserId, SessionAccess.NickName, date, ip, HttpContext.Current.Request.UserAgent, string.Empty, string.Empty, string.Empty); 
+        return SessionAccess.UserId;
+
+    }
+    /// <summary>
+    /// 获得用户IP
+    /// </summary>
+    public static string GetUserIP()
+    {
+        string ip;
+        string[] temp;
+        bool isErr = false;
+        if (HttpContext.Current.Request.ServerVariables["HTTP_X_ForWARDED_For"] == null)
+            ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"].ToString();
+        else
+            ip = HttpContext.Current.Request.ServerVariables["HTTP_X_ForWARDED_For"].ToString();
+        if (ip.Length > 15)
+            isErr = true;
+        else
+        {
+            temp = ip.Split('.');
+            if (temp.Length == 4)
+            {
+                for (int i = 0; i < temp.Length; i++)
+                {
+                    if (temp[i].Length > 3) isErr = true;
+                }
+            }
+            else
+                isErr = true;
+        }
+
+        if (isErr)
+            return "1.1.1.1";
+        else
+            return ip;
+    }
+    #endregion
 }
