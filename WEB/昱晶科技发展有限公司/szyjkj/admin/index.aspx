@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="admin_index" %>
+﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="admin_index" %>
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -84,4 +84,106 @@
         </div>
     </form>
 </body>
+</html>--%>
+
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="admin_index" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>欢迎进入深圳市昱晶科技发展有限公司管理后台</title>
+    <!--说明：cs 文件 是在js 文件前面引用 否则会出现页面 样式问题-->
+    <link href="/style/easyui.css" rel="stylesheet" />
+    <link href="/style/icon.css" rel="stylesheet" />
+    <script src="/js/jquery-1.8.3.min.js"></script>
+    <script src="/js/jquery.easyui.min.js"></script>
+
+    <link href="/style/layer.css" rel="stylesheet" />
+    <script src="/js/layer.js"></script>
+    <script>
+        $(function () {
+            addpanel("网站管理", "/admin/Right.aspx")
+            //•id: 绑定到节点的标识值.
+            //•text:显示文本.
+            //•iconCls: 显示icon的css样式.
+            //•checked: 节点是否选中.
+            //•state: 节点状态, 'open' 或者 'closed'.
+            //•attributes: 绑定到节点的自定义属性.
+            //•target: 目标 DOM 对象.
+            //children 子节点
+            var _children = [
+                { id: '2', text: '首页轮播图修改', iconCls: 'icon-pencil', url: "/admin/m_banner.aspx" }
+                , { id: '3', text: '联系我们', url: "/admin/relation.aspx", iconCls: 'icon-phone' }
+                , { id: '4', text: '产品中心', url: "/admin/products/m_procductimg_index.aspx", iconCls: 'icon-plugin_go' }
+                , { id: '5', text: '新闻中心', url: "/admin/news/news_manager_index.aspx", iconCls: 'icon-new' }
+
+            ];
+            var _tree = [{ id: '1', text: '网站管理', state: 'open', children: _children, iconCls: 'icon-house', url: "/admin/Right.aspx" }]; //导航树构造
+
+            //url :一个从远程服务器检索数据的URL.将你的菜单拼成这个json格式id，text，child等
+            //method:检索数据的http方法类型.
+            //checkbox:是否显示checkbox在所有节点之前.
+            //cascadeCheck:定义是否级联选择.
+            //onlyLeafCheck:仅仅只是在叶子节点显示checkbox
+            //lines:否显示树线.
+            //dnd:定义是否启用drag and drop.
+            //data:数组
+            //onClick：当用户点击节点的时候触发 
+            //onDblClick：当用户双击一个节点的时候触发
+
+            //动态-构造导航树
+            $("#tree_nva").tree({
+                data: _tree,
+                lines: true,//将你的菜单拼成这个json格式id，text，child等 
+                onClick: function (node) {
+                    //点击后在右边的框架里打开url
+                    addpanel(node.text, node.url);
+                },
+                onDblClick: function (node) {
+                    $(this).tree(node.state === 'closed' ? 'expand' : 'collapse', node.target);
+                    node.state = node.state === 'closed' ? 'open' : 'closed';//修改完该节点是否展开之后，要修改node的state属性，不然下次就无法折叠上
+                }
+            });
+            //增加Panel
+            function addpanel(title, url) {
+                var html = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
+                $('#panel_c').panel({
+                    content: html,
+                    title: title,
+                    //tools: [{
+                    //    iconCls: 'icon-add',
+                    //    handler: function () { alert('new') }
+                    //}], //右侧的按钮
+                    onLoad: function () {
+                        alert("a");
+                    }
+                });
+            }
+            //增加tabs
+            function addtabs(url) {
+
+            }
+            //
+        });
+    </script>
+</head>
+
+<body class="easyui-layout">
+    <div data-options="region:'north',border:false" style="height: 60px; line-height: 0px; padding: 10px">
+        <h1>欢迎进入深圳市昱晶科技发展有限公司管理后台</h1>
+    </div>
+    <div data-options="region:'west',split:true,title:'导航菜单'" style="width: 180px; padding: 10px;">
+        <!--导航树-->
+        <ul class="easyui-tree" id="tree_nva">
+        </ul>
+        <!--导航树END-->
+    </div>
+    <div data-options="region:'center',title:'网站管理'" id="panel_c" class="easyui-panel" style="padding: 5px;">
+        <!--中间内容-->
+        <!--中间内容END-->
+    </div>
+    <div data-options="region:'south',border:false" style="height: 30px; padding: 10px; text-align: center">深圳市昱晶科技发展有限公司</div>
+
+</body>
 </html>
+
