@@ -9,6 +9,8 @@
     <title></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <script src="/js/jquery-1.8.3.min.js"></script>
+    <link href="/style/layer.css" rel="stylesheet" />
+    <script src="/js/layer.js"></script>
     <style>
         body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td { margin: 0; padding: 0; }
         html, body { margin: 0; padding: 0; height: 100%; }
@@ -135,18 +137,28 @@
                 var username = $("#username").val();
                 var password = $("#password").val();
                 var ischeck = $("#loginkeeping").attr("checked") == "checked" ? "1" : "0";
-                $.post("/admin/login.aspx", { data: { username: username, password: password, ischeck: ischeck } }).done(function (result) {
+                if (username == "" || password == "") {
+                    layer.alert("请输入帐号或者密码！");
+                    return;
+                }
+                $.ajax("/admin/login.aspx", {
+                    data: {
+                        loginname: username,
+                        pwd: password,
+                        ischeck: ischeck
+                    }, type: 'POST'
+                }).done(function (result) {
                     if (result == 1) {
                         location.href = "/admin/index.aspx";
                     }
                     else if (result == 0) {
-                        alert("用户名不存在！");
+                        layer.alert("用户名不存在！");
                     }
                     else if (result == 2) {
-                        alert("密码错误！");
+                        layer.alert("密码错误！");
                     }
                     else {
-                        alert("登录失败！错误号" + result);
+                        layer.alert("登录失败！错误号" + result);
                     }
                 });
 
@@ -186,9 +198,9 @@
                     <p class="login button">
                         <input type="submit" id="btn_login" value="登录" />
                     </p>
-                    <p class="change_link">
+                    <%--<p class="change_link">
                         还不是会员？ <a href="#" class="to_register">加入我们</a>
-                    </p>
+                    </p>--%>
                 </div>
             </div>
         </div>

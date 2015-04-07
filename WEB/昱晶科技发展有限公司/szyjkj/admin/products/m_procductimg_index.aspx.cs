@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_products_m_procductimg_index : System.Web.UI.Page
+public partial class admin_products_m_procductimg_index : PageBase
 {
     public DataTable DtProcdut { get; set; }
     protected void Page_Load(object sender, EventArgs e)

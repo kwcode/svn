@@ -40,11 +40,27 @@ public partial class admin_action_actionadmin : AjaxBase
             case "delnews":
                 delnews();
                 break;
+            case "adduser":
+                adduser();
+                break;
+
 
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void adduser()
+    {
+        string loginname = Request["loginname"] ?? "";
+        string nickname = Request["nickname"] ?? "";
+        string role = Request["role"] ?? "0";
+        string pwd = Request["pwd"] ?? "";
+        string password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(pwd, "md5").ToLower();
+        WSCommon.AddUser(loginname, password, nickname, Convert.ToInt32(role));
+        res = 1;
+        desc = "新增成功！";
     }
 
     private void delnews()
@@ -212,7 +228,7 @@ public partial class admin_action_actionadmin : AjaxBase
         return image;
     }
     private void saverelation()
-    { 
+    {
         string details = Server.UrlDecode(Request["details"] ?? "");
 
         int rows = WSCommon.SaveRelation(details);

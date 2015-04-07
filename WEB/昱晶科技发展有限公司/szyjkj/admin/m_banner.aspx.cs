@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_m_banner : System.Web.UI.Page
+public partial class admin_m_banner : PageBase
 {
     public DataTable DtBanner { get; set; }
     protected void Page_Load(object sender, EventArgs e)

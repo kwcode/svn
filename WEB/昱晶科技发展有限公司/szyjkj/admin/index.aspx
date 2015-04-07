@@ -1,6 +1,6 @@
-﻿<%--<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="admin_index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="admin_index" %>
 
-
+<%--
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 
@@ -86,10 +86,9 @@
 </body>
 </html>--%>
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="admin_index" %>
-
+  
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+<head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>欢迎进入深圳市昱晶科技发展有限公司管理后台</title>
     <!--说明：cs 文件 是在js 文件前面引用 否则会出现页面 样式问题-->

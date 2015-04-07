@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_products_m_productimg_edit : System.Web.UI.Page
+public partial class admin_products_m_productimg_edit : PageBase
 {
     protected void Page_Load(object sender, EventArgs e)
     {

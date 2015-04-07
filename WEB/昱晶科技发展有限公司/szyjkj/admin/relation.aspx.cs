@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_relation : System.Web.UI.Page
+public partial class admin_relation : PageBase
 {
 
     //public string Details { get; set; }

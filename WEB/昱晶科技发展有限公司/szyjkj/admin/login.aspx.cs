@@ -11,8 +11,8 @@ public partial class admin_login : System.Web.UI.Page
     {
         if (Request.HttpMethod == "POST")
         {
-            string username = Request["username"] ?? "";
-            string password = Request["password"] ?? "";
+            string username = Request["loginname"] ?? "";
+            string password = Request["pwd"] ?? "";
             bool ischeck = Convert.ToBoolean(Convert.ToInt32(Request["ischeck"] ?? "0"));
             int row = WSCommon.TryLogin(username, password, ischeck);
             Response.Clear();

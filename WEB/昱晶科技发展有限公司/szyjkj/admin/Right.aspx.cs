@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_Right : System.Web.UI.Page
+public partial class admin_Right : PageBase
 {
     protected void Page_Load(object sender, EventArgs e)
     {
