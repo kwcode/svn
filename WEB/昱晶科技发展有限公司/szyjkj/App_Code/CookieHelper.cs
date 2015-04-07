@@ -101,7 +101,7 @@ public class CookieHelper
 
     //private static Regex rDomain = new Regex(@"^([a-z\d\-]+\.){0,1}(([a-z\d\-]+\.)+[a-z\d\-]+)$");
 
-    private static string MainDomain = ConfigurationManager.AppSettings["MainDomain"];
+     private static string MainDomain = ConfigurationManager.AppSettings["MainDomain"];
 
     /// <summary>
     /// 获取Cookie应该放置在哪个域名下面

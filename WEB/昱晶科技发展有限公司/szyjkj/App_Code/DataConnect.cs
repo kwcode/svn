@@ -9,7 +9,7 @@ using System.Configuration;
 /// </summary>
 public class DataConnect
 {
-    public static DBCommon.DataPool Data = new DBCommon.DataPool(10, ConfigurationManager.AppSettings["ConnString"]);
+    public static DBCommon.DataPool Data = new DBCommon.DataPool(1, ConfigurationManager.AppSettings["ConnString"]);
 
     public DataConnect()
     {

@@ -251,7 +251,7 @@ public class WSCommon
     {
         Hashtable ht = new Hashtable();
         string password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(pwd, "md5").ToLower();
-        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_userlogin", out ht, new object[] { name, password });
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_userlogin", out ht, new object[] { name, password, 0 });
         int login = 0;
         if (ht.Count > 0)
         {
@@ -273,11 +273,25 @@ public class WSCommon
     }
     private static int Login(DataTable dt)
     {
-        //registerSession(dt);   //登录成功时写入日志
+        registerSession(dt);   //登录成功时写入日志 
         string date = DateTime.Now.ToString();
         string ip = GetUserIP();
         // userCon.UserLoginRecord(SessionAccess.UserId, SessionAccess.NickName, date, ip, HttpContext.Current.Request.UserAgent, string.Empty, string.Empty, string.Empty); 
         return SessionAccess.UserId;
+
+    }
+
+    private static void registerSession(DataTable dt)
+    {
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            DataRow row = dt.Rows[0];
+            SessionAccess.UserId = Convert.ToInt32(row["UserID"]);
+            SessionAccess.UserType = row["Role"].ToString();
+            SessionAccess.NickName = row["NickName"].ToString();
+            SessionAccess.LoginName = row["LoginName"].ToString();
+
+        }
 
     }
     /// <summary>
@@ -312,6 +326,12 @@ public class WSCommon
             return "1.1.1.1";
         else
             return ip;
+    }
+
+    public static int AddUser(string loginname, string pwd, string nickname, int role)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_adduser", new object[] { loginname, pwd, role, nickname });
+        return dt.Rows.Count;
     }
     #endregion
 }

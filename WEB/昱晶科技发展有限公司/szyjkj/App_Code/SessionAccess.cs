@@ -14,6 +14,7 @@ public class SessionAccess
 
         public const string UserID = "UserID";
         public const string NickName = "NickName";
+        public const string LoginName = "LoginName";
         public const string UserType = "UserType";
 
     }
@@ -52,7 +53,20 @@ public class SessionAccess
             Session[SessionKey.NickName] = value.ToString();
         }
     }
-
+    /// <summary>
+    /// 当前登录 
+    /// </summary>
+    public static string LoginName
+    {
+        get
+        {
+            return (Session[SessionKey.LoginName] ?? "").ToString();
+        }
+        set
+        {
+            Session[SessionKey.LoginName] = value.ToString();
+        }
+    }
     public static string UserType
     {
         get
