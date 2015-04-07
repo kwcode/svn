@@ -86,7 +86,7 @@
 </body>
 </html>--%>
 
-  
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -163,13 +163,41 @@
 
             }
             //
+
+            //控制面板
+            $('#mm').menu({
+                onClick: function (item) {
+                    if (item.id == "btn_Out")//注销
+                    {
+                        $.ajax("/admin/action/actionadmin.aspx", { data: { action: "outuser" } }).success(function (result) {
+                            if (result.res > 0) {
+                                location.href = "/admin/login.aspx";
+                            }
+                            else {
+                                layer.alert("注销失败！");
+                            }
+                        });
+                    }
+                }
+            });
+
+
         });
     </script>
 </head>
 
 <body class="easyui-layout">
     <div data-options="region:'north',border:false" style="height: 60px; line-height: 0px; padding: 10px">
-        <h1>欢迎进入深圳市昱晶科技发展有限公司管理后台</h1>
+        <h1 style="position: absolute;">欢迎进入深圳市昱晶科技发展有限公司管理后台</h1>
+        <div style="position: absolute; right: 0; line-height: 20px;">
+            <span>当前登录的用户：</span>
+            <span style="color: #ff6a00"><%=SessionAccess.NickName%></span>
+            <a href="#" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon-application_xp'">控制面板</a>
+        </div>
+
+        <div id="mm">
+            <div data-options="iconCls:'icon-door_out'" id="btn_Out">注销</div>
+        </div>
     </div>
     <div data-options="region:'west',split:true,title:'导航菜单'" style="width: 180px; padding: 10px;">
         <!--导航树-->

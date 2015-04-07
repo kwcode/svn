@@ -43,12 +43,26 @@ public partial class admin_action_actionadmin : AjaxBase
             case "adduser":
                 adduser();
                 break;
+            case "outuser":
+                outuser();
+                break;
 
 
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void outuser()
+    {
+        SessionAccess.UserId = 0;
+        SessionAccess.UserType = "0";
+        SessionAccess.NickName = "";
+        SessionAccess.LoginName = "";
+        res = 1;
+        desc = "注销成功！";
+
     }
 
     private void adduser()
