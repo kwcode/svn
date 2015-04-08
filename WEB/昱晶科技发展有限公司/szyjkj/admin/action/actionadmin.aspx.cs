@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ public partial class admin_action_actionadmin : AjaxBase
 {
     int res = 0;
     object desc = "异常错误代码 -1";
+
     protected override object loadAjaxData()
     {
         string action = Request["action"] ?? "";
@@ -30,7 +32,6 @@ public partial class admin_action_actionadmin : AjaxBase
             case "savereproductimg":
                 savereproductimg();
                 break;
-
             case "delproductimg":
                 delproductimg();
                 break;
@@ -43,8 +44,14 @@ public partial class admin_action_actionadmin : AjaxBase
             case "adduser":
                 adduser();
                 break;
+            case "upduser":
+                upduser();
+                break;
             case "outuser":
                 outuser();
+                break;
+            case "deluser":
+                deluser();
                 break;
 
 
@@ -52,6 +59,34 @@ public partial class admin_action_actionadmin : AjaxBase
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void upduser()
+    {
+        int userid = 0;
+        int.TryParse(Request["id"], out userid);
+        string loginname = Request["loginname"] ?? "";
+        string nickname = Request["nickname"] ?? "";
+        string role = Request["role"] ?? "0";
+        string pwd = Request["pwd"] ?? "";
+        string password = System.Web.Security.FormsAuthentication.HashPasswordForStoringInConfigFile(pwd, "md5").ToLower();
+        WSCommon.UpdateUser(userid, loginname, password, nickname, Convert.ToInt32(role));
+        res = 1;
+        desc = "修改成功！";
+    }
+
+    private void deluser()
+    {
+        string json = Request["jsonuserids"] ?? "";
+        List<int> userids = Newtonsoft.Json.JsonConvert.DeserializeObject<List<int>>(json);
+        foreach (int item in userids)
+        {
+            res = WSCommon.DelUser(item);
+            if (res > 0)
+                desc = "删除成功！";
+            else
+                desc = "删除失败！";
+        }
     }
 
     private void outuser()

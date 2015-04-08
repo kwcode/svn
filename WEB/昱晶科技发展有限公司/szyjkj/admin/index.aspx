@@ -113,9 +113,9 @@
             var _children = [
                 { id: '2', text: '首页轮播图修改', iconCls: 'icon-pencil', url: "/admin/m_banner.aspx" }
                 , { id: '3', text: '联系我们', url: "/admin/relation.aspx", iconCls: 'icon-phone' }
-                , { id: '4', text: '产品中心', url: "/admin/products/m_procductimg_index.aspx", iconCls: 'icon-plugin_go' }
+                , { id: '4', text: '产品中心', url: "/admin/products/m_procductimg_index.aspx", iconCls: 'icon-pgin_golu' }
                 , { id: '5', text: '新闻中心', url: "/admin/news/news_manager_index.aspx", iconCls: 'icon-new' }
-
+                 , { id: '5', text: '用户管理', url: "/admin/user/usermanager.aspx", iconCls: 'icon-user' }
             ];
             var _tree = [{ id: '1', text: '网站管理', state: 'open', children: _children, iconCls: 'icon-house', url: "/admin/Right.aspx" }]; //导航树构造
 
