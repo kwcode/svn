@@ -28,7 +28,7 @@
 
 .icon { padding-left: 18px; display: inline-block; line-height: 18px; }
 .icon32 { padding-left: 34px; display: inline-block; line-height: 34px; }
-.icon-add { background: url('/images/eui/icon/add.png') no-repeat !important; }
+/*.icon-add { background: url('/images/eui/icon/add.png') no-repeat !important; }*/
 .icon-add1 { background: url('/images/eui/icon/add1.png') no-repeat !important; }
 .icon-edit { background: url('/images/eui/icon/edit.gif') no-repeat; }
 .icon-remove { background: url('/images/eui/icon/edit_remove.png') no-repeat; }
