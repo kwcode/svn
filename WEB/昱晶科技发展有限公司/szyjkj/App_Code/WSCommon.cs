@@ -333,5 +333,39 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_adduser", new object[] { loginname, pwd, role, nickname });
         return dt.Rows.Count;
     }
+
+    public static DataTable GetUserList(int pageindex, int pagesize, string quiry, out int total)
+    {
+        Hashtable ht = new Hashtable();
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_getuserlist", out ht, new object[] { pageindex, pagesize, quiry, 0 });
+        if (ht.Count > 0)
+        {
+            total = Convert.ToInt32(ht["@Total"]);
+        }
+        else
+        {
+            total = 0;
+        }
+        return dt;
+    }
     #endregion
+
+    public static int DelUser(int userid)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_deluser", userid);
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
+
+    public static int UpdateUser(int userid, string loginname, string password, string nickname, int role)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_updateuser", new object[] { userid, loginname, password, role, nickname });
+        return dt.Rows.Count;
+    }
 }
