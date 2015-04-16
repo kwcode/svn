@@ -174,6 +174,7 @@
                 //collapsible: true,
                 remoteSort: false,//定义是否从服务器给数据排序。
                 // multiSort: true,
+                fitColumns: true,
                 toolbar: _toolbar,
                 pagination: true,//分页控件 
                 rownumbers: true,//行号  
@@ -182,7 +183,7 @@
                 pageSize: 50,//每页显示的记录条数，默认为10 
                 url: '/admin/user/usermanager.aspx',
                 type: "POST",
-                pageList: [10, 40, 60, 100, 200]//可以设置每页记录条数的列表 
+                pageList: [10, 40, 60, 100, 200]//可以设置每页记录条数的列表  
             }).datagrid('getPager').pagination({
                 //设置分页控件 
                 beforePageText: '第',//页数文本框前显示的汉字 
@@ -199,7 +200,8 @@
                 <th data-options="field:'ck',checkbox:true"></th>
                 <th data-options="field:'UserID',width:80,sortable:true">UserID</th>
                 <th data-options="field:'LoginName',width:100,sortable:true">登录帐号</th>
-                <th data-options="field:'CreateTS',width:100,sortable:true">创建时间</th>
+                <th data-options="field:'CreateTS',width:100,sortable:true,
+                    formatter:function(value,row,index){ return new Date(value).toLocaleString();}">创建时间</th>
                 <th data-options="field:'NickName',width:100,sortable:true">昵称</th>
                 <th data-options="field:'Role',width:100,sortable:true">角色</th>
             </tr>

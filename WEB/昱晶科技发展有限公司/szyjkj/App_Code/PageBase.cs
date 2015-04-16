@@ -43,8 +43,9 @@ public class PageBase : System.Web.UI.Page
     public void RedirectToLoginPage()
     {
         Response.Clear();
-        Response.Redirect("/admin/login.aspx", true);
-        Response.End();
+        string url = "http://" + Request.Url.Host + "/admin/login.aspx";
+        Response.Redirect(url, true);
+        //  Response.End();
     }
     #region 用户登录相关
     /// <summary>

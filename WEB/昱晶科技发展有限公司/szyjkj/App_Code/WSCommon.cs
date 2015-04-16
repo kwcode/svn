@@ -205,8 +205,24 @@ public class WSCommon
     public static DataTable GetProductImgs(int pid, int pagesize)
     {
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocductimgs", new object[] { pid, pagesize });
+
         return dt;
     }
+    public static DataTable GetAdminProductImgs(int pid, int pageindex, int pagesize, string keywords, out int total)
+    {
+        Hashtable ht = new Hashtable();
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_getprocductimgs", out ht, new object[] { pid, pageindex, pagesize, keywords, 0 });
+        if (ht.Count > 0)
+        {
+            total = Convert.ToInt32(ht["@Total"]);
+        }
+        else
+        {
+            total = 0;
+        }
+        return dt;
+    }
+
     public static int SaveProductImg(int id, int pid, string imgurl, int userid, string title, int showindex)
     {
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_saveprocductimg", new object[] { id, pid, imgurl, userid, title, showindex });

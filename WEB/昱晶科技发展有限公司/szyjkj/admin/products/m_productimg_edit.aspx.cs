@@ -10,7 +10,8 @@ public partial class admin_products_m_productimg_edit : PageBase
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        DataTable dtProduct = WSCommon.GetProduct(100);
+        int total = 0;
+        DataTable dtProduct = WSCommon.GetProduct(1, 100, "", out total);
         string json = "";
         if (dtProduct != null && dtProduct.Rows.Count > 0)
         {

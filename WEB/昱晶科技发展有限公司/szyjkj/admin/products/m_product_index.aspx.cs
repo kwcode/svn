@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 public partial class admin_products_m_product_index : PageBase
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
+    { 
         if (Request.HttpMethod == "POST")
         {
             int page = Convert.ToInt32(Request["page"] ?? "1");

@@ -15,113 +15,13 @@
     <script src="/js/jquery.easyui.min.js"></script>
 
 
-    <script src="/js/jquery-1.8.3.js"></script>
-    <script src="/js/jquery.easyui.min.js"></script>
-
-    <link href="/style/layer.css" rel="stylesheet" />
-    <script src="/js/layer.js"></script>
+    <style>
+        a { text-decoration: none; }
+        .inputbtns { margin: 0 5px; padding: 2px 0 2px 16px; cursor: pointer; }
+        .inputbtns:hover { border: 1px #D4D4D4 solid; }
+    </style>
     <script>
         $(function () {
-            $("#btn_new").click(function () {
-                layerIndex = $.layer({
-                    type: 1,
-                    shade: [0.3, '#000', true],
-                    border: [4, 0.1, '#000', true],//默认边框
-                    title: '新增',
-                    area: ['593px', '265px'],
-                    position: 'center',
-                    shift: 'left',//从左动画弹出
-                    page: {
-                        dom: '.d-hide-edit'
-                    },
-                    success: function ($layer) {
-                        $layer.on("click", ".btn_ok", function () {
-                            var _layer = $.layer({ type: 3 });
-                            var title = $(".txt_title").val();
-                            var showindex = $(".txt_showindex").val();
-                            var summary = $(".txt_summary").val();
-                            $.ajax("/admin/action/actionadmin.aspx", {
-                                data: {
-                                    action: "savereproduct",
-                                    title: title,
-                                    showindex: showindex,
-                                    summary: summary
-                                }
-                            }).done(function (result) {
-                                alert(result.desc);
-                                location.reload();
-                                layer.closeAll();
-                            });
-
-                        });
-                        $layer.on("click", ".btn_cancel", function () {
-                            layer.close(layerIndex);
-                        });
-                    }
-                });
-            });
-            $(".btn_edit").click(function () {
-                var $that = $(this);
-                layerIndex = $.layer({
-                    type: 1,
-                    shade: [0.3, '#000', true],
-                    border: [4, 0.1, '#000', true],//默认边框
-                    title: '新增',
-                    area: ['593px', '265px'],
-                    position: 'center',
-                    shift: 'left',//从左动画弹出
-                    page: {
-                        dom: '.d-hide-edit'
-                    },
-                    success: function ($layer) {
-                        var id = $that.data().id;
-                        $layer.find(".txt_title").val($that.data().title);
-                        $layer.find(".txt_showindex").val($that.data().showindex);
-                        $layer.find(".txt_summary").val($that.data().summary);
-
-                        $layer.on("click", ".btn_ok", function () {
-                            var _layer = $.layer({ type: 3 });
-                            var title = $(".txt_title").val();
-                            var showindex = $(".txt_showindex").val();
-                            var summary = $(".txt_summary").val();
-                            $.ajax("/admin/action/actionadmin.aspx", {
-                                data: {
-                                    action: "savereproduct",
-                                    id: id,
-                                    title: title,
-                                    showindex: showindex,
-                                    summary: summary
-                                }
-                            }).done(function (result) {
-                                alert(result.desc);
-                                location.reload();
-                                layer.closeAll();
-                            });
-
-                        });
-                        $layer.on("click", ".btn_cancel", function () {
-                            layer.close(layerIndex);
-                        });
-                    }
-                });
-            });
-            $(".btn_del").click(function () {
-                if (!confirm("是否删除？！")) {
-                    return;
-                }
-                var _layer = $.layer({ type: 3 });
-                var id = $(this).data().id;
-                $.ajax("/admin/action/actionadmin.aspx", {
-                    data: {
-                        action: "delproduct",
-                        id: id
-                    }
-                }).done(function (result) {
-                    location.reload();
-                    alert(result.desc);
-                    layer.close(_layer);
-                });
-            });
             //初始化
             //表格工具栏 
             var _toolbar = [{
@@ -129,32 +29,18 @@
                 iconCls: 'icon-add',
                 handler: function () {
                     /*修改*/
-
+                    op();
                     /*修改END*/
                 }
-            }, '-', {
-                text: '修改',
-                iconCls: 'icon-edit',
-                handler: function () {
-
-                }
-            }, '-', {
-                text: '删除',
-                iconCls: 'icon-remove',
-                handler: function () {
-                    /*删除*/
-
-                    /*删除END*/
-                }
-
             }];
             //表格数据
             $('#dg').datagrid({
-                checkbox: true,//是否出现复选框
-                singleSelect: false,//是否单选
+                //checkbox: true,//是否出现复选框
+                singleSelect: true,//是否单选
                 //collapsible: true,
                 remoteSort: false,//定义是否从服务器给数据排序。
                 // multiSort: true,
+                fitColumns: true,//True 就会自动扩大或缩小列的尺寸以适应表格的宽度并且防止水平滚动
                 toolbar: _toolbar,
                 pagination: true,//分页控件 
                 rownumbers: true,//行号  
@@ -163,95 +49,136 @@
                 pageSize: 50,//每页显示的记录条数，默认为10 
                 url: '/admin/products/m_product_index.aspx',
                 type: "POST",
-                pageList: [10, 40, 60, 100, 200]//可以设置每页记录条数的列表 
+                pageList: [10, 40, 60, 100, 200]//可以设置每页记录条数的列表   
             }).datagrid('getPager').pagination({
                 //设置分页控件 
                 beforePageText: '第',//页数文本框前显示的汉字 
                 afterPageText: '页    共 {pages} 页',
                 displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
             });
+
+
         });
+        //自定义一列
+        function formatOper(val, row, index) {
+            var btn = ' <a href="#" class="icon-edit inputbtns"  onclick="edit(' + index + ')"title="编辑"></a>';
+            var btn2 = ' <a href="#" class="icon-remove inputbtns"  onclick="del(' + index + ')" title="删除"></a>';
+            var btn3 = '<a href="/admin/products/m_procductimg_index.aspx?pid=' + row.ID +'" class="icon-tip inputbtns"  title="产品详细"></a>';
+            var btns = btn + btn2 + btn3;
+            return btns;
+        }
+        function del(index) {
+            $.messager.confirm("提示", "是否删除?", function (b) {
+                if (b) {
+                    var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
+                    var id = row.ID;
+                    $.ajax("/admin/action/actionadmin.aspx", {
+                        data: {
+                            action: "delproduct",
+                            id: id
+                        }
+                    }).done(function (result) {
+                        if (result.res > 0) {
+                            //删除成功！
+                            $('#dg').datagrid('deleteRow', index); //删除一行 
+                        }
+                        $.messager.alert("提示", result.desc);
+                    });
+                }
+            });
+        }
+        function edit(index) {
+            var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
+            op(row);
+        }
+        function op(row) {
+            var id = 0;
+            var dgtitle = "新增";
+            if (typeof (row) != "undefined") {
+                id = row.ID;
+                $(".txt_title").val(row.Title);
+                $(".txt_showindex").val(row.ShowIndex);
+                $(".txt_summary").val(row.Summary);
+                dgtitle = "编辑";
+            }
+            else {
+                id = 0;
+                $(".txt_title").val("");
+                $(".txt_showindex").val(0);
+                $(".txt_summary").val("");
+            }
+            $("#dlg").dialog({
+                title: dgtitle,
+                modal: true,  //模态
+                width: 593,
+                height: 265,
+                resizable: true,
+                buttons: [{
+                    text: '确认',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        /*保存*/
+                        var title = $(".txt_title").val();
+                        var showindex = $(".txt_showindex").val();
+                        var summary = $(".txt_summary").val();
+                        $.ajax("/admin/action/actionadmin.aspx", {
+                            data: {
+                                action: "savereproduct",
+                                id: id,
+                                title: title,
+                                showindex: showindex,
+                                summary: summary
+                            }
+                        }).done(function (result) {
+                            if (result.res > 0) {
+                                //更新
+                                $('#dg').datagrid('reload');//刷新
+                                $('#dlg').dialog('close');
+                            }
+                            $.messager.alert("提示", result.desc);
+                        });
+                        /*保存END*/
+                    }
+                }, {
+                    text: '取消',
+                    iconCls: 'icon-cancel',
+                    handler: function () {
+                        $('#dlg').dialog('close')
+                    }
+                }]
+            });
+        }
+
     </script>
 </head>
 <body>
     <table id="dg" data-options="autoRowHeight:false">
         <thead>
             <tr>
-                <%--  <th data-options="field:'ck',checkbox:true"></th>--%>
-                <th data-options="field:'ck',width:80,sortable:true">操作</th>
-                <th data-options="field:'ID',width:80,sortable:true">ID</th>
+                <th data-options="field:'op',width:80,align:'center',formatter:formatOper">操作</th>
+                <th data-options="field:'ID',width:50,sortable:true">ID</th>
                 <th data-options="field:'ShowIndex',width:50,sortable:true">排序</th>
                 <th data-options="field:'Title',width:150,sortable:true">标题</th>
-                <th data-options="field:'CreateTS',width:120,sortable:true">创建时间</th>
-                <th data-options="field:'Summary',sortable:true">简介</th>
+                <th data-options="field:'CreateTS',width:100,sortable:true,
+                    formatter:function(value,row,index){ return new Date(value).toLocaleString();}">创建时间</th>
+                <th data-options="field:'Summary',width:200,sortable:true">简介</th>
+
             </tr>
         </thead>
     </table>
-
-    <%--<form id="form1" runat="server">
-        <div class="g-div-e">
-            <div class="d-hide-edit" style="display: none;">
-                <div class="d-item">
-                    <span class="sp150">标题：</span>
-                    <input type="text" class="txt_title" />
-                </div>
-                <div class="d-item">
-                    <span class="sp150">排序：</span>
-                    <input type="text" class="txt_showindex" value="0" />
-                </div>
-                <div class="d-item">
-                    <span class="sp150">简介：</span>
-                    <textarea class="txt_summary" style="width: 400px; height: 50px;"></textarea>
-                </div>
-                <div style="text-align: center;">
-                    <input type="button" class="inpbbut1 btn_ok" value="确定" />
-                    <input type="button" class="inpbbut1 btn_cancel" value="取消" />
-                </div>
-            </div>
-            <div>
-                <a class="inpbbut1" href="m_procductimg_index.aspx">返回</a>
-                <a class="inpbbut1" id="btn_new">新建</a>
-            </div>
-            <div class="m-table">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>操作</th>
-                            <th>标题</th>
-                            <th>排序</th>
-                            <th>简介</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <%
-                            if (DtProcdut != null && DtProcdut.Rows.Count > 0)
-                            {
-                                foreach (System.Data.DataRow item in DtProcdut.Rows)
-                                {
-                        %><tr class="j-item">
-                            <td><a class="inpbbut1 btn_edit" data-title="<%=item["Title"] %>" data-showindex="<%=item["ShowIndex"] %>" data-summary="<%=item["Summary"] %>" data-id="<%=item["ID"]%>">编辑</a>
-                                <a class="inpbbut1 btn_del" data-id="<%=item["ID"]%>">删除</a>
-                            </td>
-                            <td><%=item["Title"] %></td>
-                            <td><%=item["ShowIndex"] %></td>
-                            <td>
-                                <%=item["Summary"] %>
-                            </td>
-                        </tr>
-                        <%   }
-                            }
-                            else
-                            {
-                        %><tr>
-                            <td>咱无产品分类</td>
-                        </tr>
-                        <%
-                            } 
-                        %>
-                    </tbody>
-                </table>
-            </div>
+    <div id="dlg" class="d-hide-edit">
+        <div class="d-item">
+            <span class="sp100">标题：</span>
+            <input type="text" class="txt_title" />
         </div>
-    </form>--%>
+        <div class="d-item">
+            <span class="sp100">排序：</span>
+            <input type="text" class="txt_showindex" value="0" />
+        </div>
+        <div class="d-item">
+            <span class="sp100">简介：</span>
+            <textarea class="txt_summary" style="width: 400px; height: 100px;"></textarea>
+        </div>
+    </div>
 </body>
 </html>
