@@ -40,7 +40,7 @@
                                 /*保存*/
                                 $.ajax("/admin/action/actionadmin.aspx", {
                                     data: {
-                                        action: "adduser", 
+                                        action: "adduser",
                                         loginname: loginname,
                                         nickname: nickname,
                                         role: role,

@@ -16,20 +16,8 @@ public partial class admin_user_usermanager : PageBase
             int page = Convert.ToInt32(Request["page"] ?? "1");
             int pagesize = Convert.ToInt32(Request["rows"] ?? "1");
             int total = 0;
-            DataTable dt = WSCommon.GetUserList(page, pagesize, "", out total);
-            Response.Clear();
-            Response.ContentType = "application/json";
-            // 返回到前台的值必须按照如下的格式包括 total and rows 
-            string json = Newtonsoft.Json.JsonConvert.SerializeObject(new DataGridJson() { total = total, rows = dt });
-            Response.Write(json);
-            Response.End();
-
+            DataTable dt = WSCommon.GetUserList(page, pagesize, "", out total); 
+            ResponseJson(new DataGridJson() { total = total, rows = dt });
         }
-    }
-
-    public class DataGridJson
-    {
-        public int total { get; set; }
-        public DataTable rows { get; set; }
     }
 }

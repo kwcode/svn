@@ -168,10 +168,21 @@ public class WSCommon
     /// </summary>
     /// <param name="pagesize"></param>
     /// <returns></returns>
-    public static DataTable GetProduct(int pagesize)
+    public static DataTable GetProduct(int pageindex, int pagesize, string keywords, out int total)
     {
-        DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocduct", new object[] { pagesize });
+        Hashtable ht = new Hashtable();
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocduct", out ht, new object[] { pageindex, pagesize, keywords, 0 });
+        if (ht.Count > 0)
+        {
+            total = Convert.ToInt32(ht["@Total"]);
+        }
+        else
+        {
+            total = 0;
+        }
         return dt;
+        //DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocduct", new object[] { pagesize });
+        //return dt;
     }
     public static int SaveProduct(int id, string title, string summary, int showindex, int userid)
     {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -57,4 +58,28 @@ public class PageBase : System.Web.UI.Page
         }
     }
     #endregion
+    /// <summary>
+    /// 返回json格式数据
+    /// 
+    /// </summary>
+    /// <param name="obj">
+    /// 
+    /// 表格：new DataGridJson() { total = total, rows = dt }
+    /// 其他任意
+    /// </param>
+    public void ResponseJson(object obj)
+    {
+        Response.Clear();
+        Response.ContentType = "application/json";
+        // 返回到前台的值必须按照如下的格式包括 total and rows 
+        string json = Newtonsoft.Json.JsonConvert.SerializeObject(obj);
+        Response.Write(json);
+        Response.End();
+    }
+}
+
+public class DataGridJson
+{
+    public int total { get; set; }
+    public DataTable rows { get; set; }
 }
