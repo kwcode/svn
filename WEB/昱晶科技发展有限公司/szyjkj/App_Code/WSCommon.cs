@@ -137,14 +137,28 @@ public class WSCommon
     /// </summary>
     /// <param name="pagesize"></param>
     /// <returns></returns>
-    public static DataTable GetBanner(int pagesize)
+    public static DataTable GetBanner(int pageindex, int pagesize, string keywords, out int total)
     {
-        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_getbannner", new object[] { pagesize });
+        Hashtable ht = new Hashtable();
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_getbannner", out ht, new object[] { pageindex, pagesize, keywords, 0 });
+        if (ht.Count > 0)
+        {
+            total = Convert.ToInt32(ht["@Total"]);
+        }
+        else
+        {
+            total = 0;
+        }
         return dt;
     }
-    public static int AddBanner(string title, string imgaddress, int showindex)
+    public static DataTable GetBannerByID(int id)
     {
-        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_addbannner", new object[] { title, imgaddress, showindex });
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_GetBannerByID", new object[] { id });
+        return dt;
+    }
+    public static int AddBanner(string title, string imgaddress, int showindex, string url)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_addbannner", new object[] { title, imgaddress, showindex, url });
         if (dt == null || dt.Rows.Count == 0)
         {
             return 0;
@@ -154,12 +168,30 @@ public class WSCommon
             return 1;
         }
     }
-    public static int UpdateBanner(int id, string title, string imgaddress, int showindex)
+    public static int UpdateBanner(int id, string title, string imgaddress, int showindex, string url)
     {
-        return DataConnect.Data.ExecuteSP("p_comm_updatebannner", new object[] { id, title, imgaddress, showindex });
-
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_updatebannner", new object[] { id, title, imgaddress, showindex, url });
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
     }
-
+    public static int DelBanner(int id)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_DelBanner", id);
+        if (dt == null || dt.Rows.Count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1;
+        }
+    }
     #endregion
 
     #region 产品图片==============================================
@@ -183,6 +215,11 @@ public class WSCommon
         return dt;
         //DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocduct", new object[] { pagesize });
         //return dt;
+    }
+    public static DataTable GetProductClassByID(int id)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Pro_GetProductClassByID", new object[] { id });
+        return dt;
     }
     public static int SaveProduct(int id, string title, string summary, int showindex, int userid)
     {
@@ -395,4 +432,8 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_updateuser", new object[] { userid, loginname, password, role, nickname });
         return dt.Rows.Count;
     }
+
+
+
+   
 }

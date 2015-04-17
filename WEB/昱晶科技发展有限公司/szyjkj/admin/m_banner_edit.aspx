@@ -17,7 +17,8 @@
     <script>
         $(function () {
             $.tw.loadimg();
-
+            init();
+            var id = '<%=ID%>';
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
                 var img = encodeURIComponent($("#img-adres").attr("src")); //$.tw.getimgaddress();
@@ -25,16 +26,19 @@
                 // alert(imgtype + img);
                 var title = $("#txt_title").val();
                 var showindex = $("#txt_showindex").val();
+                var url = $("#txt_url").val();
                 //saverebanner
                 $.ajax({
                     url: "/admin/action/actionadmin.aspx",
                     type: "POST",
                     data: {
                         action: "saverebanner",
+                        id: id,
                         img: img,
                         imgtype: imgtype,
                         title: title,
-                        showindex: showindex
+                        showindex: showindex,
+                        url: url
                     }, dataType: "json",
                     success: function (result) {
                         if (result.res > 0) {
@@ -51,6 +55,14 @@
             });
         });
 
+        var init = function () {
+            if (typeof (jsonbanner) != 'undefined' && jsonbanner.length > 0) {
+                $(".txt_title").val(jsonbanner[0].Title);
+                $(".txt_url").val(jsonbanner[0].Url);
+                $(".txt_showindex").val(jsonbanner[0].ShowIndex);
+                $.tw.loadimg(jsonbanner[0].ImgUrl);
+            }
+        }
     </script>
 </head>
 <body>
@@ -59,6 +71,10 @@
             <div class="e-item">
                 <span class="sp150">标题：</span>
                 <input type="text" maxlength="200" class="txt_title" runat="server" id="txt_title" />
+            </div>
+            <div class="e-item">
+                <span class="sp150">URL：</span>
+                <input type="text" maxlength="200" value="hrrp://" class="txt_url" runat="server" id="txt_url" />
             </div>
             <div class="e-item">
                 <span class="sp150">排序：</span>

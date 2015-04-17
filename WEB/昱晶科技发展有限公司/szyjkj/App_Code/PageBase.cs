@@ -44,7 +44,10 @@ public class PageBase : System.Web.UI.Page
     {
         Response.Clear();
         string url = "http://" + Request.Url.Host + "/admin/login.aspx";
-        Response.Redirect(url, true);
+        Response.Write("<script>parent.location='" + url + "';</script>");
+        Response.End();
+        //Response.Clear(); 
+        //Response.Redirect(url, true);
         //  Response.End();
     }
     #region 用户登录相关

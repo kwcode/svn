@@ -17,7 +17,8 @@ public partial class product : System.Web.UI.Page
         int.TryParse(Request["page"] ?? "0", out page);
         int pid = 0;
         int.TryParse(Request["pid"] ?? "0", out pid);
-        DtProductType = WSCommon.GetProduct(100);
+        int total = 0;
+        DtProductType = WSCommon.GetProduct(1, 100, "", out  total);
         DtproductImgs = WSCommon.GetProductImgs(pid, 20);
     }
 }

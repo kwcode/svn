@@ -12,6 +12,7 @@ public partial class master_uc_uc_banner : System.Web.UI.UserControl
     public DataTable DtBanner { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
-        DtBanner = WSCommon.GetBanner(10);
+        int total=0;
+        DtBanner = WSCommon.GetBanner(1, 10, "", out total);
     }
 }

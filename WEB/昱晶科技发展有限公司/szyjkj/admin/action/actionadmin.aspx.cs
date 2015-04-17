@@ -53,12 +53,24 @@ public partial class admin_action_actionadmin : AjaxBase
             case "deluser":
                 deluser();
                 break;
-
-
+            case "delbanner":
+                delbanner();
+                break;
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void delbanner()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        res = WSCommon.DelBanner(id);
+        if (res > 0)
+            desc = "删除成功！";
+        else
+            desc = "删除失败！";
     }
 
     private void upduser()
@@ -221,6 +233,7 @@ public partial class admin_action_actionadmin : AjaxBase
         int imgtype = 0;
         int.TryParse(Request["imgtype"] ?? "0", out imgtype);
         string title = Request["title"] ?? "";
+        string url = Request["url"] ?? "";
         int showindex = 0;
         int.TryParse(Request["showindex"] ?? "0", out showindex);
         string imgpath = "/images/nophoto1.jpg";
@@ -250,7 +263,7 @@ public partial class admin_action_actionadmin : AjaxBase
         }
         if (id > 0)
         {
-            res = WSCommon.UpdateBanner(id, title, imgpath, showindex);
+            res = WSCommon.UpdateBanner(id, title, imgpath, showindex, url);
             if (res > 0)
                 desc = "修改成功！";
             else
@@ -258,7 +271,7 @@ public partial class admin_action_actionadmin : AjaxBase
         }
         else
         {
-            res = WSCommon.AddBanner(title, imgpath, showindex);
+            res = WSCommon.AddBanner(title, imgpath, showindex, url);
             if (res > 0)
                 desc = "新增成功！";
             else

@@ -17,16 +17,14 @@
         $(function () {
             $.tw.loadimg();
             var id = '<%=ID%>';
-            init();
-
-
+            init(); 
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
                 var img = $.tw.getimgaddress();
                 var imgtype = $.tw.getimgtype();
                 var title = $("#txt_title").val();
                 var showindex = $("#txt_showindex").val();
-                var proid = $(".sel_protype").val();
+                var proid = $(".txt_protype").data("pid");
                 $.ajax({
                     url: "/admin/action/actionadmin.aspx",
                     type: "POST",
@@ -42,7 +40,7 @@
                     success: function (result) {
                         if (result.res > 0) {
                             alert(result.desc);
-                            location.href = "/admin/products/m_procductimg_index.aspx";
+                            location.href = "/admin/products/m_procductimg_index.aspx?pid=<%=Pid%>";
                             layer.close(_layer);
                         }
                         else {
@@ -54,20 +52,11 @@
             });
         });
         var init = function () {
-
-
-            if (typeof (jsonproduct) != 'undefined' && jsonproduct.length > 0) {
-                var html = "";
-                for (var i = 0; i < jsonproduct.length; i++) {
-                    html += '<option value="' + jsonproduct[i].ID + '">' + jsonproduct[i].Title + '</option>';
-                }
-                $(".sel_protype").html(html);
-            }
-
-
             if (typeof (jsonprocimg) != 'undefined' && jsonprocimg.length > 0) {
                 $(".txt_title").val(jsonprocimg[0].Title);
-                $(".sel_protype").val(jsonprocimg[0].PID);
+                //$(".sel_protype").val(jsonprocimg[0].PID);
+                //$(".txt_protype").data("pid", jsonprocimg[0].PID);
+                //$(".txt_protype").val(jsonprocimg[0].PID);
                 $(".txt_showindex").val(jsonprocimg[0].ShowIndex);
                 $.tw.loadimg(jsonprocimg[0].ImgUrl);
             }
@@ -84,8 +73,7 @@
             </div>
             <div class="e-item">
                 <span class="sp150">所属于分类：</span>
-                <select class="sel_protype">
-                </select>
+                <input type="text" maxlength="200" value="<%=PName%>" readonly="true" style="border: 0px; border-bottom: 1px solid #f00" class="txt_protype" data-pid="<%=Pid%>" id="txt_protype" />
             </div>
             <div class="e-item">
                 <span class="sp150">排序：</span>

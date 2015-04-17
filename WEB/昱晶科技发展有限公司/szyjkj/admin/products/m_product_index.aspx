@@ -80,7 +80,9 @@
                     }).done(function (result) {
                         if (result.res > 0) {
                             //删除成功！
-                            $('#dg').datagrid('deleteRow', index); //删除一行 
+                            //$('#dg').datagrid('deleteRow', index); //删除一行 
+                            $('#dg').datagrid('reload');//刷新
+                            $('#dlg').dialog('close');
                         }
                         $.messager.alert("提示", result.desc);
                     });

@@ -16,13 +16,35 @@
         .inputbtns:hover { border: 1px #D4D4D4 solid; }
     </style>
     <script>
+        var pid = '<%=ID%>';
         //自定义一列
         function formatOper(val, row, index) {
-            var btn = ' <a href="#" class="icon-edit inputbtns"  onclick="edit(' + index + ')"title="编辑"></a>';
+            var btn = ' <a href="/admin/products/m_productimg_edit.aspx?pid=' + pid + '&id=' + row.ID + '" class="icon-edit inputbtns"   title="编辑"></a>';
             var btn2 = ' <a href="#" class="icon-remove inputbtns"  onclick="del(' + index + ')" title="删除"></a>';
-            var btn3 = '<a href="/admin/products/m_procductimg_index.aspx"  class="icon-tip inputbtns"  title="产品详细"></a>';
-            var btns = btn + btn2 + btn3;
+            var btns = btn + btn2;
             return btns;
+        } 
+        function del(index) {
+            $.messager.confirm("提示", "是否删除?", function (b) {
+                if (b) {
+                    var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
+                    var id = row.ID;
+                    $.ajax("/admin/action/actionadmin.aspx", {
+                        data: {
+                            action: "delproductimg",
+                            id: id
+                        }
+                    }).done(function (result) {
+                        if (result.res > 0) {
+                            //删除成功！
+                            //$('#dg').datagrid('deleteRow', index); //删除一行 
+                            $('#dg').datagrid('reload');//刷新
+                            $('#dlg').dialog('close');
+                        }
+                        $.messager.alert("提示", result.desc);
+                    });
+                }
+            });
         }
         $(function () {
             //初始化
@@ -33,11 +55,13 @@
                 handler: function () {
                     /*修改*/
                     // op();
+                    //
+                    window.location.href = "/admin/products/m_productimg_edit.aspx?pid=" + pid;
                     /*修改END*/
                 }
             }];
             //表格数据
-            var pid = '<%=ID%>';
+           
             $('#dg').datagrid({
                 //checkbox: true,//是否出现复选框
                 singleSelect: true,//是否单选
@@ -62,23 +86,7 @@
             });
 
             /****************************/
-            $(".btn_del").click(function () {
-                if (!confirm("是否删除？！")) {
-                    return;
-                }
-                var _layer = $.layer({ type: 3 });
-                var id = $(this).data().id;
-                $.ajax("/admin/action/actionadmin.aspx", {
-                    data: {
-                        action: "delproductimg",
-                        id: id
-                    }
-                }).done(function (result) {
-                    location.reload();
-                    alert(result.desc);
-                    layer.close(_layer);
-                });
-            });
+           
         });
         function formatImgurl(val, row, index) {
             var img = ' <img src="' + row.ImgUrl + '" style="width: 30px; height: 30px;" />';

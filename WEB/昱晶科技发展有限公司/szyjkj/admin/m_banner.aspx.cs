@@ -11,6 +11,14 @@ public partial class admin_m_banner : PageBase
     public DataTable DtBanner { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
-        DtBanner = WSCommon.GetBanner(20);
+        if (Request.HttpMethod == "POST")
+        { 
+            int page = Convert.ToInt32(Request["page"] ?? "1");
+            int pagesize = Convert.ToInt32(Request["rows"] ?? "1");
+            string keywords = Request["keywords"] ?? "";
+            int total = 0;
+            DataTable dt = WSCommon.GetBanner( page, pagesize, keywords, out total);
+            ResponseJson(new DataGridJson() { total = total, rows = dt });
+        }
     }
 }
