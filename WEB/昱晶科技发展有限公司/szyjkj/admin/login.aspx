@@ -163,7 +163,15 @@
                 });
 
             });
+           
         });
+        function KeyDown() {
+            if (event.keyCode == 13) {
+                event.returnValue = false;
+                event.cancel = true;
+                $("#btn_login").click();
+            }
+        }
     </script>
 </head>
 <body>
@@ -181,13 +189,13 @@
                         <label for="username" class="uname" data-icon="u">
                             用户
                         </label>
-                        <input id="username" name="username" type="text" placeholder="登录名" />
+                        <input id="username"   onkeydown="KeyDown()" name="username" type="text" placeholder="登录名" />
                     </p>
                     <p>
                         <label for="password" class="youpasswd" data-icon="p">
                             密码
                         </label>
-                        <input id="password" name="password" type="password" placeholder="密码" />
+                        <input id="password" onkeydown="KeyDown()" name="password" type="password" placeholder="密码" />
                     </p>
                     <p class="keeplogin">
                         <input type="checkbox" style="margin-top: 5px;" name="loginkeeping" id="loginkeeping"
