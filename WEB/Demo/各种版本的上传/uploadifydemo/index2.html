@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link href="uploadify/uploadify.css" rel="stylesheet" />
+    <script src="uploadify/jquery.uploadify.min.js"></script>
+    <script>
+        $(function () {
+            $("#file_upload").uploadify({
+                'auto': false,//设置为true当选择文件后就直接上传了，为false需要点击上传按钮才上传
+                'swf': '/uploadify/uploadify.swf',
+                'uploader': 'UploadHandler.aspx',
+                'onCancel': function (file) {
+                    alert('The file ' + file.name + ' was cancelled.');
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <input type="file" name="file_upload" id="file_upload" />
+    <a href="javascript:$('#file_upload').uploadify('upload')">Upload Files</a>
+</body>
+</html>
