@@ -1,4 +1,4 @@
-﻿body { background-image: url('/images/bgjianjie.png'); margin: 0; padding: 0; font-size: 12px; font-family: "Microsoft Yahei","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,Helvetica,STHeiti,"Hiragino Sans GB"; color: #333; }
+﻿body { /*background-image: url('/images/bgjianjie.png');*/ margin: 0; padding: 0; font-size: 12px; font-family: "Microsoft Yahei","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,Helvetica,STHeiti,"Hiragino Sans GB"; color: #333; }
 .clearfix:after { content: "."; display: block; visibility: hidden; clear: both; height: 0; font-size: 0; }
 .d-page { width: 1200px; margin: 0 auto; }
 .d-container-box { box-shadow: 0px 0px 7px rgba(0,0,0,0.3); /*background: #fff; border-radius: 5px; padding-top: 20px; padding-left: 20px; padding-right: 20px;*/ }
