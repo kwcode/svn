@@ -36,7 +36,7 @@
                     var banner = {};
                     banner.id = jsonbanner[i].ID;
                     banner.client = jsonbanner[i].Title;
-                    banner.desc = jsonbanner[i].Title;
+                    banner.desc = "";//jsonbanner[i].Title;
                     slidata.push(banner);
                 }
             }
@@ -60,7 +60,7 @@
                                   foreach (System.Data.DataRow item in DtBanner.Rows)
                                   {
                             %>
-                            <a href="<%=item["URL"]%>"  style="width:1200px;" target="_blank">
+                            <a href="<%=item["URL"]%>" style="width: 1200px;" target="_blank">
                                 <img id="<%=item["ID"]%>" style="" src="<%=item["ImgAddress"]%>" class="slide" title="<%=item["Title"]%>" alt="<%=item["Title"]%>" /></a>
                             <%
                                   }
