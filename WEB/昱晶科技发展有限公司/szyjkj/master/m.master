@@ -3,6 +3,8 @@
 <%@ Register Src="~/master/uc/uc_header.ascx" TagName="header" TagPrefix="uc1" %>
 <%@ Register Src="~/master/uc/uc_footer.ascx" TagName="footer" TagPrefix="uc1" %>
 <%@ Register Src="~/master/uc/uc_banner.ascx" TagPrefix="uc1" TagName="uc_banner" %>
+<%@ Register Src="~/master/uc/n_uc_banner.ascx" TagPrefix="uc1" TagName="n_uc_banner" %>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -19,7 +21,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <uc1:uc_banner runat="server" ID="uc_banner" />
+   <%-- <uc1:uc_banner runat="server" ID="uc_banner" />--%>
+    <uc1:n_uc_banner runat="server" ID="n_uc_banner" />
     <uc1:header ID="Header1" runat="server" />
     <div class="d-page clearfix">
         <div class="d-container-box  ">

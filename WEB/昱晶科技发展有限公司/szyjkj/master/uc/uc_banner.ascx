@@ -4,7 +4,7 @@
     <style>
         .banner-no { margin: 0; padding: 0; text-align: center; }
         ul li { list-style: none; }
-        .banner { width: 100%; position: relative; width: 1200px; margin: 0 auto;}
+        .banner { width: 100%; position: relative; width: 1200px; margin: 0 auto; }
         .banner-list { position: relative; width: 100%; height: 300px; overflow: hidden; }
         .banner-no { position: absolute; }
 
