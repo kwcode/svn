@@ -74,7 +74,7 @@
             </div>
             <div class="e-item">
                 <span class="sp150">URL：</span>
-                <input type="text" maxlength="200" value="hrrp://" class="txt_url" runat="server" id="txt_url" />
+                <input type="text" maxlength="200" value="http://" class="txt_url" runat="server" id="txt_url" />
             </div>
             <div class="e-item">
                 <span class="sp150">排序：</span>
