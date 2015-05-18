@@ -4,11 +4,7 @@
 <%@ Register Src="~/master/uc/uc_banner.ascx" TagName="banner" TagPrefix="uc1" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <style>
-        /*.product { margin-top: 10px; }
-        .product ul { margin-left: -17px; }
-        .product ul li { float: left; margin-left: 17px; }
-        .product ul li img { width: 378px; height: 300px; border-radius: 10px; padding: 5px; }
-        .pro-title { padding: 10px; border-bottom: 1px solid #0094ff; text-align: left; }*/
+        
         .kw { width: 1200px; margin-bottom: 5px; }
         .kw-item1 { float: left; width: 660px; height: 180px; border: 1px solid #808080; overflow: hidden; }
         .kw-item2 { float: left; width: 528px; height: 180px; margin-left: 8px; border: 1px solid rgb(128, 128, 128); overflow: hidden; }
@@ -16,10 +12,9 @@
         .kw-item-c { height: 150px; padding: 5px; }
         .kw-item-proc { width: 1220px; margin-left: -20px; }
         .kw-item-proc ul { }
-        .kw-item-proc ul li { float: left; margin-left: 33px; margin-top: 10px; overflow: hidden; }
+        .kw-item-proc ul li { float: left; margin-left: 36px; margin-top: 10px; overflow: hidden; }
         .kw-item-proc ul li img { transition: All 0.4s ease-in-out; -webkit-transition: All 0.4s ease-in-out; -moz-transition: All 0.4s ease-in-out; -o-transition: All 0.4s ease-in-out; width: 365px; height: 300px; }
-        .kw-item-proc ul li img:hover { transform: scale(1.1); -webkit-transform: scale(1.1); -moz-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
-        /*.kw-item-proc a img:hover { background: #fff url(about:blank); opacity: 0.8; filter: alpha(opacity=80); }*/
+        .kw-item-proc ul li img:hover { transform: scale(1.1); -webkit-transform: scale(1.1); -moz-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); } 
     </style>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="mbody">
