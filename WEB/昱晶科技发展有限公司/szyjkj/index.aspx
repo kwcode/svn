@@ -14,11 +14,12 @@
         .kw-item2 { float: left; width: 528px; height: 180px; margin-left: 8px; border: 1px solid rgb(128, 128, 128); overflow: hidden; }
         .kw-item-title { background-image: url('/images/news_bg1.gif'); background-repeat: no-repeat; height: 28px; line-height: 28px; padding-left: 31px; }
         .kw-item-c { height: 150px; padding: 5px; }
-        .kw-item-proc { width: 1200px; }
-        .kw-item-proc ul { padding: 5px; }
-        .kw-item-proc ul li { float: left; margin-left: 20px; }
-        .kw-item-proc ul li:hover { box-shadow: 0px 0px 7px rgba(0,0,0,0.3); border: 1px solid #ff6a00; }
-        .kw-item-proc ul li img { width: 365px; height: 300px; border-radius: 10px; padding: 2px; }
+        .kw-item-proc { width: 1220px; margin-left: -20px; }
+        .kw-item-proc ul { }
+        .kw-item-proc ul li { float: left; margin-left: 33px; margin-top: 10px; overflow: hidden; }
+        .kw-item-proc ul li img { transition: All 0.4s ease-in-out; -webkit-transition: All 0.4s ease-in-out; -moz-transition: All 0.4s ease-in-out; -o-transition: All 0.4s ease-in-out; width: 365px; height: 300px; }
+        .kw-item-proc ul li img:hover { transform: scale(1.1); -webkit-transform: scale(1.1); -moz-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
+        /*.kw-item-proc a img:hover { background: #fff url(about:blank); opacity: 0.8; filter: alpha(opacity=80); }*/
     </style>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="mbody">
@@ -40,7 +41,7 @@
                           foreach (System.Data.DataRow item in DtProductImgs.Rows)
                           {
                     %><li><a href="/productdesc.aspx?id=<%=item["ID"]%>">
-                        <img src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="<%=item["Title"] %>-昱晶科技" title="<%=item["Title"] %>"></a></li>
+                        <img src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="<%=item["Title"] %>-昱晶科技" title="<%=item["Title"] %>" /></a></li>
                     <%
                           }
                       }
@@ -49,12 +50,6 @@
                     %><li>暂时无产品</li>
                     <%
                       } %>
-                    <%--<li><a>
-                    <img src="images/kk.jpg" /></a></li>
-                <li><a>
-                    <img src="images/kk.jpg" /></a></li>
-                <li><a>
-                    <img src="images/kk.jpg" /></a></li>--%>
                 </ul>
             </div>
         </div>

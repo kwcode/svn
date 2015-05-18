@@ -14,6 +14,6 @@ public partial class index : System.Web.UI.Page
     {
         int total = 0;
         dtNews = WSCommon.GetNews(1, 10, out total);
-        DtProductImgs = WSCommon.GetProductImgs(0, 3);
+        DtProductImgs = WSCommon.GetProductImgs(0, 6);
     }
 }
