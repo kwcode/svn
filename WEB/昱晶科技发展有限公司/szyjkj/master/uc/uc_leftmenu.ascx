@@ -1,12 +1,11 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="uc_leftmenu.ascx.cs" Inherits="master_uc_uc_leftmenu" %>
-<div style="width: 980px; margin: 0 auto;">
-    <link href="/style/style.css" rel="stylesheet" />
-    <script src="/js/jquery-1.8.3.min.js"></script>
+ 
+<div>
     <style>
         /*li { display: list-item; text-align: -webkit-match-parent; }*/
         a { text-decoration: none; cursor: pointer; }
         .fl { float: left; }
-        .lfbox { width: 237px; margin-top: 10px; }
+        .lfbox { width: 237px; }
         .category { border: 1px solid #eee; }
             .category li a.active { background-color: #45a4fc!important; color: #fff!important; }
             .category a { display: block; width: 235px; height: 40px; line-height: 40px; color: #333; font-size: 14px; text-decoration: none; color: #333; }
@@ -45,13 +44,18 @@
                 if (r != null) return unescape(r[2]);
                 return null;
             }
-            var selectmenu = GetQueryString("mu");
+            var selectmenu = GetQueryString("pid");
             if (selectmenu == null) {
                 $(".category").find("a").eq(0).addClass("active");
             }
             else {
-                $(".category").find("a").eq(selectmenu).addClass("active");
-            }
+                
+                $(".category").find("a").each(function (index) {
+                    if ($(this).data("id") == selectmenu) {
+                        $(this).addClass("active");
+                    }
+                }); 
+            } 
         });
     </script>
     <div class="lfbox fl">
@@ -62,7 +66,7 @@
                   {
             %>
             <li>
-                <a href="<%=item.Url%>">
+                <a href="<%=item.Url%>" data-id="<%=item.ID%>">
                     <span class="category-<%=item.Ico%> category-icon"></span>
                     <span class="category-arrow"></span>
                     <span><%=item.Name%></span>
