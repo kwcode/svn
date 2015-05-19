@@ -6,8 +6,8 @@
         * { margin: 0; padding: 0; }
         /*html { height: 100%; }
         body { height: 100%; color: #a4a4a4; cursor: default; font-size: 11px; line-height: 16px; text-align: center; background-color: #404040; background-position: 50% 0; background-repeat: no-repeat; font-family: Tahoma, sans-serif; }*/
-        a:link, a:visited { color: #fff; text-decoration: none; }
-        a img { border: 0; }
+        .banner-list a:link, a:visited { color: #fff; text-decoration: none; }
+        banner-list a img { border: 0; }
         div.wrap { width: 1200px; margin: 0 auto; text-align: left; }
         div#top div#nav { float: left; clear: both; width: 1200px; height: 52px; margin: 22px 0 0; }
         div#top div#nav ul { float: left; width: 1000px; height: 52px; list-style-type: none; }
