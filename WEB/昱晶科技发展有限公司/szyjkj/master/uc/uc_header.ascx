@@ -68,11 +68,12 @@
     .move-bg { display: none; position: absolute; left: 0; top: 0; width: 120px; height: 40px; background: #4D0B33; z-index: 0; }
 </style>
 <div class="d-header clearfix">
+    <%--   <script src="../../js/jquery-1.8.3.min.js"></script>--%>
     <!-- 代码 开始 -->
     <div class="wraper">
         <div class="nav">
             <ul>
-                <li class="nav-item cur "><a href="/index.aspx">网站首页</a>  </li>
+                <li class="nav-item  "><a href="/index.aspx">网站首页</a>  </li>
                 <li class="nav-item"><a href="/aboutme.aspx">关于我们</a></li>
                 <li class="nav-item"><a href="/product.aspx">主营业务</a></li>
                 <li class="nav-item"><a href="/news.aspx">相关新闻</a></li>
@@ -85,6 +86,22 @@
     </div>
     <script>
         $(function () {
+            var pathname = window.location.pathname;
+            $(".d-header").find(".nav").find("li").removeClass("cur");//移除所有的
+            var b = false;
+            $(".d-header").find(".nav").find("li").each(function (index) {
+                var $that = $(this);
+                var href = $that.find("a").attr("href");
+                if (href == pathname) {
+                    $that.addClass("cur");
+                    b = true;
+                }
+            })
+            if (!b) {
+                //没有选择 默认第一个
+                $(".d-header").find(".nav").find("li").eq(0).addClass("cur");
+            }
+
             $(".nav").movebg({ width: 120/*滑块的大小*/, extra: 40/*额外反弹的距离*/, speed: 300/*滑块移动的速度*/, rebound_speed: 400/*滑块反弹的速度*/ });
         })
     </script>
