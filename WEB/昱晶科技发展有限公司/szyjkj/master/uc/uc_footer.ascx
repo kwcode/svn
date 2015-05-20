@@ -1,10 +1,16 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="uc_footer.ascx.cs" Inherits="master_uc_uc_footer" %>
-
+<style>
+    .d-container-box { }
+    .d-footer-box { margin-top: 2px; width: 1200px; margin: 0 auto; }
+    .d-footer { position: relative; text-align: center; padding: 20px 0 20px 20px; }
+    .footer_green { position: relative; height: 5px; background: #5db40d; }
+    .footer_gary { border-top: 2px solid #aaa;   margin-top: 5px;}
+</style>
 <div class="d-footer-box  clearfix">
-    <div class="footer_green"></div>
-    <div class="d-footer"> 
+    <div class="footer_gary"></div>
+    <div class="d-footer">
         <div>
-            版权所有 Copyright© 2013 深圳市昱晶科技发展有限公司, All Rights Reserved
+            版权所有 Copyright© 2015 深圳市昱晶科技发展有限公司, All Rights Reserved
         </div>
         <div>
             地址：深圳市宝安区西乡固戍地铁站A口前飞腾商务中心B203 电话：0755-618923067   13510768395 联系人：覃先生

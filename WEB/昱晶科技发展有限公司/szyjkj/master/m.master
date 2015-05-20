@@ -28,7 +28,7 @@
     <p id="back-to-top">
         <a href="#top" title="回到顶部"></a>
     </p>
-    <uc1:n_uc_header runat="server" ID="n_uc_header" />
+    <uc1:n_uc_header runat="server" ID="n_uc_header" /> 
     <%-- <uc1:uc_banner runat="server" ID="uc_banner" />--%>
     <uc1:n_uc_banner runat="server" ID="n_uc_banner" />
     <%--<uc1:header ID="Header1" runat="server" />--%>
@@ -39,10 +39,7 @@
         </div>
     </div>
     <uc1:footer ID="Footer1" runat="server" />
-
-    <div class="bdsharebuttonbox" data-tag="share_1">
-        <a class="bds_more" data-cmd="more">我要分享</a>
-    </div>
+     
     <script type="text/javascript">
         window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "slide": { "type": "slide", "bdImg": "2", "bdPos": "right", "bdTop": "165" }, "share": { "bdSize": 16 }, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" }, "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"] } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
     </script>

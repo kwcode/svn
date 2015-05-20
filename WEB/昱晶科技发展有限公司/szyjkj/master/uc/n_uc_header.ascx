@@ -119,21 +119,21 @@
     });
 </script>
 <style>
-    .d-header { width: 100%; position: fixed; z-index: 1000; background: #C70757; height: 40px; line-height: 40px; }
-    .wraper { width: 1200px; margin: 0 auto; }
+    .d-header { width: 100%; position: fixed; z-index: 1000; background: #C70757; height: 40px; line-height: 40px;   }
+    .wraper { width: 900px; margin: 0 auto; }
     .nav { position: relative; width: 100%; height: 40px; background: #C70757; overflow: hidden; }
     .nav-item { position: relative; float: left; width: 120px; height: 40px; line-height: 40px; text-align: center; font-size: 14px; z-index: 1; }
-    .nav-item a { display: block; height: 40px; color: #fff; }
-    .nav-item a:hover { color: #fff; }
+        .nav-item a { display: block; height: 40px; color: #fff; }
+            .nav-item a:hover { color: #fff; }
     .move-bg { display: none; position: absolute; left: 0; top: 0; width: 120px; height: 40px; background: #4D0B33; z-index: 0; }
 </style>
 <div class="d-header clearfix">
     <!-- 代码 开始 -->
-    <div style="float: left; margin-left: 100px;">
+    <div style="float: left; margin-left: 50px;">
         <a style="cursor: pointer; color: white;" id="btn_sethome">设置为首页 |</a>
         <a style="cursor: pointer; color: white;" id="btn_addfavorite">加入收藏夹 </a>
     </div>
-    <div style="float: right; margin-right: 100px;"><a style="cursor: pointer; color: white;" href="tencent://message/?uin=176393068&Site=www.szyjkj.com&Menu=yes" target="_blank">QQ在线联系</a></div>
+    <div style="float: right; margin-right: 50px;"><a style="cursor: pointer; color: white;" href="tencent://message/?uin=176393068&Site=www.szyjkj.com&Menu=yes" target="_blank">QQ在线联系</a></div>
     <div class="wraper">
         <div class="nav">
             <ul>
