@@ -4,25 +4,23 @@
 <%@ Register Src="~/master/uc/uc_banner.ascx" TagName="banner" TagPrefix="uc1" %>
 <asp:Content ContentPlaceHolderID="head" runat="server">
     <style>
-        
         .kw { width: 1200px; margin-bottom: 5px; }
-        .kw-item1 { float: left; width: 660px; height: 180px; border: 1px solid #808080; overflow: hidden; }
-        .kw-item2 { float: left; width: 528px; height: 180px; margin-left: 8px; border: 1px solid rgb(128, 128, 128); overflow: hidden; }
+        .kw-item1 { float: left; width: 660px; height: 180px; border: 1px solid #ccc; overflow: hidden; }
+        .kw-item2 { float: left; width: 528px; height: 180px; margin-left: 8px; border: 1px solid #ccc; overflow: hidden; }
         .kw-item-title { background-image: url('/images/news_bg1.gif'); background-repeat: no-repeat; height: 28px; line-height: 28px; padding-left: 31px; }
         .kw-item-c { height: 150px; padding: 5px; }
-        .kw-item-proc { width: 1220px; margin-left: -20px; }
-        .kw-item-proc ul { }
-        .kw-item-proc ul li { float: left; margin-left: 36px; margin-top: 10px; overflow: hidden; }
-        .kw-item-proc ul li img { transition: All 0.4s ease-in-out; -webkit-transition: All 0.4s ease-in-out; -moz-transition: All 0.4s ease-in-out; -o-transition: All 0.4s ease-in-out; width: 365px; height: 300px; }
-        .kw-item-proc ul li img:hover { transform: scale(1.1); -webkit-transform: scale(1.1); -moz-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); } 
+        .kw-item-proc { width: 1220px; }
+            .kw-item-proc ul { }
+                .kw-item-proc ul li { float: left; overflow: hidden; border: 1px solid #ccc; padding: 10px; margin-top: 10px; margin-right: 19px; background: #fff; border-radius: 5px 5px 0 0; text-align: center; width: 264px; }
+
+                    .kw-item-proc ul li img { transition: All 0.4s ease-in-out; -webkit-transition: All 0.4s ease-in-out; -moz-transition: All 0.4s ease-in-out; -o-transition: All 0.4s ease-in-out; width: 250px; height: 250px; }
+                        .kw-item-proc ul li img:hover { transform: scale(1.1); -webkit-transform: scale(1.1); -moz-transform: scale(1.1); -o-transform: scale(1.1); -ms-transform: scale(1.1); }
+                    .kw-item-proc ul li a:hover { color: #f93; }
+                    .kw-item-proc ul li h1 { margin: 12px 0; padding: 0; font-size: 14px; font-weight: 100; overflow: hidden; }
     </style>
 </asp:Content>
 <asp:Content runat="server" ContentPlaceHolderID="mbody">
     <div class="d-content">
-        <%--   <div style="text-align: center;">
-            <img src="images/banae.jpg" style="width: 940px; border-radius: 5px;" alt="昱晶科技" />
-            <uc1:banner runat="server" />
-        </div>--%>
         <!--产品图片-->
         <div class="kw clearfix">
             <div class="kw-item-title">
@@ -36,7 +34,12 @@
                           foreach (System.Data.DataRow item in DtProductImgs.Rows)
                           {
                     %><li><a href="/productdesc.aspx?id=<%=item["ID"]%>">
-                        <img src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="<%=item["Title"] %>-昱晶科技" title="<%=item["Title"] %>" /></a></li>
+                        <img src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="<%=item["Title"] %>-昱晶科技" title="<%=item["Title"] %>" /></a>
+                        <a href="/productdesc.aspx?id=<%=item["ID"]%>" target="_blank" title="<%=item["Title"]%>">
+                            <h1><%=item["Title"]%></h1>
+                        </a>
+
+                    </li>
                     <%
                           }
                       }
