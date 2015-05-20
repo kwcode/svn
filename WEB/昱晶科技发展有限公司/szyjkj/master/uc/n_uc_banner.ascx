@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="n_uc_banner.ascx.cs" Inherits="master_uc_n_uc_banner" %>
 <div>
-    <script src="/js/jquery-1.8.3.min.js"></script>
+  <%--  <script src="/js/jquery-1.8.3.min.js?2"></script>--%>
     <script src="/js/zzsc.js"></script>
     <style>
         * { margin: 0; padding: 0; }
