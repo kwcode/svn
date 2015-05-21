@@ -1,12 +1,15 @@
 ﻿body { /*background-image: url('/images/bgjianjie.png');*/ margin: 0; padding: 0; font-size: 12px; font-family: "Microsoft Yahei","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,Helvetica,STHeiti,"Hiragino Sans GB"; color: #333; }
+i, em { font-family: "Microsoft Yahei","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,Helvetica,STHeiti,"Hiragino Sans GB"; font-style: normal; }
 .clearfix:after { content: "."; display: block; visibility: hidden; clear: both; height: 0; font-size: 0; }
 .d-page { width: 1200px; margin: 0 auto; }
 
 .d-content { min-height: 450px; margin-top: 2px; }
-.d-top { } 
+.d-top { }
 .menu .h-nva { }
-.d-nvtitle { text-align: left; font-size: 16px; border-bottom: 1px solid rgb(0, 0, 0); }
-
+.d-nvtitle { font-family: "Microsoft Yahei","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,Helvetica,STHeiti,"Hiragino Sans GB"; text-align: left; height: 37px; line-height: 37px; font-size: 16px; border-bottom: 1px solid #935858; background: url('/images/daohang_middle.png') repeat-x; }
+    .d-nvtitle a:hover { color: #f93; cursor: pointer; }
+    .d-nvtitle .ico { padding-right: 5px; display: block; width: 30px; height: 33px; background: url('/images/daohang.png') 0 9px no-repeat; float: left; }
+    .d-nvtitle .guai { font-family: SimSun; font-size: 12px; color: #333; padding: 0 5px; }
 
 
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, iframe { margin: 0; padding: 0; }
