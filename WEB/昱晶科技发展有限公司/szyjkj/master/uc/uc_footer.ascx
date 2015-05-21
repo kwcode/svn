@@ -1,10 +1,10 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="uc_footer.ascx.cs" Inherits="master_uc_uc_footer" %>
 <style>
     .d-container-box { }
-    .d-footer-box { margin-top: 2px; width: 1200px; margin: 0 auto; }
+    .d-footer-box { margin-top: 2px; /*width: 1200px;*/ margin: 0 auto; background: #C70757; color: white; }
     .d-footer { position: relative; text-align: center; padding: 20px 0 20px 20px; }
     .footer_green { position: relative; height: 5px; background: #5db40d; }
-    .footer_gary { border-top: 2px solid #aaa;   margin-top: 5px;}
+    .footer_gary { border-top: 2px solid #aaa; margin-top: 5px; }
 </style>
 <div class="d-footer-box  clearfix">
     <div class="footer_gary"></div>
