@@ -215,6 +215,7 @@
         input[type='text']:hover { box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }
         select { width: 155px; }
     </style>
+
     <div id="dlg" data-userid="0">
         <div class="e-item">
             <span class="sp100">帐号：</span>

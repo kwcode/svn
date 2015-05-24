@@ -11,10 +11,10 @@
         body { font: 12px/1.5 "SimSun",Tahoma,Helvetica,Arial,sans-serif; line-height: 24px; background-color: #F6EFE7; margin: 0px; }
         a { cursor: pointer; }
         .d-top { height: 50px; width: 100%; margin-bottom: 5px; background: rgb(253, 232, 232); }
-        .d-top ul li { float: left; line-height: 50px; font-size: 20px; margin-left: 20px; }
+            .d-top ul li { float: left; line-height: 50px; font-size: 20px; margin-left: 20px; }
         .d-main { background: rgb(253, 232, 232); min-height: 600px; height: 100%; width: 100%; }
         .d-left { background: rgb(103, 214, 232); margin-right: 5px; width: 15%; float: left; padding-top: 10px; height: 100%; }
-        .d-left ul li { padding: 5px; text-align: center; font-size: 18px; background: red; margin: 5px; }
+            .d-left ul li { padding: 5px; text-align: center; font-size: 18px; background: red; margin: 5px; }
         .d-right { width: 100%; float: right; }
     </style>
     <script>
@@ -25,9 +25,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <%-- <uc1:uc_header runat="server" ID="uc_header" />--%>
         <div>
             <a class="inpbbut1" href="/admin/m_banner.aspx">首页轮播图修改</a>
+            <a href="m_menu_index.aspx">导航菜单管理</a>
         </div>
     </form>
 </body>
