@@ -85,5 +85,5 @@ public class PageBase : System.Web.UI.Page
 public class DataGridJson
 {
     public int total { get; set; }
-    public DataTable rows { get; set; }
+    public object rows { get; set; }
 }

@@ -14,6 +14,30 @@ public class WSCommon
     {
 
     }
+    #region 后台菜单==============================================
+    /// <summary>
+    /// 获取所有的菜单列
+    /// </summary>
+    /// <returns></returns>
+    public static DataTable GetPmMenuList()
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_getpmmenulist");
+        return dt;
+    }
+    //新增菜单
+    public static int AddPmMenu(string name, int pid, int showindex, string url, string ico)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_admin_AddPmMenu", new object[] { name, pid, showindex, url, ico });
+        return row;
+    }
+    //修改菜单
+    public static int UpdatePmMenu(string name, int pid, int showindex, string url, string ico)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_admin_UpdatePmMenu", new object[] { name, pid, showindex, url, ico });
+        return row;
+    }
+    #endregion
+
     #region 首页相关==============================================
     /// <summary>
     /// 获取首页新闻
@@ -412,7 +436,7 @@ public class WSCommon
         }
         return dt;
     }
-    #endregion
+
 
     public static int DelUser(int userid)
     {
@@ -432,8 +456,22 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_comm_updateuser", new object[] { userid, loginname, password, role, nickname });
         return dt.Rows.Count;
     }
+    #endregion
 
+    #region 网站其它==============================================
+    /// <summary>
+    /// 记录访问量
+    /// </summary>
+    public void Recordvisit()
+    {
+        try
+        {
+            DataConnect.Data.ExecuteDataTable("p_comm_addaccessrecord");
+        }
+        catch (Exception ex)
+        {
+        }
+    }
+    #endregion
 
-
-   
 }
