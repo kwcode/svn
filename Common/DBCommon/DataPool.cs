@@ -57,6 +57,7 @@ namespace DBCommon
             lock (this.dataConnPool)
             {
                 result = this.dataConnPool.Pop();
+                
             }
             return result;
         }

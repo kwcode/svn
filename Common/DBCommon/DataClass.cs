@@ -157,10 +157,11 @@ namespace DBCommon
                     try
                     {
                         this.DeriveParameters(sqlCommand, storedProcedureName);
+                        bool outExist = this.AssignParameterValues(sqlCommand, storedProcedureName, paraValues);
                         int affectedRowsCount = sqlCommand.ExecuteNonQuery();
                         //获取存储过程返回值。
-                        // this.returnValue = (int)sqlCommand.Parameters["@RETURN_VALUE"].Value;
-                        bool outExist = this.AssignParameterValues(sqlCommand, storedProcedureName, paraValues);
+                        // returnValue = (int)sqlCommand.Parameters["@RETURN_VALUE"].Value;
+
                         if (outExist)
                         {
                             this.SetOutputValues(sqlCommand);
@@ -332,7 +333,8 @@ namespace DBCommon
                     this.conn.Open();
                     return true;
                 }
-                catch
+
+                catch (Exception ex)
                 {
                     return false;
                 }
