@@ -42,7 +42,15 @@ namespace XMLContrast.Control
             {
 
                 Dictionary<XMLNodeItem, Dictionary<XMLNodeItem, List<XMLNodeItem>>> dicTNodes = XMLOperat.GetTreeListNodes("单项工程", "单位工程", "安全文明施工费", tenderDataNodes);
+                if (dicTNodes.Count == 0)
+                {
+                    dicTNodes = XMLOperat.GetTreeListNodes("总工程", "单位工程", "安全文明施工费", tenderDataNodes);
+                }
                 Dictionary<XMLNodeItem, Dictionary<XMLNodeItem, List<XMLNodeItem>>> dicBNodes = XMLOperat.GetTreeListNodes("单项工程", "单位工程", "安全文明施工费", bidDataNodes);
+                if (dicBNodes.Count == 0)
+                {
+                    dicBNodes = XMLOperat.GetTreeListNodes("总工程", "单位工程", "安全文明施工费", bidDataNodes);
+                }
                 List<TreeFeesObj安全文明施工费> Tdataitems = AnalysisData(dicTNodes, true);//招标
                 List<TreeFeesObj安全文明施工费> Bdataitems = AnalysisData(dicBNodes, false);//招标
                 List<TreeFeesObjTB安全文明施工费> dataList = ContrastDatas(Tdataitems, Bdataitems);

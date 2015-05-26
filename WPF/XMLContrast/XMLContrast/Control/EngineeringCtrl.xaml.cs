@@ -38,12 +38,22 @@ namespace XMLContrast.Control
             (owner as HLWindowExt).StartProgress();
 
             new Thread(o =>
-            { 
+            {
                 // 清单子目  单位工程 
                 //List<XMLNodeItem> xmlTenderNodeItems = XMLOperat.GetDataChildNodes("单项工程", tenderDataNodes);
                 //List<XMLNodeItem> xmlBidNodeItems = XMLOperat.GetDataChildNodes("单项工程", bidDataNodes);
+
                 Dictionary<XMLNodeItem, List<XMLNodeItem>> dicTenderNodes = StructureTenderNodes("单项工程", "单位工程", tenderDataNodes);
+                if (dicTenderNodes.Count == 0)
+                {
+                    dicTenderNodes = StructureTenderNodes("总工程", "单位工程", tenderDataNodes);
+                }
                 Dictionary<XMLNodeItem, List<XMLNodeItem>> dicbidNodes = StructureTenderNodes("单项工程", "单位工程", bidDataNodes);
+                if (dicbidNodes.Count == 0)
+                {
+                    dicbidNodes = StructureTenderNodes("总工程", "单位工程", tenderDataNodes);
+                }
+
                 List<FeesRates> Tdataitems = AnalysisData(dicTenderNodes, true);//招标
                 List<FeesRates> Bdataitems = AnalysisData(dicbidNodes, false);//招标
                 List<FeesRates> ContrastDataItems = ContrastDatas(Tdataitems, Bdataitems);

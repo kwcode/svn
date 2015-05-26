@@ -43,7 +43,15 @@ namespace XMLContrast.Control
                 List<XMLNodeItem> xmlTenderNodeItems = XMLOperat.GetDataChildNodes("单位工程", tenderDataNodes);
                 List<XMLNodeItem> xmlBidNodeItems = XMLOperat.GetDataChildNodes("单位工程", bidDataNodes);
                 Dictionary<XMLNodeItem, List<XMLNodeItem>> dicTenderNodes = StructureTenderNodes("单位工程", "定额措施子目", tenderDataNodes);
+                if (dicTenderNodes.Count == 0)
+                {
+                    dicTenderNodes = StructureTenderNodes("总工程", "定额措施子目", tenderDataNodes);  
+                }
                 Dictionary<XMLNodeItem, List<XMLNodeItem>> dicbidNodes = StructureTenderNodes("单位工程", "定额措施子目", bidDataNodes);
+                if (dicbidNodes.Count == 0)
+                {
+                    dicbidNodes = StructureTenderNodes("总工程", "定额措施子目", bidDataNodes);
+                }
                 List<UnitPrice> Tdataitems = AnalysisData(dicTenderNodes, true);//招标
                 List<UnitPrice> Bdataitems = AnalysisData(dicbidNodes, false);//招标
                 List<UnitPrice> ContrastDataItems = ContrastDatas(Tdataitems, Bdataitems);

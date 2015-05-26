@@ -42,7 +42,15 @@ namespace XMLContrast.Control
             {
 
                 Dictionary<XMLNodeItem, Dictionary<XMLNodeItem, List<XMLNodeItem>>> dicTNodes = XMLOperat.GetTreeListNodes("单项工程", "单位工程", "清单子目", tenderDataNodes);
+                if (dicTNodes.Count == 0)
+                {
+                    dicTNodes = XMLOperat.GetTreeListNodes("总工程", "单位工程", "清单子目", tenderDataNodes);
+                }
                 Dictionary<XMLNodeItem, Dictionary<XMLNodeItem, List<XMLNodeItem>>> dicBNodes = XMLOperat.GetTreeListNodes("单项工程", "单位工程", "清单子目", bidDataNodes);
+                if (dicBNodes.Count == 0)
+                {
+                    dicBNodes = XMLOperat.GetTreeListNodes("总工程", "单位工程", "清单子目", bidDataNodes); 
+                }
                 List<TreeFeesObj清单子目> Tdataitems = AnalysisData(dicTNodes, true);//招标
                 List<TreeFeesObj清单子目> Bdataitems = AnalysisData(dicBNodes, false);//招标
                 List<TreeFeesObjTB清单子目> dataList = ContrastDatas(Tdataitems, Bdataitems);
@@ -51,7 +59,7 @@ namespace XMLContrast.Control
                     if (dataList.Count > 0)
                     {
                         dataList[0].IsExpanded = true;
-                        if (dataList[0].Children.Count > 0) 
+                        if (dataList[0].Children.Count > 0)
                             dataList[0].Children[0].IsExpanded = true;
                     }
                     lv_DataView.ItemsSource = dataList;
@@ -349,7 +357,7 @@ namespace XMLContrast.Control
             return list;
         }
 
-   }
+    }
     public class TreeFeesObj清单子目
     {
         public TreeFeesObj清单子目() { _children = new ObservableCollection<TreeFeesObj清单子目>(); }
