@@ -534,8 +534,9 @@ public class WSCommon
     /// <summary>
     /// 增加图片
     /// </summary>
-    /// <param name="BookID">相册ID 默认0</param>
     /// <param name="UserID">用户ID</param>
+    /// <param name="BookID">相册ID 默认0</param>
+
     /// <param name="FileName">文件名称</param>
     /// <param name="Size">大小</param>
     /// <param name="Extension">后缀名</param>
@@ -544,9 +545,9 @@ public class WSCommon
     /// <param name="Orig">原图</param>
     /// <param name="Source">来源</param>
     /// <returns></returns>
-    public static int AddPhoto(int BookID, int UserID, string FileName, double Size, string Extension, string Tn, string Show, string Orig, string Source)
+    public static int AddPhoto(int UserID, int BookID, string FileName, double Size, string Extension, string Tn, string Show, string Orig, string Source)
     {
-        int row = DataConnect.Data.ExecuteSP("p_Admin_AddPhoto", BookID, UserID, FileName, Size, Extension, Tn, Show, Orig, Source);
+        int row = DataConnect.Data.ExecuteSP("p_Admin_AddPhoto", UserID, BookID, FileName, Size, Extension, Tn, Show, Orig, Source);
         return row;
     }
     /// <summary>

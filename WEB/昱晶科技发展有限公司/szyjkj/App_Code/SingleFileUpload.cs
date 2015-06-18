@@ -332,14 +332,15 @@ public class SingleFileUpload
         //Cooperation = 5,   //代理合作
         //UploadWorks = 6, //上传作品
         //UploadImg = 7, //上传图片
-        //Picture = 8, //用户头像
+        Picture = 8, //用户头像
         //Advertising = 9, //广告横幅的枚举
         //Blogroll = 10, //友情链接的枚举
         //OutlinkImg = 11, //外链图片的自动保存
         //ThemesImg = 12, //主题图片
         //LeaderPhoto = 13, //主题图片
         //ActivityPicture = 14,
-        //TempPicture = 99,//临时图片 
+
+        TempPicture = 99,//临时图片 
     }
 }
 
