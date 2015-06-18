@@ -55,7 +55,7 @@ public partial class admin_action_actionadmin : AjaxBase
                 break;
             case "delbanner":
                 delbanner();
-                break;
+                break; 
             default:
                 break;
         }
