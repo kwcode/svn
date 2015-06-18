@@ -8,7 +8,7 @@
     <title></title>
     <link href="/style/icon.css" rel="stylesheet" />
     <link href="/style/easyui.css" rel="stylesheet" />
-    <link href="/admin/style/admin.css" rel="stylesheet" />
+    <link href="/admin/style/admin.css?v=12" rel="stylesheet" />
     <script src="/js/jquery-1.8.3.min.js"></script>
     <script src="/js/jquery.easyui.min.js"></script>
     <link href="/style/layer.css" rel="stylesheet" />
@@ -26,54 +26,7 @@
             var _toolbar = [{
                 text: 'Add',
                 iconCls: 'icon-add',
-                id: "btn_start",
-                //handler: function () {
-                //    /*ADD*/
-                //    var _layerIndex = $.layer({
-                //        type: 1,
-                //        title: '增加相册',
-                //        area: ['400px', '300px'],
-                //        page: {
-                //            dom: ".Hide_EditPhoto"
-                //        },
-                //        success: function ($layer) {
-                //            $layer.on("click", ".btn_ok", function () {
-                //                var b = $('#form1').validationEngine('validate');//手动验证
-                //                if (!b) {
-                //                    return;
-                //                }
-                //                var _name = $("#txt_name").val();
-                //                var _ispublic = $("#cb_ispublic").attr("checked") == "checked" ? 1 : 0;
-                //                var _showindex = $("#txt_showindex").val();
-                //                var _remark = $("#txt_remark").val();
-                //                var _layer = $.layer({ type: 3 });
-                //                $.post("/admin/Photo/ActionPhoto.aspx", {
-                //                    action: "SavePhotoBook",
-                //                    id: 0,
-                //                    Name: _name,
-                //                    IsPublic: _ispublic,
-                //                    ShowIndex: _showindex,
-                //                    Remark: _remark,
-                //                }).done(function (result) {
-                //                    if (result.res > 0) {
-                //                        layer.close(_layer);
-                //                        layer.alert(result.desc, 1, function () {
-                //                            $('#dg').datagrid('reload');//刷新 
-                //                            layer.closeAll();
-                //                        });
-                //                    }
-                //                    else {
-                //                        layer.close(_layer);
-                //                        layer.alert(result.desc);
-                //                    }
-                //                }).fail(function (ex) {
-                //                    layer.close(_layer); layer.alert("请求失败" + ex.responseText);
-                //                });
-                //            });
-                //        }
-                //    });
-                //    /*ADDEND*/
-                //}
+                id: "btn_start"
             }];
 
             //表格数据 
@@ -107,9 +60,9 @@
                 swf: '/js/uploadify/uploadify.swf',
                 fileTypeExts: "",
                 fileSizeLimit: "4194304",
-                removeTimeout: "50",
+                removeTimeout: "3",
                 method: "POST",
-                uploader: '/admin/Photo/uploadhandler.aspx',
+                uploader: '/admin/Photo/uploadhandler.aspx?bookid=' + bookid,
                 onSelect: function () {
                     var _layerIndex = $.layer({
                         type: 1,
@@ -119,6 +72,9 @@
                             dom: "#btn_start-queue"
                         },
                         success: function ($layer) {
+                        }, close: function () {
+                            $('#dg').datagrid('reload');//刷新 
+                            layer.closeAll();
                         }
                     });
 
@@ -130,8 +86,13 @@
                     $("#img").attr("src", result.path);
                 },
                 OnRemoveTimeout: function () {
+                    $('#dg').datagrid('reload');//刷新 
                     layer.closeAll();
+                }, onCancel: function () {
+                    $('#dg').datagrid('reload');//刷新  
                 }
+
+
 
             });
             /*上传图片END*/
@@ -168,13 +129,10 @@
             <tr>
                 <th data-options="field:'op',width:80,align:'center',formatter:formatOper">操作</th>
                 <th data-options="field:'ID',width:50,sortable:true">ID</th>
-                <th data-options="field:'PhotoCount',width:50,sortable:true">名称</th>
-                <th data-options="field:'Name',width:150,sortable:true">后缀</th>
-                <th data-options="field:'IsPublic',width:50,sortable:true">文件名</th>
-                <th data-options="field:'IsPublic',width:50,sortable:true">文件大小</th>
-                <th data-options="field:'ShowIndex',width:50,sortable:true">排序</th>
-                <th data-options="field:'CreateTS',width:100,sortable:true,
-                    formatter:function(value,row,index){ return new Date(value).toLocaleString();}">创建时间</th>
+                <th data-options="field:'FileName',width:50,sortable:true">名称</th>
+                <th data-options="field:'Extension',width:150,sortable:true">后缀</th>
+                <th data-options="field:'Size',width:50,sortable:true">大小(KB)</th>
+                <th data-options="field:'Source',width:50,sortable:true">来源</th>
                 <th data-options="field:'Tn',width:150,sortable:true, formatter:formatImgurl">微缩图</th>
             </tr>
         </thead>

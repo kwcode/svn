@@ -42,3 +42,5 @@ a { text-decoration: none; }
 
 .uploadify-queue { overflow-y: scroll; max-height: 250px; }
 .uploadify-queue-item { width: 360px; }
+.datagrid-cell-c1-Tn { line-height: 30px; height: 30px; }
+.datagrid-row { height: 32px; }

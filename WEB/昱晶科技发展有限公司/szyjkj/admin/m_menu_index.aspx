@@ -1,7 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="m_menu_index.aspx.cs" Inherits="admin_m_menu_index" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,6 +29,7 @@
                 }
 
             }
+
             $("#sel_ico").change(function () {
                 var $that = $(this);
                 var ico = $that.val();
@@ -54,7 +54,21 @@
                             text: '确认',
                             iconCls: 'icon-ok',
                             handler: function () {
-                                $('#dlg').dialog('close');
+                                /*增加*/
+                                $.ajax("/admin/action/actionadmin.aspx", {
+                                    data: {
+                                        action: "AddPmMenu",
+                                        name: $("#txt_name").val(),
+                                        url: $("#sel_url").val(),
+                                        pid: $("#sel_pid").val(),
+                                        showindex: $("#txt_showindex").val(),
+                                        ico: $("#sel_ico").val(),
+                                    }
+                                }).done(function (result) {
+                                    $.messager.alert("提示", result.desc, 1, function () { $('#dlg').dialog('close'); });
+                                }).fail(function () { $.messager.alert("提示", "请求失败"); })
+                                /*END*/
+
                             }
                         }, {
                             text: '取消',
@@ -127,7 +141,7 @@
         }
     </script>
 </head>
-<body>
+<body class="s">
 
     <table id="dg" data-options="autoRowHeight:false">
         <thead>

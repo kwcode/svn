@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="index.aspx.cs" Inherits="admin_index" %>
 
- 
+
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,6 +30,7 @@
                 , { id: '4', text: '产品中心', url: "/admin/products/m_product_index.aspx", iconCls: 'icon-pgin_golu' }
                 , { id: '5', text: '新闻中心', url: "/admin/news/news_manager_index.aspx", iconCls: 'icon-new' }
                  , { id: '5', text: '用户管理', url: "/admin/user/usermanager.aspx", iconCls: 'icon-user' }
+                 , { id: '6', text: '相册管理', url: "/admin/photo/m_PhotoBook.aspx", iconCls: 'icon-book' }
             ];
             var _tree = [{ id: '1', text: '网站管理', state: 'open', children: _children, iconCls: 'icon-house', url: "/admin/Right.aspx" }]; //导航树构造
 

@@ -56,10 +56,29 @@ public partial class admin_action_actionadmin : AjaxBase
             case "delbanner":
                 delbanner();
                 break; 
+            #region 菜单管理========
+            case "AddPmMenu":
+                AddPmMenu();
+                break;
+            #endregion
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void AddPmMenu()
+    {
+        string name = Request["name"] ?? "";
+        int pid = Convert.ToInt32(Request["pid"] ?? "0");
+        int showindex = Convert.ToInt32(Request["showindex"] ?? "0");
+        string url = Request["url"] ?? "/";
+        string ico = Request["ico"] ?? "";
+        int row = WSCommon.AddPmMenu(name, pid, showindex, url, ico);
+        if (row > 0)
+            desc = "新增成功";
+        else
+            desc = "新增失败";
     }
 
     private void delbanner()
