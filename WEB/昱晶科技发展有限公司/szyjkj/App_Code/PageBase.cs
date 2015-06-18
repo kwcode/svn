@@ -28,7 +28,7 @@ public class PageBase : System.Web.UI.Page
 
     protected override void OnInit(EventArgs e)
     {
-        if (!NeedLogin || !UserIsLogin)
+        if (NeedLogin && !UserIsLogin)
         {
             RedirectToLoginPage();//跳转到登录页面
             return;
@@ -51,6 +51,16 @@ public class PageBase : System.Web.UI.Page
         //  Response.End();
     }
     #region 用户登录相关
+    /// <summary>
+    /// 用户唯一标识ID
+    /// </summary>
+    public int UserID
+    {
+        get
+        {
+            return SessionAccess.UserId;
+        }
+    }
     /// <summary>
     /// 判断用户是否登录
     /// </summary>

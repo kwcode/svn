@@ -6,15 +6,15 @@ using System.Web;
 /// <summary>
 /// Ajax 请求
 /// </summary>
-public class AjaxBase : System.Web.UI.Page
+public class AjaxBase : PageBase
 {
-    //protected override bool CrossLogin
-    //{
-    //    get
-    //    {
-    //        return false;
-    //    }
-    //}
+    protected override bool NeedLogin
+    {
+        get
+        {
+            return false;
+        }
+    }
 
     protected void Page_Load(object sender, EventArgs e)
     {

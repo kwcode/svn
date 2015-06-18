@@ -474,4 +474,122 @@ public class WSCommon
     }
     #endregion
 
+    #region 相册管理==============================================
+
+    /// <summary>
+    /// 获取相册
+    /// </summary>
+    /// <param name="PageIndex"></param>
+    /// <param name="PageSize"></param>
+    /// <param name="KeyWords"></param>
+    /// <param name="TotalCount"></param>
+    /// <returns></returns>
+    public static DataTable GetPhotoBooksList(int PageIndex, int PageSize, string KeyWords, out int TotalCount)
+    {
+        Hashtable ht = new Hashtable();
+        TotalCount = 0;
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Admin_GetPhotoBooksList", out ht, PageIndex, PageSize, KeyWords, TotalCount);
+        if (ht.Count > 0)
+        {
+            TotalCount = Convert.ToInt32(ht["@TotalCount"] ?? "0");
+        }
+        return dt;
+    }
+    /// <summary>
+    /// 获取图片
+    /// </summary>
+    /// <param name="PageIndex"></param>
+    /// <param name="PageSize"></param>
+    /// <param name="BookID"></param>
+    /// <param name="KeyWords"></param>
+    /// <param name="TotalCount"></param>
+    /// <returns></returns>
+    public static DataTable GetPhotosList(int PageIndex, int PageSize, int BookID, string KeyWords, out int TotalCount)
+    {
+        Hashtable ht = new Hashtable();
+        TotalCount = 0;
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Admin_GetPhotosList", out ht, PageIndex, PageSize, BookID, KeyWords, TotalCount);
+        if (ht.Count > 0)
+        {
+            TotalCount = Convert.ToInt32(ht["@TotalCount"] ?? "0");
+        }
+        return dt;
+    }
+
+    /// <summary>
+    /// 保存相册
+    /// </summary>
+    /// <param name="id">id 新增为0</param>
+    /// <param name="UserID">用户ID</param>
+    /// <param name="Name">相册名称</param>
+    /// <param name="IsPublic">是否公开</param>
+    /// <param name="ShowIndex">排序 默认0</param>
+    /// <param name="Remark">相关描述</param>
+    /// <returns></returns>
+    public static int SavePhotoBook(int id, int UserID, string Name, int IsPublic, int ShowIndex, string Remark)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_SavePhotoBook", id, UserID, Name, IsPublic, ShowIndex, Remark);
+        return row;
+    }
+    /// <summary>
+    /// 增加图片
+    /// </summary>
+    /// <param name="BookID">相册ID 默认0</param>
+    /// <param name="UserID">用户ID</param>
+    /// <param name="FileName">文件名称</param>
+    /// <param name="Size">大小</param>
+    /// <param name="Extension">后缀名</param>
+    /// <param name="Tn">微缩图</param>
+    /// <param name="Show">显示图</param>
+    /// <param name="Orig">原图</param>
+    /// <param name="Source">来源</param>
+    /// <returns></returns>
+    public static int AddPhoto(int BookID, int UserID, string FileName, double Size, string Extension, string Tn, string Show, string Orig, string Source)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_AddPhoto", BookID, UserID, FileName, Size, Extension, Tn, Show, Orig, Source);
+        return row;
+    }
+    /// <summary>
+    /// 修改图片
+    /// </summary>
+    ///  <param name="ID">图片ID</param>
+    /// <param name="BookID">相册ID 默认0</param>
+    /// <param name="UserID">用户ID</param>
+    /// <param name="FileName">文件名称</param>
+    /// <param name="Size">大小</param>
+    /// <param name="Extension">后缀名</param>
+    /// <param name="Tn">微缩图</param>
+    /// <param name="Show">显示图</param>
+    /// <param name="Orig">原图</param>
+    /// <param name="Source">来源</param>
+    /// <returns></returns>
+    public static int UpdatePhoto(int ID, int BookID, int UserID, string FileName, double Size, string Extension, string Tn, string Show, string Orig, string Source)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_UpdatePhoto", ID, BookID, UserID, FileName, Size, Extension, Tn, Show, Orig, Source);
+        return row;
+    }
+    /// <summary>
+    /// 移动
+    /// </summary>
+    /// <param name="id">图片ID</param>
+    /// <param name="BookID">目标相册</param>
+    /// <returns></returns>
+    public static int MovePhoto(int id, int BookID)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_MovePhotoToBook", id, BookID);
+        return row;
+    }
+
+    /// <summary>
+    /// 删除相册
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int DelPhotoBook(int id)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_DelPhotoBook", id);
+        return row;
+    }
+    #endregion
+
 }
