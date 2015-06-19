@@ -1,4 +1,21 @@
-﻿; (function (window, $) {
+﻿/*
+ $("#btn_add").click(function () {
+                $.tw.photo.uploadImage({
+                    single: true
+                }).done(function (data) {
+                    //用户选中了图片并点击确定按钮的之后
+                    if (data && data.result && data.result.length) {
+                        var image = data.result[0];
+                        var url = image.tn;
+                        $('#img_Url').attr('src', url);
+                    } 
+                });
+            });
+
+*/
+
+
+; (function (window, $) {
     $(function ($) {
         $.tw = $.tw || {};
         $.tw.photo = $.tw.photo || {};
