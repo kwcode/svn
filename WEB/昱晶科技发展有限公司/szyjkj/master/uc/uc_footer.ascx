@@ -11,11 +11,11 @@
     <div class="fd_box">
         <div class="fdnav">
             <ul>
-                <li class="nav-item cur "><a href="/index.aspx">网站首页</a>  </li>
-                <li class="nav-item"><a href="/aboutme.aspx">关于我们</a></li>
-                <li class="nav-item"><a href="/product.aspx">主营业务</a></li>
-                <li class="nav-item"><a href="/news.aspx">相关新闻</a></li>
-                <li class="nav-item"><a href="/relation.aspx">联系我们</a></li>
+                <li class="nav-item cur "><a href="/">网站首页</a>  </li>
+                <li class="nav-item"><a href="/aboutme.html">关于我们</a></li>
+                <li class="nav-item"><a href="/product.html">主营业务</a></li>
+                <li class="nav-item"><a href="/news.html">相关新闻</a></li>
+                <li class="nav-item"><a href="/lianxi.html">联系我们</a></li>
             </ul>
         </div>
     </div>
