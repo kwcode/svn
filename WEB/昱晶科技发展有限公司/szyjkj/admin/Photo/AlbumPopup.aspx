@@ -187,7 +187,7 @@
                 else
                     $(".photo_content .photo_item").removeClass("select");
             });
-            $(document).on("click", "#sel_photobook", function () {
+            $(document).on("change", "#sel_photobook", function () {
                 var id = $(this).val();
                 window.location.href = "/admin/Photo/AlbumPopup.aspx?bookid=" + id;
             });
@@ -214,7 +214,7 @@
                     parent.layer.close(index);
                 }
             });
- 
+
         });
 
     </script>
@@ -225,7 +225,7 @@
         .photo_item:hover .operation { display: block; }
         .photo_content .select { border: 1px solid #085ef8; }
         .photo_content .select .gou { border: 1px solid #4cff00; display: block; position: absolute; margin: 0; padding: 0; top: 3px; left: 103px; width: 30px; height: 30px; background: url('/images/eui/icons/ok.png') no-repeat center center; }
-        .photo_item img { max-width: 135px; max-height: 135px; }
+        .photo_item img { max-width: 135px; height: 135px; }
         .photo_content .operation { position: absolute; left: 0; top: 107px; z-index: 5; width: 139px; height: 32px; line-height: 32px; text-align: right; filter: alpha(opacity=70); -moz-opacity: .7; -khtml-opacity: .7; opacity: .7; _filter: alpha(opacity=100); background: #000; display: none; }
         .photo_content .photo_item .remove { margin-right: 6px; background: url('/images/eui/icons/no.png') no-repeat center center; overflow: hidden; display: inline-block; font-size: 0; letter-spacing: 0; -webkit-text-size-adjust: none; vertical-align: text-bottom; width: 14px; height: 14px; cursor: pointer; }
         .photo_btnbox { padding: 10px; }
