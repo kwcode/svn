@@ -108,7 +108,7 @@
                           {
                         %>
                         <li class="kw-newsitem">
-                            <a href="/news/a-<%=item["ID"] %>">
+                            <a href="/news/a-<%=item["ID"]%>.html">
                                 <em></em>
                                 <i><%=item["Title"]%></i>
                                 <span class="newspan"></span>
