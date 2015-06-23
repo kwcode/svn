@@ -1,10 +1,10 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="m.master.cs" Inherits="master_m" %>
 
-<%@ Register Src="~/master/uc/uc_header.ascx" TagName="header" TagPrefix="uc1" %>
-<%@ Register Src="~/master/uc/uc_footer.ascx" TagName="footer" TagPrefix="uc1" %>
-<%@ Register Src="~/master/uc/uc_banner.ascx" TagPrefix="uc1" TagName="uc_banner" %>
 <%@ Register Src="~/master/uc/n_uc_banner.ascx" TagPrefix="uc1" TagName="n_uc_banner" %>
 <%@ Register Src="~/master/uc/n_uc_header.ascx" TagPrefix="uc1" TagName="n_uc_header" %>
+<%@ Register Src="~/master/uc/uc_footer.ascx" TagPrefix="uc1" TagName="uc_footer" %>
+
+
 
 
 <!DOCTYPE html>
@@ -20,26 +20,55 @@
     <script src="/js/returntop.js"></script>
     <meta name="keywords" content="深圳市昱晶科技发展有限公司,科研,设计,销售,蓝牙技术,蓝牙模组,蓝牙耳机,牙音响,蓝牙手表,CSR,RDA" />
     <meta name="description" content="深圳市昱晶科技发展有限公司是一家集科研、设计、销售为一体的高新技术企业，专业致力于蓝牙技术以及蓝牙模组的研制研发和销售（涵盖蓝牙耳机、蓝牙音响以及防丢器和蓝牙手表等）等服务，依靠科技求发展，不断为客户提供满意的高科技产品，是我们始终不变的追求。凭借勤恳耕耘、稳健发展、专业服务和不断追求，在该行业迅速崛起。 本公司提供蓝牙CSR、RDA等解决方案. 同时欢迎OEM合作. 深圳市昱晶科技发展有限公司全体同仁热忱欢迎您的光临，愿能与您：互惠互利、实现双赢、共创辉煌，我们的进步离不开您的指导！" />
-    <%-- <script type="text/javascript">(function () { document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E')); var bdcs = document.createElement('script'); bdcs.type = 'text/javascript'; bdcs.async = true; bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=9426167286185716633' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date() / 3600000); var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(bdcs, s); })();</script>--%>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <style>
+        .fl { float: left; }
+        #ssbg { background: url(images/ssbg.jpg) repeat-x; height: 50px; line-height: 50px; border-bottom: 2px solid #35B32E; }
+        #ss { width: 980px; padding: 0px; margin: 0 auto; }
+        .search { float: right; padding: 0px; }
+        .search .text11 { background: url(images/ss1.jpg) no-repeat; padding: 0px 0 0px 10px; height: 25px; width: 150px; border: none; }
+        .search .button { background: url(images/ss2.jpg) no-repeat; border: none; height: 25px; width: 58px; color: #FFFFFF; }
+
+        .search input[type='text'] { width: 200px; padding-left: 10px; border: 1px solid #e97272; padding: 4px; }
+
+        .search .btn_search { border-bottom: 1px solid #e97272; border-right: 1px solid #e97272; border-top: 1px solid #e97272; display: inline-block; line-height: 26px; color: #333 !important; background: #FABED7; padding: 0 10px; position: relative; margin-left: -4px; cursor: pointer; }
+        .search .btn_search:hover { background-color: #F7F7F7; color: #fff; }
+    </style>
+    <script>
+        $(function () {
+            $(".btn_search").click(function () {
+                var keywords = $("#txt_keywords").val();
+                window.open("/index.aspx?keywords=" + keywords);
+            });
+        });
+
+    </script>
 </head>
 <body>
     <p id="back-to-top">
         <a href="#top" title="回到顶部"></a>
     </p>
-    <uc1:n_uc_header runat="server" ID="n_uc_header" /> 
-    <%-- <uc1:uc_banner runat="server" ID="uc_banner" />--%>
+    <uc1:n_uc_header runat="server" ID="n_uc_header" />
     <uc1:n_uc_banner runat="server" ID="n_uc_banner" />
-    <%--<uc1:header ID="Header1" runat="server" />--%>
+    <div id="ssbg">
+        <div id="ss">
+            <div class="fl">
+                热门关键词: 蓝牙,耳机,牙音响,蓝牙手表,CSR,RDA<br />
+            </div>
+            <div class="search">
+                <input type="text" id="txt_keywords" />
+                <a class="btn_search">Search</a>
+            </div>
+        </div>
+    </div>
     <div class="d-page clearfix">
         <div class="d-container-box  ">
             <asp:ContentPlaceHolder ID="mbody" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </div>
-    <uc1:footer ID="Footer1" runat="server" />
-     
+    <uc1:uc_footer runat="server" ID="uc_footer" />
     <script type="text/javascript">
         window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "slide": { "type": "slide", "bdImg": "2", "bdPos": "right", "bdTop": "165" }, "share": { "bdSize": 16 }, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" }, "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"] } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
     </script>

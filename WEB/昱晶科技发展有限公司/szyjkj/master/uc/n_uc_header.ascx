@@ -92,6 +92,9 @@
                     var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
                     prefs.setCharPref('browser.startup.homepage', vrl);
                 }
+                else {
+                    alert("设置失败");
+                }
             }
         }
 
@@ -119,36 +122,56 @@
     });
 </script>
 <style>
-    .d-header { width: 100%; position: fixed; z-index: 1000; background: #C70757; height: 40px; line-height: 40px;   }
-    .wraper { width: 900px; margin: 0 auto; }
+    .d-header { /* width: 100%; position: fixed;z-index: 1000; background: #C70757; height: 40px; line-height: 40px; */ }
+    .top_box { background: url(/images/n_top.png); height: 34px; line-height: 34px; }
+    .top { width: 980px; padding: 0px; margin: 0 auto; padding: 0px; }
+    .nav_box { background: #C70757; }
+    .wraper { width: 980px; margin: 0 auto; }
     .nav { position: relative; width: 100%; height: 40px; background: #C70757; overflow: hidden; }
     .nav-item { position: relative; float: left; width: 120px; height: 40px; line-height: 40px; text-align: center; font-size: 14px; z-index: 1; }
-        .nav-item a { display: block; height: 40px; color: #fff; }
-            .nav-item a:hover { color: #fff; }
+    .nav-item a { display: block; height: 40px; color: #fff; }
+    .nav-item a:hover { color: #fff; }
     .move-bg { display: none; position: absolute; left: 0; top: 0; width: 120px; height: 40px; background: #4D0B33; z-index: 0; }
+    .fr { float: right; }
+    .top a { cursor: pointer; }
+    .top a:hover { color: #C70757; }
 </style>
+
 <div class="d-header clearfix">
+    <div class="top_box">
+        <div class="top">
+            <span class="fr">
+                <a id="btn_addfavorite">收藏本站</a> | 
+                 <a id="btn_sethome">设置为首页 |</a>
+                <a href="/liuyan.html">在线留言</a> | 
+                    <a href="/lianxi.html">联系昱晶</a> |
+                     <a href="/map.html">网站地图</a> | 
+            </span>你好，欢迎光临深圳昱晶科技发展有限公司官网！ 
+              
+        </div>
+    </div>
     <!-- 代码 开始 -->
-    <div style="float: left; margin-left: 50px;">
+    <%-- <div style="float: left; margin-left: 50px;">
         <a style="cursor: pointer; color: white;" id="btn_sethome">设置为首页 |</a>
         <a style="cursor: pointer; color: white;" id="btn_addfavorite">加入收藏夹 </a>
     </div>
-    <div style="float: right; margin-right: 50px;"><a style="cursor: pointer; color: white;" href="tencent://message/?uin=176393068&Site=www.szyjkj.com&Menu=yes" target="_blank">QQ在线联系</a></div>
-    <div class="wraper">
-        <div class="nav">
-            <ul>
-                <li class="nav-item  "><a href="/index.aspx">网站首页</a>  </li>
-                <li class="nav-item"><a href="/aboutme.aspx">关于我们</a></li>
-                <li class="nav-item"><a href="/product.aspx">主营业务</a></li>
-                <li class="nav-item"><a href="/news.aspx">相关新闻</a></li>
-                <li class="nav-item"><a href="/relation.aspx">联系我们</a></li>
-            </ul>
-            <!--移动的滑动-->
-            <div class="move-bg"></div>
-            <!--移动的滑动 end-->
+    <div style="float: right; margin-right: 50px;"><a style="cursor: pointer; color: white;" href="tencent://message/?uin=176393068&Site=www.szyjkj.com&Menu=yes" target="_blank">QQ在线联系</a></div>--%>
+    <div class="nav_box">
+        <div class="wraper">
+            <div class="nav">
+                <ul>
+                    <li class="nav-item cur "><a href="/">网站首页</a>  </li>
+                    <li class="nav-item"><a href="/aboutme.html">关于我们</a></li>
+                    <li class="nav-item"><a href="/product.html">主营业务</a></li>
+                    <li class="nav-item"><a href="/news.html">相关新闻</a></li>
+                    <li class="nav-item"><a href="/lianxi.html">联系我们</a></li>
+                </ul>
+                <!--移动的滑动-->
+                <div class="move-bg"></div>
+                <!--移动的滑动 end-->
+            </div>
         </div>
     </div>
-
     <!-- 代码 结束-->
 
 </div>

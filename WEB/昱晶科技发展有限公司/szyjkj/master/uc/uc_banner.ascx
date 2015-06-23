@@ -1,4 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="uc_banner.ascx.cs" Inherits="master_uc_uc_banner" %>
+
 <div class="banner">
     <script src="../../js/jquery-banner.js" type="text/javascript"></script>
     <style>
@@ -22,9 +23,10 @@
         .banner-no { position: absolute; right: 0; bottom: 20px; z-index: 1002; color: #fff; }
         .banner-no ul li { overflow: hidden; line-height: 20px; float: left; cursor: pointer; margin-right: 5px; border-radius: 20px; background: #F90; width: 20px; height: 20px; }
     </style>
-    <div class="banner-list">
-        <ul>
-            <%--<li class="on">
+   
+        <div class="banner-list">
+            <ul>
+                <%--<li class="on">
                 <img src="images/banae.jpg" title="1" alt="1" />
                 <div class="bannertitle">
                     <div class="banner-bg">
@@ -32,48 +34,48 @@
                     <a class="bannertitle-info">111111111</a>
                 </div>
             </li>--%>
-            <%
-                if (DtBanner != null && DtBanner.Rows.Count > 0)
-                {
-                    foreach (System.Data.DataRow item in DtBanner.Rows)
+                <%
+                    if (DtBanner != null && DtBanner.Rows.Count > 0)
                     {
-                        int index = 1;
-                        if (index == 1)
+                        foreach (System.Data.DataRow item in DtBanner.Rows)
                         {
-            %>
-            <li class="on">
-                <img src="<%=item["ImgAddress"] %>" title="<%=index %>" alt="<%=item["Title"] %>" />
-                <div class="bannertitle">
-                    <div class="banner-bg">
+                            int index = 1;
+                            if (index == 1)
+                            {
+                %>
+                <li class="on">
+                    <img src="<%=item["ImgAddress"] %>" title="<%=index %>" alt="<%=item["Title"] %>" />
+                    <div class="bannertitle">
+                        <div class="banner-bg">
+                        </div>
+                        <a class="bannertitle-info"><%=item["Title"] %></a>
                     </div>
-                    <a class="bannertitle-info"><%=item["Title"] %></a>
-                </div>
-            </li>
-            <%
-                        }
-                        else
-                        {
-            %>
-            <li>
-                <img src="<%=item["ImgAddress"] %>" title="<%=index %>" alt="<%=item["Title"] %>" />
-                <div class="bannertitle">
-                    <div class="banner-bg">
+                </li>
+                <%
+                            }
+                            else
+                            {
+                %>
+                <li>
+                    <img src="<%=item["ImgAddress"] %>" title="<%=index %>" alt="<%=item["Title"] %>" />
+                    <div class="bannertitle">
+                        <div class="banner-bg">
+                        </div>
+                        <a class="bannertitle-info"><%=item["Title"] %></a>
                     </div>
-                    <a class="bannertitle-info"><%=item["Title"] %></a>
-                </div>
-            </li>
-            <%
+                </li>
+                <%
                         }
-                        index++;
+                            index++;
+                        }
                     }
-                }
-                else
-                {
+                    else
+                    {
 
-                }
-            %>
+                    }
+                %>
 
-            <%-- <li>
+                <%-- <li>
                 <img src="images/jianjie.png" title="1" alt="1" />
                 <div class="bannertitle">
                     <div class="banner-bg">
@@ -97,6 +99,9 @@
                     <a class="bannertitle-info">44444444444</a>
                 </div>
             </li>--%>
-        </ul>
-    </div>
+            </ul>
+        </div>
+   
+
 </div>
+

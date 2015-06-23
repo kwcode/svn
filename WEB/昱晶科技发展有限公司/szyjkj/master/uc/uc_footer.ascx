@@ -1,13 +1,24 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="uc_footer.ascx.cs" Inherits="master_uc_uc_footer" %>
 <style>
     .d-container-box { }
-    .d-footer-box { margin-top: 2px; /*width: 1200px;*/ margin: 0 auto; background: #C70757; color: white; }
+    .d-footer-box { margin-top: 2px; margin: 0 auto; color: black; }
     .d-footer { position: relative; text-align: center; padding: 20px 0 20px 20px; }
-    .footer_green { position: relative; height: 5px; background: #5db40d; }
+    .fd_box { background: #C70757; }
+    .fdnav { margin: 0 auto; width: 980px; position: relative; height: 40px; overflow: hidden; }
     .footer_gary { border-top: 2px solid #aaa; margin-top: 5px; }
 </style>
 <div class="d-footer-box  clearfix">
-    <div class="footer_gary"></div>
+    <div class="fd_box">
+        <div class="fdnav">
+            <ul>
+                <li class="nav-item cur "><a href="/index.aspx">网站首页</a>  </li>
+                <li class="nav-item"><a href="/aboutme.aspx">关于我们</a></li>
+                <li class="nav-item"><a href="/product.aspx">主营业务</a></li>
+                <li class="nav-item"><a href="/news.aspx">相关新闻</a></li>
+                <li class="nav-item"><a href="/relation.aspx">联系我们</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="d-footer">
         <div>
             版权所有 Copyright© 2015 深圳市昱晶科技发展有限公司, All Rights Reserved
