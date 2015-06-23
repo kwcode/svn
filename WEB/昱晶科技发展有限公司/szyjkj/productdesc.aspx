@@ -3,13 +3,17 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
     <script src="js/jquery.imageLens.js"></script>
     <script>
-        $(function () {
-
+        $(function () { 
             $("#img-adres").imageLens({ lensSize: 200 });
         });
     </script>
-    <div class="d-content">
-        <div class="d-nvtitle">当前位置：首页>主营业务></div>
+    <div class="d-content"> 
+        <div class="d-nvtitle">
+            <span class="ico"></span>
+            <a href="/">首页</a>
+            <span class="guai">></span>
+            <a href="/product.html">主营业务</a>
+        </div>
         <div style="padding: 10px; text-align: center;">
             <%
                 if (DtProductdesc != null && DtProductdesc.Rows.Count > 0)

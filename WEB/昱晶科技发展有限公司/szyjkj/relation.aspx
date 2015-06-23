@@ -8,8 +8,13 @@
         .new-title { }
         .news-date { float: right; }
     </style>
-    <div class="d-content">
-        <div class="d-nvtitle">当前位置：首页>联系我们</div>
+    <div class="d-content"> 
+        <div class="d-nvtitle">
+            <span class="ico"></span>
+            <a href="/">首页</a>
+            <span class="guai">></span>
+            <a href="/lianxi.html">联系我们</a>
+        </div>
         <div>
             <%=Details %>
         </div>

@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
     <style>
         .new-list { margin-bottom: 10px; }
-            .new-list ul li { border-bottom: 1px dotted #808080; padding: 7px; font-size: 14px; }
+        .new-list ul li { border-bottom: 1px dotted #808080; padding: 7px; font-size: 14px; }
         a { text-decoration: none; }
         .new-title { }
         .news-date { float: right; }
@@ -11,9 +11,9 @@
     <div class="d-content">
         <div class="d-nvtitle">
             <span class="ico"></span>
-            <a>首页</a>
+            <a href="/">首页</a>
             <span class="guai">></span>
-            <a>相关新闻</a>
+            <a href="/news.html">相关新闻</a>
         </div>
         <div class="new-list">
             <ul>

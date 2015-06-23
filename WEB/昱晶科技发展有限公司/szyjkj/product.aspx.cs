@@ -21,6 +21,7 @@ public partial class product : System.Web.UI.Page
         List<LeftMenuCL> listmenu = new List<LeftMenuCL>();
         DataTable  DtProductType = WSCommon.GetProduct(1, 100, "", out  total);
         DtproductImgs = WSCommon.GetProductImgs(pid, 20);
+
         foreach (DataRow item in DtProductType.Rows)
         {
             listmenu.Add(new LeftMenuCL() { ID = Convert.ToInt32(item["ID"]), Url = "/product.aspx?pid=" + item["ID"], Name = Convert.ToString(item["Title"]), Ico = MenuICO.icon1 });

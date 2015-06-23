@@ -7,17 +7,22 @@
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
     <style>
         .new-list { margin-bottom: 10px; }
-            .new-list ul li { border-bottom: 1px dotted #808080; padding: 7px; font-size: 14px; }
+        .new-list ul li { border-bottom: 1px dotted #808080; padding: 7px; font-size: 14px; }
         a { text-decoration: none; }
         .new-title { }
         .news-date { float: right; }
         /*.pro-list { float: left; width: 200px; text-align: center; padding: 5px; }
         .pro-list ul li { padding: 7px;  }*/
         .pro-content { padding: 5px; float: left; width: 720px; }
-            .pro-content ul li { float: left; width: 240px; }
+        .pro-content ul li { float: left; width: 240px; }
     </style>
-    <div class="d-content">
-        <div class="d-nvtitle">当前位置：首页>主营业务</div>
+    <div class="d-content"> 
+        <div class="d-nvtitle">
+            <span class="ico"></span>
+            <a href="/">首页</a>
+            <span class="guai">></span>
+            <a href="/product.html">主营业务</a>
+        </div>
         <div class="pro-list">
             <%-- <ul>
                 <%if (DtProductType != null && DtProductType.Rows.Count > 0)
