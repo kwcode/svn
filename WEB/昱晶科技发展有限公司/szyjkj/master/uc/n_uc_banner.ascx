@@ -58,7 +58,7 @@
                                   {
                             %>
                             <a href="<%=item["URL"]%>" style="width: 1200px;" target="_blank">
-                                <img id="<%=item["ID"]%>" style="" src="<%=item["ImgAddress"]%>" class="slide" title="<%=item["Title"]%>" alt="<%=item["Title"]%>" /></a>
+                                <img id="<%=item["ID"]%>" style="" src="<%=item["ImgAddress"].ToString().Replace("Tn","Orig")%>" class="slide" title="<%=item["Title"]%>" alt="<%=item["Title"]%>" /></a>
                             <%
                               }
                           } %>
