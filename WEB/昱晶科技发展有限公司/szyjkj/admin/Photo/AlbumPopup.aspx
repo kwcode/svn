@@ -90,7 +90,7 @@
 
             //上传图片
             $("#btn_start").uploadify({
-                auto: true,
+                auto: true, 
                 buttonCursor: "hand",
                 buttonText: "上传图片",
                 swf: '/js/uploadify/uploadify.swf',
@@ -220,7 +220,7 @@
     </script>
     <style>
         .photo_box { border: 1px solid #CCCCCC; }
-        .photo_content { width: 100%; height: 450px; overflow-y: auto; overFlow-x: hidden; }
+        .photo_content { width: 100%; height: 250px; overflow-y: auto; overFlow-x: hidden; }
         .photo_item { position: relative; float: left; padding: 2px; width: 135px; height: 135px; border: 1px solid #97cce8; margin: 2px; }
         .photo_item:hover .operation { display: block; }
         .photo_content .select { border: 1px solid #085ef8; }

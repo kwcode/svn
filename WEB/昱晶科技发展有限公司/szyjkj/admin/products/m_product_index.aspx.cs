@@ -16,7 +16,7 @@ public partial class admin_products_m_product_index : PageBase
             int pagesize = Convert.ToInt32(Request["rows"] ?? "1");
             string keywords = Request["keywords"] ?? "";
             int total = 0;
-            DataTable dt = WSCommon.GetProduct(page, pagesize, keywords, out total);
+            DataTable dt = WSCommon.GetProductTypeList(page, pagesize, keywords, out total);
             ResponseJson(new DataGridJson() { total = total, rows = dt });
         }
     }

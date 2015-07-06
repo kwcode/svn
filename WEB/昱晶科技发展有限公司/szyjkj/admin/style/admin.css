@@ -16,19 +16,23 @@ textarea { width: 500px; border: 1px solid rgb(240, 146, 38); padding: 5px; }
 .e-item select { width: 204px; border: 1px solid rgb(240, 146, 38); height: 26px; line-height: 26px; }*/
 
 .inpbbut3 { display: inline-block; line-height: 22px; color: #333 !important; border: 1px solid #c4c4c4; background: #fff; padding: 0 10px; position: relative; margin-left: 8px; border-radius: 3px; cursor: pointer; }
-.inpbbut3:hover { background-color: #F7F7F7; color: #fff; }
+.inpbbut3:hover { background-color: #eaf2ff; }
 
 
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, iframe { margin: 0; padding: 0; }
 body, button, input, select, textarea { font-family: tahoma,Arial,"Microsoft YaHei",SimSun; font-size: 12px; line-height: 1.5em; color: #222; }
 h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
 ol, ul { list-style: none; }
+.clear { clear: both; height: 0; font-size: 0; line-height: 0; overflow: hidden; }
+.clearfix:after { content: "."; display: block; visibility: hidden; clear: both; height: 0; font-size: 0; }
+.clearfix { display: inline-block; }
 .clearfix { display: block; }
-
+.fl { float: left; }
 a { text-decoration: none; }
+/*编辑内按钮*/
 .inputbtns { margin: 0 5px; padding: 2px 0 2px 16px; cursor: pointer; }
 .inputbtns:hover { border: 1px #D4D4D4 solid; }
-
+/*弹出的BOX*/
 .hide_box { display: none; text-align: center; }
 .hide_box .edbox { float: left; }
 .hide_box .btnbox { }
@@ -36,11 +40,33 @@ a { text-decoration: none; }
 .hide_box ul li span { text-align: right; width: 100px; float: left; line-height: 26px; }
 .hide_box input[type='text'] { width: 200px; padding: 5px; }
 .hide_box input[type='checkbox'] { display: block; margin-top: 7px; margin-left: 10px; }
+.hide_box select { width: 214px; padding: 5px 8px; }
 .hide_box textarea { width: 200px; padding: 5px; height: 50px; }
 .hide_box #img { width: 100px; height: 100px; }
 
+/*编辑页面*/
+.e_box { }
+.e_box .sp150 { float: left; width: 150px; text-align: right; }
+.e_box .sp100 { float: left; width: 100px; text-align: right; }
+.e_box .e-item { padding: 5px; }
+.e_box input[type='text'] { width: 300px; padding: 5px; }
+.e_box select { width: 200px; padding: 5px; }
 
 .uploadify-queue { overflow-y: scroll; max-height: 250px; }
 .uploadify-queue-item { width: 360px; }
 .datagrid-cell-c1-Tn { line-height: 30px; height: 30px; }
 .datagrid-row { height: 32px; }
+
+/*编辑列表页面*/
+.e_box { padding: 10px; }
+.e_box dl { padding: 5px; }
+.e_box dt { float: left; height: 45px; line-height: 45px; text-align: right; width: 85px; }
+.e_box dd { padding: 5px; }
+.e_box dd input[type='text'] { border: 1px solid #dbdbdb; padding: 6px 8px; border-radius: 1px; height: 22px; }
+.e_box dd .input230 { width: 230px; }
+.e_box dd .input1 { vertical-align: middle; clear: both; width: 570px; }
+e_box .e_box dd .select200 { width: 200px; }
+.e_box dd select { width: 100px; padding: 5px; height: 33px; line-height: 33px; border: 1px solid #dbdbdb; margin: 0; border-radius: 1px; clear: both; }
+.e_box dd textarea { border: 1px solid #dbdbdb; padding: 5px 8px; border-radius: 1px; }
+.e_box dd .textarea1 { width: 570px; height: 90px; }
+.e_box .btn_box { text-align: center; margin-top: 10px; }

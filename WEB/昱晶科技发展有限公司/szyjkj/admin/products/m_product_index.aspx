@@ -14,6 +14,12 @@
     <script src="/js/jquery-1.8.3.min.js"></script>
     <script src="/js/jquery.easyui.min.js"></script>
 
+    <link href="/admin/style/admin.css" rel="stylesheet" />
+    <link href="/style/layer.css" rel="stylesheet" />
+    <script src="/js/layer.js"></script>
+    <link href="/style/jquery.validationEngine.css" rel="stylesheet" />
+    <script src="/js/jquery.validationEngine-zh_CN.js"></script>
+    <script src="/js/jquery.validationEngine.js"></script>
 
     <style>
         a { text-decoration: none; }
@@ -49,7 +55,7 @@
                 pageSize: 50,//每页显示的记录条数，默认为10 
                 url: '/admin/products/m_product_index.aspx',
                 type: "POST",
-                pageList: [10, 40, 60, 100, 200]//可以设置每页记录条数的列表   
+                pageList: [20, 40, 80, 100, 200]//可以设置每页记录条数的列表   
             }).datagrid('getPager').pagination({
                 //设置分页控件 
                 beforePageText: '第',//页数文本框前显示的汉字 
@@ -63,30 +69,28 @@
         function formatOper(val, row, index) {
             var btn = ' <a href="#" class="icon-edit inputbtns"  onclick="edit(' + index + ')"title="编辑"></a>';
             var btn2 = ' <a href="#" class="icon-remove inputbtns"  onclick="del(' + index + ')" title="删除"></a>';
-            var btn3 = '<a href="/admin/products/m_procductimg_index.aspx?pid=' + row.ID +'" class="icon-tip inputbtns"  title="产品详细"></a>';
+            var btn3 = '<a href="/admin/products/m_procductimg_index.aspx?pid=' + row.ID + '" class="icon-tip inputbtns"  title="产品详细"></a>';
             var btns = btn + btn2 + btn3;
             return btns;
         }
         function del(index) {
-            $.messager.confirm("提示", "是否删除?", function (b) {
-                if (b) {
-                    var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
-                    var id = row.ID;
-                    $.ajax("/admin/action/actionadmin.aspx", {
-                        data: {
-                            action: "delproduct",
-                            id: id
-                        }
-                    }).done(function (result) {
-                        if (result.res > 0) {
-                            //删除成功！
-                            //$('#dg').datagrid('deleteRow', index); //删除一行 
-                            $('#dg').datagrid('reload');//刷新
-                            $('#dlg').dialog('close');
-                        }
-                        $.messager.alert("提示", result.desc);
-                    });
-                }
+            layer.confirm("是否删除", function () {
+                var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
+                var id = row.ID;
+                $.ajax("/admin/action/actionadmin.aspx", {
+                    data: {
+                        action: "delproduct",
+                        id: id
+                    }
+                }).done(function (result) {
+                    if (result.res > 0) {
+                        //删除成功！
+                        //$('#dg').datagrid('deleteRow', index); //删除一行 
+                        $('#dg').datagrid('reload');//刷新
+                        $('#dlg').dialog('close');
+                    }
+                    layer.alert(result.desc, 1);
+                });
             });
         }
         function edit(index) {
@@ -94,63 +98,56 @@
             op(row);
         }
         function op(row) {
-            var id = 0;
             var dgtitle = "新增";
+            var id = 0;
             if (typeof (row) != "undefined") {
                 id = row.ID;
-                $(".txt_title").val(row.Title);
-                $(".txt_showindex").val(row.ShowIndex);
-                $(".txt_summary").val(row.Summary);
                 dgtitle = "编辑";
             }
-            else {
-                id = 0;
-                $(".txt_title").val("");
-                $(".txt_showindex").val(0);
-                $(".txt_summary").val("");
-            }
-            $("#dlg").dialog({
+            var _layerIndex = $.layer({
+                type: 1,
                 title: dgtitle,
-                modal: true,  //模态
-                width: 593,
-                height: 265,
-                resizable: true,
-                buttons: [{
-                    text: '确认',
-                    iconCls: 'icon-ok',
-                    handler: function () {
-                        /*保存*/
-                        var title = $(".txt_title").val();
-                        var showindex = $(".txt_showindex").val();
-                        var summary = $(".txt_summary").val();
-                        $.ajax("/admin/action/actionadmin.aspx", {
-                            data: {
-                                action: "savereproduct",
-                                id: id,
-                                title: title,
-                                showindex: showindex,
-                                summary: summary
-                            }
+                area: ['400px', '200px'],
+                page: {
+                    dom: ".Hide_ProType"
+                },
+                success: function ($layer) {
+                    if (typeof (row) != "undefined") {
+                        $layer.find("#txt_title").val(row.Title);
+                        $layer.find("#txt_showindex").val(row.ShowIndex);
+                    }
+                    $layer.on("click", ".btn_ok", function () {
+                        var b = $('#form1').validationEngine('validate');//手动验证
+                        if (!b) {
+                            return;
+                        }
+                        var _name = $layer.find("#txt_title").val();
+                        var _showindex = $layer.find("#txt_showindex").val();
+                        var _layer = $.layer({ type: 3 });
+                        $.post("/admin/action/actionadmin.aspx", {
+                            action: "savereproduct",
+                            id: id,
+                            title: _name,
+                            showindex: _showindex
                         }).done(function (result) {
                             if (result.res > 0) {
-                                //更新
-                                $('#dg').datagrid('reload');//刷新
-                                $('#dlg').dialog('close');
+                                layer.close(_layer);
+                                layer.alert(result.desc, 1, function () {
+                                    $('#dg').datagrid('reload');//刷新 
+                                    layer.closeAll();
+                                });
                             }
-                            $.messager.alert("提示", result.desc);
+                            else {
+                                layer.close(_layer);
+                                layer.alert(result.desc);
+                            }
+                        }).fail(function (ex) {
+                            layer.close(_layer); layer.alert("请求失败" + ex.responseText);
                         });
-                        /*保存END*/
-                    }
-                }, {
-                    text: '取消',
-                    iconCls: 'icon-cancel',
-                    handler: function () {
-                        $('#dlg').dialog('close')
-                    }
-                }]
+                    });
+                }
             });
         }
-
     </script>
 </head>
 <body>
@@ -168,19 +165,23 @@
             </tr>
         </thead>
     </table>
-    <div id="dlg" class="d-hide-edit">
-        <div class="d-item">
-            <span class="sp100">标题：</span>
-            <input type="text" class="txt_title" />
+    <form id="form1" runat="server">
+        <div class="Hide_ProType hide_box">
+            <div>
+                <ul>
+                    <li><span>名称：</span>
+                        <input type="text" class="validate[required]" id="txt_title" maxlength="30" />
+                    </li>
+                    <li>
+                        <span>排序：</span>
+                        <input class="validate[required] validate[custom[integer]]" onkeyup="this.value=this.value.replace(/\D/g,'');" onblur="if(this.value==''||this.value==0)this.value=1" type="text" id="txt_showindex" maxlength="8" value="1" />
+                    </li>
+                </ul>
+            </div>
+            <div class="btnbox">
+                <input class="inpbbut3 btn_ok" value="确定" type="button" />
+            </div>
         </div>
-        <div class="d-item">
-            <span class="sp100">排序：</span>
-            <input type="text" class="txt_showindex" value="0" />
-        </div>
-        <div class="d-item">
-            <span class="sp100">简介：</span>
-            <textarea class="txt_summary" style="width: 400px; height: 100px;"></textarea>
-        </div>
-    </div>
+    </form>
 </body>
 </html>

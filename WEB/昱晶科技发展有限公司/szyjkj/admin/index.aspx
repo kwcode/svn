@@ -28,7 +28,10 @@
                 { id: '2', text: '首页轮播图修改', iconCls: 'icon-pencil', url: "/admin/m_banner.aspx" }
                 , { id: '3', text: '联系我们', url: "/admin/relation.aspx", iconCls: 'icon-phone' }
                 , { id: '4', text: '产品中心', url: "/admin/products/m_product_index.aspx", iconCls: 'icon-pgin_golu' }
-                , { id: '5', text: '新闻中心', url: "/admin/news/news_manager_index.aspx", iconCls: 'icon-new' }
+                , {
+                    id: '5', text: '文章管理', url: "/admin/news/news_manager_index.aspx", iconCls: 'icon-new',
+                    children: [{ id: '51', text: '文章分类', url: "/admin/article/ArticleTypeManager.aspx", iconCls: 'icon-new' }, { id: '51', text: '文章', url: "/admin/article/ArticleManager.aspx", iconCls: 'icon-new' }]
+                }
                  , { id: '5', text: '用户管理', url: "/admin/user/usermanager.aspx", iconCls: 'icon-user' }
                  , { id: '6', text: '相册管理', url: "/admin/photo/m_PhotoBook.aspx", iconCls: 'icon-book' }
             ];
@@ -47,7 +50,9 @@
 
             //动态-构造导航树
             $("#tree_nva").tree({
-                data: _tree,
+                url: window.location.pathname,
+                method:"POST",
+                //data: _tree,
                 lines: true,//将你的菜单拼成这个json格式id，text，child等 
                 onClick: function (node) {
                     //点击后在右边的框架里打开url

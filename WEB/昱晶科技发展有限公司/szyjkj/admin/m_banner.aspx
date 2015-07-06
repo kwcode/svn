@@ -45,7 +45,7 @@
                 pageSize: 50,//每页显示的记录条数，默认为10 
                 url: '/admin/m_banner.aspx',
                 type: "POST",
-                pageList: [10, 40, 60, 100, 200]//可以设置每页记录条数的列表   
+                pageList: [20, 40, 60, 100, 200]//可以设置每页记录条数的列表   
             }).datagrid('getPager').pagination({
                 //设置分页控件 
                 beforePageText: '第',//页数文本框前显示的汉字 

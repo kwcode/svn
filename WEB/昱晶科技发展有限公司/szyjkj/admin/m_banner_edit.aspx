@@ -13,21 +13,19 @@
     <script src="/js/layer.js" type="text/javascript"></script>
     <link href="/style/layer.css" rel="stylesheet" type="text/css" />
     <link href="/style/css.css" rel="stylesheet" />
-    <script src="/js/jquery-uploadimg.js"></script>
+    <script src="/js/jquery-twExt.js"></script>
+    <%--    <script src="/js/jquery-uploadimg.js"></script>--%>
     <script>
         $(function () {
-            $.tw.loadimg();
+            //$.tw.loadimg();
             init();
             var id = '<%=ID%>';
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
-                var img = encodeURIComponent($("#img-adres").attr("src")); //$.tw.getimgaddress();
-                var imgtype = $.tw.getimgtype();
-                // alert(imgtype + img);
+                var img = $(".u-imgaddress").prop("src");
                 var title = $("#txt_title").val();
                 var showindex = $("#txt_showindex").val();
                 var url = $("#txt_url").val();
-                //saverebanner
                 $.ajax({
                     url: "/admin/action/actionadmin.aspx",
                     type: "POST",
@@ -35,7 +33,6 @@
                         action: "saverebanner",
                         id: id,
                         img: img,
-                        imgtype: imgtype,
                         title: title,
                         showindex: showindex,
                         url: url
@@ -53,21 +50,29 @@
                     }, fail: function () { alert("请求失败！"); }
                 });
             });
+
+            $(".btn_uploadimg").click(function () {
+                $.tw.photo.uploadImage({ single: true, area: ['800px', '400px'] }).done(function (result) {
+                    var tn = result.result[0].tn;
+                    var id = result.result[0].id;
+                    $(".u-imgaddress").prop("src", tn);
+                });
+            });
         });
 
         var init = function () {
             if (typeof (jsonbanner) != 'undefined' && jsonbanner.length > 0) {
                 $(".txt_title").val(jsonbanner[0].Title);
-                $(".txt_url").val(jsonbanner[0].Url);
+                $(".txt_url").val(jsonbanner[0].URL);
                 $(".txt_showindex").val(jsonbanner[0].ShowIndex);
-                $.tw.loadimg(jsonbanner[0].ImgUrl);
+                $(".u-imgaddress").prop("src", jsonbanner[0].ImgAddress);
             }
         }
     </script>
 </head>
 <body>
     <form id="form2" runat="server">
-        <div style="float: left" class="d-admin-content">
+        <div class="e_box">
             <div class="e-item">
                 <span class="sp150">标题：</span>
                 <input type="text" maxlength="200" class="txt_title" runat="server" id="txt_title" />
@@ -75,22 +80,20 @@
             <div class="e-item">
                 <span class="sp150">URL：</span>
                 <input type="text" maxlength="200" value="http://" class="txt_url" runat="server" id="txt_url" />
+
             </div>
             <div class="e-item">
                 <span class="sp150">排序：</span>
-                <input type="text" maxlength="5" class="txt_showindex" runat="server" id="txt_showindex" />
+                <input type="text" maxlength="5" class="txt_showindex" value="1" runat="server" id="txt_showindex" />
             </div>
             <div class="e-item">
                 <span class="sp150">图片：</span>
-                <div class="u-button" style="float: left; width: 330px;">
-                </div>
-
-            </div>
-            <div class="e-item u-imgaddress" style="margin-left: 150px; margin-top: 10px;">
+                <img class="u-imgaddress" width="200" height="130" src="" />
+                <a class="inpbbut3 btn_uploadimg">选择图片</a>
             </div>
         </div>
         <div class="btn-content" style="margin-left: 200px;">
-            <input type="button" id="btn_ok" class="inpbbut1" value="保存" />
+            <input type="button" id="btn_ok" class="inpbbut3" value="保存" />
         </div>
     </form>
 </body>

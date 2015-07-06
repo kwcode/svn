@@ -55,10 +55,16 @@ public partial class admin_action_actionadmin : AjaxBase
                 break;
             case "delbanner":
                 delbanner();
-                break; 
+                break;
             #region 菜单管理========
             case "AddPmMenu":
                 AddPmMenu();
+                break;
+            case "DelPmMenu":
+                DelPmMenu();
+                break;
+            case "UpdatePmMenu":
+                UpdatePmMenu();
                 break;
             #endregion
             default:
@@ -67,6 +73,33 @@ public partial class admin_action_actionadmin : AjaxBase
         return new { res = res, desc = desc };
     }
 
+
+    private void DelPmMenu()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        res = WSCommon.DelPmMenu(id);
+        if (res > 0)
+            desc = "删除成功！";
+        else
+            desc = "删除失败！";
+    }
+
+    private void UpdatePmMenu()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        string name = Request["name"] ?? "";
+        int pid = Convert.ToInt32(Request["pid"] ?? "0");
+        int showindex = Convert.ToInt32(Request["showindex"] ?? "0");
+        string url = Request["url"] ?? "/";
+        string ico = Request["ico"] ?? "";
+        res = WSCommon.UpdatePmMenu(id, name, pid, showindex, url, ico);
+        if (res > 0)
+            desc = "修改成功";
+        else
+            desc = "修改失败";
+    }
     private void AddPmMenu()
     {
         string name = Request["name"] ?? "";
@@ -74,12 +107,13 @@ public partial class admin_action_actionadmin : AjaxBase
         int showindex = Convert.ToInt32(Request["showindex"] ?? "0");
         string url = Request["url"] ?? "/";
         string ico = Request["ico"] ?? "";
-        int row = WSCommon.AddPmMenu(name, pid, showindex, url, ico);
-        if (row > 0)
+        res = WSCommon.AddPmMenu(name, pid, showindex, url, ico);
+        if (res > 0)
             desc = "新增成功";
         else
             desc = "新增失败";
     }
+
 
     private void delbanner()
     {
@@ -178,7 +212,7 @@ public partial class admin_action_actionadmin : AjaxBase
 
     private void savereproductimg()
     {
-        string imgaddress = Server.UrlDecode(Request["img"] ?? "");
+        string imgpath = Server.UrlDecode(Request["img"] ?? "");
         int id = 0;
         int.TryParse(Request["id"] ?? "0", out id);
         int imgtype = 0;
@@ -188,31 +222,31 @@ public partial class admin_action_actionadmin : AjaxBase
         int.TryParse(Request["showindex"] ?? "0", out showindex);
         int pid = 0;
         int.TryParse(Request["pid"] ?? "0", out pid);
-        string imgpath = "/images/nophoto1.jpg";
-        if (imgtype == 64)
-        {
-            string[] paths = imgaddress.Split(',');
-            System.Drawing.Image img = Base64ToImage(paths[1]);
+        //string imgpath = "/images/nophoto1.jpg";
+        //if (imgtype == 64)
+        //{
+        //    string[] paths = imgaddress.Split(',');
+        //    System.Drawing.Image img = Base64ToImage(paths[1]);
 
-            string imgspath = SingleFileUpload.GetServiceUrl(SingleFileUpload.fileNameIndex.Banner);
-            string fileName = stringCoding.RndNum(8);
-            #region 获取后缀名
-            string extension = ".jpg";
-            if (paths[0].Contains("jpeg"))
-                extension = ".jpg";
-            else if ((paths[0].Contains("png")))
-                extension = ".png";
-            else if ((paths[0].Contains("gif")))
-                extension = ".gif";
-            #endregion
-            img.Save(Server.MapPath(imgspath + fileName + extension));
-            imgpath = imgspath + fileName + extension;
+        //    string imgspath = SingleFileUpload.GetServiceUrl(SingleFileUpload.fileNameIndex.Banner);
+        //    string fileName = stringCoding.RndNum(8);
+        //    #region 获取后缀名
+        //    string extension = ".jpg";
+        //    if (paths[0].Contains("jpeg"))
+        //        extension = ".jpg";
+        //    else if ((paths[0].Contains("png")))
+        //        extension = ".png";
+        //    else if ((paths[0].Contains("gif")))
+        //        extension = ".gif";
+        //    #endregion
+        //    img.Save(Server.MapPath(imgspath + fileName + extension));
+        //    imgpath = imgspath + fileName + extension;
 
-        }
-        else
-        {
-            imgpath = imgaddress;
-        }
+        //}
+        //else
+        //{
+        //    imgpath = imgaddress;
+        //}
         res = WSCommon.SaveProductImg(id, pid, imgpath, 0, title, showindex);
         if (res > 0)
         {
@@ -246,40 +280,40 @@ public partial class admin_action_actionadmin : AjaxBase
 
     private void saverebanner()
     {
-        string imgaddress = Server.UrlDecode(Request["img"] ?? "");
+        string imgpath = Server.UrlDecode(Request["img"] ?? "");
         int id = 0;
         int.TryParse(Request["id"] ?? "0", out id);
-        int imgtype = 0;
-        int.TryParse(Request["imgtype"] ?? "0", out imgtype);
+        //int imgtype = 0;
+        //int.TryParse(Request["imgtype"] ?? "0", out imgtype);
         string title = Request["title"] ?? "";
         string url = Request["url"] ?? "";
         int showindex = 0;
         int.TryParse(Request["showindex"] ?? "0", out showindex);
-        string imgpath = "/images/nophoto1.jpg";
-        if (imgtype == 64)
-        {
-            string[] paths = imgaddress.Split(',');
-            System.Drawing.Image img = Base64ToImage(paths[1]);
+        //string imgpath = "/images/nophoto1.jpg";
+        //if (imgtype == 64)
+        //{
+        //    string[] paths = imgaddress.Split(',');
+        //    System.Drawing.Image img = Base64ToImage(paths[1]);
 
-            string imgspath = SingleFileUpload.GetServiceUrl(SingleFileUpload.fileNameIndex.Banner);
-            string fileName = stringCoding.RndNum(8);
-            #region 获取后缀名
-            string extension = ".jpg";
-            if (paths[0].Contains("jpeg"))
-                extension = ".jpg";
-            else if ((paths[0].Contains("png")))
-                extension = ".png";
-            else if ((paths[0].Contains("gif")))
-                extension = ".gif";
-            #endregion
-            img.Save(Server.MapPath(imgspath + fileName + extension));
-            imgpath = imgspath + fileName + extension;
+        //    string imgspath = SingleFileUpload.GetServiceUrl(SingleFileUpload.fileNameIndex.Banner);
+        //    string fileName = stringCoding.RndNum(8);
+        //    #region 获取后缀名
+        //    string extension = ".jpg";
+        //    if (paths[0].Contains("jpeg"))
+        //        extension = ".jpg";
+        //    else if ((paths[0].Contains("png")))
+        //        extension = ".png";
+        //    else if ((paths[0].Contains("gif")))
+        //        extension = ".gif";
+        //    #endregion
+        //    img.Save(Server.MapPath(imgspath + fileName + extension));
+        //    imgpath = imgspath + fileName + extension;
 
-        }
-        else
-        {
-            imgpath = imgaddress;
-        }
+        //}
+        //else
+        //{
+        //    imgpath = imgaddress;
+        //}
         if (id > 0)
         {
             res = WSCommon.UpdateBanner(id, title, imgpath, showindex, url);

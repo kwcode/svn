@@ -5,18 +5,17 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script src="../js/jquery-1.8.3.js"></script>
-    <link href="../meditor/themes/default/css/umeditor.css" rel="stylesheet" />
-    <script src="../meditor/third-party/jquery.min.js"></script>
-    <script src="../meditor/umeditor.min.js"></script>
-    <script src="../meditor/umeditor.config.js"></script>
-    <script src="/meditor/lang/zh-cn/zh-cn.js"></script>
+    <script src="/js/jquery-1.8.3.js" type="text/javascript"></script>
+    <link href="/meditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet" />
+    <script type="text/javascript" src="/meditor/third-party/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/meditor/umeditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/meditor/umeditor.min.js"></script>
+    <script type="text/javascript" src="../../meditor/lang/zh-cn/zh-cn.js"></script>
+    <link href="/admin/style/admin.css" rel="stylesheet" type="text/css" />
+    <link href="/style/css.css" rel="stylesheet" type="text/css" />
+    <script src="/js/layer.js" type="text/javascript"></script>
+    <link href="/style/layer.css" rel="stylesheet" type="text/css" />
 
-    <script src="../js/layer.js"></script>
-    <link href="style/admin.css" rel="stylesheet" />
-    <link href="../style/style.css" rel="stylesheet" />
-    <link href="../style/css.css" rel="stylesheet" />
-    <link href="../style/layer.css" rel="stylesheet" />
     <script>
         $(function () {
             var ue = UM.getEditor('editor'); //实例化编辑器  
@@ -40,7 +39,7 @@
                     }
                     else { alert(result.desc); }
                     layer.close(_layer);
-                   
+
                 });
                 /**/
             });
@@ -48,26 +47,23 @@
             function init() {
                 if (typeof (jsonrelation) != 'undefined' && jsonrelation.length > 0) {
                     ue.setContent(jsonrelation[0].Details);
-                } 
+                }
             }
         });
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div style="font-size: 20px; border-bottom: 1px solid #000; margin-bottom: 10px;">
-            联系我们
+        <div class="e_box">
+            <dl>
+                <dt>内容</dt>
+                <dd class="fl">
+                    <script id="editor" type="text/plain" style="width: 1000px; max-height: 400px; min-height: 250px;"></script>
+                </dd>
+            </dl>
+            <div class="btnbox">
+                <input type="button" id="btn_ok" class="inpbbut1" value="保存" /></div>
         </div>
-        <div style="margin-bottom: 10px;">
-            <input type="button" id="btn_ok" class="inpbbut1" value="保存" />
-
-        </div>
-        <div class="e-item">
-            <div style="float: left;">
-                <script id="editor" type="text/plain" style="width: 1200px; margin-top: 5px; min-height: 350px;"></script>
-            </div>
-        </div>
-
     </form>
 </body>
 </html>

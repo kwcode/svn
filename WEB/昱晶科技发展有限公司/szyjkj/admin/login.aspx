@@ -163,7 +163,7 @@
                 });
 
             });
-           
+
         });
         function KeyDown() {
             if (event.keyCode == 13) {
@@ -189,7 +189,7 @@
                         <label for="username" class="uname" data-icon="u">
                             用户
                         </label>
-                        <input id="username"   onkeydown="KeyDown()" name="username" type="text" placeholder="登录名" />
+                        <input id="username" onkeydown="KeyDown()" name="username" type="text" placeholder="登录名" />
                     </p>
                     <p>
                         <label for="password" class="youpasswd" data-icon="p">

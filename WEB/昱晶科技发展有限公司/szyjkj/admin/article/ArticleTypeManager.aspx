@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="m_PhotoBook.aspx.cs" Inherits="admin_Photo_m_PhotoBook" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ArticleTypeManager.aspx.cs" Inherits="admin_article_ArticleTypeManager" %>
 
 <!DOCTYPE html>
 
@@ -16,11 +16,8 @@
     <link href="/style/jquery.validationEngine.css" rel="stylesheet" />
     <script src="/js/jquery.validationEngine-zh_CN.js"></script>
     <script src="/js/jquery.validationEngine.js"></script>
-    <script src="/js/jquery-twExt.js"></script>
-
     <script>
         $(function () {
-
             //表格工具栏 
             var _toolbar = [{
                 text: 'Add',
@@ -29,10 +26,10 @@
                     /*ADD*/
                     var _layerIndex = $.layer({
                         type: 1,
-                        title: '增加相册',
-                        area: ['400px', '300px'],
+                        title: '增加文章类型',
+                        area: ['400px', '200px'],
                         page: {
-                            dom: ".Hide_EditPhotoBook"
+                            dom: ".Hide_EditArticleType"
                         },
                         success: function ($layer) {
                             $layer.on("click", ".btn_ok", function () {
@@ -41,17 +38,13 @@
                                     return;
                                 }
                                 var _name = $("#txt_name").val();
-                                var _ispublic = $("#cb_ispublic").attr("checked") == "checked" ? 1 : 0;
                                 var _showindex = $("#txt_showindex").val();
-                                var _remark = $("#txt_remark").val();
                                 var _layer = $.layer({ type: 3 });
-                                $.post("/admin/Photo/ActionPhoto.aspx", {
-                                    action: "SavePhotoBook",
+                                $.post("/admin/article/ActionArticle.aspx", {
+                                    action: "SaveArticleType",
                                     id: 0,
-                                    Name: _name,
-                                    IsPublic: _ispublic,
-                                    ShowIndex: _showindex,
-                                    Remark: _remark
+                                    name: _name,
+                                    showindex: _showindex
                                 }).done(function (result) {
                                     if (result.res > 0) {
                                         layer.close(_layer);
@@ -76,7 +69,9 @@
 
             //表格数据 
             $('#dg').datagrid({
-                singleSelect: true,//是否单选 
+                //checkbox: true,//是否出现复选框
+                singleSelect: true,//是否单选
+                //collapsible: true,
                 remoteSort: false,//定义是否从服务器给数据排序。
                 // multiSort: true,
                 fitColumns: true,//True 就会自动扩大或缩小列的尺寸以适应表格的宽度并且防止水平滚动
@@ -86,7 +81,7 @@
                 fit: true,//自动大小
                 pageNumber: 1,
                 pageSize: 50,//每页显示的记录条数，默认为10 
-                url: '/admin/Photo/m_PhotoBook.aspx',
+                url: '/admin/article/ArticleTypeManager.aspx',
                 type: "POST",
                 pageList: [20, 40, 60, 100, 200]//可以设置每页记录条数的列表   
             }).datagrid('getPager').pagination({
@@ -95,32 +90,32 @@
                 afterPageText: '页    共 {pages} 页',
                 displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
             });
-
         });
         //自定义一列
         function formatOper(val, row, index) {
-            var btn = ' <a href="#"  class="icon-edit inputbtns"  onclick="edit(' + index + ')"  title="编辑"></a>';
+            var btn = ' <a onclick="edit(' + index + ')" class="icon-edit inputbtns"   title="编辑"></a>';
             var btn2 = ' <a href="#" class="icon-remove inputbtns"  onclick="del(' + index + ')" title="删除"></a>';
-            var btn3 = '<a href="/admin/Photo/m_Photos.aspx?bookid=' + row.ID + '" class="icon-tip inputbtns"  title="照片"></a>';
-            var btns = btn + btn2 + btn3;
+            var btns = btn + btn2;
             return btns;
         }
         function del(index) {
             var _layer = layer.confirm("是否删除？", function () {
                 var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
                 var id = row.ID;
-                $.post("/admin/Photo/ActionPhoto.aspx", {
-                    action: "DelPhotoBook",
+                $.post("/admin/article/ActionArticle.aspx", {
+                    action: "DelArticleType",
                     id: id
                 }).done(function (result) {
+                    layer.close(_layer);
                     if (result.res > 0) {
                         //删除成功！
-                        //$('#dg').datagrid('deleteRow', index); //删除一行 
-                        $('#dg').datagrid('reload');//刷新 
+                        $('#dg').datagrid('deleteRow', index); //删除一行 
+                        //  $('#dg').datagrid('reload');//刷新 
                         layer.closeAll();
                     }
-                    layer.close(_layer);
-                    layer.alert(result.desc);
+                    else {
+                        layer.alert(result.desc);
+                    }
                 }).fail(function (ex) {
                     layer.close(_layer); layer.alert("请求失败" + ex.responseText);
                 });
@@ -129,23 +124,16 @@
         function edit(index) {
             var _layerIndex = $.layer({
                 type: 1,
-                title: '修改相册',
-                area: ['400px', '300px'],
+                title: '修改文章类型',
+                area: ['400px', '200px'],
                 page: {
-                    dom: ".Hide_EditPhotoBook"
+                    dom: ".Hide_EditArticleType"
                 },
                 success: function ($layer) {
                     var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
                     var id = row.ID;
                     $layer.find("#txt_name").val(row.Name);
                     $layer.find("#txt_showindex").val(row.ShowIndex);
-                    $layer.find("#txt_remark").val(row.Remark);
-                    if (row.IsPublic == 1) {
-                        $layer.find("#cb_ispublic").attr("checked", "checked")
-                    }
-                    else {
-                        $layer.find("#cb_ispublic").attr("checked", false)
-                    }
 
                     $layer.on("click", ".btn_ok", function () {
                         var b = $('#form1').validationEngine('validate');//手动验证
@@ -153,17 +141,13 @@
                             return;
                         }
                         var _name = $("#txt_name").val();
-                        var _ispublic = $("#cb_ispublic").attr("checked") == "checked" ? 1 : 0;
                         var _showindex = $("#txt_showindex").val();
-                        var _remark = $("#txt_remark").val();
                         var _layer = $.layer({ type: 3 });
-                        $.post("/admin/Photo/ActionPhoto.aspx", {
-                            action: "SavePhotoBook",
+                        $.post("/admin/article/ActionArticle.aspx", {
+                            action: "SaveArticleType",
                             id: id,
                             Name: _name,
-                            IsPublic: _ispublic,
-                            ShowIndex: _showindex,
-                            Remark: _remark,
+                            ShowIndex: _showindex
                         }).done(function (result) {
                             if (result.res > 0) {
                                 layer.close(_layer);
@@ -183,33 +167,28 @@
                 }
             });
         }
-
+        function formatImgurl(val, row, index) {
+            var img = ' <img src="' + row.ImgAddress + '" style="width: 30px; height: 30px;" />';
+            return img;
+        }
     </script>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div class="Hide_EditPhotoBook hide_box">
+        <div class="Hide_EditArticleType hide_box">
             <div>
                 <ul>
-                    <li><span>相册名称：</span>
+                    <li><span>名称：</span>
                         <input type="text" class="validate[required]" id="txt_name" maxlength="30" />
-                    </li>
-                    <li><span>是否私有:</span>
-                        <input type="checkbox" id="cb_ispublic" />
                     </li>
                     <li>
                         <span>排序：</span>
-                        <input class="validate[required] validate[custom[integer]]" onkeyup="this.value=this.value.replace(/\D/g,'');" onblur="if(this.value==''||this.value==0)this.value=1" type="text" id="txt_showindex" maxlength="8" value="0" />
-                    </li>
-                    <li>
-                        <span>相册描述：</span>
-                        <textarea id="txt_remark" maxlength="200"></textarea>
+                        <input class="validate[required] validate[custom[integer]]" onkeyup="this.value=this.value.replace(/\D/g,'');" onblur="if(this.value==''||this.value==0)this.value=1" type="text" id="txt_showindex" maxlength="8" value="1" />
                     </li>
                 </ul>
             </div>
             <div class="btnbox">
                 <input class="inpbbut3 btn_ok" value="确定" type="button" />
-               <%-- <input class="inpbbut3 btn_cancel" value="取消" type="button" />--%>
             </div>
         </div>
     </form>
@@ -218,14 +197,10 @@
             <tr>
                 <th data-options="field:'op',width:80,align:'center',formatter:formatOper">操作</th>
                 <th data-options="field:'ID',width:50,sortable:true">ID</th>
-                <th data-options="field:'PhotoCount',width:50,sortable:true">照片数量</th>
-                <th data-options="field:'Name',width:150,sortable:true">名称</th>
-                <th data-options="field:'IsPublic',width:50,sortable:true">是否公开</th>
                 <th data-options="field:'ShowIndex',width:50,sortable:true">排序</th>
+                <th data-options="field:'Name',width:150,sortable:true">名称</th>
                 <th data-options="field:'CreateTS',width:100,sortable:true,
                     formatter:function(value,row,index){ return new Date(value).toLocaleString();}">创建时间</th>
-                <th data-options="field:'Remark',width:150,sortable:true">说明</th>
-
             </tr>
         </thead>
     </table>

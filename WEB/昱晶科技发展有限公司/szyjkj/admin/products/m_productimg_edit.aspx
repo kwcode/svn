@@ -11,20 +11,29 @@
     <link href="/admin/style/admin.css" rel="stylesheet" />
     <script src="/js/layer.js" type="text/javascript"></script>
     <link href="/style/layer.css" rel="stylesheet" type="text/css" />
-    <link href="/style/css.css" rel="stylesheet" />
-    <script src="/js/jquery-uploadimg.js"></script>
+    <script src="/js/jquery-twExt.js"></script>
+    <%--  <link href="/style/css.css" rel="stylesheet" />
+    <script src="/js/jquery-uploadimg.js"></script>--%>
     <script>
         $(function () {
-            $.tw.loadimg();
             var id = '<%=ID%>';
-            init(); 
+            init();
+
+            $(".btn_uploadimg").click(function () {
+                $.tw.photo.uploadImage({ single: true, area: ['800px', '400px'] }).done(function (result) {
+                    var tn = result.result[0].tn;
+                    var id = result.result[0].id;
+                    $(".u-imgaddress").prop("src", tn);
+                });
+            });
+
+
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
-                var img = $.tw.getimgaddress();
-                var imgtype = $.tw.getimgtype();
+                var img = $(".u-imgaddress").prop("src");
                 var title = $("#txt_title").val();
                 var showindex = $("#txt_showindex").val();
-                var proid = $(".txt_protype").data("pid");
+                var proid = $(".sel_type").val();
                 $.ajax({
                     url: "/admin/action/actionadmin.aspx",
                     type: "POST",
@@ -32,7 +41,6 @@
                         action: "savereproductimg",
                         id: id,
                         img: img,
-                        imgtype: imgtype,
                         title: title,
                         showindex: showindex,
                         pid: proid
@@ -52,13 +60,17 @@
             });
         });
         var init = function () {
+            if (typeof (jsonproctype) != 'undefined' && jsonproctype.length > 0) {
+                for (var i = 0; i < jsonproctype.length; i++) {
+                    var op = '<option value="' + jsonproctype[i].ID + '">' + jsonproctype[i].Title + '</option>';
+                    $("#sel_type").append(op);
+                }
+            }
+
             if (typeof (jsonprocimg) != 'undefined' && jsonprocimg.length > 0) {
                 $(".txt_title").val(jsonprocimg[0].Title);
-                //$(".sel_protype").val(jsonprocimg[0].PID);
-                //$(".txt_protype").data("pid", jsonprocimg[0].PID);
-                //$(".txt_protype").val(jsonprocimg[0].PID);
                 $(".txt_showindex").val(jsonprocimg[0].ShowIndex);
-                $.tw.loadimg(jsonprocimg[0].ImgUrl);
+                $(".u-imgaddress").prop("src", jsonprocimg[0].ImgUrl);
             }
         }
 
@@ -66,14 +78,14 @@
 </head>
 <body>
     <form id="form2" runat="server">
-        <div style="float: left" class="d-admin-content">
+        <div class="e_box">
             <div class="e-item">
                 <span class="sp150">标题：</span>
                 <input type="text" maxlength="200" class="txt_title" id="txt_title" />
             </div>
             <div class="e-item">
                 <span class="sp150">所属于分类：</span>
-                <input type="text" maxlength="200" value="<%=PName%>" readonly="true" style="border: 0px; border-bottom: 1px solid #f00" class="txt_protype" data-pid="<%=Pid%>" id="txt_protype" />
+                <select id="sel_type"></select>
             </div>
             <div class="e-item">
                 <span class="sp150">排序：</span>
@@ -81,15 +93,12 @@
             </div>
             <div class="e-item">
                 <span class="sp150">图片：</span>
-                <div class="u-button" style="float: left; width: 330px;">
-                </div>
-
-            </div>
-            <div class="e-item u-imgaddress" style="margin-left: 150px; margin-top: 10px;">
+                <img class="u-imgaddress" width="200" height="130" src="" />
+                <a class="inpbbut3 btn_uploadimg">选择图片</a>
             </div>
         </div>
         <div class="btn-content" style="margin-left: 200px;">
-            <input type="button" id="btn_ok" class="inpbbut1" value="保存" />
+            <input type="button" id="btn_ok" class="inpbbut3" value="保存" />
         </div>
     </form>
 </body>

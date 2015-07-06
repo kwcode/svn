@@ -22,6 +22,7 @@ public partial class admin_m_menu_index : PageBase
         treelist.Add(new TreeBaseDataCL() { ID = 1, Text = "父1", ICO = "icon-pencil", Children = treechildred });
         treelist.Add(new TreeBaseDataCL() { ID = 2, Text = "父2", Children = treechildred });
         #endregion
+
         if (Request.HttpMethod == "POST")
         {
             int page = Convert.ToInt32(Request["page"] ?? "1");
@@ -29,7 +30,8 @@ public partial class admin_m_menu_index : PageBase
             string keywords = Request["keywords"] ?? "";
             int total = 0;
             DataTable dt = WSCommon.GetPmMenuList();
-            ResponseJson(new DataGridJson() { total = total, rows = treelist });
+            List<TreeBaseDataCL> tree = EntityCommon.ConvertDtToTree(dt);
+            ResponseJson(new DataGridJson() { total = total, rows = tree });
         }
         else
         {
@@ -38,7 +40,7 @@ public partial class admin_m_menu_index : PageBase
             List<string> str = Directory.GetFiles(path + "admin/", "*.aspx", SearchOption.AllDirectories).ToList();
             for (int i = 0; i < str.Count; i++)
             {
-                str[i] = str[i].Substring(str[i].LastIndexOf("admin/"), str[i].Length - str[i].LastIndexOf("admin/")).Replace("\\", "/");
+                str[i] = "/" + str[i].Substring(str[i].LastIndexOf("admin/"), str[i].Length - str[i].LastIndexOf("admin/")).Replace("\\", "/");
             }
             #region 这里读取icon.css文件 做一个缓存
             string CacheKey = "C_icos";//检索指定项，
@@ -63,15 +65,17 @@ public partial class admin_m_menu_index : PageBase
             #endregion
 
 
-
-            string json = string.Format("var jsonadminPage = {0};var jsonicos={1};"
+            DataTable dt = WSCommon.GetPmMenuList();
+            string json = string.Format("var jsonadminPage = {0};var jsonicos={1};var jsontree={2}"
                 , Newtonsoft.Json.JsonConvert.SerializeObject(str),
-                Newtonsoft.Json.JsonConvert.SerializeObject(objModel)
+                Newtonsoft.Json.JsonConvert.SerializeObject(objModel),
+                  Newtonsoft.Json.JsonConvert.SerializeObject(dt)
                 );
             this.Page.ClientScript.RegisterStartupScript(this.GetType(), "script", json, true);
         }
 
 
     }
+
 
 }

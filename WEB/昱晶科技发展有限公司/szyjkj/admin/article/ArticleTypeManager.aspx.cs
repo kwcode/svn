@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class admin_index : PageBase
+public partial class admin_article_ArticleTypeManager : PageBase
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -16,9 +16,8 @@ public partial class admin_index : PageBase
             int pagesize = Convert.ToInt32(Request["rows"] ?? "1");
             string keywords = Request["keywords"] ?? "";
             int total = 0;
-            DataTable dt = WSCommon.GetPmMenuList();
-            List<TreeBaseDataCL> tree = EntityCommon.ConvertDtToTree(dt);
-            ResponseJson(tree);
+            DataTable dt = WSCommon.GetArticleTypeList(page, pagesize, keywords, out total);
+            ResponseJson(new DataGridJson() { total = total, rows = dt });
         }
     }
 }
