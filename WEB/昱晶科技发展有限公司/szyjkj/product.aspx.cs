@@ -19,7 +19,7 @@ public partial class product : System.Web.UI.Page
         int.TryParse(Request["pid"] ?? "0", out pid);
         int total = 0;
         List<LeftMenuCL> listmenu = new List<LeftMenuCL>();
-        DataTable  DtProductType = WSCommon.GetProduct(1, 100, "", out  total);
+        DataTable  DtProductType = WSCommon.GetProductTypeList(1, 100, "", out  total);
         DtproductImgs = WSCommon.GetProductImgs(pid, 20);
 
         foreach (DataRow item in DtProductType.Rows)
