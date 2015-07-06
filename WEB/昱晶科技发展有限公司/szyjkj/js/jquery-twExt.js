@@ -24,9 +24,10 @@
             var option = $.extend({
                 border: [4, 0.1, '#000', true],
                 title: "添加图片",
-                fix: false,
-                offset: ['120px', ''],
-                area: ['960px', '680px'],
+                //fix: false,
+                //offset: ['120px', ''],
+                area: ['800px', '400px'],
+                position: 'center',
                 single: false,
                 singleUpload: false
             }, installOption || {});

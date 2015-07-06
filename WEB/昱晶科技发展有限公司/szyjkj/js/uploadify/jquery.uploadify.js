@@ -482,7 +482,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
                         uploadSize: 0, // The size in bytes of the upload queue
                         queueBytesUploaded: 0, // The size in bytes that have been uploaded for the current upload queue
                         uploadQueue: [], // The files currently to be uploaded
-                        errorMsg: 'Some files were not added to the queue:'
+                        errorMsg: '一些文件没有添加到队列'//Some files were not added to the queue:
                     };
 
                     // Save references to all the objects
@@ -857,30 +857,16 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
             }
 
             // Create the file item template
-            //if (settings.itemTemplate == false) {
-            //    settings.itemTemplate = '<div id="${fileID}" class="uploadify-queue-item">\
-            //		<div class="cancel">\
-            //			<a href="javascript:$(\'#${instanceID}\').uploadify(\'cancel\', \'${fileID}\')">X</a>\
-            //		</div>\
-            //		<span class="fileName">${fileName} (${fileSize})</span><span class="data"></span>\
-            //		<div class="uploadify-progress">\
-            //			<div class="uploadify-progress-bar"><!--Progress Bar--></div>\
-            //		</div>\
-            //	</div>';
-            //}
-
-
-
             if (settings.itemTemplate == false) {
                 settings.itemTemplate = '<div id="${fileID}" class="uploadify-queue-item">\
-            		<div class="cancel">\
-            			<a href="javascript:$(\'#${instanceID}\').uploadify(\'cancel\', \'${fileID}\')">X</a>\
-            		</div>\
-            		<span class="fileName">${fileName} (${fileSize})</span><span class="data"></span>\
-            		<div class="uploadify-progress">\
-            			<div class="uploadify-progress-bar"><!--Progress Bar--></div>\
-            		</div>\
-            	</div>';
+					<div class="cancel">\
+						<a href="javascript:$(\'#${instanceID}\').uploadify(\'cancel\', \'${fileID}\')">X</a>\
+					</div>\
+					<span class="fileName">${fileName} (${fileSize})</span><span class="data"></span>\
+					<div class="uploadify-progress">\
+						<div class="uploadify-progress-bar"><!--Progress Bar--></div>\
+					</div>\
+				</div>';
             }
 
             // Run the default event handler
@@ -1168,7 +1154,8 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
             }
 
             // Call the user-defined event handler
-            if (settings.onUploadStart) settings.onUploadStart.call(this, file);
+            if (settings.onUploadStart)
+                settings.onUploadStart.call(this, file);
         },
 
         // Triggered when a file upload returns a successful code
