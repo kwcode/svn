@@ -1,6 +1,9 @@
 ﻿/*.clearfix:after { content: "."; display: block; visibility: hidden; clear: both; height: 0; font-size: 0; }*/
 
-.clearfix { zoom: 1; }
+.clear { clear: both; height: 0; font-size: 0; line-height: 0; overflow: hidden; } 
+.clearfix:after { content: "."; display: block; visibility: hidden; clear: both; height: 0; font-size: 0; }
+.clearfix { display: inline-block; }
+.clearfix { display: block; }
 
 h2 { margin: 0px; padding: 0px; }
 
