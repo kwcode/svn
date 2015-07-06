@@ -142,7 +142,7 @@
                 <div class="slidebox">
                     <ul class="slide_1" style="float: left">
                         <%
-                            foreach (System.Data.DataRow item in DtProductImgs.Rows)
+                            foreach (System.Data.DataRow item in DtScrollProcducts.Rows)
                             {
                         %><li><a href="/pro/a-<%=item["ID"]%>.html">
                             <img src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="<%=item["Title"] %>-昱晶科技" title="<%=item["Title"] %>" /></a>
@@ -172,7 +172,7 @@
                 <div class="rp_c">
                     <ul>
                         <%
-                            foreach (System.Data.DataRow item in DtProductImgs.Rows)
+                            foreach (System.Data.DataRow item in DtHomeTopProcducts.Rows)
                             {
                         %><li><a href="/productdesc.aspx?id=<%=item["ID"]%>">
                             <img src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="<%=item["Title"] %>-昱晶科技" title="<%=item["Title"] %>" /></a>
