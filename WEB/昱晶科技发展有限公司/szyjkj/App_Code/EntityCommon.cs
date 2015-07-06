@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,56 @@ public class EntityCommon
         //
         // TODO: 在此处添加构造函数逻辑
         //
+    }
+    public static List<TreeBaseDataCL> ConvertDtToTree(DataTable dt, int pid = 0)
+    {
+        List<TreeBaseDataCL> list = new List<TreeBaseDataCL>();
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            foreach (DataRow item in dt.Rows)
+            {
+                int _Pid = Convert.ToInt32(item["PID"]);
+                if (_Pid == pid)
+                {
+                    int ID = Convert.ToInt32(item["ID"]);
+                    TreeBaseDataCL treeitem = new TreeBaseDataCL();
+                    treeitem.ID = ID;
+                    treeitem.ICO = item["ICO"].ToString();
+                    treeitem.ShowIndex = Convert.ToInt32(item["ShowIndex"]);
+                    treeitem.Text = item["Name"].ToString();
+                    treeitem.Url = item["Url"].ToString();
+                    treeitem.PID = Convert.ToInt32(item["PID"]);
+                    treeitem.Children = GetTreeChildren(dt, ID);
+                    list.Add(treeitem);
+                }
+            }
+        }
+        return list;
+    }
+    private static List<TreeBaseDataCL> GetTreeChildren(DataTable dt, int pid)
+    {
+        List<TreeBaseDataCL> list = new List<TreeBaseDataCL>();
+        if (dt != null && dt.Rows.Count > 0)
+        {
+            foreach (DataRow item in dt.Rows)
+            {
+                int _Pid = Convert.ToInt32(item["PID"]);
+                if (_Pid == pid)
+                {
+                    int ID = Convert.ToInt32(item["ID"]);
+                    TreeBaseDataCL treeitem = new TreeBaseDataCL();
+                    treeitem.ID = ID;
+                    treeitem.ICO = item["ICO"].ToString();
+                    treeitem.ShowIndex = Convert.ToInt32(item["ShowIndex"]);
+                    treeitem.Text = item["Name"].ToString();
+                    treeitem.Url = item["Url"].ToString();
+                    treeitem.PID = Convert.ToInt32(item["PID"]);
+                    treeitem.Children = GetTreeChildren(dt, ID);
+                    list.Add(treeitem);
+                }
+            }
+        }
+        return list;
     }
 
 }
@@ -71,5 +122,9 @@ public class TreeBaseDataCL
     public bool Checked { get; set; }
 
     [JsonProperty("showindex")]
-    public string ShowIndex { get; set; }
+    public int ShowIndex { get; set; }
+    [JsonProperty("url")]
+    public string Url { get; set; }
+    [JsonProperty("pid")]
+    public int PID { get; set; }
 }

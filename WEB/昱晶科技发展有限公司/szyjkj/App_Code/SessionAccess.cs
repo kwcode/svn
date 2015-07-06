@@ -18,7 +18,7 @@ public class SessionAccess
         public const string UserType = "UserType";
 
     }
-    private static HttpSessionState Session
+    public static HttpSessionState Session
     {
         get
         {
@@ -37,6 +37,7 @@ public class SessionAccess
         set
         {
             Session[SessionKey.UserID] = value;
+            Session.Timeout = 30;
         }
     }
     /// <summary>

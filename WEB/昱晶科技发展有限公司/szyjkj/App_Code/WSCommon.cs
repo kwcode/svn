@@ -31,9 +31,14 @@ public class WSCommon
         return row;
     }
     //修改菜单
-    public static int UpdatePmMenu(string name, int pid, int showindex, string url, string ico)
+    public static int UpdatePmMenu(int id, string name, int pid, int showindex, string url, string ico)
     {
-        int row = DataConnect.Data.ExecuteSP("p_admin_UpdatePmMenu", new object[] { name, pid, showindex, url, ico });
+        int row = DataConnect.Data.ExecuteSP("p_admin_UpdatePmMenu", new object[] { id, name, pid, showindex, url, ico });
+        return row;
+    }
+    public static int DelPmMenu(int id)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_DelPmMenu", new object[] { id });
         return row;
     }
     #endregion
@@ -56,19 +61,119 @@ public class WSCommon
 
     #endregion
 
-    #region 新闻相关==============================================
-    public static int AddNews(int showindex, string title, string summary, string details)
-    {
-        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_addnew", new object[] { showindex, title, summary, details, 0 });
-        if (dt == null || dt.Rows.Count == 0)
-        {
-            return 0;
-        }
-        else
-        {
-            return 1;
-        }
+    #region 文章相关==============================================
 
+    /// <summary>
+    /// 新增一篇新文章
+    /// </summary>
+    /// <param name="title">文章标题</param>
+    /// <param name="content">文章内容</param>
+    /// <param name="userid">创建者</param>
+    /// <param name="showindex">排序</param>
+    /// <param name="articletypeid">类型ID</param>
+    /// <returns></returns>
+    public static int AddArticle(string title, string content, int userid, int showindex, int articletypeid)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_admin_AddArticle", new object[] { title, content, userid, showindex, articletypeid });
+        return row;
+    }
+    /// <summary>
+    /// 修改一篇文章
+    /// </summary>
+    /// <param name="id">文章标识ID</param>
+    /// <param name="title">文章标题</param>
+    /// <param name="content">文章内容</param>
+    /// <param name="userid">创建者</param>
+    /// <param name="showindex">排序</param>
+    /// <param name="articletypeid">类型ID</param>
+    /// <returns></returns>
+    public static int UpdateArticle(int id, string title, string content, int userid, int showindex, int articletypeid)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_admin_UpdateArticle", new object[] { id, title, content, userid, showindex, articletypeid });
+        return row;
+    }
+
+    /// <summary>
+    /// 删除指定文章
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int DelArticle(int id)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_admin_DelArticle", new object[] { id });
+        return row;
+    }
+
+    /// <summary>
+    /// 保存文章分类
+    /// </summary>
+    /// <param name="id">标识号 0：新增 >0修改</param>
+    /// <param name="name"></param>
+    /// <param name="showindex"></param>
+    /// <returns></returns>
+    public static int SaveArticleType(int id, string name, int showindex)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_admin_SaveArticleType", new object[] { id, name, showindex });
+        return row;
+    }
+    /// <summary>
+    /// 删除文章类型
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int DelArticleType(int id)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_admin_DelArticleType", new object[] { id });
+        return row;
+    }
+    /// <summary>
+    /// 获取文章类型集合
+    /// </summary>
+    /// <param name="PageIndex"></param>
+    /// <param name="PageSize"></param>
+    /// <param name="keywords"></param>
+    /// <param name="total"></param>
+    /// <returns></returns>
+    public static DataTable GetArticleTypeList(int PageIndex, int PageSize, string keywords, out int total)
+    {
+        Hashtable ht = new Hashtable();
+        total = 0;
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Article_GetArticleTypeList", out ht, PageIndex, PageSize, keywords, total);
+        if (ht.Count > 0)
+        {
+            total = Convert.ToInt32(ht["@TotalCount"] ?? "0");
+        }
+        return dt;
+    }
+    /// <summary>
+    /// 获取文章列表
+    /// </summary>
+    /// <param name="PageIndex"></param>
+    /// <param name="PageSize"></param>
+    /// <param name="typeid">0 所有的文章</param>
+    /// <param name="keywords"></param>
+    /// <param name="total"></param>
+    /// <returns></returns>
+    public static DataTable GetArticleList(int PageIndex, int PageSize, int typeid, string keywords, out int total)
+    {
+        Hashtable ht = new Hashtable();
+        total = 0;
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Article_GetArticleList", out ht, PageIndex, PageSize, typeid, keywords, total);
+        if (ht.Count > 0)
+        {
+            total = Convert.ToInt32(ht["@TotalCount"] ?? "0");
+        }
+        return dt;
+    }
+    /// <summary>
+    /// 获取文章信息
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static DataTable GetArticleByID(int id)
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Article_GetArticleByID", id);
+        return dt;
     }
     public static int UpdateNews(int id, int showindex, string title, string summary, string details)
     {
@@ -220,11 +325,11 @@ public class WSCommon
 
     #region 产品图片==============================================
     /// <summary>
-    /// 获取产品图片
+    /// 获取产品分类
     /// </summary>
     /// <param name="pagesize"></param>
     /// <returns></returns>
-    public static DataTable GetProduct(int pageindex, int pagesize, string keywords, out int total)
+    public static DataTable GetProductTypeList(int pageindex, int pagesize, string keywords, out int total)
     {
         Hashtable ht = new Hashtable();
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_pro_getprocduct", out ht, new object[] { pageindex, pagesize, keywords, 0 });
@@ -331,6 +436,25 @@ public class WSCommon
         }
     }
 
+    /// <summary>
+    /// 设置产品滚动显示
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int SetIsScroll(int id)
+    {
+        return DataConnect.Data.ExecuteSP("p_admin_SetIsScroll", id);
+    }
+    /// <summary>
+    /// 设置产品置顶
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int SetIsHomeTop(int id)
+    {
+        return DataConnect.Data.ExecuteSP("p_admin_SetIsHomeTop", id);
+    }
+
     #endregion
 
     #region 用户相关==============================================
@@ -378,7 +502,7 @@ public class WSCommon
             SessionAccess.UserType = row["Role"].ToString();
             SessionAccess.NickName = row["NickName"].ToString();
             SessionAccess.LoginName = row["LoginName"].ToString();
-
+            SessionAccess.Session.Timeout = 30;
         }
 
     }
@@ -590,6 +714,24 @@ public class WSCommon
     {
         int row = DataConnect.Data.ExecuteSP("p_Admin_DelPhotoBook", id);
         return row;
+    }
+    #endregion
+
+    #region 前台相关
+
+    public static DataTable GetHomeScrollProcducts(int size)
+    {
+        return DataConnect.Data.ExecuteDataTable("p_PC_GetHomeScrollProcducts", size);
+    }
+
+    public static DataTable GetHomeTopProcducts(int size)
+    {
+        return DataConnect.Data.ExecuteDataTable("p_PC_GetHomeTopProcducts", size);
+    }
+
+    public static DataTable GetHomeArticles(int size)
+    {
+        return DataConnect.Data.ExecuteDataTable("p_PC_GetHomeArticles", size);
     }
     #endregion
 
