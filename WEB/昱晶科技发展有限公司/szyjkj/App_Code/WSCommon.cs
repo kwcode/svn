@@ -733,6 +733,41 @@ public class WSCommon
     {
         return DataConnect.Data.ExecuteDataTable("p_PC_GetHomeArticles", size);
     }
+    /// <summary>
+    /// 获取 留言列表
+    /// </summary>
+    /// <param name="page"></param>
+    /// <param name="size"></param>
+    /// <param name="total">总数</param>
+    /// <returns></returns>
+    public static DataTable GetLeaveCommentsList(int page, int size, out int total)
+    {
+        Hashtable ht = new Hashtable();
+        total = 0;
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_PC_GetLeaveCommentsList", out ht, page, size, 0);
+        if (ht.Count > 0)
+        {
+            total = Convert.ToInt32(ht["@TotalCount"]);
+        }
+        return dt;
+    }
+
+    /// <summary>
+    /// 留言
+    /// </summary>
+    /// <param name="UserID"></param>
+    /// <param name="Title"></param>
+    /// <param name="Type"></param>
+    /// <param name="Content"></param>
+    /// <param name="IP"></param>
+    /// <param name="Browser"></param>
+    /// <param name="BrowserType"></param>
+    /// <param name="Contacts"></param>
+    /// <returns></returns>
+    public static int AddLeaveComments(int UserID, string Title, int Type, string Content, string IP, string Browser, string BrowserType, string Contacts)
+    {
+        return DataConnect.Data.ExecuteSP("p_PC_AddLeaveComments", UserID, Title, Type, Content, IP, Browser, BrowserType, Contacts);
+    }
     #endregion
 
 }

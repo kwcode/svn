@@ -3,7 +3,7 @@ i, em { font-family: "Microsoft Yahei","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,Helve
 
 .d-page { width: 1200px; margin: 0 auto; }
 
-.clear { clear: both; height: 0; font-size: 0; line-height: 0; overflow: hidden; } 
+.clear { clear: both; height: 0; font-size: 0; line-height: 0; overflow: hidden; }
 .clearfix:after { content: "."; display: block; visibility: hidden; clear: both; height: 0; font-size: 0; }
 .clearfix { display: inline-block; }
 .clearfix { display: block; }
@@ -32,9 +32,34 @@ a:hover { color: #052299; }
 a:active { color: #052299; }
 sup { vertical-align: text-top; }
 sub { vertical-align: text-bottom; }
-input, select, button { vertical-align: baseline; *vertical-align: middle; font-family: tahoma, \5b8b\4f53, arial; font-size: 100%; border: none; background: none; }
+input, select, button { vertical-align: baseline; *vertical-align: middle; font-family: tahoma, \5b8b\4f53, arial; font-size: 100%; /*border: none; background: none;*/ }
 input[type=checkbox], input[type=radio] { vertical-align: middle; margin: 0 5px; }
 input[type="text"], input[type="password"], textarea { outline-style: none; -webkit-appearance: none; }
 textarea { resize: none; }
 textarea { overflow: auto; font: 100% tahoma,\5b8b\4f53,arial; }
 table { border-collapse: collapse; border-spacing: 0; }
+.rt { float: right; }
+
+.kw_box { border: 1px solid #ccc; margin-top: 5px; padding: 10px; }
+.red { color: red; }
+.kw_box dl { }
+.kw_box dl dt { float: left; height: 26px; line-height: 26px; text-align: right; margin-top: 9px; }
+.kw_box dl dd { padding: 5px; }
+.input_450 { width: 450px; }
+.kw_box dl dd input[type='text'] { border: 1px solid #dbdbdb; padding: 4px 7px; border-radius: 1px; height: 26px; line-height: 26px; }
+.kw_box dl dd textarea { border: 1px solid #dbdbdb; padding: 4px 7px; border-radius: 1px; }
+
+/*列表*/
+.kw_list { border: 1px solid #ccc; margin-top: 5px; padding: 10px; }
+.kw_items { margin: 5px; }
+.kw_title { border-bottom: 1px dashed #ccc; padding: 5px; }
+.kw_info { padding: 10px; }
+
+/*分页*/
+a { text-decoration: none; color: #888; }
+.page { clear: both; float: right; text-align: right; margin-top: 20px; margin-bottom: 20px; }
+.page a { border: 1px solid #dbdbdb; background: #fff; padding: 5px 10px; margin: 1px; display: inline-block; color: #888; }
+.page a:hover { text-decoration: none; background-color: #ff8800; color: #fff; }
+.page span a { border: 1px solid #1f5b13; background: #fff; padding: 2px 7px; margin: 1px; display: inline-block; color: #104c00; }
+.page span a:hover { text-decoration: none; background-color: #a3c79c; }
+.page .currentpage { background-color: #ff8800; color: #fff; }
