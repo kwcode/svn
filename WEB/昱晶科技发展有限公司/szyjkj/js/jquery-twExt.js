@@ -15,9 +15,9 @@
 */
 
 
-; (function (window, $) {
-    $(function ($) {
-        $.tw = $.tw || {};
+; (function (window, $) { 
+    $.tw = $.tw || {};
+    $(function ($) {  
         $.tw.photo = $.tw.photo || {};
         if (typeof ($.tw.photo.uploadImage) == "function") { return; }
         var uploadImage = function (installOption) {
@@ -62,3 +62,5 @@
     });
 
 })(window, $);
+
+  
