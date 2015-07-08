@@ -35,7 +35,7 @@
     </style>
     <script>
         $(function () {
-         //   $.tw = $.tw || {};
+            //   $.tw = $.tw || {};
             $(".btn_search").click(function () {
                 var keywords = $("#txt_keywords").val();
                 window.open("/search/a-" + keywords + ".html");
@@ -68,10 +68,8 @@
                 </asp:ContentPlaceHolder>
             </div>
         </div>
-        <uc1:uc_footer runat="server" ID="uc_footer" />
-        <script type="text/javascript">
-            window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "slide": { "type": "slide", "bdImg": "2", "bdPos": "right", "bdTop": "165" }, "share": { "bdSize": 16 }, "image": { "viewList": ["qzone", "tsina", "tqq", "renren", "weixin"], "viewText": "分享到：", "viewSize": "16" }, "selectShare": { "bdContainerClass": null, "bdSelectMiniList": ["qzone", "tsina", "tqq", "renren", "weixin"] } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
-        </script>
+        <uc1:uc_footer runat="server" ID="uc_footer" /> 
+        <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "slide": { "type": "slide", "bdImg": "2", "bdPos": "right", "bdTop": "100" } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
     </form>
 </body>
 </html>
