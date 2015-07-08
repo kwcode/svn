@@ -46,7 +46,7 @@
 
     </script>
     <!-- 代码 开始 -->
-    <form id="formbanner" runat="server">
+    
         <div class="banner-list">
             <div id="header" style="margin-top: 2px;">
                 <div class="wrap">
@@ -73,6 +73,5 @@
 
                 </div>
             </div>
-        </div>
-    </form>
+        </div> 
 </div>
