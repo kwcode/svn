@@ -90,7 +90,7 @@
 
             //上传图片
             $("#btn_start").uploadify({
-                auto: true, 
+                auto: true,
                 buttonCursor: "hand",
                 buttonText: "上传图片",
                 swf: '/js/uploadify/uploadify.swf',
@@ -214,7 +214,22 @@
                     parent.layer.close(index);
                 }
             });
+            $(document).on("click", ".remove", function () {
+                var $that = $(this);
+                var id = $that.data("id");
 
+                $.post("/admin/Photo/ActionPhoto.aspx", {
+                    action: "DelPhoto",
+                    id: id
+                }).done(function (result) {
+                    if (result.res > 0) {
+                        $that.closest(".photo_item").remove();
+                    } 
+                    layer.alert(result.desc);
+                }).fail(function (ex) {
+                    layer.alert("请求失败" + ex.responseText);
+                });
+            })
         });
 
     </script>
