@@ -22,6 +22,9 @@ public partial class admin_Photo_ActionPhoto : AjaxBase
                 case "DelPhotoBook":
                     DelPhotoBook();
                     break;
+                case "DelPhoto":
+                    DelPhoto();
+                    break;
             }
         }
         else
@@ -29,6 +32,17 @@ public partial class admin_Photo_ActionPhoto : AjaxBase
             desc = "提交方式需要POST";
         }
         return new { res = res, desc = desc };
+    }
+
+    private void DelPhoto()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        res = WSCommon.DelPhoto(id);
+        if (res > 0)
+            desc = "删除成功";
+        else
+            desc = "删除失败";
     }
 
     private void DelPhotoBook()

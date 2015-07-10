@@ -97,6 +97,28 @@
             });
             /*上传图片END*/
         });
+        function del(index) {
+            var _layer = layer.confirm("是否删除？", function () {
+                var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
+                var id = row.ID;
+                $.post("/admin/Photo/ActionPhoto.aspx", {
+                    action: "DelPhoto",
+                    id: id
+                }).done(function (result) {
+                    if (result.res > 0) {
+                        //删除成功！
+                        //$('#dg').datagrid('deleteRow', index); //删除一行 
+                        $('#dg').datagrid('reload');//刷新 
+                        layer.closeAll();
+                    }
+                    layer.close(_layer);
+                    layer.alert(result.desc);
+                }).fail(function (ex) {
+                    layer.close(_layer); layer.alert("请求失败" + ex.responseText);
+                });
+            });
+        }
+    
         function formatOper(val, row, index) {
             var btn = ' <a href="#"  class="icon-edit inputbtns"  onclick="edit(' + index + ')"  title="编辑"></a>';
             var btn2 = ' <a href="#" class="icon-remove inputbtns"  onclick="del(' + index + ')" title="删除"></a>';
