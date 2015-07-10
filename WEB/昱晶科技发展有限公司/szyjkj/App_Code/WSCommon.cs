@@ -715,6 +715,16 @@ public class WSCommon
         int row = DataConnect.Data.ExecuteSP("p_Admin_DelPhotoBook", id);
         return row;
     }
+    /// <summary>
+    /// 删除图片
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public static int DelPhoto(int id)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_DelPhoto", id);
+        return row;
+    }
     #endregion
 
     #region 前台相关
