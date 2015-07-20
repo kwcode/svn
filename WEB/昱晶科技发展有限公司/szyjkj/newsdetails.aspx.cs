@@ -12,6 +12,7 @@ public partial class newsdetails : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         int id = Convert.ToInt32(Request["id"] ?? "0");
-        DtNews = WSCommon.GetNewsByID(id);
+        DtNews = WSCommon.GetArticleByID(id);
+        WSCommon.ClickArticle(id);
     }
 }

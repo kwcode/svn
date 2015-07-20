@@ -8,7 +8,12 @@
         .news-date { float: right; }
     </style>
     <div class="d-content">
-        <div class="d-nvtitle">当前位置：首页>相关新闻</div>
+        <div class="d-nvtitle">
+            <span class="ico"></span>
+            <a href="/">首页</a>
+            <span class="guai">></span>
+            <a href="/news.html">相关新闻</a>
+        </div>
         <div class="new-list">
 
             <%if (DtNews != null && DtNews.Rows.Count > 0)
@@ -18,9 +23,9 @@
             %>
             <div>
                 <div style="font: bold; font-size: 20px; text-align: center;"><%=item["Title"] %></div>
-                <div style="font: bold; font-size: 12px; text-align: center;">发布日期：<%=Convert.ToDateTime(item["CreateTS"]).ToString("yyyy-MM-dd HH:mm")%> <span style="margin-left: 10px;">浏览量：122</span></div>
+                <div style="font: bold; font-size: 12px; text-align: center;">发布日期：<%=Convert.ToDateTime(item["CreateTS"]).ToString("yyyy-MM-dd HH:mm")%> <span style="margin-left: 10px;">浏览量：<%=item["ClickCount"]%></span></div>
 
-                <div style="padding-bottom: 10px;"><%=item["Details"] %></div>
+                <div style="padding-bottom: 10px;"><%=item["Content"] %></div>
             </div>
             <% 
                   }
