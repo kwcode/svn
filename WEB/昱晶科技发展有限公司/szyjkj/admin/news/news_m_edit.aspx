@@ -82,7 +82,7 @@
             <div class="e-item">
                 <span class="sp150">详细内容：</span>
                 <div style="float: left;">
-                    <script id="editor" type="text/plain" style="width: 700px; margin-top: 5px; max-height: 300px; min-height: 150px;"></script>
+                    <script id="editor"  type="text/plain" style="width: 700px; margin-top: 5px; max-height: 300px; min-height: 150px;"></script>
                 </div>
             </div>
         </div>

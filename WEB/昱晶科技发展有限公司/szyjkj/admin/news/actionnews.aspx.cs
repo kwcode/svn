@@ -25,31 +25,31 @@ public partial class admin_news_actionnews : AjaxBase
 
     private void savenew()
     {
-        int id = 0;
-        int.TryParse(Request["id"] ?? "0", out id);
-        int showindex = 0;
-        int.TryParse(Request["showindex" ?? "0"], out  showindex);
-        string title = Request["title"] ?? "";
-        string summary = Request["summary"] ?? "";
-        string details = Server.UrlDecode(Request["details"] ?? "");
-        if (id == 0)
-        {
-            int rows = WSCommon.AddNews(showindex, title, summary, details);
-            if (rows == 0)
-            {
-                desc = "新增失败！";
-            }
-            else { res = 1; desc = "新增成功"; }
-        }
-        else//修改
-        {
-            int rows = WSCommon.UpdateNews(id, showindex, title, summary, details);
-            if (rows == 0)
-            {
-                desc = "修改失败！";
-            }
-            else { res = 1; desc = "修改成功！"; }
-        }
+        //int id = 0;
+        //int.TryParse(Request["id"] ?? "0", out id);
+        //int showindex = 0;
+        //int.TryParse(Request["showindex" ?? "0"], out  showindex);
+        //string title = Request["title"] ?? "";
+        //string summary = Request["summary"] ?? "";
+        //string details = Server.UrlDecode(Request["details"] ?? "");
+        //if (id == 0)
+        //{
+        //    int rows = WSCommon.AddNews(showindex, title, summary, details);
+        //    if (rows == 0)
+        //    {
+        //        desc = "新增失败！";
+        //    }
+        //    else { res = 1; desc = "新增成功"; }
+        //}
+        //else//修改
+        //{
+        //    int rows = WSCommon.UpdateNews(id, showindex, title, summary, details);
+        //    if (rows == 0)
+        //    {
+        //        desc = "修改失败！";
+        //    }
+        //    else { res = 1; desc = "修改成功！"; }
+        //}
 
     }
 }

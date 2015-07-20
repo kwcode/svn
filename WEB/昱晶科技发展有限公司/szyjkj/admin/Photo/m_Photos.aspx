@@ -27,7 +27,12 @@
                 text: 'Add',
                 iconCls: 'icon-add',
                 id: "btn_start"
-            }];
+            },
+            {
+                text: '<select></select>', 
+                id: "aa"
+            }
+            ];
 
             //表格数据 
             $('#dg').datagrid({
@@ -48,7 +53,7 @@
                 //设置分页控件 
                 beforePageText: '第',//页数文本框前显示的汉字 
                 afterPageText: '页    共 {pages} 页',
-                displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录',
+                displayMsg: '当前显示 {from} - {to} 条记录   共 {total} 条记录'
             });
 
             /*上传图片*/
@@ -118,12 +123,12 @@
                 });
             });
         }
-    
+
         function formatOper(val, row, index) {
-            var btn = ' <a href="#"  class="icon-edit inputbtns"  onclick="edit(' + index + ')"  title="编辑"></a>';
+            // var btn = ' <a href="#"  class="icon-edit inputbtns"  onclick="edit(' + index + ')"  title="编辑"></a>';
             var btn2 = ' <a href="#" class="icon-remove inputbtns"  onclick="del(' + index + ')" title="删除"></a>';
-            var btns = btn + btn2;
-            return btns;
+            //  var btns = btn + btn2;
+            return btn2;
         }
         function formatImgurl(val, row, index) {
             var img = ' <img src="' + row.Tn + '" style="width: 30px; height: 30px;" />';

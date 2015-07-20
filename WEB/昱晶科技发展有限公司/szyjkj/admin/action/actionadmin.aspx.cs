@@ -67,10 +67,28 @@ public partial class admin_action_actionadmin : AjaxBase
                 UpdatePmMenu();
                 break;
             #endregion
+            case "UpdateBaseSite":
+                UpdateBaseSite();
+                break;
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void UpdateBaseSite()
+    {
+        string SiteName = Request["SiteName"] ?? "";
+        string SiteTitle = Request["SiteTitle"] ?? "";
+        string KeyWords = Request["KeyWords"] ?? "";
+        string Description = Request["Description"] ?? "";
+        string TopContent = Server.UrlDecode(Request["TopContent"] ?? "");
+        string BottomContent = Server.UrlDecode(Request["BottomContent"] ?? "");
+        res = WSCommon.UpdateSiteBaseSettings(SiteName, SiteTitle, KeyWords, Description, TopContent, BottomContent);
+        if (res > 0)
+            desc = "保存成功！";
+        else
+            desc = "保存失败！";
     }
 
 

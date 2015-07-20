@@ -107,7 +107,7 @@
 </head>
 
 <body class="easyui-layout">
-    <div data-options="region:'north',border:false" style="height: 60px; line-height: 0px; padding: 10px">
+    <div data-options="region:'north',border:false" style="height: 60px; padding: 10px">
         <h1 style="position: absolute;">欢迎进入深圳市昱晶科技发展有限公司管理后台</h1>
         <div style="position: absolute; right: 0; line-height: 20px;">
             <span>当前登录的用户：</span>

@@ -25,7 +25,7 @@ public partial class admin_Photo_m_Photos : PageBase
         get
         {
             int bookid = 0;
-            int.TryParse(Request["bookid"] ?? "0", out bookid);
+            int.TryParse(Request["bookid"] ?? "-1", out bookid);
             return bookid;
         }
     }
