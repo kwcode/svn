@@ -14,6 +14,33 @@ public class WSCommon
     {
 
     }
+    #region 后台其他
+    /// <summary>
+    /// 获取网站基础信息
+    /// 如果没有则新增
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    public static DataTable GetSiteBaseSettings()
+    {
+        return DataConnect.Data.ExecuteDataTable("p_Comm_GetSiteBaseSettings");
+    }
+    /// <summary>
+    /// 修改
+    /// </summary>
+    /// <param name="SiteName">网站名称</param>
+    /// <param name="SiteTitle">网站标题</param>
+    /// <param name="KeyWords">网站关键字</param>
+    /// <param name="Description">网站描述</param>
+    /// <param name="TopContent">网站顶部内容</param>
+    /// <param name="BottomContent">网站底部内容</param>
+    /// <returns></returns>
+    public static int UpdateSiteBaseSettings(string SiteName, string SiteTitle, string KeyWords, string Description, string TopContent, string BottomContent)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Comm_UpdateSiteBaseSettings", SiteName, SiteTitle, KeyWords, Description, TopContent, BottomContent);
+        return row;
+    }
+    #endregion
     #region 后台菜单==============================================
     /// <summary>
     /// 获取所有的菜单列
@@ -596,6 +623,21 @@ public class WSCommon
         {
         }
     }
+    /// <summary>
+    /// 点击文章 记录
+    /// </summary>
+    public static void ClickArticle(int ArticleID)
+    {
+        try
+        {
+            DataConnect.Data.ExecuteSP("p_Article_Click", ArticleID);
+        }
+        catch (Exception ex)
+        {
+
+        }
+    }
+
     #endregion
 
     #region 相册管理==============================================
@@ -779,5 +821,7 @@ public class WSCommon
         return DataConnect.Data.ExecuteSP("p_PC_AddLeaveComments", UserID, Title, Type, Content, IP, Browser, BrowserType, Contacts);
     }
     #endregion
+
+
 
 }
