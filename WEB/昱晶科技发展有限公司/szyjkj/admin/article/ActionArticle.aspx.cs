@@ -55,9 +55,11 @@ public partial class admin_article_ActionArticle : AjaxBase
         int.TryParse(Request["typeid"] ?? "0", out typeid);
         string title = Request["title"] ?? "";
         string content = Server.UrlDecode(Request["content"] ?? "");
+        string imgurl = Request["imgurl"] ?? "";
+
         if (id > 0)
         {
-            res = WSCommon.UpdateArticle(id, title, content, UserID, showindex, typeid);
+            res = WSCommon.UpdateArticle(id, title, content, UserID, showindex, typeid, imgurl);
             if (res > 0)
                 desc = "修改成功";
             else
@@ -65,7 +67,7 @@ public partial class admin_article_ActionArticle : AjaxBase
         }
         else
         {
-            res = WSCommon.AddArticle(title, content, UserID, showindex, typeid);
+            res = WSCommon.AddArticle(title, content, UserID, showindex, typeid, imgurl);
             if (res > 0)
                 desc = "添加成功";
             else

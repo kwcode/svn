@@ -51,7 +51,7 @@
             //动态-构造导航树
             $("#tree_nva").tree({
                 url: window.location.pathname,
-                method:"POST",
+                method: "POST",
                 //data: _tree,
                 lines: true,//将你的菜单拼成这个json格式id，text，child等 
                 onClick: function (node) {

@@ -15,6 +15,7 @@
     <link href="/admin/style/admin.css" rel="stylesheet" type="text/css" />
     <script src="/js/layer.js" type="text/javascript"></script>
     <link href="/style/layer.css" rel="stylesheet" type="text/css" />
+    <script src="/js/jquery-twExt.js"></script>
     <script>
         $(function () {
             var id = '<%=ID%>';
@@ -26,6 +27,7 @@
                 var showindex = $(".txt_showindex").val();
                 var content = encodeURIComponent(ue.getContent());
                 var typeid = $("#sel_type").val();
+                var imgurl = $(".u-imgaddress").prop("src");
                 /**/
                 $.post("/admin/article/ActionArticle.aspx", {
                     action: "SaveArticle",
@@ -33,7 +35,8 @@
                     title: title,
                     showindex: showindex,
                     content: content,
-                    typeid: typeid
+                    typeid: typeid,
+                    imgurl: imgurl
                 }).success(function (result) {
                     layer.close(_layer);
                     if (result.res == 1) {
@@ -59,10 +62,18 @@
                     $(".txt_title").val(jsonarticle[0].Title);
                     $(".txt_showindex").val(jsonarticle[0].ShowIndex);
                     $("#sel_type").val(jsonarticle[0].ArticleTypeID);
+                    $(".u-imgaddress").prop("src", jsonarticle[0].ImgUrl)
                     ue.setContent(jsonarticle[0].Content);
                 }
 
             }
+            $(".btn_uploadimg").click(function () {
+                $.tw.photo.uploadImage({ single: true, area: ['800px', '400px'] }).done(function (result) {
+                    var tn = result.result[0].tn;
+                    var id = result.result[0].id;
+                    $(".u-imgaddress").prop("src", tn);
+                });
+            });
         });
     </script>
 </head>
@@ -81,6 +92,11 @@
             <div class="e-item">
                 <span class="sp150">排序：</span>
                 <input type="text" maxlength="5" class="txt_showindex" value="1" runat="server" id="txt_showindex" />
+            </div>
+            <div class="e-item">
+                <span class="sp150">图片：</span>
+                <img class="u-imgaddress" width="200" height="130" src="" />
+                <a class="inpbbut3 btn_uploadimg">选择图片</a>
             </div>
             <div class="e-item clearfix">
                 <span class="sp150" style="float: left;">内容：</span>
