@@ -99,9 +99,9 @@ public class WSCommon
     /// <param name="showindex">排序</param>
     /// <param name="articletypeid">类型ID</param>
     /// <returns></returns>
-    public static int AddArticle(string title, string content, int userid, int showindex, int articletypeid)
+    public static int AddArticle(string title, string content, int userid, int showindex, int articletypeid, string imgurl)
     {
-        int row = DataConnect.Data.ExecuteSP("p_admin_AddArticle", new object[] { title, content, userid, showindex, articletypeid });
+        int row = DataConnect.Data.ExecuteSP("p_admin_AddArticle", new object[] { title, content, userid, showindex, articletypeid, imgurl });
         return row;
     }
     /// <summary>
@@ -114,9 +114,9 @@ public class WSCommon
     /// <param name="showindex">排序</param>
     /// <param name="articletypeid">类型ID</param>
     /// <returns></returns>
-    public static int UpdateArticle(int id, string title, string content, int userid, int showindex, int articletypeid)
+    public static int UpdateArticle(int id, string title, string content, int userid, int showindex, int articletypeid, string imgurl)
     {
-        int row = DataConnect.Data.ExecuteSP("p_admin_UpdateArticle", new object[] { id, title, content, userid, showindex, articletypeid });
+        int row = DataConnect.Data.ExecuteSP("p_admin_UpdateArticle", new object[] { id, title, content, userid, showindex, articletypeid, imgurl });
         return row;
     }
 
