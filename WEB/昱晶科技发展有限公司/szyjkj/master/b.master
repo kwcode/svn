@@ -1,0 +1,76 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="b.master.cs" Inherits="master_b" %>
+
+<%@ Register Src="~/master/uc/n_uc_banner.ascx" TagPrefix="uc1" TagName="n_uc_banner" %>
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <%--  <meta name="baidu-site-verification" content="DDbc2iSJ1x" />--%>
+    <title><%=dtBase.Rows[0]["SiteTitle"]%></title>
+    <script src="/js/jquery-1.8.3.min.js"></script>
+    <link href="/style/bcss.css" rel="stylesheet" />
+    <script src="/js/jquery-twcommon.js"></script>
+
+    <meta name="keywords" content="<%=dtBase.Rows[0]["KeyWords"]%>" />
+    <meta name="description" content="<%=dtBase.Rows[0]["Description"]%>" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="formbody" runat="server">
+        <div>
+            <p id="back-to-top">
+                <a href="#top" title="回到顶部"></a>
+            </p>
+            <div class="d-topcontent">
+                <%=dtBase.Rows[0]["TopContent"]%>
+            </div>
+            <div>
+                <!--导航条-->
+                <div class="d-header clearfix">
+                    <div class="nav_box">
+                        <div class="wraper">
+                            <div class="nav">
+                                <ul>
+                                    <li class="nav-item cur "><a href="/">网站首页</a>  </li>
+                                    <li class="nav-item"><a href="/aboutme.html">关于华兴</a></li>
+                                    <li class="nav-item"><a href="/news.html">新闻中心</a></li>
+
+                                    <li class="nav-item"><a href="/product.html">楼盘展示</a></li>
+                                    <li class="nav-item"><a href="/news.html">物业服务</a></li>
+                                    <li class="nav-item"><a href="/news.html">人力资源</a></li>
+
+                                    <li class="nav-item"><a href="/lianxi.html">在线留言</a></li>
+                                    <li class="nav-item"><a href="/lianxi.html">联系我们</a></li>
+                                </ul>
+                                <!--移动的滑动-->
+                                <div class="move-bg"></div>
+                                <!--移动的滑动 end-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 代码 结束-->
+
+                </div>
+                <!--轮播图片-->
+                <uc1:n_uc_banner runat="server" ID="n_uc_banner" />
+                <!--主要内容-->
+                <div class="d-page clearfix">
+                    <div class="d-container-box  ">
+                        <asp:ContentPlaceHolder ID="mbody" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+                <%=dtBase.Rows[0]["BottomContent"]%>
+                <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "slide": { "type": "slide", "bdImg": "2", "bdPos": "right", "bdTop": "100" } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
+
+            </div>
+        </div>
+    </form>
+</body>
+</html>
