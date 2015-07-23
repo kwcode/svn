@@ -80,6 +80,7 @@ public class LeftMenuCL
     public string Url { get; set; }
     public string Name { get; set; }
     public MenuICO Ico { get; set; }
+    public string CL { get; set; }
 }
 public enum MenuICO
 {

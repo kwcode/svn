@@ -41,6 +41,35 @@ public class WSCommon
         return row;
     }
     #endregion
+
+    #region 后台导航条
+    /// <summary>
+    ///  
+    /// </summary>
+    /// <returns></returns>
+    public static DataTable GetNvaBarList()
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Admin_GetNvaBarList");
+        return dt;
+    }
+    public static DataTable GetNvaBarByID()
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Admin_GetNvaBarByID");
+        return dt;
+    }
+    public static int SaveNavBar(int ID, string Name, string Url, int ShowIndex)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_SaveNavBar", new object[] { ID, Name, Url, ShowIndex });
+        return row;
+    }
+    public static int DelNavBar(int id)
+    {
+        int row = DataConnect.Data.ExecuteSP("p_Admin_DelNavBar", new object[] { id });
+        return row;
+    }
+
+    #endregion
+
     #region 后台菜单==============================================
     /// <summary>
     /// 获取所有的菜单列
@@ -85,6 +114,11 @@ public class WSCommon
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_home_getproducts", new object[] { pagesize });
         return dt;
     }
+    public static DataTable GetHomeNvaBar()
+    {
+        DataTable dt = DataConnect.Data.ExecuteDataTable("p_Home_GetHomeNvaBar");
+        return dt;
+    }
 
     #endregion
 
@@ -99,9 +133,9 @@ public class WSCommon
     /// <param name="showindex">排序</param>
     /// <param name="articletypeid">类型ID</param>
     /// <returns></returns>
-    public static int AddArticle(string title, string content, int userid, int showindex, int articletypeid, string imgurl)
+    public static int AddArticle(string title, string content, int userid, int showindex, int articletypeid, string imgurl, string Summary)
     {
-        int row = DataConnect.Data.ExecuteSP("p_admin_AddArticle", new object[] { title, content, userid, showindex, articletypeid, imgurl });
+        int row = DataConnect.Data.ExecuteSP("p_admin_AddArticle", new object[] { title, content, userid, showindex, articletypeid, imgurl, Summary });
         return row;
     }
     /// <summary>
@@ -114,9 +148,9 @@ public class WSCommon
     /// <param name="showindex">排序</param>
     /// <param name="articletypeid">类型ID</param>
     /// <returns></returns>
-    public static int UpdateArticle(int id, string title, string content, int userid, int showindex, int articletypeid, string imgurl)
+    public static int UpdateArticle(int id, string title, string content, int userid, int showindex, int articletypeid, string imgurl, string Summary)
     {
-        int row = DataConnect.Data.ExecuteSP("p_admin_UpdateArticle", new object[] { id, title, content, userid, showindex, articletypeid, imgurl });
+        int row = DataConnect.Data.ExecuteSP("p_admin_UpdateArticle", new object[] { id, title, content, userid, showindex, articletypeid, imgurl, Summary });
         return row;
     }
 
@@ -246,23 +280,35 @@ public class WSCommon
     #endregion
 
     #region 公司简介==============================================
-    public static int SaveAboutMe(string summary, string details)
+    public static int SaveAboutMe(int id, string typename, string summary, string details, string imgurl, int showindex)
     {
-        DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_saveaboutme", new object[] { summary, details });
-        if (dt == null || dt.Rows.Count == 0)
-        {
-            return 0;
-        }
-        else
-        {
-            return 1;
-        }
+        return DataConnect.Data.ExecuteSP("p_admin_saveaboutme", id, typename, summary, details, imgurl, showindex);
     }
 
     public static DataTable GetAboutMe()
     {
         DataTable dt = DataConnect.Data.ExecuteDataTable("p_admin_getaboutme", new object[] { });
         return dt;
+    }
+    public static DataTable GetAboutByID(int id)
+    {
+        DataTable dt = DataConnect.Data.GetDataTable("SELECT * FROM  dbo.t_comm_jianjie WHERE ID=" + id);
+        return dt;
+    }
+    public static int DelJianJie(int id)
+    {
+        int row = DataConnect.Data.ExecuteSQL("DELETE dbo.t_comm_jianjie WHERE ID=" + id);
+        return row;
+    }
+    public static int SetJianjieIsHomeTop(int id)
+    {
+        int row = DataConnect.Data.ExecuteSQL(" UPDATE dbo.t_comm_jianjie SET IsHome=0 UPDATE t_comm_jianjie SET IsHome=1 WHERE ID=" + id);
+        return row;
+
+    }
+    public static DataTable GetHomeJianJie()
+    {
+        return DataConnect.Data.GetDataTable("SELECT * FROM dbo.t_comm_jianjie WHERE IsHome=1");
     }
     #endregion
 
@@ -824,4 +870,8 @@ public class WSCommon
 
 
 
+
+
+
+  
 }
