@@ -1,9 +1,10 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ArticleEdit.aspx.cs" Inherits="admin_article_ArticleEdit" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="JianjieEdit.aspx.cs" Inherits="admin_JianJie_JianjieEdit" %>
+
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script src="/js/jquery-1.8.3.js" type="text/javascript"></script>
@@ -23,30 +24,28 @@
             init();
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
-                var title = $(".txt_title").val();
+                var typename = $(".txt_typename").val();
                 var showindex = $(".txt_showindex").val();
                 var content = encodeURIComponent(ue.getContent());
-                var typeid = $("#sel_type").val();
                 var imgurl = $(".u-imgaddress").prop("src");
                 var summary = $(".txt_summary").val();
                 /**/
-                $.post("/admin/article/ActionArticle.aspx", {
-                    action: "SaveArticle",
+                $.post("/admin/JianJie/ActionJianJie.aspx", {
+                    action: "SaveJianJie",
                     id: id,
-                    title: title,
+                    typename: typename,
                     showindex: showindex,
                     content: content,
-                    typeid: typeid,
                     imgurl: imgurl,
                     summary: summary
                 }).success(function (result) {
                     layer.close(_layer);
-                    if (result.res == 1) {
-                        layer.alert(result.desc, 1, function () {
-                            location.href = "/admin/article/ArticleManager.aspx";
+                    if (result.res > 0) {
+                        layer.alert("保存成功", 1, function () {
+                            location.href = "/admin/JianJie/Jianjiemanager.aspx";
                         });
                     }
-                    else { layer.alert(result.desc, 9); }
+                    else { layer.alert("保存失败", 9); }
 
                 }).fail(function (ex) { layer.close(_layer); layer.alert("请求失败," + ex.responseText, 9); });
                 /**/
@@ -54,19 +53,14 @@
             });
             //初始化
             function init() {
-                if (typeof (jsonarticletype) != 'undefined' && jsonarticletype.length > 0) {
-                    for (var i = 0; i < jsonarticletype.length; i++) {
-                        var op = '<option value="' + jsonarticletype[i].ID + '">' + jsonarticletype[i].Name + '</option>';
-                        $("#sel_type").append(op);
-                    }
-                }
-                if (typeof (jsonarticle) != 'undefined' && jsonarticle.length > 0) {
-                    $(".txt_title").val(jsonarticle[0].Title);
-                    $(".txt_showindex").val(jsonarticle[0].ShowIndex);
-                    $("#sel_type").val(jsonarticle[0].ArticleTypeID);
-                    $(".u-imgaddress").prop("src", jsonarticle[0].ImgUrl)
-                    $(".txt_summary").val(jsonarticle[0].Summary);
-                    ue.setContent(jsonarticle[0].Content);
+
+                if (typeof (jsonjj) != 'undefined' && jsonjj.length > 0) {
+                    $(".txt_typename").val(jsonjj[0].TypeName);
+                    $(".txt_showindex").val(jsonjj[0].ShowIndex);
+
+                    $(".u-imgaddress").prop("src", jsonjj[0].ImgUrl)
+                    $(".txt_summary").val(jsonjj[0].Summary);
+                    ue.setContent(jsonjj[0].Content);
                 }
 
             }
@@ -84,13 +78,8 @@
     <form id="form1" runat="server">
         <div class="e_box">
             <div class="e-item">
-                <span class="sp150">标题：</span>
-                <input type="text" maxlength="200" class="txt_title" runat="server" id="txt_title" />
-            </div>
-            <div class="e-item">
-                <span class="sp150">分类：</span>
-                <select id="sel_type">
-                </select>
+                <span class="sp150">分类名：</span>
+                <input type="text" maxlength="200" class="txt_typename" runat="server" id="txt_title" />
             </div>
             <div class="e-item">
                 <span class="sp150">排序：</span>

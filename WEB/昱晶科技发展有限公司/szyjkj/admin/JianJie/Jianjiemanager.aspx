@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="m_procductimg_index.aspx.cs" Inherits="admin_products_m_procductimg_index" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Jianjiemanager.aspx.cs" Inherits="admin_JianJie_Jianjiemanager" %>
+
 
 <!DOCTYPE html>
 
@@ -23,52 +24,40 @@
         var pid = '<%=ID%>';
         //自定义一列
         function formatOper(val, row, index) {
-            var btn = ' <a href="/admin/products/m_productimg_edit.aspx?pid=' + pid + '&id=' + row.ID + '" class="icon-edit inputbtns"   title="编辑"></a>';
+            var btn = ' <a href="/admin/JianJie/JianjieEdit.aspx?id= ' + row.ID + '" class="icon-edit inputbtns"   title="编辑"></a>';
             var btn2 = ' <a href="#" class="icon-remove inputbtns"  onclick="del(' + index + ')" title="删除"></a>';
 
-            var btn3 = ' <a href="#" class="icon-flag_blue inputbtns"  onclick="SetIsScroll(' + index + ')" title="首页滚动"></a>';
             var btn4 = ' <a href="#" class="icon-flower_daisy inputbtns"  onclick="SetIsHomeTop(' + index + ')" title="置顶"></a>';
-            var btns = btn + btn2 + btn3 + btn4;
+            var btns = btn + btn2 + btn4;
             return btns;
         }
-        
+
         function SetIsHomeTop(index) {
             var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
             var id = row.ID;
-            $.post("/admin/products/ActionProcduct.aspx", {
+            $.post("/admin/JianJie/ActionJianJie.aspx", {
                 action: "SetIsHomeTop",
                 id: id
             }).done(function (result) {
-                if (result.res > 0) { 
+                if (result.res > 0) {
                     //$('#dg').datagrid('deleteRow', index); //删除一行 
                     $('#dg').datagrid('reload');//刷新
                     $('#dlg').dialog('close');
+                    layer.alert("设置成功", 1);
                 }
-                layer.alert(result.desc, 1);
+                else {
+                    layer.alert("设置失败");
+                }
             });
         }
-        function SetIsScroll(index) {
-            var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
-            var id = row.ID;
-            $.post("/admin/products/ActionProcduct.aspx", {
-                action: "SetIsScroll",
-                id: id
-            }).done(function (result) {
-                if (result.res > 0) { 
-                    //$('#dg').datagrid('deleteRow', index); //删除一行 
-                    $('#dg').datagrid('reload');//刷新
-                    $('#dlg').dialog('close');
-                }
-                layer.alert(result.desc, 1);
-            });
-        }
+
         function del(index) {
             layer.confirm("是否删除", function () {
                 var row = $('#dg').datagrid("getRows")[index];//获取行数据 根据索引
                 var id = row.ID;
-                $.ajax("/admin/action/actionadmin.aspx", {
+                $.ajax("/admin/JianJie/ActionJianJie.aspx", {
                     data: {
-                        action: "delproductimg",
+                        action: "delJianJie",
                         id: id
                     }
                 }).done(function (result) {
@@ -77,8 +66,12 @@
                         //$('#dg').datagrid('deleteRow', index); //删除一行 
                         $('#dg').datagrid('reload');//刷新
                         $('#dlg').dialog('close');
+                        layer.alert("删除成功", 1);
                     }
-                    layer.alert(result.desc);
+                    else {
+                        layer.alert("删除失败");
+                    }
+
                 });
             });
         }
@@ -92,7 +85,7 @@
                     /*修改*/
                     // op();
                     //
-                    window.location.href = "/admin/products/m_productimg_edit.aspx?pid=" + pid;
+                    window.location.href = "/admin/JianJie/JianjieEdit.aspx";
                     /*修改END*/
                 }
             }];
@@ -111,7 +104,7 @@
                 fit: true,//自动大小
                 pageNumber: 1,
                 pageSize: 50,//每页显示的记录条数，默认为10 
-                url: '/admin/products/m_procductimg_index.aspx?pid=' + pid,
+                url: '/admin/JianJie/Jianjiemanager.aspx',
                 type: "POST",
                 pageList: [20, 40, 60, 100, 200]//可以设置每页记录条数的列表   
             }).datagrid('getPager').pagination({
@@ -139,16 +132,13 @@
                 <th data-options="field:'op',width:80,align:'center',formatter:formatOper">操作</th>
                 <th data-options="field:'ID',width:50,sortable:true">ID</th>
                 <th data-options="field:'ShowIndex',width:50,sortable:true">排序</th>
-                <th data-options="field:'IsHomeTop',width:50,sortable:true">置顶</th>
-                <th data-options="field:'IsScroll',width:50,sortable:true">首页滚动</th>
-                <th data-options="field:'Title',width:150,sortable:true">标题</th>
-                <th data-options="field:'CreateTS',width:100,sortable:true,
-                    formatter:function(value,row,index){ return new Date(value).toLocaleString();}">创建时间</th>
+                <th data-options="field:'TypeName',width:50,sortable:true">分类名</th>
+                <th data-options="field:'IsHome',width:50,sortable:true">置顶</th>
+                <th data-options="field:'Summary',width:150,sortable:true">简介</th>
                 <th data-options="field:'ImgUrl',width:150,sortable:true, formatter:formatImgurl">图片</th>
-                <th data-options="field:'Summary',width:200,sortable:true">简介</th>
 
             </tr>
         </thead>
-    </table> 
+    </table>
 </body>
 </html>

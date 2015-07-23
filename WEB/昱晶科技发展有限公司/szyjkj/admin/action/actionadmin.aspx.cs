@@ -17,9 +17,9 @@ public partial class admin_action_actionadmin : AjaxBase
         string action = Request["action"] ?? "";
         switch (action)
         {
-            case "saveaboutme":
-                saveaboutme();
-                break;
+            //case "saveaboutme":
+            //    saveaboutme();
+            //    break;
             case "saverelation":
                 saverelation();
                 break;
@@ -70,10 +70,41 @@ public partial class admin_action_actionadmin : AjaxBase
             case "UpdateBaseSite":
                 UpdateBaseSite();
                 break;
+            case "SaveNavBar":
+                SaveNavBar();
+                break;
+            case "DelNavBar":
+                DelNavBar();
+                break;
             default:
                 break;
         }
         return new { res = res, desc = desc };
+    }
+
+    private void DelNavBar()
+    {
+        int id = 0;
+        int.TryParse(Request["id"] ?? "0", out id);
+        res = WSCommon.DelNavBar(id);
+        if (res > 0)
+            desc = "删除成功！";
+        else
+            desc = "删除失败！";
+    }
+    private void SaveNavBar()
+    {
+        int ID = 0;
+        int.TryParse(Request["id"] ?? "0", out ID);
+        string Name = Request["name"] ?? "";
+        string Url = Request["url"] ?? "";
+        int ShowIndex = 0;
+        int.TryParse(Request["showindex"] ?? "0", out ShowIndex);
+        res = WSCommon.SaveNavBar(ID, Name, Url, ShowIndex);
+        if (res > 0)
+            desc = "保存成功！";
+        else
+            desc = "保存失败！";
     }
 
     private void UpdateBaseSite()
@@ -372,17 +403,17 @@ public partial class admin_action_actionadmin : AjaxBase
         else { res = 1; desc = "修改成功"; }
     }
 
-    private void saveaboutme()
-    {
-        string summary = Request["summary"] ?? "";
-        string details = Server.UrlDecode(Request["details"] ?? "");
+    //private void saveaboutme()
+    //{
+    //    string summary = Request["summary"] ?? "";
+    //    string details = Server.UrlDecode(Request["details"] ?? "");
 
-        int rows = WSCommon.SaveAboutMe(summary, details);
-        if (rows == 0)
-        {
-            desc = "修改失败！";
-        }
-        else { res = 1; desc = "修改成功"; }
+    //    int rows = WSCommon.SaveAboutMe(summary, details);
+    //    if (rows == 0)
+    //    {
+    //        desc = "修改失败！";
+    //    }
+    //    else { res = 1; desc = "修改成功"; }
 
-    }
+    //}
 }
