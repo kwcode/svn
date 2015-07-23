@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/master/m.master" CodeFile="productdesc.aspx.cs" Inherits="productdesc" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/master/b.master" CodeFile="productdesc.aspx.cs" Inherits="productdesc" %>
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
     <script src="js/jquery.imageLens.js"></script>

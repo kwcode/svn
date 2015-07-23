@@ -1,4 +1,7 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/master/m.master" AutoEventWireup="true" CodeFile="newsdetails.aspx.cs" Inherits="newsdetails" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/master/b.master" AutoEventWireup="true" CodeFile="newsdetails.aspx.cs" Inherits="newsdetails" %>
+
+<%@ Register Src="~/master/uc/uc_leftmenu.ascx" TagPrefix="uc1" TagName="uc_leftmenu" %>
+
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
     <style>
@@ -7,6 +10,11 @@
         .new-title { }
         .news-date { float: right; }
     </style>
+    <script>
+        $(function () {
+            //$.tw.lm = 2;
+        })
+    </script>
     <div class="d-content">
         <div class="d-nvtitle">
             <span class="ico"></span>
@@ -14,7 +22,8 @@
             <span class="guai">></span>
             <a href="/news.html">相关新闻</a>
         </div>
-        <div class="new-list">
+        <uc1:uc_leftmenu runat="server" ID="uc_leftmenu" />
+        <div class="new-list rtc">
 
             <%if (DtNews != null && DtNews.Rows.Count > 0)
               {

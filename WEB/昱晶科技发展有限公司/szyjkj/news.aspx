@@ -1,13 +1,10 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/master/m.master" AutoEventWireup="true" CodeFile="news.aspx.cs" Inherits="news" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/master/b.master" AutoEventWireup="true" CodeFile="news.aspx.cs" Inherits="news" %>
+
+<%@ Register Src="~/master/uc/uc_leftmenu.ascx" TagPrefix="uc1" TagName="uc_leftmenu" %>
+
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
-    <style>
-        .new-list { margin-bottom: 10px; }
-        .new-list ul li { border-bottom: 1px dotted #808080; padding: 7px; font-size: 14px; }
-        a { text-decoration: none; }
-        .new-title { }
-        .news-date { float: right; }
-    </style>
+    
     <div class="d-content">
         <div class="d-nvtitle">
             <span class="ico"></span>
@@ -15,14 +12,15 @@
             <span class="guai">></span>
             <a href="/news.html">相关新闻</a>
         </div>
-        <div class="new-list">
+        <uc1:uc_leftmenu runat="server" ID="uc_leftmenu" />
+        <div class="new-list rtc">
             <ul>
                 <%if (DtNews != null && DtNews.Rows.Count > 0)
                   {
                       foreach (System.Data.DataRow item in DtNews.Rows)
                       { 
                 %>
-                <li><span class="new-title"></span><a href="/newsdetails.aspx?id=<%=item["ID"] %>"><%=item["Title"] %></a> <span class="news-date"><%=Convert.ToDateTime(item["CreateTS"]).ToString("yyyy-MM-dd HH:mm")%> </span></li>
+                <li><span class="new-title"></span><a href="/news/a-<%=type%>-<%=item["ID"]%>.html"><%=item["Title"] %></a> <span class="news-date"><%=Convert.ToDateTime(item["CreateTS"]).ToString("yyyy-MM-dd HH:mm")%> </span></li>
                 <% 
                       }
                   }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/master/m.master" CodeFile="LeaveComments.aspx.cs" Inherits="LeaveComments" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/master/b.master" CodeFile="LeaveComments.aspx.cs" Inherits="LeaveComments" %>
 
 <%@ Register Src="~/master/uc/uc_leftmenu.ascx" TagPrefix="uc1" TagName="uc_leftmenu" %>
 

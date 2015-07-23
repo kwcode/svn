@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/master/m.master" CodeFile="product.aspx.cs" Inherits="product" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/master/b.master" CodeFile="product.aspx.cs" Inherits="product" %>
 
 <%@ Register Src="~/master/uc/uc_leftmenu.ascx" TagPrefix="uc1" TagName="uc_leftmenu" %>
 

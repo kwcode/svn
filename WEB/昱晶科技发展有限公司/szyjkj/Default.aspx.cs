@@ -14,5 +14,9 @@ public partial class _Default : System.Web.UI.Page
     {
         dtNews = WSCommon.GetHomeArticles(10);
         DtScrollProcducts = WSCommon.GetHomeScrollProcducts(20);
+        //简介
+        dtJianJie = WSCommon.GetHomeJianJie();
     }
+
+    public DataTable dtJianJie { get; set; }
 }

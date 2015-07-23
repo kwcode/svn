@@ -272,11 +272,17 @@
                     <div class="tit2"><b>公司简介</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
-                    <img class="jimg" src="/upload/Banner/2015/05/08/CqLPjpMd.jpg" />
-                    <div class="cpt">
-                        深圳市昱晶科技发展有限公司是一家集科研、设计、销售为一体的高新技术企业，专业致力于蓝牙技术以及蓝牙模组的研制研发和销售（涵盖蓝牙耳机、蓝牙音响以及防丢器和蓝牙手表等）等服务，依靠科技求发展，不断为客户提供满意的高科技产品，是我们始终不变的追求。凭借勤恳耕耘、稳健发展、专业服务和不断追求，在该行业迅速崛起。
-                本公司提供蓝牙CSR、RDA等解决方案. 同时欢迎OEM合作. 深圳市昱晶科技发展有限公司全体同仁热忱欢迎您的光临，愿能与您：互惠互利、实现双赢、共创辉煌，我们的进步离不开您的指导！
-                    </div>
+                    <%if (dtJianJie != null && dtJianJie.Rows.Count > 0)
+                      {
+                    %>
+                    <a href="/aboutme.html">
+                        <img class="jimg" src="<%=dtJianJie.Rows[0]["ImgUrl"] %>" />
+                        <div class="cpt">
+                            <%=dtJianJie.Rows[0]["Summary"] %>
+                        </div>
+                    </a>
+                    <%
+                      } %>
                 </div>
             </div>
         </div>
