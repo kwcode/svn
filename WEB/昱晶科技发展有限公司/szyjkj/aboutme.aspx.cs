@@ -26,7 +26,7 @@ public partial class aboutme : System.Web.UI.Page
             }
             uc_leftmenu.MenuList = listmenu;
             ID = Convert.ToInt32(Request["id"] ?? "0");
-            if (ID == 0)
+            if (ID == 0 && listmenu.Count > 0)
             {
                 ID = listmenu[0].ID;
             }
