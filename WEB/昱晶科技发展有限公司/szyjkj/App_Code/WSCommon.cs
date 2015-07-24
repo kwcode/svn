@@ -310,6 +310,10 @@ public class WSCommon
     {
         return DataConnect.Data.GetDataTable("SELECT * FROM dbo.t_comm_jianjie WHERE IsHome=1");
     }
+    public static DataTable GetArticleByTypeName(string typename, int num = 5)
+    {
+        return DataConnect.Data.ExecuteDataTable("p_Home_GetArticleByTypeName", typename, num);
+    }
     #endregion
 
     #region 联系我们==============================================
@@ -831,6 +835,7 @@ public class WSCommon
     {
         return DataConnect.Data.ExecuteDataTable("p_PC_GetHomeArticles", size);
     }
+
     /// <summary>
     /// 获取 留言列表
     /// </summary>
@@ -873,5 +878,5 @@ public class WSCommon
 
 
 
-  
+
 }
