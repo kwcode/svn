@@ -37,11 +37,13 @@
                 <div class="kw_item_info clearfix " style="padding: 10px;">
                     <marquee direction="up" scrollamount="2" onmouseover="this.stop()"
                         onmouseout="this.start()">
-                     <%if (dtNews != null && dtNews.Rows.Count > 0)
-                       { 
+                     <%
+                         System.Data.DataTable dtga = GetArticleByTypeName("通知公告", 8);
+                         if (dtga != null && dtga.Rows.Count > 0)
+                         { 
                     %>
                     <ul class="clearfix">
-                        <%foreach (System.Data.DataRow item in dtNews.Rows)
+                        <%foreach (System.Data.DataRow item in dtga.Rows)
                           { 
                                
                         %>
@@ -54,13 +56,13 @@
                           } %>
                     </ul>
                     <%
-                       }
-                       else
-                       { 
+                         }
+                         else
+                         { 
                     %>
                     <a>暂无新闻</a>
                     <%
-                       } %>
+                         } %>
 
                     </marquee>
                 </div>
@@ -70,9 +72,11 @@
                     <div class="tit2"><b>新闻中心</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
-                    <%if (dtNews != null && dtNews.Rows.Count > 0)
-                      {
-                          int i = 0;
+                    <%
+                        System.Data.DataTable dtNews = GetArticleByTypeName("新闻中心", 8);
+                        if (dtNews != null && dtNews.Rows.Count > 0)
+                        {
+                            int i = 0;
                     %>
                     <ul class="clearfix">
                         <%foreach (System.Data.DataRow item in dtNews.Rows)
@@ -106,8 +110,8 @@
                     </ul>
                     <%
                       }
-                      else
-                      { 
+                        else
+                        { 
                     %>
                     <a>暂无新闻</a>
                     <%
@@ -122,12 +126,14 @@
                     <div class="tit2"><b>物业服务</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
-                    <%if (dtNews != null && dtNews.Rows.Count > 0)
-                      {
-                          int i = 0;
+                    <%
+                        System.Data.DataTable dtWY = GetArticleByTypeName("物业服务", 8);
+                        if (dtWY != null && dtWY.Rows.Count > 0)
+                        {
+                            int i = 0;
                     %>
                     <ul class="clearfix">
-                        <%foreach (System.Data.DataRow item in dtNews.Rows)
+                        <%foreach (System.Data.DataRow item in dtWY.Rows)
                           {
                               i++;
                               if (i == 1)
@@ -158,8 +164,8 @@
                     </ul>
                     <%
                       }
-                      else
-                      { 
+                        else
+                        { 
                     %>
                     <a>暂无新闻</a>
                     <%
@@ -171,12 +177,14 @@
                     <div class="tit2"><b>人力资源</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
-                    <%if (dtNews != null && dtNews.Rows.Count > 0)
+                    <%
+                        System.Data.DataTable dtRL = GetArticleByTypeName("人力资源", 8);
+                        if (dtRL != null && dtRL.Rows.Count > 0)
                       {
                           int i = 0;
                     %>
                     <ul class="clearfix">
-                        <%foreach (System.Data.DataRow item in dtNews.Rows)
+                        <%foreach (System.Data.DataRow item in dtRL.Rows)
                           {
                               i++;
                               if (i == 1)
@@ -223,12 +231,14 @@
                     <div class="tit2"><b>推荐项目</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
-                    <%if (dtNews != null && dtNews.Rows.Count > 0)
+                    <%
+                        System.Data.DataTable dtTJ = GetArticleByTypeName("推荐项目", 8);
+                        if (dtTJ != null && dtTJ.Rows.Count > 0)
                       {
                           int i = 0;
                     %>
                     <ul class="clearfix">
-                        <%foreach (System.Data.DataRow item in dtNews.Rows)
+                        <%foreach (System.Data.DataRow item in dtTJ.Rows)
                           {
                               i++;
                               if (i == 1)

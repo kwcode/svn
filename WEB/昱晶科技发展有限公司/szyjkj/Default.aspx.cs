@@ -16,6 +16,12 @@ public partial class _Default : System.Web.UI.Page
         DtScrollProcducts = WSCommon.GetHomeScrollProcducts(20);
         //简介
         dtJianJie = WSCommon.GetHomeJianJie();
+
+
+    }
+    public DataTable GetArticleByTypeName(string typename, int num = 8)
+    {
+        return WSCommon.GetArticleByTypeName(typename, 8);
     }
 
     public DataTable dtJianJie { get; set; }
