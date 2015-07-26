@@ -54,7 +54,7 @@ p#back-to-top a:hover { background: #FFFFCC url('/images/top_1.png') no-repeat c
 .search .btn_search { border-bottom: 1px solid #e97272; border-right: 1px solid #e97272; border-top: 1px solid #e97272; display: inline-block; line-height: 38px; color: #333 !important; background: #FABED7; padding: 0 10px; position: relative; margin-left: 0px; cursor: pointer; }
 .search .btn_search:hover { background-color: #F7F7F7; color: #fff; }
 
-
+#slide-runner img { width: 1200px; }
 /*首页*/
 .kw_box { width: 1200px; margin-bottom: 5px; }
 .kw_item { border: 1px solid #ccc; overflow: hidden; height: 245px; }
