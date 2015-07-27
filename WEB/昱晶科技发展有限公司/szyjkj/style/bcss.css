@@ -49,9 +49,9 @@ p#back-to-top a:hover { background: #FFFFCC url('/images/top_1.png') no-repeat c
 .search .text11 { background: url(images/ss1.jpg) no-repeat; padding: 0px 0 0px 10px; height: 25px; width: 150px; border: none; }
 .search .button { background: url(images/ss2.jpg) no-repeat; border: none; height: 25px; width: 58px; color: #FFFFFF; }
 
-.search input[type='text'] { width: 400px; height: 30px; padding-left: 10px; border: 1px solid #e97272; padding: 4px; }
+.search input[type='text'] { width: 400px; height: 30px; padding-left: 10px; border: 1px solid #15B3D6; padding: 4px; }
 
-.search .btn_search { border-bottom: 1px solid #e97272; border-right: 1px solid #e97272; border-top: 1px solid #e97272; display: inline-block; line-height: 38px; color: #333 !important; background: #FABED7; padding: 0 10px; position: relative; margin-left: 0px; cursor: pointer; }
+.search .btn_search { border-bottom: 1px solid #15B3D6; border-right: 1px solid #15B3D6; border-top: 1px solid #15B3D6; display: inline-block; line-height: 37px; padding-top: 1px; color: #333 !important; background: #15B3D6; padding: 0 10px; position: relative; margin-left: 0px; cursor: pointer; }
 .search .btn_search:hover { background-color: #F7F7F7; color: #fff; }
 
 #slide-runner img { width: 1200px; }
