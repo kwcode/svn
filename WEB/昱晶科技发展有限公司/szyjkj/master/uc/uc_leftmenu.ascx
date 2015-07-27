@@ -38,7 +38,7 @@
     </style>
     <script>
         $(function () {
-           
+
             function GetQueryString(name) {
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                 var r = window.location.search.substr(1).match(reg);
@@ -46,7 +46,7 @@
                 return null;
             }
             var selectmenu = GetQueryString("lm");
-            if (selectmenu == null) {
+            if (selectmenu == null && $.tw.lm != undefined) {
                 if ($.tw.lm) {
                     $(".category").find("a").eq($.tw.lm).addClass("active");
                 }
@@ -72,7 +72,7 @@
                   {
             %>
             <li>
-                <a href="<%=item.Url%>" data-id="<%=item.ID%>">
+                <a href="<%=item.Url%>" data-id="<%=item.ID%>" class="<%=item.CL%>">
                     <span class="category-<%=item.Ico%> category-icon"></span>
                     <span class="category-arrow"></span>
                     <span><%=item.Name%></span>

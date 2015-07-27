@@ -136,20 +136,20 @@
     .top a { cursor: pointer; }
     .top a:hover { color: #C70757; }
 </style>
-
-<div class="d-header clearfix">
-    <div class="top_box">
-        <div class="top">
-            <span class="fr">
-                <a id="btn_addfavorite">收藏本站</a> | 
+<%--<div class="top_box">
+    <div class="top">
+        <span class="fr">
+            <a id="btn_addfavorite">收藏本站</a> | 
                  <a id="btn_sethome">设置为首页 |</a>
-                <a href="/liuyan.html">在线留言</a> | 
+            <a href="/liuyan.html">在线留言</a> | 
                     <a href="/lianxi.html">联系昱晶</a> |
                      <a href="/map.html">网站地图</a> | 
-            </span>你好，欢迎光临深圳昱晶科技发展有限公司官网！ 
+        </span>你好，欢迎光临深圳昱晶科技发展有限公司官网！ 
               
-        </div>
     </div>
+</div>--%>
+<div class="d-header clearfix">
+
     <!-- 代码 开始 -->
     <%-- <div style="float: left; margin-left: 50px;">
         <a style="cursor: pointer; color: white;" id="btn_sethome">设置为首页 |</a>

@@ -20,6 +20,16 @@
 
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
+    <script>
+        $(function () {
+            //   $.tw = $.tw || {};
+            $(".btn_search").click(function () {
+                var keywords = $("#txt_keywords").val();
+                window.open("/search/a-" + keywords + ".html");
+            });
+        });
+
+    </script>
 </head>
 <body>
     <form id="formbody" runat="server">
@@ -37,7 +47,16 @@
                         <div class="wraper">
                             <div class="nav">
                                 <ul>
-                                    <li class="nav-item cur "><a href="/">网站首页</a>  </li>
+                                    <%if (dtNvaBar != null && dtNvaBar.Rows.Count > 0)
+                                      {
+                                          foreach (System.Data.DataRow item in dtNvaBar.Rows)
+                                          {
+                                    %>
+                                    <li class="nav-item"><a href="<%=item["Url"]%>"><%=item["Name"]%></a></li>
+                                    <%
+                                          }
+                                      } %>
+                                    <%--   <li class="nav-item cur "><a href="/">网站首页</a>  </li>
                                     <li class="nav-item"><a href="/aboutme.html">关于华兴</a></li>
                                     <li class="nav-item"><a href="/news.html">新闻中心</a></li>
 
@@ -46,7 +65,7 @@
                                     <li class="nav-item"><a href="/news.html">人力资源</a></li>
 
                                     <li class="nav-item"><a href="/lianxi.html">在线留言</a></li>
-                                    <li class="nav-item"><a href="/lianxi.html">联系我们</a></li>
+                                    <li class="nav-item"><a href="/lianxi.html">联系我们</a></li>--%>
                                 </ul>
                                 <!--移动的滑动-->
                                 <div class="move-bg"></div>
@@ -66,7 +85,10 @@
                         </asp:ContentPlaceHolder>
                     </div>
                 </div>
-                <%=dtBase.Rows[0]["BottomContent"]%>
+                <div class="d-footer">
+                    <%=dtBase.Rows[0]["BottomContent"]%>
+                </div>
+
                 <script>window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "1", "bdMiniList": false, "bdPic": "", "bdStyle": "0", "bdSize": "16" }, "slide": { "type": "slide", "bdImg": "2", "bdPos": "right", "bdTop": "100" } }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
             </div>

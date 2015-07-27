@@ -9,8 +9,10 @@ using System.Web.UI.WebControls;
 public partial class master_b : System.Web.UI.MasterPage
 {
     public DataTable dtBase { get; set; }
+    public DataTable dtNvaBar { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
-        dtBase = WSCommon.GetSiteBaseSettings(); 
+        dtBase = WSCommon.GetSiteBaseSettings();
+        dtNvaBar = WSCommon.GetHomeNvaBar();
     }
 }
