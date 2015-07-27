@@ -52,12 +52,13 @@ $(function () {
         }).focus(function () { this.blur(); });
     });
 });
+var _width =1200;
 var slider = {
     num: -1,
     cur: 0,
     cr: [],
     al: null,
-    at: 10 * 1200,
+    at: 10 * _width,
     ar: true,
     init: function () {
         if (!slider.data || !slider.data.length)
@@ -94,7 +95,7 @@ var slider = {
 
         var d = slider.data;
         for (var i = 0; i < slider.num; i++)
-            $('#' + d[i].id).stop().animate({ left: ((i - pos) * 1200) }, 1200, 'swing');
+            $('#' + d[i].id).stop().animate({ left: ((i - pos) * _width) }, _width, 'swing');
 
         slider.on(pos);
         slider.text(d[pos]);

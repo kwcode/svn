@@ -222,3 +222,142 @@ $(function () {
         });
     });
 });
+
+
+(function ($) {
+    $.fn.movebg = function (options) {
+        var defaults = {
+            width: 120,/*移动块的大小*/
+            extra: 50,/*反弹的距离*/
+            speed: 300,/*块移动的速度*/
+            rebound_speed: 300/*块反弹的速度*/
+        };
+        var defaultser = $.extend(defaults, options);
+        return this.each(function () {
+            var _this = $(this);
+            var _item = _this.children("ul").children("li").children("a");/*找到触发滑块滑动的元素	*/
+            var origin = _this.children("ul").children("li.cur").index();/*获得当前导航的索引*/
+            var _mover = _this.find(".move-bg");/*找到滑块*/
+            var hidden;/*设置一个变量当html中没有规定cur时在鼠标移出导航后消失*/
+            if (origin == -1) { origin = 0; hidden = "1" } else { _mover.show() };/*如果没有定义cur,则默认从第一个滑动出来*/
+            var cur = prev = origin;/*初始化当前的索引值等于上一个及初始值;*/
+            var extra = defaultser.extra;/*声明一个变量表示额外滑动的距离*/
+            _mover.css({ left: "" + defaultser.width * origin + "px" });/*设置滑块当前显示的位置*/
+
+            //设置鼠标经过事件
+            _item.each(function (index, it) {
+                $(it).mouseover(function () {
+                    cur = index;/*对当前滑块值进行赋值*/
+                    move();
+                    prev = cur;/*滑动完成对上个滑块值进行赋值*/
+                });
+            });
+            _this.mouseleave(function () {
+                cur = origin;/*鼠标离开导航时当前滑动值等于最初滑块值*/
+                move();
+                if (hidden == 1) { _mover.stop().fadeOut(); }/*当html中没有规定cur时在鼠标移出导航后消失*/
+            });
+
+            //滑动方法
+            function move() {
+                _mover.clearQueue();
+                if (cur < prev) { extra = -Math.abs(defaultser.extra); } /*当当前值小于上个滑块值时，额外滑动值为负数*/
+                else { extra = Math.abs(defaultser.extra) };/*当当前值大于上个滑块值时，滑动值为正数*/
+                _mover.queue(
+                    function () {
+                        $(this).show().stop(true, true).animate({ left: "" + Number(cur * defaultser.width + extra) + "" }, defaultser.speed),
+                        function () { $(this).dequeue() }
+                    }
+                );
+                _mover.queue(
+                    function () {
+                        $(this).stop(true, true).animate({ left: "" + cur * defaultser.width + "" }, defaultser.rebound_speed),
+                        function () { $(this).dequeue() }
+                    }
+                );
+            };
+        })
+    }
+
+    $(function () {
+        //if ($.tw.bar != undefined) {
+        var pathname = window.location.pathname;
+        $(".d-header").find(".nav").find("li").removeClass("cur");//移除所有的
+        var b = false;
+        $(".d-header").find(".nav").find("li").each(function (index) {
+            var $that = $(this);
+            var href = $that.find("a").attr("href");
+            if (href == pathname) {
+                $that.addClass("cur");
+                b = true;
+            }
+        })
+        if (!b) {
+            $(".d-header").find(".nav").find("li").each(function (index) {
+                var $that = $(this);
+                var href = $that.find("a").attr("href");
+                if (pathname.indexOf(href) == 0) {
+                    $that.addClass("cur");
+                    b = true;
+                }
+            })
+            //没有选择 默认第一个
+            $(".d-header").find(".nav").find("li").eq(0).addClass("cur");
+        }
+        //}
+        //else {
+        //    //存在 匹配名字
+        //    $(".d-header").find(".nav").find("li").removeClass("cur");//移除所有的
+        //    $(".d-header").find(".nav").find("li").find("a").each(function () {
+        //        if ($(this).text() == $.tw.bar) {
+        //            $(this).closest("li").addClass("cur"); 
+        //        }
+        //    });
+        //}
+
+        $(".nav").movebg({ width: 120/*滑块的大小*/, extra: 40/*额外反弹的距离*/, speed: 300/*滑块移动的速度*/, rebound_speed: 400/*滑块反弹的速度*/ });
+        //设置为首页
+        function SetHome(obj, vrl) {
+            try {
+                obj.style.behavior = 'url(#default#homepage)'; obj.setHomePage(vrl);
+            }
+            catch (e) {
+                if (window.netscape) {
+                    try {
+                        netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                    }
+                    catch (e) {
+                        alert("此操作被浏览器拒绝！\n请在浏览器地址栏输入“about:config”并回车\n然后将 [signed.applets.codebase_principal_support]的值设置为'true',双击即可。");
+                    }
+                    var prefs = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
+                    prefs.setCharPref('browser.startup.homepage', vrl);
+                }
+                else {
+                    alert("设置失败");
+                }
+            }
+        }
+
+        //加入收藏夹
+        function AddFavorite(sURL, sTitle) {
+            try {
+                window.external.addFavorite(sURL, sTitle);
+            }
+            catch (e) {
+                try {
+                    window.sidebar.addPanel(sTitle, sURL, "");
+                }
+                catch (e) {
+                    alert("加入收藏失败，请使用Ctrl+D进行添加");
+                }
+            }
+        }
+        $("#btn_sethome").click(function () {
+            SetHome(this, window.location);
+        });
+        $("#btn_addfavorite").click(function () {
+            AddFavorite(window.location.href, document.title);
+        });
+
+    });
+})(jQuery);
