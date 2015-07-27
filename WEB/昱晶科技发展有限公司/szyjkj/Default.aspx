@@ -87,7 +87,7 @@
                         %>
                         <li class="kw-newsitem  clearfix" style="">
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html"> 
-                                <img class="newsimg fl" src="/upload/Banner/2015/05/08/CqLPjpMd.jpg" />
+                                <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
                                     <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
@@ -149,7 +149,7 @@
                         %>
                         <li class="kw-newsitem  clearfix" style="">
                             <a  href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
-                                <img class="newsimg fl" src="/upload/Banner/2015/05/08/CqLPjpMd.jpg" />
+                                <img class="newsimg fl"  src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
                                     <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
@@ -208,7 +208,7 @@
                         %>
                         <li class="kw-newsitem  clearfix" style="">
                             <a  href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
-                                <img class="newsimg fl" src="/upload/Banner/2015/05/08/CqLPjpMd.jpg" />
+                                <img class="newsimg fl"  src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
                                     <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
@@ -270,7 +270,7 @@
                         %>
                         <li class="kw-newsitem  clearfix" style="">
                             <a  href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
-                                <img class="newsimg fl" src="/upload/Banner/2015/05/08/CqLPjpMd.jpg" />
+                                <img class="newsimg fl"  src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
                                     <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
