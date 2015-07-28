@@ -90,11 +90,11 @@
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
                                 <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
+                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
                                     <p title="<%=item["Summary"]%>">
                                         <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="red">查看详情</a>
+                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
                                     </p>
 
                                 </div>
@@ -152,11 +152,11 @@
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
                                 <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
+                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
                                     <p title="<%=item["Summary"]%>">
                                         <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="red">查看详情</a>
+                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
                                     </p>
 
                                 </div>
@@ -211,11 +211,11 @@
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
                                 <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
+                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
                                     <p title="<%=item["Summary"]%>">
                                         <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="red">查看详情</a>
+                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
                                     </p>
 
                                 </div>
@@ -273,11 +273,11 @@
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
                                 <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
                                 <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i style="color: red; font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
+                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
                                     <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
                                     <p title="<%=item["Summary"]%>">
                                         <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="red">查看详情</a>
+                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
                                     </p>
 
                                 </div>
@@ -322,7 +322,7 @@
                         <img class="jimg" src="<%=dtJianJie.Rows[0]["ImgUrl"] %>" />
                         <div class="cpt">
                             <%=dtJianJie.Rows[0]["Summary"].ToString().Length>320?dtJianJie.Rows[0]["Summary"].ToString().Substring(0,320)+"....":dtJianJie.Rows[0]["Summary"]%>
-                            <a href="/aboutme.html" class="red">查看详细</a>
+                            <a href="/aboutme.html" class="blue">查看详细</a>
                         </div>
                     </a>
                     <%
