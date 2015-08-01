@@ -78,7 +78,7 @@
                 if ($("#Hide_SingleSelect").val() == "1") {
                     isSingleSelect = true;
                 }
-                console.log(isSingleSelect);
+                //console.log(isSingleSelect);
                 if (isSingleSelect) {
                     $(".quanbu").remove();
                 }

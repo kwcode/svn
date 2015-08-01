@@ -4,6 +4,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-style-type" content="text/css">
+    <meta http-equiv="content-script-type" content="text/javascript">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    01.<meta http-equiv="X-UA-Compatible" content="IE=7" />
     <title>欢迎进入重庆今昔科技有限公司管理后台</title>
     <!--说明：cs 文件 是在js 文件前面引用 否则会出现页面 样式问题-->
     <link href="/style/easyui.css" rel="stylesheet" />
@@ -57,6 +61,7 @@
                 onClick: function (node) {
                     //点击后在右边的框架里打开url
                     addpanel(node.text, node.url);
+                    
                 },
                 onDblClick: function (node) {
                     $(this).tree(node.state === 'closed' ? 'expand' : 'collapse', node.target);

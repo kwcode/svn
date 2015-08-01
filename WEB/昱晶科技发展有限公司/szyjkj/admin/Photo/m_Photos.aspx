@@ -86,7 +86,7 @@
                 },
                 onUploadSuccess: function (file, data, response) {
                     $('#' + file.id).find('.data').html(' - 完成');
-                    console.log(file, data, response);
+                    //console.log(file, data, response);
                     var result = JSON.parse(data);
                     $("#img").attr("src", result.path);
                 },

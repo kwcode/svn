@@ -56,7 +56,7 @@
     </script>
     <style>
         body { width: 100%; height: 100%; background: url(/images/bgjianjie.png); color: #666; position: relative; z-index: 10; }
-        .container { width: 480px; padding: 10px; margin: 0 auto; box-shadow: 0 0 0 4px rgba(0,0,0,.2); border-radius: 5px; margin-top: 90px; }
+        .container {   background-color: #fff;width: 480px; padding: 10px; margin: 0 auto; box-shadow: 0 0 0 4px rgba(0,0,0,.2); border-radius: 5px; margin-top: 90px; }
         .title { text-align: center; font-size: 30px; font-family: 微软雅黑,Microsoft YaHei,Arial,"宋体"; zoom: 1; color: #00a0e9; padding: 10px; }
         .e_box dd input[type='password'] { border: 1px solid #dbdbdb; padding: 6px 8px; border-radius: 1px; height: 22px; width: 300px; }
     </style>
