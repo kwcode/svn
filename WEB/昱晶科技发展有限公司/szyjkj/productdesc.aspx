@@ -12,7 +12,7 @@
             <span class="ico"></span>
             <a href="/">首页</a>
             <span class="guai">></span>
-            <a href="/product.html">主营业务</a>
+            <a href="/product.html">展示</a>
         </div>
         <div style="padding: 10px; text-align: center;">
             <%
@@ -25,7 +25,7 @@
                 }
                 else
                 {
-            %>不存在<%
+            %>该类暂时楼盘展示<%
                 }
             %>
         </div>
