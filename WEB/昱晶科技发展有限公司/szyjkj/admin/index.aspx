@@ -61,7 +61,7 @@
                 onClick: function (node) {
                     //点击后在右边的框架里打开url
                     addpanel(node.text, node.url);
-                    
+
                 },
                 onDblClick: function (node) {
                     $(this).tree(node.state === 'closed' ? 'expand' : 'collapse', node.target);
@@ -112,9 +112,9 @@
 </head>
 
 <body class="easyui-layout">
-    <div data-options="region:'north',border:false" style="height: 60px; padding: 10px">
-        <h1 style="position: absolute;">欢迎进入重庆今昔科技有限公司管理后台</h1>
-        <div style="position: absolute; right: 0; line-height: 20px;">
+    <div data-options="region:'north',border:false" style="  padding: 10px">
+        <span style="font-size: 20px; font-weight: bold;">欢迎进入重庆今昔科技有限公司管理后台</span>
+        <div style="float: right; line-height: 20px;">
             <span>当前登录的用户：</span>
             <span style="color: #ff6a00"><%=SessionAccess.NickName%></span>
             <a href="#" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon-application_xp'">控制面板</a>
