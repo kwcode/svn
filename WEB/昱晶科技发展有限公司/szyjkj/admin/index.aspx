@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>欢迎进入深圳市昱晶科技发展有限公司管理后台</title>
+    <title>欢迎进入重庆今昔科技有限公司管理后台</title>
     <!--说明：cs 文件 是在js 文件前面引用 否则会出现页面 样式问题-->
     <link href="/style/easyui.css" rel="stylesheet" />
     <link href="/style/icon.css" rel="stylesheet" />
@@ -108,7 +108,7 @@
 
 <body class="easyui-layout">
     <div data-options="region:'north',border:false" style="height: 60px; padding: 10px">
-        <h1 style="position: absolute;">欢迎进入深圳市昱晶科技发展有限公司管理后台</h1>
+        <h1 style="position: absolute;">欢迎进入重庆今昔科技有限公司管理后台</h1>
         <div style="position: absolute; right: 0; line-height: 20px;">
             <span>当前登录的用户：</span>
             <span style="color: #ff6a00"><%=SessionAccess.NickName%></span>
@@ -129,7 +129,7 @@
         <!--中间内容-->
         <!--中间内容END-->
     </div>
-    <div data-options="region:'south',border:false" style="height: 30px; padding: 10px; text-align: center">深圳市昱晶科技发展有限公司</div>
+    <div data-options="region:'south',border:false" style="height: 30px; padding: 10px; text-align: center">重庆今昔科技有限公司</div>
 
 </body>
 </html>

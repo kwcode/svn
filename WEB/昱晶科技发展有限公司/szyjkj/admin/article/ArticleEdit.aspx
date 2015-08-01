@@ -17,7 +17,7 @@
     <link href="/style/layer.css" rel="stylesheet" type="text/css" />
     <script src="/js/jquery-twExt.js"></script>
     <script>
-        $(function () {
+        $(function () { 
             var id = '<%=ID%>';
             var ue = UM.getEditor('editor'); //实例化编辑器  
             init();
@@ -108,7 +108,7 @@
 
             <div class="e-item clearfix">
                 <span class="sp150" style="float: left;">内容：</span>
-                <div class="clearfix" style="float: left">
+                <div class="clearfix " style="float: left">
                     <script id="editor" type="text/plain" style="width: 1000px; max-height: 400px; min-height: 250px;"></script>
                 </div>
             </div>
