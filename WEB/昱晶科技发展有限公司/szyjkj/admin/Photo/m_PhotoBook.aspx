@@ -163,7 +163,7 @@
                             Name: _name,
                             IsPublic: _ispublic,
                             ShowIndex: _showindex,
-                            Remark: _remark,
+                            Remark: _remark
                         }).done(function (result) {
                             if (result.res > 0) {
                                 layer.close(_layer);
