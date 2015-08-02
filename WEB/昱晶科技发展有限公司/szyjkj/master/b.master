@@ -21,11 +21,22 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <script>
+        function settopmenu(name) {
+            $(".nav").find(".nav-item").removeClass("cur");
+            $(".nav").find(".nav-item").each(function () {
+                var $that = $(this);
+                var txt = $that.find("a").text();
+                if (txt == name) {
+                    $that.addClass("cur");
+                }
+            });
+            $(".nav").movebg({ width: 120/*滑块的大小*/, extra: 40/*额外反弹的距离*/, speed: 300/*滑块移动的速度*/, rebound_speed: 400/*滑块反弹的速度*/ });
+        }
         $(function () {
             //   $.tw = $.tw || {};
             $(".btn_search").click(function () {
                 var keywords = $("#txt_keywords").val();
-                window.open("/search/a-" + keywords + ".html");
+                window.open("/search/a-" + encodeURIComponent(keywords) + ".html");
             });
         });
 
