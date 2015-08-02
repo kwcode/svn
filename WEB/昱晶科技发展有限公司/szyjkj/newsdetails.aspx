@@ -20,7 +20,7 @@
             <span class="ico"></span>
             <a href="/">首页</a>
             <span class="guai">></span>
-            <a href="/news.html">相关新闻</a>
+            <a href="/news.html">文章</a>
         </div>
         <uc1:uc_leftmenu runat="server" ID="uc_leftmenu" />
         <div class="new-list rtc">
@@ -31,17 +31,17 @@
                   { 
             %>
             <div>
-                <div style="font: bold; font-size: 20px; text-align: center;"><%=item["Title"] %></div>
-                <div style="font: bold; font-size: 12px; text-align: center;">发布日期：<%=Convert.ToDateTime(item["CreateTS"]).ToString("yyyy-MM-dd HH:mm")%> <span style="margin-left: 10px;">浏览量：<%=item["ClickCount"]%></span></div>
+                <div style="font: bold; font-size: 20px; text-align: center; margin-bottom: 10px;"><%=item["Title"] %></div>
+                <div style="font: bold; font-size: 12px; text-align: center; margin-bottom:10px;">发布日期：<%=Convert.ToDateTime(item["CreateTS"]).ToString("yyyy-MM-dd HH:mm")%> <span style="margin-left: 10px;">浏览量：<%=item["ClickCount"]%></span></div>
 
-                <div style="padding-bottom: 10px;"><%=item["Content"] %></div>
+                <div style="margin-top:10px;border-top:1px solid #000; padding:10px;"><%=item["Content"] %></div>
             </div>
             <% 
                   }
               }
               else
               {%>
-                暂时无新闻
+                暂无相关文章
                 <% } %>
         </div>
     </div>

@@ -10,7 +10,7 @@
             <span class="ico"></span>
             <a href="/">首页</a>
             <span class="guai">></span>
-            <a href="/news.html">相关新闻</a>
+            <a href="/news.html">文章</a>
         </div>
         <uc1:uc_leftmenu runat="server" ID="uc_leftmenu" />
         <div class="new-list rtc">
@@ -26,7 +26,7 @@
                   }
                   else
                   {%>
-                <li>暂时无新闻</li>
+                <li>暂无相关文章</li>
                 <% } %>
             </ul>
         </div>

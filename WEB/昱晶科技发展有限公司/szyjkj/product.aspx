@@ -11,34 +11,24 @@
         a { text-decoration: none; }
         .new-title { }
         .news-date { float: right; }
-        /*.pro-list { float: left; width: 200px; text-align: center; padding: 5px; }
-        .pro-list ul li { padding: 7px;  }*/
-        .pro-content { padding: 5px; float: left; width: 720px; }
-        .pro-content ul li { float: left; width: 240px; }
+        .pro-content { float: left; width: 950px; padding-left: 13px; }
+        .pro-content ul li { float: left; width: 220px; text-align: center; margin-right: 10px; }
     </style>
-    <div class="d-content"> 
+    <script>
+        $(function () {
+            settopmenu("楼盘展示");
+        })
+
+    </script>
+    <div class="d-content">
         <div class="d-nvtitle">
             <span class="ico"></span>
             <a href="/">首页</a>
             <span class="guai">></span>
-            <a href="/product.html">主营业务</a>
+            <a href="/product.html">楼盘展示</a>
         </div>
         <div class="pro-list">
-            <%-- <ul>
-                <%if (DtProductType != null && DtProductType.Rows.Count > 0)
-                  {
-                      foreach (System.Data.DataRow item in DtProductType.Rows)
-                      { 
-                %>
-                <li><a href="/product.aspx?pid=<%=item["ID"] %>"><%=item["Title"] %></a> </li>
-                <% 
-                      }
-                  }
-                  else
-                  {%>
-                <li>暂时无主营业务</li>
-                <% } %>
-            </ul>--%><uc1:uc_leftmenu runat="server" ID="uc_leftmenu" />
+            <uc1:uc_leftmenu runat="server" ID="uc_leftmenu" />
         </div>
         <div class="pro-content">
             <ul>
@@ -50,14 +40,14 @@
                 <li><a href="/productdesc.aspx?id=<%=item["ID"]%>">
                     <img id="img-adres" data-type="1" style="width: 190px; height: 190px;" src="<%=item["ImgUrl"] %>" onerror="this.onerror=null;this.src='/images/nophoto1.jpg'" alt="昱晶科技发展有限公司" title="昱晶科技发展有限公司" />
 
-                    <div style="text-align: center;"><%=item["Title"] %></div>
+                    <div style="text-align: center;"><%=item["Title"].ToString().Length>15?item["Title"].ToString().Substring(0,15):item["Title"]%></div>
                 </a></li>
                 <% 
                       }
                   }
                   else
                   {%>
-                <li>暂时无主营业务</li>
+                <li>该类暂时楼盘展示</li>
                 <% } %>
             </ul>
         </div>
