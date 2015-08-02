@@ -2,9 +2,26 @@
 
 <%@ Register Src="~/master/uc/uc_leftmenu.ascx" TagPrefix="uc1" TagName="uc_leftmenu" %>
 
-
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
 
+    <style>
+        .kw_box { border: 1px solid #ccc; margin-top: 5px; padding: 10px; }
+        .red { color: red; }
+        .kw_box dl { }
+        .kw_box dl dt { float: left; height: 26px; line-height: 26px; text-align: right; margin-top: 9px; }
+        .kw_box dl dd { padding: 5px; }
+        .input_450 { width: 450px; }
+        .kw_box dl dd input[type='text'] { border: 1px solid #dbdbdb; padding: 4px 7px; border-radius: 1px; height: 26px; line-height: 26px; }
+        .kw_box dl dd textarea { border: 1px solid #dbdbdb; padding: 4px 7px; border-radius: 1px; }
+        .inpbbut3 { display: inline-block; line-height: 22px; color: #333 !important; border: 1px solid #c4c4c4; background: #fff; padding: 0 10px; position: relative; margin-left: 8px; border-radius: 3px; cursor: pointer; }
+        .inpbbut3:hover { background-color: #eaf2ff; }
+
+        /*列表*/
+        .kw_list { border: 1px solid #ccc; margin-top: 5px; padding: 10px; }
+        .kw_items { margin: 5px; }
+        .kw_title { border-bottom: 1px dashed #ccc; padding: 5px; }
+        .kw_info { padding: 10px; }
+    </style>
     <script>
         $(function () {
             $.tw.lm = 1;
@@ -13,15 +30,15 @@
                 var contacts = $("#txt_contacts").val();
                 var content = $("#txt_content").val();
                 var LeaveType = $("input[name='LeaveType']:checked").val();
-                if (title == "" || title.trim().length == 0) {
+                if (title == "" || $.trim(title).length == 0) {
                     alert("请输入留言主题");
                     return;
                 }
-                if (contacts == "" || contacts.trim().length == 0) {
+                if (contacts == "" || $.trim(contacts).length == 0) {
                     alert("请输入联系方式");
                     return;
                 }
-                if (content == "" || content.trim().length == 0) {
+                if (content == "" || $.trim(content).length == 0) {
                     alert("请输入留言内容");
                     return;
                 }
@@ -43,13 +60,10 @@
                         }
                         else { alert("留言失败"); }
                     });
-                console.log(title + " " + contacts + " " + content + " " + LeaveType);
+               // console.log(title + " " + contacts + " " + content + " " + LeaveType);
             });
         });
     </script>
-    <style>
-       
-    </style>
     <div class="d-content" style="margin-top: 5px; margin-bottom: 20px;">
         <div style="margin: 0 10px 0 0; float: left;">
             <uc1:uc_leftmenu runat="server" ID="uc_leftmenu" />
