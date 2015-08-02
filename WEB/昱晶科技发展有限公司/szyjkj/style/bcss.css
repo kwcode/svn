@@ -23,7 +23,7 @@ a:active { color: #052299; }
 
 .d-content { min-height: 450px; margin-top: 2px; }
 /**********************returntop返回顶部*********************/
-#back-to-top { position: fixed; display: none; bottom: 100px; right: 18px; }
+#back-to-top { position: fixed; display: none; bottom: 100px; right: 5px; }
 #back-to-top a { text-align: center; text-decoration: none; color: #d1d1d1; display: block; width: 64px; /*使用CSS3中的transition属性给跳转链接中的文字添加渐变效果*/ -moz-transition: color 1s; -webkit-transition: color 1s; -o-transition: color 1s; }
 
 p#back-to-top a { background: transparent url('/images/top_1.png') no-repeat center center; border-radius: 6px; display: block; height: 64px; width: 56px; margin-bottom: 5px; /*使用CSS3中的transition属性给<span>标签背景颜色添加渐变效果*/ -moz-transition: background 1s; -webkit-transition: background 1s; -o-transition: background 1s; }
@@ -46,13 +46,19 @@ p#back-to-top a:hover { background: #FFFFCC url('/images/top_1.png') no-repeat c
 /*---------------------------------LOGO 搜索----------------------------*/
 .d-topcontent { width: 1200px; margin: 0 auto; height: 90px; }
 .logo { width: 600px; float: left; }
-.search { padding: 0px; float: right; height: 90px; line-height: 90px; }
+/*.search { padding: 0px; margin: 0px; float: right; background-color: red; margin-top: 25px; }
 .search .text11 { background: url(images/ss1.jpg) no-repeat; padding: 0px 0 0px 10px; height: 25px; width: 150px; border: none; }
 .search .button { background: url(images/ss2.jpg) no-repeat; border: none; height: 25px; width: 58px; color: #FFFFFF; }
 
 .search input[type='text'] { width: 400px; height: 30px; padding-left: 10px; border: 1px solid #15B3D6; padding: 4px; }
 
 .search .btn_search { border-bottom: 1px solid #15B3D6; border-right: 1px solid #15B3D6; border-top: 1px solid #15B3D6; display: inline-block; line-height: 37px; padding-top: 1px; color: #333 !important; background: #15B3D6; padding: 0 10px; position: relative; margin-left: 0px; cursor: pointer; }
+.search .btn_search:hover { background-color: #F7F7F7; color: #fff; }*/
+.search { padding: 0px; margin: 0px; float: right; background-color: red; margin-top: 25px; }
+
+.search input[type='text'] { width: 400px; height: 30px; padding-left: 10px; border: 1px solid #15B3D6; padding: 4px; float: left; }
+
+.search .btn_search { float: left; border-bottom: 1px solid #15B3D6; border-right: 1px solid #15B3D6; border-top: 1px solid #15B3D6; display: inline-block; line-height: 38px; padding-top: 1px; color: #333 !important; background: #15B3D6; padding: 0 10px; position: relative; margin-left: 0px; cursor: pointer; }
 .search .btn_search:hover { background-color: #F7F7F7; color: #fff; }
 /*---------------------------------轮播图片----------------------------*/
 .banner-list a { color: #fff!important; }
@@ -77,7 +83,7 @@ div#header div#slide-holder div#slide-controls p#slide-nav a { background-image:
 div#nav ul li a { background: url(../images/nav.png) no-repeat; }
 .banner-list { position: relative; width: 100%; overflow: hidden; }
 #slide-runner .url { width: 1200px; }
-#slide-runner img { width: 1200px; }
+#slide-runner img { width: 1200px; height: 290px; }
 /*首页*/
 .kw_box { width: 1200px; margin-bottom: 5px; }
 .kw_item { border: 1px solid #ccc; overflow: hidden; height: 245px; }
