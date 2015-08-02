@@ -36,40 +36,56 @@
                     <div class="tit2"><b>通知公告</b></div>
                 </div>
                 <div class="kw_item_info clearfix " style="padding: 10px;">
-                    <marquee direction="up" scrollamount="2" onmouseover="this.stop()"
-                        onmouseout="this.start()">
-                     <%
-                         System.Data.DataTable dtga = GetArticleByTypeName("通知公告", 8);
-                         if (dtga != null && dtga.Rows.Count > 0)
-                         { 
-                    %>
-                    <ul class="clearfix">
-                        <%foreach (System.Data.DataRow item in dtga.Rows)
-                          { 
+                    <div id="demo" onmouseover="clearInterval(timer)" onmouseout="timer=setInterval(mar,100)" style="overflow: hidden; height:195px">
+                        <div id="demo1">
+                            <%
+                                System.Data.DataTable dtga = GetArticleByTypeName("通知公告", 8);
+                                if (dtga != null && dtga.Rows.Count > 0)
+                                { 
+                            %>
+                            <ul class="clearfix">
+                                <%foreach (System.Data.DataRow item in dtga.Rows)
+                                  { 
                                
-                        %>
-                        <li class="kw-newsitem" style="border:0px;">
-                            <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html"> 
-                                <i title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>55?item["Title"].ToString().Substring(0,55):item["Title"]%></i>
-                             </a>
-                        </li>
-                        <% 
-                          } %>
-                    </ul>
-                    <%
-                         }
-                         else
-                         { 
-                    %>
-                    <a>暂无新闻</a>
-                    <%
+                                %>
+                                <li class="kw-newsitem" style="border: 0px;">
+                                    <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
+                                        <i title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>55?item["Title"].ToString().Substring(0,55):item["Title"]%></i>
+                                    </a>
+                                </li>
+                                <% 
+                                  } %>
+                            </ul>
+                            <%
+                                }
+                                else
+                                { 
+                            %>
+                            <a>暂无新闻</a>
+                            <%
                          } %>
-
-                    </marquee>
+                        </div>
+                        <div id="demo2"></div>
+                    </div>
+                    <script>
+                        var t = getid("demo"), t1 = getid("demo1"), t2 = getid("demo2"), sh = getid("show"), timer;
+                        t2.innerHTML = t1.innerHTML;
+                        function mar() {
+                            if (t2.offsetTop <= t.scrollTop)
+                                t.scrollTop -= t1.offsetHeight;
+                            else
+                                t.scrollTop++;
+                        }
+                        timer = setInterval(mar, 100);
+                        function getid(id) {
+                            return document.getElementById(id);
+                        }
+                    </script>
                 </div>
             </div>
             <div class="kw_item rt" style="width: 590px;">
                 <div class="kw_item_tl">
+                    <div class="more"><a href="/news/a-<%=GetArticleByTypeName("新闻中心", 1).Rows[0]["ArticleTypeID"]%>.html">更多</a></div>
                     <div class="tit2"><b>新闻中心</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
@@ -86,19 +102,20 @@
                               if (i == 1)
                               {
                         %>
-                        <li class="kw-newsitem  clearfix" style="">
+                        <li class="kw-newsitem  clearfix" style="height: 70px;">
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
                                 <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
-                                <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
-                                    <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
-                                    <p title="<%=item["Summary"]%>">
-                                        <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
-                                    </p>
-
-                                </div>
                             </a>
+                            <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
+                                <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>15?item["Title"].ToString().Substring(0,15):item["Title"]%></i>
+                                <span class="newtime"><a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
+                                    <%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
+                                <div title="<%=item["Summary"]%>">
+                                    <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
+                                </div>
+
+                            </div>
+
                         </li>
                         <%
                               }
@@ -132,6 +149,7 @@
         <div class="kw_box clearfix">
             <div class="kw_item fl" style="width: 590px;">
                 <div class="kw_item_tl">
+                    <div class="more"><a href="/news/a-<%=GetArticleByTypeName("物业服务", 1).Rows[0]["ArticleTypeID"]%>.html">更多</a></div>
                     <div class="tit2"><b>物业服务</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
@@ -148,19 +166,19 @@
                               if (i == 1)
                               {
                         %>
-                        <li class="kw-newsitem  clearfix" style="">
+                        <li class="kw-newsitem  clearfix" style="height: 70px;">
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
                                 <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
-                                <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
-                                    <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
-                                    <p title="<%=item["Summary"]%>">
-                                        <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
-                                    </p>
-
-                                </div>
                             </a>
+                            <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
+                                <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>15?item["Title"].ToString().Substring(0,15):item["Title"]%></i>
+                                <span class="newtime"><a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
+                                <div title="<%=item["Summary"]%>">
+                                    <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
+                                </div>
+
+                            </div>
+
                         </li>
                         <%
                               }
@@ -191,6 +209,7 @@
             </div>
             <div class="kw_item rt" style="width: 590px;">
                 <div class="kw_item_tl">
+                    <div class="more"><a href="/news/a-<%=GetArticleByTypeName("人力资源", 1).Rows[0]["ArticleTypeID"]%>.html">更多</a></div>
                     <div class="tit2"><b>人力资源</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
@@ -207,19 +226,18 @@
                               if (i == 1)
                               {
                         %>
-                        <li class="kw-newsitem  clearfix" style="">
+                        <li class="kw-newsitem  clearfix" style="height: 70px;">
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
-                                <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
-                                <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
-                                    <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
-                                    <p title="<%=item["Summary"]%>">
-                                        <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
-                                    </p>
-
+                                <img class="newsimg fl" src="<%=item["ImgUrl"]%>" /></a>
+                            <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
+                                <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>15?item["Title"].ToString().Substring(0,15):item["Title"]%></i>
+                                <span class="newtime"><a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
+                                <div title="<%=item["Summary"]%>">
+                                    <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
                                 </div>
-                            </a>
+
+                            </div>
+
                         </li>
                         <%
                               }
@@ -253,6 +271,7 @@
         <div class="kw_box clearfix">
             <div class="kw_item fl" style="width: 590px;">
                 <div class="kw_item_tl">
+                    <div class="more"><a href="/news/a-<%=GetArticleByTypeName("推荐项目", 1).Rows[0]["ArticleTypeID"]%>.html">更多</a></div>
                     <div class="tit2"><b>推荐项目</b></div>
                 </div>
                 <div class="kw_item_info clearfix ">
@@ -272,16 +291,16 @@
                         <li class="kw-newsitem  clearfix" style="">
                             <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html">
                                 <img class="newsimg fl" src="<%=item["ImgUrl"]%>" />
-                                <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
-                                    <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>20?item["Title"].ToString().Substring(0,20):item["Title"]%></i>
-                                    <span class="newtime"><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
-                                    <p title="<%=item["Summary"]%>">
-                                        <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
-                                        <a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a>
-                                    </p>
-
-                                </div>
                             </a>
+                            <div class="fl" style="width: 470px; height: 70px; overflow: hidden; padding-left: 5px;">
+                                <i class="blue" style="font-size: 16px;" title="<%=item["Title"] %>"><%=item["Title"].ToString().Length>15?item["Title"].ToString().Substring(0,15):item["Title"]%></i>
+                                <span class="newtime"><a href="/news/a-<%=item["ArticleTypeID"]%>-<%=item["ID"]%>.html" class="blue">查看详情</a><%=Convert.ToDateTime( item["CreateTS"]).ToString("yyyy-MM-dd HH:mm") %> </span>
+                                <div title="<%=item["Summary"]%>">
+                                    <%=item["Summary"].ToString().Length>100?item["Summary"].ToString().Substring(0,100)+"......":item["Summary"]%>
+                                </div>
+
+                            </div>
+
                         </li>
                         <%
                               }
@@ -335,7 +354,7 @@
         <div class="lb">
             <div class="lb_title">
                 <a class="more" href="/product.aspx">更多</a>
-                <div class="lb_tit2">产品展示</div>
+                <div class="lb_tit2">楼盘展示</div>
             </div>
             <div class="lb_c">
                 <div class="slidebox">

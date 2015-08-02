@@ -5,7 +5,12 @@
 
 
 <asp:Content runat="server" ContentPlaceHolderID="mbody">
+      <script>
+          $(function () {
+              settopmenu("关于华兴");
+          })
 
+    </script>
     <div class="d-content">
         <div class="d-nvtitle">
             <span class="ico"></span>
@@ -19,5 +24,6 @@
         <div class="rtc">
             <%=Details %>
         </div>
+        
     </div>
 </asp:Content>

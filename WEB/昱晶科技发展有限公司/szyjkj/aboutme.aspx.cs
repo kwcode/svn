@@ -21,8 +21,20 @@ public partial class aboutme : System.Web.UI.Page
                 foreach (DataRow item in dt.Rows)
                 {
                     int _id = Convert.ToInt32(item["ID"]);
-                    listmenu.Add(new LeftMenuCL() { ID = _id, Url = "/aboutme/a-" + _id + ".html", Name = item["TypeName"].ToString(), Ico = MenuICO.icon1 });
+                    if (ID == _id)
+                    {
+                        listmenu.Add(new LeftMenuCL() { CL = "active", ID = _id, Url = "/aboutme/a-" + _id + ".html", Name = item["TypeName"].ToString(), Ico = MenuICO.icon1 });
+                    }
+                    else
+                    {
+                        listmenu.Add(new LeftMenuCL() { ID = _id, Url = "/aboutme/a-" + _id + ".html", Name = item["TypeName"].ToString(), Ico = MenuICO.icon1 });
+                    }
+
                 }
+            }
+            if (ID == 0 && listmenu.Count > 0)
+            {
+                listmenu[0].CL = "active";
             }
             uc_leftmenu.MenuList = listmenu;
             ID = Convert.ToInt32(Request["id"] ?? "0");
