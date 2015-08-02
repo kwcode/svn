@@ -33,7 +33,7 @@
                 var img = $(".u-imgaddress").prop("src");
                 var title = $("#txt_title").val();
                 var showindex = $("#txt_showindex").val();
-                var proid = $(".sel_type").val();
+                var proid = $("#sel_type").val();
                 $.ajax({
                     url: "/admin/action/actionadmin.aspx",
                     type: "POST",

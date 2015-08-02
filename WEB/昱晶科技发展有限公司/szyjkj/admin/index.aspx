@@ -7,7 +7,7 @@
     <meta http-equiv="content-style-type" content="text/css">
     <meta http-equiv="content-script-type" content="text/javascript">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    01.<meta http-equiv="X-UA-Compatible" content="IE=7" />
+    <meta http-equiv="X-UA-Compatible" content="IE=7" />
     <title>欢迎进入重庆今昔科技有限公司管理后台</title>
     <!--说明：cs 文件 是在js 文件前面引用 否则会出现页面 样式问题-->
     <link href="/style/easyui.css" rel="stylesheet" />
@@ -18,7 +18,23 @@
     <link href="/style/layer.css" rel="stylesheet" />
     <script src="/js/layer.js"></script>
     <script>
+
         $(function () {
+            //增加Panel
+            function addpanel(title, url) {
+                var html = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
+                $('#panel_c').panel({
+                    content: html,
+                    title: title,
+                    //tools: [{
+                    //    iconCls: 'icon-add',
+                    //    handler: function () { alert('new') }
+                    //}], //右侧的按钮
+                    onLoad: function () {
+                        alert("a");
+                    }
+                });
+            }
             addpanel("网站管理", "/admin/Right.aspx")
             //•id: 绑定到节点的标识值.
             //•text:显示文本.
@@ -53,11 +69,13 @@
             //onDblClick：当用户双击一个节点的时候触发
 
             //动态-构造导航树
+
             $("#tree_nva").tree({
-                url: window.location.pathname,
-                method: "POST",
-                //data: _tree,
+                //url: "/admin/index.aspx",
+                //method: "POST",
+                data: jsontree,//_tree,
                 lines: true,//将你的菜单拼成这个json格式id，text，child等 
+
                 onClick: function (node) {
                     //点击后在右边的框架里打开url
                     addpanel(node.text, node.url);
@@ -68,26 +86,6 @@
                     node.state = node.state === 'closed' ? 'open' : 'closed';//修改完该节点是否展开之后，要修改node的state属性，不然下次就无法折叠上
                 }
             });
-            //增加Panel
-            function addpanel(title, url) {
-                var html = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:100%;"></iframe>';
-                $('#panel_c').panel({
-                    content: html,
-                    title: title,
-                    //tools: [{
-                    //    iconCls: 'icon-add',
-                    //    handler: function () { alert('new') }
-                    //}], //右侧的按钮
-                    onLoad: function () {
-                        alert("a");
-                    }
-                });
-            }
-            //增加tabs
-            function addtabs(url) {
-
-            }
-            //
 
             //控制面板
             $('#mm').menu({
@@ -112,29 +110,31 @@
 </head>
 
 <body class="easyui-layout">
-    <div data-options="region:'north',border:false" style="  padding: 10px">
-        <span style="font-size: 20px; font-weight: bold;">欢迎进入重庆今昔科技有限公司管理后台</span>
-        <div style="float: right; line-height: 20px;">
-            <span>当前登录的用户：</span>
-            <span style="color: #ff6a00"><%=SessionAccess.NickName%></span>
-            <a href="#" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon-application_xp'">控制面板</a>
-        </div>
+    <form runat="server" id="form1">
+        <div data-options="region:'north',border:false" style="padding: 10px">
+            <span style="font-size: 20px; font-weight: bold;">欢迎进入重庆今昔科技有限公司管理后台</span>
+            <div style="float: right; line-height: 20px;">
+                <span>当前登录的用户：</span>
+                <span style="color: #ff6a00"><%=SessionAccess.NickName%></span>
+                <a href="#" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon-application_xp'">控制面板</a>
+            </div>
 
-        <div id="mm">
-            <div data-options="iconCls:'icon-door_out'" id="btn_Out">注销</div>
+            <div id="mm">
+                <div data-options="iconCls:'icon-door_out'" id="btn_Out">注销</div>
+            </div>
         </div>
-    </div>
-    <div data-options="region:'west',split:true,title:'导航菜单'" style="width: 180px; padding: 10px;">
-        <!--导航树-->
-        <ul class="easyui-tree" id="tree_nva">
-        </ul>
-        <!--导航树END-->
-    </div>
-    <div data-options="region:'center',title:'网站管理'" id="panel_c" class="easyui-panel" style="padding: 5px;">
-        <!--中间内容-->
-        <!--中间内容END-->
-    </div>
-    <div data-options="region:'south',border:false" style="height: 30px; padding: 10px; text-align: center">重庆今昔科技有限公司</div>
+        <div data-options="region:'west',split:true,title:'导航菜单'" style="width: 180px; padding: 10px;">
+            <!--导航树-->
+            <ul class="easyui-tree" id="tree_nva">
+            </ul>
+            <!--导航树END-->
+        </div>
+        <div data-options="region:'center',title:'网站管理'" id="panel_c" class="easyui-panel" style="padding: 5px;">
+            <!--中间内容-->
+            <!--中间内容END-->
+        </div>
+        <div data-options="region:'south',border:false" style="height: 30px; padding: 10px; text-align: center">重庆今昔科技有限公司</div>
+    </form>
 
 </body>
 </html>
