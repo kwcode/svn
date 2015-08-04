@@ -27,7 +27,7 @@
                 var showindex = $(".txt_showindex").val();
                 var content = encodeURIComponent(ue.getContent());
                 var typeid = $("#sel_type").val();
-                var imgurl = $(".u-imgaddress").prop("src");
+                var imgurl = $(".u-imgaddress").attr("src");
                 var summary = $(".txt_summary").val();
                 /**/
                 $.post("/admin/article/ActionArticle.aspx", {
@@ -64,7 +64,7 @@
                     $(".txt_title").val(jsonarticle[0].Title);
                     $(".txt_showindex").val(jsonarticle[0].ShowIndex);
                     $("#sel_type").val(jsonarticle[0].ArticleTypeID);
-                    $(".u-imgaddress").prop("src", jsonarticle[0].ImgUrl)
+                    $(".u-imgaddress").attr("src", jsonarticle[0].ImgUrl)
                     $(".txt_summary").val(jsonarticle[0].Summary);
                     ue.setContent(jsonarticle[0].Content);
                 }
@@ -74,7 +74,7 @@
                 $.tw.photo.uploadImage({ single: true, area: ['800px', '400px'] }).done(function (result) {
                     var tn = result.result[0].tn;
                     var id = result.result[0].id;
-                    $(".u-imgaddress").prop("src", tn);
+                    $(".u-imgaddress").attr("src", tn);
                 });
             });
         });

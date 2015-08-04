@@ -23,14 +23,14 @@
                 $.tw.photo.uploadImage({ single: true, area: ['800px', '400px'] }).done(function (result) {
                     var tn = result.result[0].tn;
                     var id = result.result[0].id;
-                    $(".u-imgaddress").prop("src", tn);
+                    $(".u-imgaddress").attr("src", tn);
                 });
             });
 
 
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
-                var img = $(".u-imgaddress").prop("src");
+                var img = $(".u-imgaddress").attr("src");
                 var title = $("#txt_title").val();
                 var showindex = $("#txt_showindex").val();
                 var proid = $("#sel_type").val();
@@ -70,7 +70,7 @@
             if (typeof (jsonprocimg) != 'undefined' && jsonprocimg.length > 0) {
                 $(".txt_title").val(jsonprocimg[0].Title);
                 $(".txt_showindex").val(jsonprocimg[0].ShowIndex);
-                $(".u-imgaddress").prop("src", jsonprocimg[0].ImgUrl);
+                $(".u-imgaddress").attr("src", jsonprocimg[0].ImgUrl);
             }
         }
 

@@ -27,7 +27,7 @@
                 var typename = $(".txt_typename").val();
                 var showindex = $(".txt_showindex").val();
                 var content = encodeURIComponent(ue.getContent());
-                var imgurl = $(".u-imgaddress").prop("src");
+                var imgurl = $(".u-imgaddress").attr("src");
                 var summary = $(".txt_summary").val();
                 /**/
                 $.post("/admin/JianJie/ActionJianJie.aspx", {
@@ -58,7 +58,7 @@
                     $(".txt_typename").val(jsonjj[0].TypeName);
                     $(".txt_showindex").val(jsonjj[0].ShowIndex);
 
-                    $(".u-imgaddress").prop("src", jsonjj[0].ImgUrl)
+                    $(".u-imgaddress").attr("src", jsonjj[0].ImgUrl)
                     $(".txt_summary").val(jsonjj[0].Summary);
                     ue.setContent(jsonjj[0].Content);
                 }
@@ -68,7 +68,7 @@
                 $.tw.photo.uploadImage({ single: true, area: ['800px', '400px'] }).done(function (result) {
                     var tn = result.result[0].tn;
                     var id = result.result[0].id;
-                    $(".u-imgaddress").prop("src", tn);
+                    $(".u-imgaddress").attr("src", tn);
                 });
             });
         });
