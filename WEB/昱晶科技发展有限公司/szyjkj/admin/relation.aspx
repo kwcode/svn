@@ -39,6 +39,9 @@
                 /**/
             });
 
+            var ue = UE.getEditor('editorID', {
+                allowDivTransToP: false//阻止div标签自动转换为p标签
+            })
             init();
             function init() {
                 if (typeof (jsonrelation) != 'undefined' && jsonrelation.length > 0) {
@@ -64,9 +67,7 @@
             </div>
         </div>
     </form>
-    <script>
-        var ue = UE.getEditor('editor'); //实例化编辑器  
-    </script>
+
 </body>
 </html>
 
