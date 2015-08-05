@@ -1,26 +1,21 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="relation.aspx.cs" Inherits="admin_relation" %>
 
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script src="/js/jquery-1.8.3.js" type="text/javascript"></script>
-    <link href="/meditor/themes/default/css/umeditor.css" type="text/css" rel="stylesheet" />
-    <script type="text/javascript" src="/meditor/third-party/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/meditor/umeditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="/meditor/umeditor.min.js"></script>
-    <script type="text/javascript" src="../../meditor/lang/zh-cn/zh-cn.js"></script>
+
+    <script src="/ueditor/ueditor.config.js"></script>
+    <script src="/ueditor/ueditor.all.min.js"></script>
+
     <link href="/admin/style/admin.css" rel="stylesheet" type="text/css" />
-    <link href="/style/css.css" rel="stylesheet" type="text/css" />
     <script src="/js/layer.js" type="text/javascript"></script>
     <link href="/style/layer.css" rel="stylesheet" type="text/css" />
 
     <script>
         $(function () {
-            var ue = UM.getEditor('editor'); //实例化编辑器  
-            init();
-
             $("#btn_ok").click(function () {
                 var _layer = $.layer({ type: 3 });
                 var summary = $(".txt_summary").val();
@@ -44,9 +39,12 @@
                 /**/
             });
 
+            init();
             function init() {
                 if (typeof (jsonrelation) != 'undefined' && jsonrelation.length > 0) {
-                    ue.setContent(jsonrelation[0].Details);
+                    ue.ready(function () {
+                        ue.setContent(jsonrelation[0].Details);
+                    });
                 }
             }
         });
@@ -62,9 +60,13 @@
                 </dd>
             </dl>
             <div class="btnbox">
-                <input type="button" id="btn_ok" class="inpbbut1" value="保存" /></div>
+                <input type="button" id="btn_ok" class="inpbbut1" value="保存" />
+            </div>
         </div>
     </form>
+    <script>
+        var ue = UE.getEditor('editor'); //实例化编辑器  
+    </script>
 </body>
 </html>
 
