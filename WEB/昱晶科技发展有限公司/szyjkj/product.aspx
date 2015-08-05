@@ -5,15 +5,7 @@
 
 
 <asp:Content ID="Content1" runat="server" ContentPlaceHolderID="mbody">
-    <style>
-        .new-list { margin-bottom: 10px; }
-        .new-list ul li { border-bottom: 1px dotted #808080; padding: 7px; font-size: 14px; }
-        a { text-decoration: none; }
-        .new-title { }
-        .news-date { float: right; }
-        .pro-content { float: left; width: 950px; padding-left: 13px; }
-        .pro-content ul li { float: left; width: 220px; text-align: center; margin-right: 10px; }
-    </style>
+    
     <script>
         $(function () {
             settopmenu("楼盘展示");
