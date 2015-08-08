@@ -114,6 +114,7 @@ namespace DBCommon
             DataClass dc = this.GetDataClass();
             try
             {
+
                 dt = dc.ExecuteDataTable(storedProcedureName, paraValues);
             }
             catch (Exception ex)

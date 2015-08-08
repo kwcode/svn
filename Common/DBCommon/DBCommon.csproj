@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataClass.cs" />
+    <Compile Include="DataHelper.cs" />
     <Compile Include="DataPool.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
