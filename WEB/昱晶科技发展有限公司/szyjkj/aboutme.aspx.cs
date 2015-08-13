@@ -14,6 +14,7 @@ public partial class aboutme : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            ID = Convert.ToInt32(Request["id"] ?? "0");
             List<LeftMenuCL> listmenu = new List<LeftMenuCL>();
             DataTable dt = WSCommon.GetAboutMe();
             if (dt != null && dt.Rows.Count > 0)
@@ -37,7 +38,7 @@ public partial class aboutme : System.Web.UI.Page
                 listmenu[0].CL = "active";
             }
             uc_leftmenu.MenuList = listmenu;
-            ID = Convert.ToInt32(Request["id"] ?? "0");
+
             if (ID == 0 && listmenu.Count > 0)
             {
                 ID = listmenu[0].ID;
