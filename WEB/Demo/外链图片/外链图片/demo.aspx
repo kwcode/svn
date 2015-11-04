@@ -33,7 +33,7 @@
 </head>
 <body>
     <form id="form1" runat="server"></form>
-    <script id="editor" name="editor" type="text/plain">
+    <script id="editor" name="editor" style="height: 500px;" type="text/plain">
         这里写你的初始化内容
     </script>
 

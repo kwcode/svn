@@ -56,6 +56,15 @@ public class Crawler
 
     public Crawler Fetch()
     {
+        if (this.SourceUrl.Contains("file://"))
+        {
+            ServerUrl = PathFormatter.Format(Path.GetFileName(this.SourceUrl), Config.GetString("catcherPathFormat"));
+            var savePath = Server.MapPath(ServerUrl);
+            BaseApiCommon.ImageConvertCommon.UploadImg(this.SourceUrl, savePath);
+            State = "SUCCESS";
+            return this;
+        }
+
         var request = HttpWebRequest.Create(this.SourceUrl) as HttpWebRequest;
         using (var response = request.GetResponse() as HttpWebResponse)
         {
