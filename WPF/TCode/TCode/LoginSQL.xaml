@@ -8,7 +8,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <Image   Height="78"  Source="Resources/Sql.png"  ></Image>
+            <Image   Height="78"  Source="Images/Sql.png"  ></Image>
         </Grid>
         <Grid  Margin="10,5,0,10" Grid.Row="1">
             <Grid.RowDefinitions>

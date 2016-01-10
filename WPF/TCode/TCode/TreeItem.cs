@@ -15,22 +15,16 @@ namespace TCode
     public class TreeItem : INotifyPropertyChanged
     {
         private ObservableCollection<TreeItem> _children;
-        //private bool? _isChecked = false;
-        private bool _isRadio = false;
 
-        public string Name { get; set; }
-
-        public string InnerID { get; set; }
         public TreeItem()
         {
             _children = new ObservableCollection<TreeItem>();
         }
-        public TreeItem(bool isRadio)
-        {
-            _children = new ObservableCollection<TreeItem>();
-            _isRadio = isRadio;
-
-        }
+        public string SqlConnectionString { get; set; }
+        /// <summary>
+        /// 节点类型
+        /// </summary>
+        public NodeType NodeType { get; set; }
         public int Width { get; set; }
         //
         //  节点文本
@@ -56,9 +50,6 @@ namespace TCode
 
         public TreeItem This { get { return this; } }
 
-
-
-        //
         //节点文本颜色
         public string Foreground { get; set; }
 
@@ -71,9 +62,6 @@ namespace TCode
             get { return _IsExpanded; }
             set { _IsExpanded = value; }
         }
-
-
-
         //是否选中
         private bool _IsSelected = false;
         /// <summary>
@@ -96,5 +84,14 @@ namespace TCode
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
+    }
+
+    public enum NodeType
+    {
+        服务器 = 0,
+        数据库 = 1,
+        系统表 = 2,
+        用户表 = 3,
+        表列 = 4,
     }
 }

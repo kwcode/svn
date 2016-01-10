@@ -27,11 +27,16 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <ToolBar>
-                <Button Name="addDb"  Content="链接"  Click="addDb_Click"></Button>
+                <Button Name="btn_OpenDb" Margin="2"  Content="打开链接" Click="btn_OpenDb_Click"  ></Button>
+                <Button Name="btn_CloseDb"   Margin="0,2,0,0" Content="断开链接" Click="btn_CloseDb_Click"    ></Button>
             </ToolBar>
         </Grid>
         <Grid  Grid.Row="3">
-            <TreeView Name="tree_data" ItemContainerStyle="{StaticResource itemsStyle}"   >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="43*"/>
+                <ColumnDefinition Width="107*"/>
+            </Grid.ColumnDefinitions>
+            <TreeView Name="tree_data" ItemContainerStyle="{StaticResource itemsStyle}" Grid.ColumnSpan="2"   >
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="x:Type local:TreeItem"   ItemsSource="{Binding Path=Children}" >
                         <StackPanel Orientation="Horizontal" Margin="2">

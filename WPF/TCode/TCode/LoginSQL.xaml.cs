@@ -31,7 +31,7 @@ namespace TCode
         void comboBox_Verified_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox cb = sender as ComboBox;
-            if (cb.SelectedIndex == 1)
+            if (cb.SelectedIndex == 0)
             {
                 txtUser.IsEnabled = true;
                 txtPass.IsEnabled = true;
@@ -80,8 +80,14 @@ namespace TCode
                 {
                     string strSql = "select name from sysdatabases order by name";
                     DataTable dt = dc.GetDataTable(strSql);
-                    this.cmbDBlist.ItemsSource = dt.AsDataView();
-                    this.cmbDBlist.DisplayMemberPath = "name";
+                    List<DbNameClass> dbList = new List<DbNameClass>();
+                    dbList.Add(new DbNameClass() { Name = "全部", IsAll = true });
+                    foreach (System.Data.DataRow item in dt.Rows)
+                    {
+                        dbList.Add(new DbNameClass() { Name = item["name"].ToString(), IsAll = false });
+                    }
+                    this.cmbDBlist.ItemsSource = dbList;
+                    this.cmbDBlist.DisplayMemberPath = "Name";
                     this.Title = "连接服务器成功！";
                 }
                 else
@@ -102,17 +108,20 @@ namespace TCode
         private void btn_Ok_Click(object sender, RoutedEventArgs e)
         {
             string server = this.comboBoxServer.Text.Trim();
-            string dbname = "";
-            if (this.cmbDBlist.SelectedValue != null)
-            {
-                dbname = this.cmbDBlist.Text.Trim();
-            }
 
-            if (string.IsNullOrWhiteSpace(dbname))
+            DbNameClass dbClass = cmbDBlist.SelectedItem as DbNameClass;
+
+            if (dbClass == null)
             {
                 MessageBox.Show("请先连接数据库，选择！");
                 return;
             }
+            string dbName = dbClass.Name;
+            if (dbClass.IsAll == true)
+            {
+                dbName = "master";
+            }
+            SqlConnectInfo = new DbSqlConnect();
             if (this.comboBox_Verified.SelectedIndex == 0)
             {
                 string user = this.txtUser.Text.Trim();
@@ -122,18 +131,26 @@ namespace TCode
                     MessageBox.Show("服务器或用户名不能为空!");
                     return;
                 }
+                SqlConnectInfo.IsSqlService = true;
+                SqlConnectInfo.ServiceName = server;
+                SqlConnectInfo.DbName = dbName;
+                SqlConnectInfo.UserID = user;
                 if (pass == "")
                 {
-                    constr = "user id=" + user + ";initial catalog=" + dbname + ";data source=" + server;
+                    constr = "user id=" + user + ";initial catalog=" + dbName + ";data source=" + server;
                 }
                 else
                 {
-                    constr = "user id=" + user + ";password=" + pass + ";initial catalog=" + dbname + ";data source=" + server;
+                    SqlConnectInfo.Password = pass;
+                    constr = "user id=" + user + ";password=" + pass + ";initial catalog=" + dbName + ";data source=" + server;
                 }
             }
             else
             {
-                constr = "Integrated Security=SSPI;Data Source=" + server + ";Initial Catalog=" + dbname;
+                SqlConnectInfo.IsSqlService = false;
+                SqlConnectInfo.ServiceName = server;
+                SqlConnectInfo.DbName = dbName;
+                constr = "Integrated Security=SSPI;Data Source=" + server + ";Initial Catalog=" + dbName;
             }
 
             try
@@ -143,14 +160,14 @@ namespace TCode
                 bool b = dc.OpenConn(true);
                 if (b)
                 {
-                    this.Title = "连接数据库" + dbname + "成功！";
+                    this.Title = "连接数据库" + dbName + "成功！";
                     DialogResult = true;
-                    SqlConnectionString = constr;
-                    SqlDbName = dbname;
+                    SqlDbInfo = dbClass;
+                    SqlServiceName = server;
                 }
                 else
                 {
-                    this.Title = "连接数据库" + dbname + "失败！";
+                    this.Title = "连接数据库" + dbClass.Name + "失败！";
                 }
             }
             catch (Exception ex)
@@ -165,14 +182,45 @@ namespace TCode
         /// <summary>
         /// 数据库连接字符串
         /// </summary>
-        public string SqlConnectionString { get; set; }
+        public DbSqlConnect SqlConnectInfo { get; set; }
         /// <summary>
         /// 选择的数据库名称
         /// </summary>
-        public string SqlDbName { get; set; }
+        public DbNameClass SqlDbInfo { get; set; }
+        /// <summary>
+        /// sql服务器名称
+        /// </summary>
+        public string SqlServiceName { get; set; }
         private void btn_Cancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+    }
+    public class DbNameClass
+    {
+        /// <summary>
+        /// 是否所有数据库
+        /// </summary>
+        public bool IsAll { get; set; }
+        /// <summary>
+        /// 数据库表
+        /// </summary>
+        public string Name { get; set; }
+    }
+    /// <summary> 
+    /// </summary>
+    public class DbSqlConnect
+    {
+        /// <summary>
+        /// 是否就Sql Service 登陆
+        /// true:"user id=" + user + ";password=" + pass + ";initial catalog=" + dbName + ";data source=" + server;
+        /// false:"Integrated Security=SSPI;Data Source=" + server + ";Initial Catalog=" + dbName;
+        /// </summary>
+        public bool IsSqlService { get; set; }
+
+        public string ServiceName { get; set; }
+        public string DbName { get; set; }
+        public string UserID { get; set; }
+        public string Password { get; set; }
     }
 }

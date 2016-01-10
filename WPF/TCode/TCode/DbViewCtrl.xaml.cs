@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -31,17 +32,7 @@ namespace TCode
         DataClass dc = new DataClass();
         private void LoadTree()
         {
-
-            //ObservableCollection<TreeItem> treelist = new ObservableCollection<TreeItem>();
-            //string sqlstr = "SELECT Name FROM PoliceEduDB..SysObjects Where XType='U' ORDER BY Name";
-            //dc.OpenConn(true);
-            //DataTable dt = dc.GetDataTable(sqlstr);
-            //foreach (DataRow item in dt.Rows)
-            //{
-            //    treelist.Add(new TreeItem() { NodeText = item["Name"].ToString() });
-            //}
-            tree.Add(new TreeItem() { NodeText = "服务器", NodeTag = "0", IsExpanded = true });
-
+            //tree.Add(new TreeItem() { NodeText = "服务器", NodeTag = "0", IsExpanded = true }); 
             tree_data.ItemsSource = tree;
 
         }
@@ -50,29 +41,50 @@ namespace TCode
         {
 
         }
-        private void AddTree(string sqlCon, string dbName)
+        private void AddTree(string sqlCon, string service, bool isAll, string dbName)
         {
             ObservableCollection<TreeItem> treelist = new ObservableCollection<TreeItem>();
+            tree.Add(new TreeItem() { NodeText = service, Children = treelist, IsExpanded = true, NodeType = NodeType.服务器, NodeTag = service, SqlConnectionString = sqlCon });
+            string sqlString = "";
 
             dc.ConnectionString = sqlCon;
             dc.OpenConn(true);
-            string sqlstr = "SELECT Name FROM " + dbName + "..SysObjects Where XType='U' ORDER BY Name";
-            DataTable dt = dc.GetDataTable(sqlstr);
-            foreach (DataRow item in dt.Rows)
+            if (isAll)//加载全部数据库
             {
-                treelist.Add(new TreeItem() { NodeText = item["Name"].ToString() });
+                sqlString = "select name from sysdatabases order by name";
+                DataTable dt = dc.GetDataTable(sqlString);
+                dc.CloseConn();
+                foreach (DataRow item in dt.Rows)
+                {
+                    treelist.Add(new TreeItem() { NodeText = item["name"].ToString(), NodeType = NodeType.数据库 });
+                }
             }
-            tree.Add(new TreeItem() { NodeText = dbName, Children = treelist });
+            else
+            {
+                string sqlstr = "SELECT Name FROM " + dbName + "..SysObjects Where XType='U' ORDER BY Name";
+                DataTable dt = dc.GetDataTable(sqlstr);
+                dc.CloseConn();
+                foreach (DataRow item in dt.Rows)
+                {
+                    treelist.Add(new TreeItem() { NodeText = item["Name"].ToString() });
+                }
+
+            }
         }
-        private void addDb_Click(object sender, RoutedEventArgs e)
+
+        private void btn_OpenDb_Click(object sender, RoutedEventArgs e)
         {
             LoginSQL win = new LoginSQL();
             bool? b = win.ShowDialog();
             if (b.Value)
             {
-                AddTree(win.SqlConnectionString, win.SqlDbName);
-
+                AddTree(win.SqlConnectInfo.ServiceName, win.SqlServiceName, win.SqlDbInfo.IsAll, win.SqlDbInfo.Name);
             }
+        }
+
+        private void btn_CloseDb_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -68,6 +68,7 @@
     <Compile Include="demo.xaml.cs">
       <DependentUpon>demo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Global.cs" />
     <Compile Include="TControls\TImageButton.cs" />
     <Compile Include="TreeItem.cs" />
     <Page Include="CodeViewCtrl.xaml">
