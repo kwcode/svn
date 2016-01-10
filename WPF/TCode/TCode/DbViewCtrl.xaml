@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="TCode.DbViewCtrl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate x:Key="items" ItemsSource="{Binding lists}">
+            <TextBlock Text="{Binding Name}"/>
+        </HierarchicalDataTemplate>
+        <Style x:Key="itemsStyle" TargetType="TreeViewItem">
+            <Setter Property="IsExpanded" Value="{Binding Path= IsExpanded}"/>
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="true">
+                    <Setter Property="Foreground"   Value="white"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="auto"></RowDefinition>
+            <RowDefinition  Height="auto"></RowDefinition>
+            <RowDefinition  Height="auto"></RowDefinition>
+            <RowDefinition  Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ToolBar>
+                <Button Name="addDb"  Content="链接"  Click="addDb_Click"></Button>
+            </ToolBar>
+        </Grid>
+        <Grid  Grid.Row="3">
+            <TreeView Name="tree_data" ItemContainerStyle="{StaticResource itemsStyle}"   >
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate DataType="x:Type local:TreeItem"   ItemsSource="{Binding Path=Children}" >
+                        <StackPanel Orientation="Horizontal" Margin="2">
+                            <!--<CheckBox Tag="{Binding This}" x:Name="cb_checkOne"    Focusable="False" IsChecked="{Binding IsChecked,Mode=TwoWay}"  VerticalAlignment="Center" Visibility="{Binding IsDisplay}"></CheckBox>-->
+                            <TextBlock VerticalAlignment="Center"  Text="{Binding NodeText}"   Tag="{Binding NodeTag}" Margin="5,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,17 @@
+﻿<Window x:Class="TCode.demo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:TCode"
+        xmlns:tCtrl="clr-namespace:T.WPF.TControls"
+        Title="demo" Height="300" Width="300">
+    <StackPanel Orientation="Vertical">
+        <Image Source="/Images/Sql.png"  Height="70"  ></Image>
+
+        <StackPanel Orientation="Horizontal">
+            <Button Content="aaaaaaa" Height="26" Width="80" Click="Button_Click"></Button>
+            <tCtrl:TImageButton Content="AAAAA" HLInformationIconSource="/Images/Sql.png"></tCtrl:TImageButton>
+            <local:HLImageButton Content="BBBBBB"  HLHotButtonBackground="Red" HLOrientation="Horizontal"   HLInformationIconSource="/Images/Sql.png" Height="26" Width="80" ></local:HLImageButton>
+        </StackPanel>
+
+    </StackPanel>
+</Window>
