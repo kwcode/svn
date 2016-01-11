@@ -20,7 +20,7 @@ namespace TCode
         {
             _children = new ObservableCollection<TreeItem>();
         }
-        public string SqlConnectionString { get; set; }
+        public SqlConnectResult SqlConnectResult { get; set; }
         /// <summary>
         /// 节点类型
         /// </summary>
