@@ -12,7 +12,7 @@
         <Grid Grid.Row="0">
             <ToolBar>
                 <!--<tCtrl:HLMultiSelectButton Content="来文登记"  Margin="2"></tCtrl:HLMultiSelectButton>-->
-                <tCtrl:HLImageButton Content="帮助"  Margin="2"  ></tCtrl:HLImageButton>
+                <Button Name="btn_GenerateCode" Content="生成代码" Click="btn_GenerateCode_Click"></Button>
                 <Button VerticalAlignment="Bottom"  Margin="2"  >帮助</Button>
             </ToolBar>
         </Grid>
@@ -24,12 +24,16 @@
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0" Width="200">
-                <tCtrl:DbViewCtrl></tCtrl:DbViewCtrl>
+                <tCtrl:DbViewCtrl  x:Name="dbview"  ></tCtrl:DbViewCtrl>
             </Grid>
             <GridSplitter Grid.Column="1" Width="2" HorizontalAlignment="Stretch" Height="auto" ></GridSplitter>
             <Grid Grid.Column="2">
                 <TabControl  Name="tabControl">
-
+                    <TabItem>
+                        <TabItem.Content>
+                            <tCtrl:CodeViewCtrl x:Name="codeView"></tCtrl:CodeViewCtrl>
+                        </TabItem.Content>
+                    </TabItem>
                 </TabControl>
             </Grid>
         </Grid>

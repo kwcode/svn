@@ -6,6 +6,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBox Text="代码片段"></TextBox>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal"  Margin="5">
+            <TextBlock Text="名称空间："></TextBlock>
+            <TextBox Text="Test"  Name="txt_nSpace" Width="300"></TextBox>
+        </StackPanel>
+        <TextBox Grid.Row="2" Text="代码片段" Name="txt_Code"   Margin="5" Padding="2" TextWrapping="Wrap"
+  AcceptsReturn="True"
+  VerticalScrollBarVisibility="Visible" ></TextBox>
     </Grid>
 </UserControl>

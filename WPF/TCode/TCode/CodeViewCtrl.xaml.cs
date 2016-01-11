@@ -23,5 +23,19 @@ namespace TCode
         {
             InitializeComponent();
         }
+        public string Text
+        {
+            set
+            {
+                txt_Code.Text = value;
+            }
+        }
+        public string NSpace
+        {
+            get
+            {
+                return txt_nSpace.Text;
+            }
+        }
     }
 }

@@ -69,8 +69,13 @@
       <DependentUpon>demo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Global.cs" />
+    <Compile Include="Helper\CodeCommon.cs" />
+    <Compile Include="Helper\StringPlus.cs" />
+    <Compile Include="Model\ColumnInfo.cs" />
+    <Compile Include="Model\DbNameClass.cs" />
+    <Compile Include="Model\SqlConnectResult.cs" />
     <Compile Include="TControls\TImageButton.cs" />
-    <Compile Include="TreeItem.cs" />
+    <Compile Include="Model\TreeItem.cs" />
     <Page Include="CodeViewCtrl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -157,9 +162,7 @@
   <ItemGroup>
     <Resource Include="wall_72px_1127453_easyicon.net.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Helper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Images\Sql.png" />
   </ItemGroup>
