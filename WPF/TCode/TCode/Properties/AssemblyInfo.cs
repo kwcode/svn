@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("TCode")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("T")]
 [assembly: AssemblyProduct("TCode")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2016")]
+[assembly: AssemblyCopyright("T2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
