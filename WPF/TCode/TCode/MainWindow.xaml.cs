@@ -27,15 +27,14 @@ namespace TCode
         {
             InitializeComponent();
             initUI();
-            CodeViewCtrl ctrl = new CodeViewCtrl();
-            AddTabControl("代码", ctrl);
+            //CodeViewCtrl ctrl = new CodeViewCtrl();
+            //AddTabControl("代码", ctrl);
 
         }
 
         private void initUI()
         {
-            this.WindowState = WindowState.Maximized;
-
+            this.WindowState = WindowState.Maximized; 
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
 

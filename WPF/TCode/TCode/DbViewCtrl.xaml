@@ -32,11 +32,7 @@
             </ToolBar>
         </Grid>
         <Grid  Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="43*"/>
-                <ColumnDefinition Width="107*"/>
-            </Grid.ColumnDefinitions>
-            <TreeView Name="tree_data" ItemContainerStyle="{StaticResource itemsStyle}" Grid.ColumnSpan="2"   >
+            <TreeView Name="tree_data" ItemContainerStyle="{StaticResource itemsStyle}"  >
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate DataType="x:Type local:TreeItem"   ItemsSource="{Binding Path=Children}" >
                         <StackPanel Orientation="Horizontal" Margin="2">

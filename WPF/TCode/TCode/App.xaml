@@ -3,6 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/TImageButton.xaml"/>
+
+                <!--<resourcedictionary source="/resources/hlmultiselectbutton.xaml"/>
+                <resourcedictionary source="/resources/hlimagebutton.xaml"/>
+                <resourcedictionary source="/resources/resmenu.xaml"/>
+                <resourcedictionary source="/resources/resshared.xaml"/>-->
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

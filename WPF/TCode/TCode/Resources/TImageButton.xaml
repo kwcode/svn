@@ -6,17 +6,25 @@
 
     <Style TargetType="tCtrl:TImageButton">
         <Setter Property="SnapsToDevicePixels" Value="true" />
-       
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="tCtrl:TImageButton">
                     <Grid>
-                        <StackPanel Orientation="Horizontal" IsEnabled="False">
-                            <Image Stretch="None" x:Name="TimgIcon" Margin="0,0,0,0" Source="{TemplateBinding HLInformationIconSource}"></Image>
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
-                        </StackPanel>
+                        <Border x:Name="bdButton"  Background="{TemplateBinding TButtonBackground}">
+                            <StackPanel Orientation="Horizontal" IsEnabled="False">
+                                <Image Stretch="Fill"  Height="24" Width="{TemplateBinding TButtonWidth}"   x:Name="TimgIcon" Margin="0,0,0,0" Source="{TemplateBinding HLInformationIconSource}"></Image>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                            </StackPanel>
+                        </Border>
                     </Grid>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <!--设置绑定源RelativeSource-->
+                            <Setter Property="Background" TargetName="bdButton" Value="{Binding Path=THotButtonBackground, RelativeSource={RelativeSource AncestorType=tCtrl:TImageButton}}"></Setter>
+                            <!--<Setter Property="Background" TargetName="bdButton" Value="red"></Setter>-->
+                            <!--<Setter Property="BorderBrush" TargetName="bdButton" Value="{Binding Path=TButtonBrush}"></Setter>-->
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

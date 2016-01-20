@@ -3,15 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:TCode"
         xmlns:tCtrl="clr-namespace:T.WPF.TControls"
-        Title="demo" Height="300" Width="300">
+        Title="demo" Height="300" Width="300" RenderOptions.BitmapScalingMode="NearestNeighbor" UseLayoutRounding="True">
     <StackPanel Orientation="Vertical">
+        <ToolBar>
+            <tCtrl:TImageButton Width="24" HLInformationIconSource="/Images/openConn.png" Content="打开"></tCtrl:TImageButton>
+            <Separator></Separator>
+            <Button Content="AAA"></Button>
+            <Separator></Separator>
+            <tCtrl:TImageButton HLInformationIconSource="/Images/ringtones.ico" Height="40"  Margin="2" Content="音乐"></tCtrl:TImageButton>
+            <Button Content="AAA"></Button>
+            <tCtrl:TImageButton   Content="AAAAA" HorizontalContentAlignment="Center"  HLInformationIconSource="/Images/Remove.ico" Width="80"></tCtrl:TImageButton>
+            <Separator></Separator>
+            <tCtrl:TImageButton Click="TImageButton_Click"   HorizontalContentAlignment="Center"  HLInformationIconSource="/Images/Remove.ico"  ></tCtrl:TImageButton>
+        </ToolBar>
         <Image Source="/Images/Sql.png"  Height="70"  ></Image>
 
-        <StackPanel Orientation="Horizontal">
+        <StackPanel  Orientation="Vertical">
             <Button Content="aaaaaaa" Height="26" Width="80" Click="Button_Click"></Button>
-            <tCtrl:TImageButton Content="AAAAA" HLInformationIconSource="/Images/Sql.png"></tCtrl:TImageButton>
-            <local:HLImageButton Content="BBBBBB"  HLHotButtonBackground="Red" HLOrientation="Horizontal"   HLInformationIconSource="/Images/Sql.png" Height="26" Width="80" ></local:HLImageButton>
+            <tCtrl:TImageButton Content="AAAAA" HorizontalContentAlignment="Center"  HLInformationIconSource="/Images/Remove.ico" Width="80"></tCtrl:TImageButton>
+
+            <local:HLImageButton Content="BBBBBB"     HLInformationIconSource="/Images/Remove.ico" Height="26" Width="80" ></local:HLImageButton>
         </StackPanel>
 
+        <StackPanel Orientation="Horizontal"  IsEnabled="False">
+            <Image  Stretch="Uniform" x:Name="TimgIcon"   HorizontalAlignment="Center"  VerticalAlignment="Center" Height="24"  Width="24"  Source="/Images/Remove.ico"></Image>
+            <Border BorderBrush="Blue" BorderThickness="1">
+                <ContentPresenter HorizontalAlignment="Center" Content="aaa" VerticalAlignment="Center" RecognizesAccessKey="True" />
+            </Border>
+        </StackPanel>
     </StackPanel>
 </Window>

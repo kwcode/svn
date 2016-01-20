@@ -26,7 +26,7 @@
                         <local:HLMultiSelectButton.Content>
                             <Grid>
                                 <StackPanel Orientation="{TemplateBinding HLOrientation}" IsEnabled="False">
-                                    <Image Stretch="None" x:Name="imgIcon" Margin="0,0,0,0" Source="{TemplateBinding HLInformationIconSource}"></Image>
+                                    <Image Stretch="None" Height="24" Width="24" x:Name="imgIcon" Margin="0,0,0,0"  Source="{TemplateBinding HLInformationIconSource}"></Image>
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
                                 </StackPanel>
                             </Grid>

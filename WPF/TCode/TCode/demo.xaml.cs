@@ -29,6 +29,12 @@ namespace TCode
             //btn.Content = "AAAAA";
             //btn.OnApplyTemplate();
             //this.AddChild(btn);
+           
+        }
+
+        private void TImageButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("OK");
         }
     }
 }

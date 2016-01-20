@@ -23,13 +23,14 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Width="200">
+            <Grid Grid.Column="0"  MinWidth="200">
                 <tCtrl:DbViewCtrl  x:Name="dbview"  ></tCtrl:DbViewCtrl>
             </Grid>
             <GridSplitter Grid.Column="1" Width="2" HorizontalAlignment="Stretch" Height="auto" ></GridSplitter>
             <Grid Grid.Column="2">
                 <TabControl  Name="tabControl">
                     <TabItem>
+                        <TabItem.Header>代码</TabItem.Header>
                         <TabItem.Content>
                             <tCtrl:CodeViewCtrl x:Name="codeView"></tCtrl:CodeViewCtrl>
                         </TabItem.Content>

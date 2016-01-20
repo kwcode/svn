@@ -26,6 +26,23 @@ namespace TCode
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.ResizeMode = ResizeMode.NoResize;
             this.comboBox_Verified.SelectionChanged += comboBox_Verified_SelectionChanged;
+            this.Loaded += LoginSQL_Loaded;
+        }
+
+        void LoginSQL_Loaded(object sender, RoutedEventArgs e)
+        {
+            //初始化加载xml里面现有数据
+            //BaseApiCommon.XmlCommon.InitializationXmlDoc();
+            //string xml = BaseApiCommon.XmlCommon.GetXmlDoc();
+            //bool b = BaseApiCommon.XmlCommon.IsExistNode("DB");
+            //if (!b)
+            //{ 
+                
+            //    BaseApiCommon.XmlCommon.InsertXml("DB", "", "Root");
+            //    BaseApiCommon.XmlCommon.InsertXml("ServiceName", ".", "DB");
+            //    BaseApiCommon.XmlCommon.InsertXml("UserName", "sa", "DB");
+            //    BaseApiCommon.XmlCommon.InsertXml("Password", "123", "DB");
+            //}
         }
 
         void comboBox_Verified_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -163,7 +180,7 @@ namespace TCode
                     this.Title = "连接数据库" + dbName + "成功！";
                     DialogResult = true;
                     SqlConnectResult.IsAll = dbClass.IsAll;
-                    SqlConnectResult.DbName = dbName; 
+                    SqlConnectResult.DbName = dbName;
                 }
                 else
                 {

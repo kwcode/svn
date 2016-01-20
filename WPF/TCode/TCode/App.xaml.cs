@@ -18,6 +18,7 @@ namespace TCode
         {
             base.OnStartup(e);
             Global.SysContext = SynchronizationContext.Current;
+            //new demo().Show();
         }
     }
 }
