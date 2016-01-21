@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TCode.Model;
 
 namespace TCode
 {
@@ -29,7 +30,24 @@ namespace TCode
             //btn.Content = "AAAAA";
             //btn.OnApplyTemplate();
             //this.AddChild(btn);
-           
+            //BaseApiCommon.XmlCommon.Init();
+            //BaseApiCommon.XmlCommon.ReadDB();
+            try
+            {
+                Helper.SerializationCommon.Init();
+                List<DB> dbList = Helper.SerializationCommon.DeserializeXML<List<DB>>();
+                //if (dbList == null)
+                //{
+                //    dbList = new List<DB>();
+                //}
+                //dbList.Add(new DB() { ServiceName = "sa", UserID = "sa", Password = "123" });
+                //Helper.SerializationCommon.SerializeXML(dbList);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void TImageButton_Click(object sender, RoutedEventArgs e)

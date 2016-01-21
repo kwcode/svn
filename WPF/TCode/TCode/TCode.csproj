@@ -41,7 +41,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -70,9 +69,11 @@
     </Compile>
     <Compile Include="Global.cs" />
     <Compile Include="Helper\CodeCommon.cs" />
+    <Compile Include="Helper\SerializationCommon.cs" />
     <Compile Include="Helper\StringPlus.cs" />
     <Compile Include="Helper\XmlCommon.cs" />
     <Compile Include="Model\ColumnInfo.cs" />
+    <Compile Include="Model\DB.cs" />
     <Compile Include="Model\DbNameClass.cs" />
     <Compile Include="Model\SqlConnectResult.cs" />
     <Compile Include="TControls\TImageButton.cs" />

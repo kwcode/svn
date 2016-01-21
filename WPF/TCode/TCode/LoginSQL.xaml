@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0"  Orientation="Horizontal"  Margin="10,5,0,10">
                 <TextBlock Text="服务器名称：" TextAlignment="Right"  Width="150"></TextBlock>
-                <ComboBox  Width="300"  Name="comboBoxServer"  IsEditable="True" Text="."></ComboBox>
+                <ComboBox  Width="300"   Name="comboBoxServer"  IsEditable="True" Text="."></ComboBox>
             </StackPanel>
             <StackPanel Grid.Row="1"  Orientation="Horizontal"  Margin="10,5,0,10">
                 <TextBlock Text="身份证验证：" TextAlignment="Right"  Width="150"></TextBlock>

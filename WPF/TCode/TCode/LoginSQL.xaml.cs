@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TCode.Model;
 
 namespace TCode
 {
@@ -27,22 +28,31 @@ namespace TCode
             this.ResizeMode = ResizeMode.NoResize;
             this.comboBox_Verified.SelectionChanged += comboBox_Verified_SelectionChanged;
             this.Loaded += LoginSQL_Loaded;
+            comboBoxServer.SelectionChanged += comboBoxServer_SelectionChanged;
+        }
+
+        void comboBoxServer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            DB db = cb.SelectedItem as DB;
+            if (db != null)
+            {
+                if (comboBox_Verified.SelectedIndex == 0)
+                {
+                    txtUser.Text = db.UserID;
+                    txtPass.Text = db.Password;
+                }
+            }
+
         }
 
         void LoginSQL_Loaded(object sender, RoutedEventArgs e)
         {
             //初始化加载xml里面现有数据
-            //BaseApiCommon.XmlCommon.InitializationXmlDoc();
-            //string xml = BaseApiCommon.XmlCommon.GetXmlDoc();
-            //bool b = BaseApiCommon.XmlCommon.IsExistNode("DB");
-            //if (!b)
-            //{ 
-                
-            //    BaseApiCommon.XmlCommon.InsertXml("DB", "", "Root");
-            //    BaseApiCommon.XmlCommon.InsertXml("ServiceName", ".", "DB");
-            //    BaseApiCommon.XmlCommon.InsertXml("UserName", "sa", "DB");
-            //    BaseApiCommon.XmlCommon.InsertXml("Password", "123", "DB");
-            //}
+            Helper.SerializationCommon.Init();
+            List<DB> dbList = Helper.SerializationCommon.DeserializeXML<List<DB>>();
+            comboBoxServer.ItemsSource = dbList;
+            comboBoxServer.DisplayMemberPath = "ServiceName";
         }
 
         void comboBox_Verified_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -178,6 +188,22 @@ namespace TCode
                 if (b)
                 {
                     this.Title = "连接数据库" + dbName + "成功！";
+
+                    #region MyRegion
+                    List<DB> dbList = comboBoxServer.ItemsSource as List<DB>;
+                    bool isExist = dbList.Exists(o => { return o.ServiceName.Equals(server); });
+                    if (!isExist)
+                    {
+                        dbList.Add(new DB()
+                        {
+                            ServiceName = server,
+                            UserID = SqlConnectResult.UserID,
+                            Password = SqlConnectResult.Password
+                        });
+                        Helper.SerializationCommon.SerializeXML(dbList);
+                    }
+                    #endregion
+
                     DialogResult = true;
                     SqlConnectResult.IsAll = dbClass.IsAll;
                     SqlConnectResult.DbName = dbName;

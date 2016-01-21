@@ -4,9 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.IO;
+using System.Xml.Linq;
 
 namespace BaseApiCommon
 {
+    public class DB
+    {
+        /// <summary>
+        /// 服务器名称
+        /// </summary>
+        public string ServiceName { get; set; }
+        /// <summary>
+        /// 登录ID
+        /// </summary>
+        public string UserID { get; set; }
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string Password { get; set; }
+    }
     public class XmlCommon
     {
         private static bool _IsRefreshDoc = true;
@@ -16,6 +32,93 @@ namespace BaseApiCommon
         public static bool IsRefreshDoc { get { return _IsRefreshDoc; } set { _IsRefreshDoc = value; } }
         private static string _DocName = "DBXml.xml";
         private static string _xmlPath = AppDomain.CurrentDomain.BaseDirectory;
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="xmlPath">
+        /// 默认地址AppDomain.CurrentDomain.BaseDirectory
+        /// </param>
+        /// <param name="docName">
+        /// 默认文档名称DBXml.xml
+        /// </param>
+        public static void Init(string xmlPath = null, string docName = null)
+        {
+            try
+            {
+                string filePath = (string.IsNullOrWhiteSpace(xmlPath) ? _xmlPath : xmlPath) + (string.IsNullOrWhiteSpace(docName) ? _DocName : docName);
+                if (_xmlDocument == null)
+                {
+                    XDocument xdoc = new XDocument(
+                        new XDeclaration("1.0", "utf-8", null),
+                        new XElement("root"
+                            , new XElement("db", new XElement("s", ".")
+                            , new XElement("u", "sa")
+                            , new XElement("p", "123"))
+                            ));
+                    xdoc.Save(filePath);
+                    //_xmlDocument = new XmlDocument();
+                    //bool isExist = File.Exists(fileName);
+                    //if (isExist)
+                    //    _xmlDocument.Load(fileName);
+                    //else
+                    //{
+                    //    using (FileStream fileStream = File.Create(fileName))
+                    //    {
+                    //        fileStream.Close();
+                    //        XmlDeclaration dec = _xmlDocument.CreateXmlDeclaration("1.0", "GB2312", null);
+                    //        _xmlDocument.AppendChild(dec);
+                    //        //创建根节点   
+                    //        XmlElement root = _xmlDocument.CreateElement("Root");
+                    //        _xmlDocument.Save(fileName);
+                    //    }
+                    //}
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        internal static List<DB> ReadDB(string path = null)
+        {
+            try
+            {
+                List<DB> list = new List<DB>();
+                string filePath = (string.IsNullOrWhiteSpace(path) ? _xmlPath + _DocName : path);
+                 XDocument xml = XDocument.Load(filePath);
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.Load(filePath);
+                string rootNode = xmldoc.DocumentElement.Name;//root 
+                foreach (XmlNode item in xmldoc.SelectSingleNode(rootNode).ChildNodes)
+                {
+                    foreach (XmlNode dbItem in item.ChildNodes)
+                    {
+
+                    }
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        /// <summary>
+        /// 重置
+        /// </summary>
+        public static void Reset()
+        {
+
+        }
+        public static void InsertNode()
+        {
+
+        }
+
         private static XmlDocument _xmlDocument;
         public static void SetPath(string path)
         {
@@ -429,6 +532,8 @@ namespace BaseApiCommon
                 content = node.InnerText;
             return content;
         }
+
+
     }
     /// <summary>
     /// XML节点 属性
