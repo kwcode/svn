@@ -25,6 +25,7 @@
             </StackPanel>
         </GroupBox>
         <ToolBar Grid.Row="1">
+            <Button Content="初始化" Margin="2" Width="80" Name="btn_Init"></Button>
             <Button Content="开始" Margin="2" Width="80" Name="btn_Begin"></Button>
             <Button Content="暂停"  Margin="2" Width="80" Name="btn_Pause"></Button>
             <Button Content="清空"  Margin="2" Width="80" Name="btn_Clear"></Button>
@@ -43,7 +44,7 @@
                         <GridViewColumn Header="应用进程ID" DisplayMemberBinding="{Binding ClientProcessID}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="Wind用户名" DisplayMemberBinding="{Binding NTUserName}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="SPID" DisplayMemberBinding="{Binding SPID}" Width="80"></GridViewColumn>
-                        
+
                         <GridViewColumn Header="客户端"  DisplayMemberBinding="{Binding HostName}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="CPU" DisplayMemberBinding="{Binding CPU}" Width="80"></GridViewColumn>
                     </GridView>

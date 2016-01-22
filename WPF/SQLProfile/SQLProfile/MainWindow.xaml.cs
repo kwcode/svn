@@ -3,6 +3,7 @@ using Microsoft.SqlServer.Management.Trace;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Text;
 using System.Threading;
 using System.Windows;
@@ -30,6 +31,12 @@ namespace SQLProfile
             this.btn_Pause.Click += btn_Pause_Click;
             this.btn_Clear.Click += btn_Clear_Click;
             this.btn_Stop.Click += btn_Stop_Click;
+            this.btn_Init.Click += btn_Init_Click;
+        }
+
+        void btn_Init_Click(object sender, RoutedEventArgs e)
+        {
+            InitBase();
         }
 
         void btn_Stop_Click(object sender, RoutedEventArgs e)
@@ -61,6 +68,7 @@ namespace SQLProfile
         private void InitBase()
         {
             string MonitorDB = System.Configuration.ConfigurationManager.AppSettings["MonitorDB"];
+             
             if (!string.IsNullOrEmpty(MonitorDB))
             {
                 string[] arry = MonitorDB.Split(',');
@@ -69,6 +77,10 @@ namespace SQLProfile
                     MonitorDBList.Add(item);
                 }
             }
+            txt_ServiceName.Text = ConfigurationManager.AppSettings["ServiceName"];
+            txt_DatabaseName.Text = ConfigurationManager.AppSettings["DatabaseName"];
+            txt_UserName.Text = ConfigurationManager.AppSettings["UserName"];
+            txt_Password.Text = ConfigurationManager.AppSettings["Password"];
             profileFileName = AppDomain.CurrentDomain.BaseDirectory + @"Templates/tkw.tdf";
         }
         void btn_Begin_Click(object sender, RoutedEventArgs e)
