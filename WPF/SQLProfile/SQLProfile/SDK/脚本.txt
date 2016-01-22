@@ -1,0 +1,88 @@
+USE [SQLProFile]
+GO
+/****** Object:  Table [dbo].[t_SP_Log]    Script Date: 01/23/2016 00:14:14 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[t_SP_Log](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[EventClass] [nvarchar](500) NULL,
+	[TextData] [nvarchar](max) NULL,
+	[LoginName] [nvarchar](250) NULL,
+	[SPID] [int] NULL,
+	[Duration] [bigint] NULL,
+	[ApplicationName] [nvarchar](250) NULL,
+	[StartTime] [datetime] NULL,
+	[EndTime] [datetime] NULL,
+	[CPU] [int] NULL,
+	[ClientProcessID] [int] NULL,
+	[NTUserName] [nvarchar](250) NULL,
+	[Reads] [bigint] NULL,
+	[Writes] [bigint] NULL,
+	[DatabaseName] [nvarchar](250) NULL,
+	[HostName] [nvarchar](250) NULL,
+	[TransactionID] [bigint] NULL
+) ON [PRIMARY]
+GO
+/****** Object:  StoredProcedure [dbo].[p_SP_AddLog]    Script Date: 01/23/2016 00:14:18 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[p_SP_AddLog]
+    @EventClass NVARCHAR(500) ,
+    @TextData NVARCHAR(MAX) ,
+    @LoginName NVARCHAR(250) ,
+    @SPID INT ,
+    @Duration BIGINT ,
+    @ApplicationName NVARCHAR(250) ,
+    @StartTime DATETIME ,
+    @EndTime DATETIME ,
+    @CPU INT ,
+    @ClientProcessID INT ,
+    @NTUserName NVARCHAR(250) ,
+    @Reads BIGINT ,
+    @Writes BIGINT ,
+    @DatabaseName NVARCHAR(250) ,
+    @HostName NVARCHAR(250) ,
+    @TransactionID BIGINT
+AS
+    BEGIN
+        INSERT  INTO dbo.t_SP_Log
+                ( EventClass ,
+                  TextData ,
+                  LoginName ,
+                  SPID ,
+                  Duration ,
+                  ApplicationName ,
+                  StartTime ,
+                  EndTime ,
+                  CPU ,
+                  ClientProcessID ,
+                  NTUserName ,
+                  Reads ,
+                  Writes ,
+                  DatabaseName ,
+                  HostName ,
+                  TransactionID
+		        )
+        VALUES  ( @EventClass ,
+                  @TextData ,
+                  @LoginName ,
+                  @SPID ,
+                  @Duration ,
+                  @ApplicationName ,
+                  @StartTime ,
+                  @EndTime ,
+                  @CPU ,
+                  @ClientProcessID ,
+                  @NTUserName ,
+                  @Reads ,
+                  @Writes ,
+                  @DatabaseName ,
+                  @HostName ,
+                  @TransactionID  
+		        )
+    END
+GO
