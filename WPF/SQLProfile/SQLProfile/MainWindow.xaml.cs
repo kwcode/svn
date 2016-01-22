@@ -69,7 +69,7 @@ namespace SQLProfile
                     MonitorDBList.Add(item);
                 }
             }
-            profileFileName = AppDomain.CurrentDomain.BaseDirectory + @"tkw.tdf";
+            profileFileName = AppDomain.CurrentDomain.BaseDirectory + @"Templates/tkw.tdf";
         }
         void btn_Begin_Click(object sender, RoutedEventArgs e)
         {

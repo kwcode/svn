@@ -34,11 +34,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>time_machine_72px_1127436_easyicon.net.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=9.5.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\DevComponents.DotNetBar2.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=10.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
@@ -97,23 +96,22 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Templates\100\SP_Counts.tdf" />
-    <None Include="Templates\100\Standard.tdf" />
-    <None Include="Templates\100\TSQL.tdf" />
-    <None Include="Templates\100\TSQL_Duration.tdf" />
-    <None Include="Templates\100\TSQL_Grouped.tdf" />
-    <None Include="Templates\100\TSQL_Locks.tdf" />
-    <None Include="Templates\100\TSQL_Replay.tdf" />
-    <None Include="Templates\100\TSQL_SPs.tdf" />
-    <None Include="Templates\100\Tuning.tdf" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Templates\tkw.tdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="time_machine_72px_1127436_easyicon.net.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
