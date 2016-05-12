@@ -84,15 +84,6 @@ namespace trip
         /// </summary>
         success = 1,
         /// <summary>
-        /// 此处一般用户 支付成功需要跳转和success同时存在
-        /// 支付url 2
-        /// </summary>
-        url = 2,
-        /// <summary>
-        /// 没有更多数据 3
-        /// </summary>
-        nodata = 3,
-        /// <summary>
         /// 其他 ，自定义状态 返回9
         /// </summary>
         other = 9

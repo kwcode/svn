@@ -7,7 +7,9 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script src="js/jquery-1.8.3.min.js"></script>
-    <script src="js/plupload/plupload.full.min.js"></script>
+    <%--<script src="js/plupload/plupload.full.min.js"></script>--%>
+    <script src="js/plupload/moxie.js"></script>
+    <script src="js/plupload/plupload.js"></script>
     <style>
         .trip-uploader .webuploader-container { float: left; position: relative; width: 20%; display: block; line-height: 1.4; background: #fff; border: 1px dashed #D2D1D6; border-radius: 6px; color: #ccc; padding: 15px 0; font-size: 13px; text-align: center; margin: 4px; cursor: pointer; }
         .webuploader-pick { width: 100%; display: block; cursor: pointer; overflow: hidden; }
@@ -34,6 +36,7 @@
                     <div id="imgupload" class="upload-btn"></div>
                 </div>
             </div>
+
         </div>
         <script>
             var $list = $(".uploader-images-list");
@@ -43,12 +46,13 @@
                 url: '/Core/UploadHandler.ashx',
                 flash_swf_url: '/js/plupload/Moxie.swf',
                 silverlight_xap_url: '/js/plupload/Moxie.xap',
+                multipart_params: { 'ModuleID': '0' },//注意和里面内置的不要重复
+                multi_selection: true,//多个文件
                 filters: {
                     mime_types: [ //只允许上传图片文件
                       { title: "图片文件", extensions: "jpg,gif,png" }
                     ]
                 }
-                , prevent_duplicates: !1
                 , max_file_size: '10mb'
                 , chunk_size: '1mb'//小片上传一定要注意压缩的大小
                 //, resize: { width: 320, height: 240, quality: 90 }
@@ -63,6 +67,7 @@
                             var file = files[i];
                             appendimg(file.id);
                         }
+                        uder.settings.multipart_params.ModuleID = 9999;
                         uder.start();
                     },
                     BeforeUpload: function (uder, files) {
@@ -87,7 +92,7 @@
                         console.log("小片上传完成后");
                     },
                     UploadComplete: function (uder, files) {
-                        alert("上传完毕");
+                        console.log("上传完毕");
                     },
                     Error: function () {
                         alert("ERROR");

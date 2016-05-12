@@ -62,6 +62,8 @@
     <Content Include="Global.asax" />
     <Content Include="index.aspx" />
     <Content Include="js\jquery-1.8.3.min.js" />
+    <Content Include="js\plupload\plupload.js" />
+    <Content Include="js\plupload\moxie.js" />
     <Content Include="js\plupload\Moxie.swf" />
     <Content Include="js\plupload\Moxie.xap" />
     <Content Include="js\plupload\plupload.full.min.js" />

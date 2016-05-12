@@ -8,7 +8,7 @@ using System.Web;
 namespace trip
 {
     /// <summary>
-    /// UploadHandler1 的摘要说明
+    /// UploadHandler 的摘要说明
     /// </summary>
     public class UploadHandler : BaseHandler
     {
@@ -31,6 +31,7 @@ namespace trip
                         int offset = Convert.ToInt32(Request["chunk"]); //当前分块
                         int total = Convert.ToInt32(Request["chunks"]);//总的分块数量
                         string name = Request["name"];
+                        string fileid = Request["fileid"];
                         HttpPostedFile uploadFile = Request.Files[j];
                         if (total == 1)
                         {
