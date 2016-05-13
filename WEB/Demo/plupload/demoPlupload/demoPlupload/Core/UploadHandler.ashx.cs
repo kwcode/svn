@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
- 
+
 using System.Web;
 
 namespace trip
@@ -48,7 +48,7 @@ namespace trip
                         else
                         {
                             //文件 分成多块上传
-                            string tempPath = WriteTempFile(uploadFile, offset);
+                            string tempPath = WriteTempFile(uploadFile, offset, fileid);
                             if (total - offset == 1)
                             {
                                 //如果是最后一个分块文件 ，则把文件从临时文件夹中移到上传文件夹中
@@ -86,9 +86,9 @@ namespace trip
         /// <param name="chunk">第几个分块 从0开始</param>
         /// <param name="context"></param>
         /// <returns></returns>
-        private string WriteTempFile(HttpPostedFile uploadFile, int chunk)
+        private string WriteTempFile(HttpPostedFile uploadFile, int chunk, string fileid)
         {
-            string tempPath = GetTempPath() + uploadFile.FileName + ".part"; //临时相对路径
+            string tempPath = GetTempPath() + fileid + ".part"; //临时相对路径
             string saveTempPath = HttpContext.Current.Server.MapPath(tempPath);
             if (chunk == 0)
             {
