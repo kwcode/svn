@@ -75,7 +75,7 @@ namespace TCode
                 if (!string.IsNullOrWhiteSpace(deText))
                 {
                     strclass2.AppendSpaceLine(2, "/// <summary>");
-                    strclass2.AppendSpaceLine(2, "/// " + deText);
+                    strclass2.AppendSpaceLine(2, "/// " + deText.Replace("\r\n", "").Replace("\n", ""));
                     strclass2.AppendSpaceLine(2, "/// </summary>");
                 }
 
@@ -138,14 +138,16 @@ namespace TCode
             {
                 dicCsValueType = new Dictionary<string, string>();
                 dicCsValueType.Add("int", "true");
+                dicCsValueType.Add("tinyint", "true");
                 dicCsValueType.Add("DateTime", "true");
+                dicCsValueType.Add("datetime", "true");
                 dicCsValueType.Add("decimal", "true");
-                dicCsValueType.Add("Decimal", "string");
+                dicCsValueType.Add("Decimal", "true");
 
             }
-            if (dicCsType.ContainsKey(columnType))
+            if (dicCsValueType.ContainsKey(columnType))
             {
-                string val = dicCsType[columnType];
+                string val = dicCsValueType[columnType];
                 if (val == "true")
                 {
                     isval = true;
