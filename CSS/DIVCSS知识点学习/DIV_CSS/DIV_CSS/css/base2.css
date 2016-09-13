@@ -1,0 +1,28 @@
+﻿@charset "utf-8";
+/* CSS Document */
+html, body, div, p, span, ol, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, i, b, em, img, nav, label, input, button, form, figure, textarea, label { padding: 0px; margin: 0px; }
+table, tbody, tr, th, td, tfoot, thead, object, iframe, blockquote, pre, abbr, address, cite, code, del, dfn, ins, kbd, q, samp, small, strong, sub, sup, var, legend, caption { margin: 0; padding: 0; }
+body { font-family: Helvetica, STHeiti STXihei, Microsoft JhengHei, Microsoft YaHei, Tohoma, Arial; -webkit-text-size-adjust: none; }
+body { margin: 0; padding: 0; font-size: 12px; font-family: "Microsoft Yahei","\5FAE\8F6F\96C5\9ED1",Tahoma,Arial,Helvetica,STHeiti,"Hiragino Sans GB"; color: #333; }
+div, h1 { word-break: break-all; }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: normal; }
+ul, ol, dl, form { margin: 0; padding: 0; list-style: none; }
+li { list-style-type: none; }
+i, em { font-style: normal; }
+/*.zhenwen-font i, em {font-style: italic}*/
+input, button, textarea, select, optgroup, option { font-family: inherit; font-size: inherit; font-style: inherit; font-weight: inherit; }
+abbr, acronym { border: 0; font-variant: normal; }
+input, button, select, textarea { outline: 0; }
+input, textarea { border: 0; }
+select { margin-left: 0; }
+img { border: none; }
+img { vertical-align: top; border: 0; }
+a { text-decoration: none; color: #888; }
+a:hover { color: #F93; text-decoration: none; cursor: pointer; }
+.left { float: left; }
+.right { float: right; }
+.clear { clear: both; height: 0; font-size: 0; line-height: 0; overflow: hidden; }
+.clearfix:after { content: "."; display: block; visibility: hidden; clear: both; height: 0; font-size: 0; }
+* html .clearfix { height: 1%; }
+.clearfix { display: inline-block; }
+.clearfix { display: block; }
