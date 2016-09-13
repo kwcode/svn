@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>css hack</title>
+    <meta name="keywords" content="css hack CSShack css hack原理 css hack常用的CSS hack方式 css hack实际应用" />
+    <meta name="description" content="CSS hack由于不同厂商的浏览器，比如Internet Explorer,Safari,Mozilla Firefox,Chrome等，或者是同一厂商的浏览器的不同版本，如IE6和IE7，对CSS的解析认识不完全一样，因此会导致生成的页面效果不一样，得不到我们所需要的页面效果。 这个时候我们就需要针对不同的浏览器去写不同的CSS，让它能够同时兼容不同..." />
+
+    <style type="text/css">
+        <!--
+        .STYLE1 { font-size: 18px; color: #FF0000; *color: #00FF00 !important; color: #0000FF \9; *color: #FFFF00; }
+        .STYLE2, .STYLE3, .STYLE4, .STYLE5 { font-size: 14px; }
+        .STYLE2 { color: #FFFF00; }
+        .STYLE3 { color: #FF0000; }
+        .STYLE4 { color: #00FF00; }
+        .STYLE5 { color: #0000FF; }
+        -->
+    </style>
+</head>
+<body>
+    <span class="STYLE1">我是测试颜色，不在不同浏览器下显示颜色不同哦！-<a href="http://www.divcss5.com/">DIV+CSS</a></span><br />
+    www.divcss5.com版权所有 
+
+    <span class="STYLE2">我是颜色在IE6显示</span>
+    <br />
+    <span class="STYLE4">我是颜色在ie7显示</span>
+    <br />
+    <span class="STYLE5">我是颜色在ie8显示</span>
+    <br />
+    <span class="STYLE3">我是颜色在火狐（firefox）显示</span>
+</html>
