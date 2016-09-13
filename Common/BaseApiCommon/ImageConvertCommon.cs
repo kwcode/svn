@@ -24,7 +24,7 @@ namespace BaseApiCommon
         /// <param name="path">文件的路径</param> 
         public static byte[] GetImage1(string path)
         {
-            if (string.IsNullOrWhiteSpace(path)) return;
+            if (string.IsNullOrWhiteSpace(path)) return null;
             FileStream fs = new FileStream(path, FileMode.Open);//可以是其他重载方法   
             byte[] buff = new byte[fs.Length];
             fs.Read(buff, 0, buff.Length);
@@ -67,6 +67,7 @@ namespace BaseApiCommon
             catch (Exception ex)
             {
                 new Exception(ex.Message);
+                return null;
             }
 
         }
