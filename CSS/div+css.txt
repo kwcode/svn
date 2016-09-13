@@ -1,0 +1,27 @@
+*”号是通配符
+*{ padding:0; margin:0; font-family:"黑体"}
+
+.divcss5{border:1px solid #000;width:220px;*width:300px;}
+IE6和IE7中宽度为300px，而在IE8及以上MSIE版本、谷歌浏览器、火狐(FF)浏览器却显示为220px宽度。
+注意：这里属于星号CSS属性放置前后位置。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
