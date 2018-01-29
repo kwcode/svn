@@ -68,7 +68,7 @@ namespace SQLProfile
         private void InitBase()
         {
             string MonitorDB = System.Configuration.ConfigurationManager.AppSettings["MonitorDB"];
-             
+
             if (!string.IsNullOrEmpty(MonitorDB))
             {
                 string[] arry = MonitorDB.Split(',');
@@ -131,16 +131,20 @@ namespace SQLProfile
                     {
                         //去掉当前的数据库
                         string _DatabaseName = (trcReader["DatabaseName"] ?? "").ToString();
-                        if (!MonitorDBList.Contains(_DatabaseName))
-                        {
-                            continue;
-                        }
+                        //if (!MonitorDBList.Contains(_DatabaseName))
+                        //{
+                        //    continue;
+                        //}
                         TraceData tdata = new TraceData();
                         tdata.EventClass = trcReader["EventClass"].ToString();
                         tdata.TextData = ReplaceWrap((trcReader["TextData"] ?? "").ToString());
                         tdata.LoginName = (trcReader["LoginName"] ?? "").ToString();
                         tdata.SPID = Convert.ToInt32(trcReader["SPID"]);
+
+                        double Duration = Convert.ToDouble(trcReader["Duration"]);
+                        double dur = Duration / 1000 / 1000;
                         tdata.Duration = Convert.ToInt64(trcReader["Duration"]);
+                        tdata.DurationStr = dur.ToString() + "秒";
                         tdata.ApplicationName = (trcReader["ApplicationName"] ?? "").ToString();
                         tdata.StartTime = Convert.ToDateTime(trcReader["StartTime"]);
                         DateTime? TimeNull = null;
@@ -154,13 +158,20 @@ namespace SQLProfile
                         tdata.HostName = (trcReader["HostName"] ?? "").ToString();
                         tdata.TransactionID = Convert.ToInt32(trcReader["TransactionID"]);
 
-
+                        if (tdata.Duration <= 0)
+                        {
+                            continue;
+                        }
                         Global.SysContext.Send(o =>
                         {
                             list.Add(tdata);
-                            #region 记录数据库
-                            wslog.AddLog(tdata.EventClass, tdata.TextData, tdata.LoginName, tdata.SPID, tdata.Duration, tdata.ApplicationName, tdata.StartTime, tdata.EndTime, tdata.CPU, tdata.ClientProcessID, tdata.NTUserName, tdata.Reads, tdata.Writes, tdata.DatabaseName, tdata.HostName, tdata.TransactionID);
-                            #endregion
+                            //滚动到最后
+                            lv_data.SelectedIndex = lv_data.Items.Count - 1;
+                            lv_data.ScrollIntoView(lv_data.SelectedItem);
+
+                            //#region 记录数据库
+                            //wslog.AddLog(tdata.EventClass, tdata.TextData, tdata.LoginName, tdata.SPID, tdata.Duration, tdata.ApplicationName, tdata.StartTime, tdata.EndTime, tdata.CPU, tdata.ClientProcessID, tdata.NTUserName, tdata.Reads, tdata.Writes, tdata.DatabaseName, tdata.HostName, tdata.TransactionID);
+                            //#endregion
                         }, null);
                     }
 

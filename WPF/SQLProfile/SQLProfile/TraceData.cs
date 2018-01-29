@@ -27,6 +27,7 @@ namespace SQLProfile
         /// 微秒计算
         /// </summary>
         public long Duration { get; set; }
+        public string DurationStr { get; set; }
         /// <summary>
         /// 连接的客户端程序
         /// 程序名称
