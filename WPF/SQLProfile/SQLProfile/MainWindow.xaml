@@ -34,6 +34,8 @@
                 <TextBox Name="txt_UserName" Width="80" Text="sa"></TextBox>
                 <TextBlock Text="密码："  Margin="5,0,0,0"></TextBlock>
                 <TextBox Name="txt_Password" Width="80" Text="123"></TextBox>
+                <TextBlock Text="时间（秒）："  Margin="5,0,0,0"/>
+                <TextBox Name="txt_Dur" Width="80" Text="0.01"></TextBox>
             </StackPanel>
         </GroupBox>
         <ToolBar Grid.Row="1">

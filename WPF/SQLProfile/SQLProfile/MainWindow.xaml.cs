@@ -83,10 +83,12 @@ namespace SQLProfile
             txt_Password.Text = ConfigurationManager.AppSettings["Password"];
             profileFileName = AppDomain.CurrentDomain.BaseDirectory + @"Templates/tkw.tdf";
         }
+        double time = 500;
         void btn_Begin_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                time = Convert.ToDouble(txt_Dur.Text.Trim());
                 connInfo.ServerName = txt_ServiceName.Text;
                 connInfo.UserName = txt_UserName.Text;
                 connInfo.Password = txt_Password.Text;
@@ -142,7 +144,13 @@ namespace SQLProfile
                         tdata.SPID = Convert.ToInt32(trcReader["SPID"]);
 
                         double Duration = Convert.ToDouble(trcReader["Duration"]);
-                        double dur = Duration / 1000 / 1000;
+
+
+                        if (Duration < time)
+                        {
+                            continue;
+                        }
+                        double dur = Duration / 1000;
                         tdata.Duration = Convert.ToInt64(trcReader["Duration"]);
                         tdata.DurationStr = dur.ToString() + "秒";
                         tdata.ApplicationName = (trcReader["ApplicationName"] ?? "").ToString();
