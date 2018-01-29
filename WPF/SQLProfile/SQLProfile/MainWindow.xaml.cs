@@ -144,13 +144,12 @@ namespace SQLProfile
                         tdata.SPID = Convert.ToInt32(trcReader["SPID"]);
 
                         double Duration = Convert.ToDouble(trcReader["Duration"]);
-
-
-                        if (Duration < time)
+                         
+                        double dur = Duration / 1000;
+                        if (dur < time)
                         {
                             continue;
                         }
-                        double dur = Duration / 1000;
                         tdata.Duration = Convert.ToInt64(trcReader["Duration"]);
                         tdata.DurationStr = dur.ToString() + "秒";
                         tdata.ApplicationName = (trcReader["ApplicationName"] ?? "").ToString();
