@@ -139,6 +139,10 @@ namespace SQLProfile
                         //}
                         TraceData tdata = new TraceData();
                         tdata.EventClass = trcReader["EventClass"].ToString();
+                        if (tdata.EventClass.ToLower().Contains("audit logout"))
+                        {
+                            continue;
+                        }
                         tdata.TextData = ReplaceWrap((trcReader["TextData"] ?? "").ToString());
                         tdata.LoginName = (trcReader["LoginName"] ?? "").ToString();
                         tdata.SPID = Convert.ToInt32(trcReader["SPID"]);
